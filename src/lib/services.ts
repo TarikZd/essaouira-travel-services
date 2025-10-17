@@ -84,7 +84,7 @@ export const services: Service[] = [
 *Pick up:* ${data.extras.pickupLocation}
 *Drop off:* ${data.extras.dropoffLocation}
 *Adults:* ${data.adults}
-*Children:* ${data.children}
+*Children:* ${data.children || 0}
 *Special Requests:* ${data.specialRequests || 'None'}
 `,
   },
@@ -117,6 +117,14 @@ export const services: Service[] = [
           validation: z.string().min(1, 'Pick up location is required'),
         },
         {
+          name: 'dishPreference',
+          label: 'Dish Preference',
+          type: 'select',
+          required: true,
+          options: ['Mechoui', 'Barbecue', 'Meat Tajin', 'Chicken Tajin', 'Couscous', 'Fresh Fish (if available)', 'Vegetarian Option'],
+          validation: z.string().min(1, 'Please select your preferred dish.'),
+        },
+        {
           name: 'dietaryRestrictions',
           label: 'Dietary Restrictions',
           type: 'text',
@@ -138,7 +146,8 @@ export const services: Service[] = [
 *Phone:* ${data.phone}
 *Pick up:* ${data.extras.pickupLocation}
 *Adults:* ${data.adults}
-*Children:* ${data.children}
+*Children:* ${data.children || 0}
+*Dish Preference:* ${data.extras.dishPreference}
 *Dietary Needs:* ${data.extras.dietaryRestrictions || 'None'}
 *Special Requests:* ${data.specialRequests || 'None'}
 `,
@@ -193,7 +202,7 @@ export const services: Service[] = [
 *Phone:* ${data.phone}
 *Pick up:* ${data.extras.pickupLocation}
 *Adults:* ${data.adults}
-*Children:* ${data.children}
+*Children:* ${data.children || 0}
 *Lunch Preference:* ${data.extras.lunchPreference}
 *Special Requests:* ${data.specialRequests || 'None'}
 `,
@@ -240,7 +249,7 @@ export const services: Service[] = [
 *Phone:* ${data.phone}
 *Meeting Point:* ${data.extras.pickupLocation}
 *Adults:* ${data.adults}
-*Children:* ${data.children}
+*Children:* ${data.children || 0}
 *Special Requests:* ${data.specialRequests || 'None'}
 `,
   },
@@ -294,7 +303,7 @@ export const services: Service[] = [
 *Phone:* ${data.phone}
 *Pick up:* ${data.extras.pickupLocation}
 *Adults:* ${data.adults}
-*Children:* ${data.children}
+*Children:* ${data.children || 0}
 *Tour Duration:* ${data.extras.packageType}
 *Special Requests:* ${data.specialRequests || 'None'}
 `,
