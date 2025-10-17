@@ -5,12 +5,46 @@ import type { ZodType } from 'zod';
 export type FormField = {
   name: string;
   label: string;
-  type: 'text' | 'number' | 'select' | 'tel' | 'time';
+  type: 'text' | 'number' | 'select' | 'tel' | 'time' | 'date' | 'textarea';
   required: boolean;
   placeholder?: string;
   options?: string[] | { label: string; value: string }[];
   validation: ZodType<any, any, any>;
 };
+
+const commonFields: FormField[] = [
+    { name: 'fullName', label: 'Full Name', type: 'text', required: true, placeholder: 'John Doe', validation: z.string().min(2, { message: 'Full name must be at least 2 characters.' }) },
+    { name: 'email', label: 'Email', type: 'email', required: true, placeholder: 'john.doe@example.com', validation: z.string().email({ message: 'Please enter a valid email address.' }) },
+    { name: 'countryCode', label: 'Country Code', type: 'select', required: true, validation: z.string().min(1, 'Country code is required.') },
+    { name: 'phone', label: 'Phone Number', type: 'tel', required: true, placeholder: '555 123-4567', validation: z.string().min(5, { message: 'Please enter a valid phone number.' })},
+    { name: 'date', label: 'Date', type: 'date', required: true, validation: z.date({ required_error: 'A date for the booking is required.' }) },
+    { name: 'time', label: 'Time', type: 'time', required: true, validation: z.string().min(1, 'A time is required.') },
+    { name: 'adults', label: 'Adults', type: 'number', required: true, validation: z.coerce.number().min(1, 'At least one adult is required.') },
+    { name: 'children', label: 'Children (under 12)', type: 'number', required: false, validation: z.coerce.number().min(0, 'Number of children cannot be negative.').optional() },
+    { name: 'specialRequests', label: 'Special Requests', type: 'textarea', required: false, placeholder: 'Tell us anything else we need to know', validation: z.string().optional() }
+];
+
+const getFieldsForService = (specificFields: FormField[]): FormField[] => {
+    // This helper function can be used to add/reorder common fields if needed
+    const fieldOrder = [
+        'fullName', 'email', 'countryCode', 'phone', 'pickupLocation', 'dropoffLocation', 'date', 'time', 
+        'adults', 'children', 'packageType', 'dishPreference', 'lunchPreference', 'dietaryRestrictions', 'specialRequests'
+    ];
+    
+    const allFields = [...commonFields, ...specificFields];
+
+    // Sort fields based on the predefined order
+    allFields.sort((a, b) => {
+        const indexA = fieldOrder.indexOf(a.name);
+        const indexB = fieldOrder.indexOf(b.name);
+        if (indexA === -1) return 1;
+        if (indexB === -1) return -1;
+        return indexA - indexB;
+    });
+
+    return allFields;
+};
+
 
 export type Service = {
   id: number;
@@ -52,7 +86,7 @@ export const services: Service[] = [
       gallery: ['gallery-transfers-1', 'gallery-transfers-2'],
     },
     bookingForm: {
-      fields: [
+      fields: getFieldsForService([
         {
           name: 'pickupLocation',
           label: 'Pick up Location',
@@ -69,7 +103,7 @@ export const services: Service[] = [
             options: [],
             validation: z.string().min(1, 'Drop off location is required'),
         },
-      ],
+      ]),
     },
     whatsappNumber: '212628438838',
     whatsappMessage: (data) => `
@@ -81,8 +115,8 @@ export const services: Service[] = [
 *Date:* ${data.date}
 *Time:* ${data.time}
 *Phone:* ${data.phone}
-*Pick up:* ${data.extras.pickupLocation}
-*Drop off:* ${data.extras.dropoffLocation}
+*Pick up:* ${data.pickupLocation}
+*Drop off:* ${data.dropoffLocation}
 *Adults:* ${data.adults}
 *Children:* ${data.children || 0}
 *Special Requests:* ${data.specialRequests || 'None'}
@@ -107,7 +141,7 @@ export const services: Service[] = [
       gallery: ['gallery-cooking-1', 'gallery-cooking-2', 'gallery-cooking-3'],
     },
     bookingForm: {
-      fields: [
+      fields: getFieldsForService([
         {
           name: 'pickupLocation',
           label: 'Pick up Location',
@@ -132,7 +166,7 @@ export const services: Service[] = [
           placeholder: 'e.g., vegetarian, gluten-free',
           validation: z.string().optional(),
         },
-      ],
+      ]),
     },
     whatsappNumber: '212628438838',
     whatsappMessage: (data) => `
@@ -144,11 +178,11 @@ export const services: Service[] = [
 *Date:* ${data.date}
 *Time:* ${data.time}
 *Phone:* ${data.phone}
-*Pick up:* ${data.extras.pickupLocation}
+*Pick up:* ${data.pickupLocation}
 *Adults:* ${data.adults}
 *Children:* ${data.children || 0}
-*Dish Preference:* ${data.extras.dishPreference}
-*Dietary Needs:* ${data.extras.dietaryRestrictions || 'None'}
+*Dish Preference:* ${data.dishPreference}
+*Dietary Needs:* ${data.dietaryRestrictions || 'None'}
 *Special Requests:* ${data.specialRequests || 'None'}
 `,
   },
@@ -171,7 +205,7 @@ export const services: Service[] = [
       gallery: ['gallery-beaches-1', 'gallery-beaches-2', 'gallery-beaches-3'],
     },
     bookingForm: {
-      fields: [
+      fields: getFieldsForService([
         {
           name: 'pickupLocation',
           label: 'Pick up Location',
@@ -188,7 +222,7 @@ export const services: Service[] = [
           options: ['Mechoui', 'Barbecue', 'Meat Tajin', 'Chicken Tajin', 'Couscous', 'Fresh Fish (if available)', 'Vegetarian Option'],
           validation: z.string().min(1, 'Please select a lunch preference.'),
         }
-      ],
+      ]),
     },
     whatsappNumber: '212628438838',
     whatsappMessage: (data) => `
@@ -200,10 +234,10 @@ export const services: Service[] = [
 *Date:* ${data.date}
 *Time:* ${data.time}
 *Phone:* ${data.phone}
-*Pick up:* ${data.extras.pickupLocation}
+*Pick up:* ${data.pickupLocation}
 *Adults:* ${data.adults}
 *Children:* ${data.children || 0}
-*Lunch Preference:* ${data.extras.lunchPreference}
+*Lunch Preference:* ${data.lunchPreference}
 *Special Requests:* ${data.specialRequests || 'None'}
 `,
   },
@@ -226,7 +260,7 @@ export const services: Service[] = [
       gallery: ['gallery-souk-1', 'gallery-souk-2', 'gallery-souk-3'],
     },
     bookingForm: {
-      fields: [
+      fields: getFieldsForService([
         {
           name: 'pickupLocation',
           label: 'Meeting Point',
@@ -235,7 +269,7 @@ export const services: Service[] = [
           placeholder: 'e.g., Bab Sbaa (main gate)',
           validation: z.string().min(1, 'A meeting point is required'),
         },
-      ],
+      ]),
     },
     whatsappNumber: '212628438838',
     whatsappMessage: (data) => `
@@ -247,7 +281,7 @@ export const services: Service[] = [
 *Date:* ${data.date}
 *Time:* ${data.time}
 *Phone:* ${data.phone}
-*Meeting Point:* ${data.extras.pickupLocation}
+*Meeting Point:* ${data.pickupLocation}
 *Adults:* ${data.adults}
 *Children:* ${data.children || 0}
 *Special Requests:* ${data.specialRequests || 'None'}
@@ -272,7 +306,7 @@ export const services: Service[] = [
       gallery: ['gallery-quad-1', 'gallery-quad-2', 'gallery-quad-3'],
     },
     bookingForm: {
-      fields: [
+      fields: getFieldsForService([
         {
           name: 'pickupLocation',
           label: 'Pick up Location',
@@ -289,7 +323,7 @@ export const services: Service[] = [
           options: ['2-Hour Discovery Ride', 'Half-Day Coastal Adventure', 'Full-Day Dune Expedition'],
           validation: z.string().min(1, 'Please select a tour duration.'),
         },
-      ],
+      ]),
     },
     whatsappNumber: '212628438838',
     whatsappMessage: (data) => `
@@ -301,10 +335,10 @@ export const services: Service[] = [
 *Date:* ${data.date}
 *Time:* ${data.time}
 *Phone:* ${data.phone}
-*Pick up:* ${data.extras.pickupLocation}
+*Pick up:* ${data.pickupLocation}
 *Adults:* ${data.adults}
 *Children:* ${data.children || 0}
-*Tour Duration:* ${data.extras.packageType}
+*Tour Duration:* ${data.packageType}
 *Special Requests:* ${data.specialRequests || 'None'}
 `,
   },
@@ -312,3 +346,5 @@ export const services: Service[] = [
     const order = [1, 5, 4, 3, 2];
     return order.indexOf(a.id) - order.indexOf(b.id);
 });
+
+    
