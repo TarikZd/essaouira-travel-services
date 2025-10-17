@@ -37,11 +37,20 @@ const getService = (slug: string): Service | undefined => {
 };
 
 export default function ServicePage({ params }: { params: { slug: string } }) {
-  const service = getService(params.slug);
+  const serviceData = getService(params.slug);
 
-  if (!service) {
+  if (!serviceData) {
     notFound();
   }
+
+  // Create a serializable version of the service object
+  const service = {
+    ...serviceData,
+    bookingForm: {
+      ...serviceData.bookingForm,
+      fields: serviceData.bookingForm.fields.map(({ validation, ...field }) => field),
+    },
+  };
 
   const heroImage = PlaceHolderImages.find((img) => img.id === service.images.hero);
   const galleryImages = service.images.gallery.map((id) =>
@@ -121,7 +130,7 @@ export default function ServicePage({ params }: { params: { slug: string } }) {
                  </div>
                </CardHeader>
                <CardContent>
-                 <BookingForm service={service} />
+                 <BookingForm service={service as Service} />
                </CardContent>
              </Card>
           </aside>
