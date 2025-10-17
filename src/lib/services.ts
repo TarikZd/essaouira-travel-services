@@ -1,13 +1,14 @@
+
 import { z } from 'zod';
 import type { ZodType } from 'zod';
 
 export type FormField = {
   name: string;
   label: string;
-  type: 'text' | 'number' | 'select';
+  type: 'text' | 'number' | 'select' | 'tel' | 'time';
   required: boolean;
   placeholder?: string;
-  options?: string[];
+  options?: string[] | { label: string; value: string }[];
   validation: ZodType<any, any, any>;
 };
 
@@ -54,21 +55,42 @@ export const services: Service[] = [
     bookingForm: {
       fields: [
         {
-          name: 'departure',
-          label: 'Departure',
+          name: 'time',
+          label: 'Time',
+          type: 'time',
+          required: true,
+          validation: z.string().min(1, 'Time is required'),
+        },
+        {
+          name: 'pickupLocation',
+          label: 'Pick up Location',
           type: 'select',
           required: true,
           options: ['Essaouira', 'Essaouira Airport', 'Marrakech', 'Marrakesh Airport', 'Agadir', 'Agadir Airport'],
-          validation: z.string().min(1, 'Departure location is required'),
+          validation: z.string().min(1, 'Pick up location is required'),
         },
         {
-            name: 'destination',
-            label: 'Destination',
+            name: 'dropoffLocation',
+            label: 'Drop off Location',
             type: 'select',
             required: true,
             options: ['Marrakech', 'Marrakesh Airport', 'Agadir', 'Agafay', 'Taghazout', 'Imsouen', 'El Jadida', 'Oualidia', 'Imlil', 'Ouirgane', 'Taroudant', 'Agadir Airport', 'Essaouira Airport', 'Essaouira'],
-            validation: z.string().min(1, 'Destination is required'),
-        }
+            validation: z.string().min(1, 'Drop off location is required'),
+        },
+        {
+          name: 'adults',
+          label: 'Adults',
+          type: 'number',
+          required: true,
+          validation: z.coerce.number().min(1, 'At least one adult is required.'),
+        },
+        {
+          name: 'children',
+          label: 'Children (under 12)',
+          type: 'number',
+          required: true,
+          validation: z.coerce.number().min(0, 'Number of children cannot be negative.'),
+        },
       ],
     },
     whatsappNumber: '212628438838',
@@ -79,10 +101,12 @@ export const services: Service[] = [
 *Name:* ${data.fullName}
 *Email:* ${data.email}
 *Date:* ${data.date}
+*Time:* ${data.extras.time}
 *Phone:* ${data.phone}
-*Participants:* ${data.participants}
-*Departure:* ${data.extras.departure}
-*Destination:* ${data.extras.destination}
+*Pick up:* ${data.extras.pickupLocation}
+*Drop off:* ${data.extras.dropoffLocation}
+*Adults:* ${data.extras.adults}
+*Children:* ${data.extras.children}
 *Special Requests:* ${data.specialRequests || 'None'}
 `,
   },

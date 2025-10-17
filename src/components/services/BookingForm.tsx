@@ -32,6 +32,7 @@ import { useToast } from '@/hooks/use-toast';
 import { cn } from '@/lib/utils';
 import { submitBooking } from '@/app/actions';
 import { services, type Service } from '@/lib/services';
+import { countryCodes } from '@/lib/country-codes';
 
 type BookingFormProps = {
   service: Service;
@@ -52,6 +53,25 @@ export default function BookingForm({ service }: BookingFormProps) {
 
   const fullService = services.find(s => s.id === service.id);
 
+  // Base schema for common fields
+  let baseSchema = z.object({
+    fullName: z.string().min(2, { message: 'Full name must be at least 2 characters.' }),
+    email: z.string().email({ message: 'Please enter a valid email address.' }),
+    date: z.date({ required_error: 'A date for the booking is required.' }),
+    phone: z.string().min(5, { message: 'Please enter a valid phone number.' }),
+    specialRequests: z.string().optional(),
+  });
+  
+  if(service.slug !== 'airport-transfers'){
+    baseSchema = baseSchema.extend({
+      participants: z.coerce.number().min(1, { message: 'At least one participant is required.' }),
+    });
+  } else {
+    baseSchema = baseSchema.extend({
+      countryCode: z.string().min(1, 'Country code is required.'),
+    });
+  }
+
   // Dynamically create the Zod schema
   const dynamicSchema = service.bookingForm.fields.reduce(
     (schema, field) => {
@@ -59,42 +79,49 @@ export default function BookingForm({ service }: BookingFormProps) {
       if (!fieldService) return schema;
       return schema.extend({ [field.name]: fieldService.validation });
     },
-    z.object({
-      fullName: z.string().min(2, { message: 'Full name must be at least 2 characters.' }),
-      email: z.string().email({ message: 'Please enter a valid email address.' }),
-      date: z.date({ required_error: 'A date for the booking is required.' }),
-      participants: z.coerce.number().min(1, { message: 'At least one participant is required.' }),
-      phone: z.string().min(5, { message: 'Please enter a valid phone number.' }),
-      specialRequests: z.string().optional(),
-    })
+    baseSchema
   );
 
   type FormValues = z.infer<typeof dynamicSchema>;
+  
+  const isTransfer = service.slug === 'airport-transfers';
+
+  const defaultFormValues: Partial<FormValues> = {
+    fullName: '',
+    email: '',
+    phone: '',
+    specialRequests: '',
+    ...service.bookingForm.fields.reduce((acc, field) => ({ ...acc, [field.name]: field.type === 'number' ? 0 : '' }), {}),
+  };
+
+  if(isTransfer){
+    (defaultFormValues as any).adults = 1;
+    (defaultFormValues as any).children = 0;
+    (defaultFormValues as any).countryCode = '+212';
+  } else {
+    (defaultFormValues as any).participants = 1;
+  }
 
   const form = useForm<FormValues>({
     resolver: zodResolver(dynamicSchema),
-    defaultValues: {
-      fullName: '',
-      email: '',
-      participants: 1,
-      phone: '',
-      specialRequests: '',
-      ...service.bookingForm.fields.reduce((acc, field) => ({ ...acc, [field.name]: '' }), {}),
-    },
+    defaultValues: defaultFormValues,
   });
   
-  const departureValue = useWatch({
+  const pickupLocationValue = useWatch({
     control: form.control,
-    name: 'departure' as any, 
+    name: 'pickupLocation' as any, 
   });
 
   const destinationOptions = useMemo(() => {
-    if (service.slug !== 'airport-transfers' || !departureValue) {
-      const destField = service.bookingForm.fields.find(f => f.name === 'destination');
-      return destField?.options || [];
+    if (service.slug !== 'airport-transfers' || !pickupLocationValue) {
+      const destField = service.bookingForm.fields.find(f => f.name === 'dropoffLocation');
+      if (Array.isArray(destField?.options)) {
+        return destField?.options.filter(opt => typeof opt === 'string');
+      }
+      return [];
     }
-    return routes[departureValue] || [];
-  }, [departureValue, service.slug, service.bookingForm.fields]);
+    return routes[pickupLocationValue] || [];
+  }, [pickupLocationValue, service.slug, service.bookingForm.fields]);
 
 
   const handleWhatsAppRedirect = (data: FormValues) => {
@@ -105,10 +132,13 @@ export default function BookingForm({ service }: BookingFormProps) {
       acc[field.name] = (data as any)[field.name];
       return acc;
     }, {} as Record<string, string>);
+    
+    const fullPhoneNumber = isTransfer ? `${(data as any).countryCode}${(data as any).phone}` : data.phone;
 
     const messagePayload = {
       ...data,
       date: formattedDate,
+      phone: fullPhoneNumber,
       extras,
     };
 
@@ -126,10 +156,15 @@ export default function BookingForm({ service }: BookingFormProps) {
           return acc;
         }, {} as Record<string, string>);
         
+      const fullPhoneNumber = isTransfer ? `${(data as any).countryCode}${(data as any).phone}` : data.phone;
+      const participants = isTransfer ? (data as any).adults + (data as any).children : (data as any).participants;
+
       const submissionData = {
         ...data,
         date: formattedDate,
         serviceName: service.name,
+        phone: fullPhoneNumber,
+        participants,
         extras
       };
       
@@ -182,6 +217,64 @@ export default function BookingForm({ service }: BookingFormProps) {
               </FormItem>
             )}
           />
+
+          {isTransfer ? (
+            <div className="md:col-span-2">
+              <FormLabel>Phone Number</FormLabel>
+              <div className="flex gap-2 mt-2">
+                  <FormField
+                    control={form.control}
+                    name={"countryCode" as any}
+                    render={({ field }) => (
+                      <FormItem className="w-1/3">
+                        <Select onValueChange={field.onChange} defaultValue={field.value}>
+                          <FormControl>
+                            <SelectTrigger>
+                              <SelectValue placeholder="Code" />
+                            </SelectTrigger>
+                          </FormControl>
+                          <SelectContent>
+                            {countryCodes.map((country) => (
+                              <SelectItem key={country.code} value={country.dial_code}>
+                                {country.code} ({country.dial_code})
+                              </SelectItem>
+                            ))}
+                          </SelectContent>
+                        </Select>
+                        <FormMessage />
+                      </FormItem>
+                    )}
+                  />
+                  <FormField
+                    control={form.control}
+                    name="phone"
+                    render={({ field }) => (
+                      <FormItem className="w-2/3">
+                        <FormControl>
+                          <Input type="tel" placeholder="555 123-4567" {...field} />
+                        </FormControl>
+                        <FormMessage />
+                      </FormItem>
+                    )}
+                  />
+              </div>
+            </div>
+          ) : (
+            <FormField
+              control={form.control}
+              name="phone"
+              render={({ field }) => (
+                <FormItem>
+                  <FormLabel>Phone Number</FormLabel>
+                  <FormControl>
+                    <Input placeholder="+1 (555) 123-4567" {...field} />
+                  </FormControl>
+                  <FormMessage />
+                </FormItem>
+              )}
+            />
+          )}
+
           <FormField
             control={form.control}
             name="date"
@@ -208,7 +301,7 @@ export default function BookingForm({ service }: BookingFormProps) {
                       mode="single"
                       selected={field.value}
                       onSelect={field.onChange}
-                      disabled={(date) => date < new Date() || date < new Date('1900-01-01')}
+                      disabled={(date) => date < new Date(new Date().setDate(new Date().getDate() - 1))}
                       initialFocus
                     />
                   </PopoverContent>
@@ -217,34 +310,31 @@ export default function BookingForm({ service }: BookingFormProps) {
               </FormItem>
             )}
           />
-          <FormField
-            control={form.control}
-            name="participants"
-            render={({ field }) => (
-              <FormItem>
-                <FormLabel>Number of Participants</FormLabel>
-                <FormControl>
-                  <Input type="number" min="1" {...field} />
-                </FormControl>
-                <FormMessage />
-              </FormItem>
-            )}
-          />
-          <FormField
-            control={form.control}
-            name="phone"
-            render={({ field }) => (
-              <FormItem>
-                <FormLabel>Phone Number</FormLabel>
-                <FormControl>
-                  <Input placeholder="+1 (555) 123-4567" {...field} />
-                </FormControl>
-                <FormMessage />
-              </FormItem>
-            )}
-          />
+
+          {!isTransfer && (
+             <FormField
+                control={form.control}
+                name={"participants" as any}
+                render={({ field }) => (
+                  <FormItem>
+                    <FormLabel>Number of Participants</FormLabel>
+                    <FormControl>
+                      <Input type="number" min="1" {...field} />
+                    </FormControl>
+                    <FormMessage />
+                  </FormItem>
+                )}
+              />
+          )}
+
           {service.bookingForm.fields.map((customField) => {
-            const options = customField.name === 'destination' ? destinationOptions : customField.options;
+            let options: (string | { label: string; value: string })[] = [];
+            if (customField.name === 'dropoffLocation') {
+                options = destinationOptions;
+            } else if (Array.isArray(customField.options)) {
+                options = customField.options;
+            }
+
             return (
               <FormField
                 key={customField.name}
@@ -261,13 +351,21 @@ export default function BookingForm({ service }: BookingFormProps) {
                            </SelectTrigger>
                          </FormControl>
                          <SelectContent>
-                           {options?.map((option) => (
-                             <SelectItem key={option} value={option}>
-                               {option}
-                             </SelectItem>
-                           ))}
+                           {options?.map((option) => {
+                             const value = typeof option === 'string' ? option : option.value;
+                             const label = typeof option === 'string' ? option : option.label;
+                             return (
+                               <SelectItem key={value} value={value}>
+                                 {label}
+                               </SelectItem>
+                             )
+                           })}
                          </SelectContent>
                        </Select>
+                    ) : customField.type === 'number' ? (
+                      <FormControl>
+                        <Input type="number" min={customField.name === 'children' ? 0 : 1} {...field} />
+                      </FormControl>
                     ) : (
                       <FormControl>
                         <Input type={customField.type} placeholder={customField.placeholder} {...field} />
