@@ -1,3 +1,4 @@
+
 {
   "entities": {
     "Service": {
@@ -55,13 +56,13 @@
       "type": "object",
       "description": "Represents a booking request made by a user.",
       "properties": {
-        "id": {
-          "type": "string",
-          "description": "Unique identifier for the booking."
-        },
         "serviceId": {
           "type": "string",
-          "description": "Reference to the Service entity. (Relationship: Service 1:N Booking)"
+          "description": "The slug of the service being booked."
+        },
+        "serviceName": {
+          "type": "string",
+          "description": "The name of the service being booked."
         },
         "fullName": {
           "type": "string",
@@ -72,49 +73,72 @@
           "description": "Email address of the person making the booking.",
           "format": "email"
         },
+        "phone": {
+          "type": "string",
+          "description": "Full phone number including country code."
+        },
         "date": {
           "type": "string",
-          "description": "Date for which the booking is requested.",
-          "format": "date-time"
+          "description": "Date for which the booking is requested (YYYY-MM-DD).",
+          "format": "date"
         },
-        "serviceSpecificField1": {
+        "time": {
           "type": "string",
-          "description": "Service-specific field 1 (e.g., Number of Passengers)."
+          "description": "Time for the booking (HH:mm)."
         },
-        "serviceSpecificField2": {
-          "type": "string",
-          "description": "Service-specific field 2 (e.g., Destination)."
-        },
-        "serviceSpecificField3": {
-          "type": "string",
-          "description": "Service-specific field 3 (if needed)."
-        },
-        "numberOfParticipants": {
+        "adults": {
           "type": "number",
-          "description": "Number of participants for the service."
+          "description": "Number of adults for the booking."
         },
-        "countryCode": {
-          "type": "string",
-          "description": "International country code for the phone number."
+        "children": {
+          "type": "number",
+          "description": "Number of children for the booking."
         },
-        "phoneNumber": {
+        "pickupLocation": {
           "type": "string",
-          "description": "Phone number of the person making the booking."
+          "description": "User-specified pickup location."
+        },
+        "dropoffLocation": {
+          "type": "string",
+          "description": "Destination for transfer services."
+        },
+        "packageType": {
+          "type": "string",
+          "description": "Selected package or duration for a service."
+        },
+        "dishPreference": {
+          "type": "string",
+          "description": "Chosen dish for cooking class."
+        },
+        "lunchPreference": {
+          "type": "string",
+          "description": "Chosen lunch for tours."
+        },
+        "dietaryRestrictions": {
+          "type": "string",
+          "description": "Any dietary restrictions."
         },
         "specialRequests": {
           "type": "string",
           "description": "Any special requests or comments."
+        },
+        "createdAt": {
+          "type": "string",
+          "description": "The timestamp when the booking was created.",
+          "format": "date-time"
         }
       },
       "required": [
-        "id",
         "serviceId",
+        "serviceName",
         "fullName",
         "email",
+        "phone",
         "date",
-        "numberOfParticipants",
-        "countryCode",
-        "phoneNumber"
+        "time",
+        "adults",
+        "pickupLocation",
+        "createdAt"
       ]
     },
     "WebsiteConfiguration": {
@@ -256,6 +280,6 @@
         }
       }
     ],
-    "reasoning": "The Firestore data structure is designed to support a tourism booking platform, prioritizing security, scalability, and ease of debugging. Authorization Independence is achieved through denormalization where necessary. The structure supports QAPs by segregating data based on access needs and employing a consistent access model. The following structure ensures that rules are simple, robust and easily debuggable.\n\n1.  `/services/{serviceId}`: Stores tourism service details.  No specific authorization concerns beyond ensuring the data is correctly formatted.  Listable to all users.\n\n2.  `/bookings/{bookingId}`: Stores booking requests made by users.  No specific authorization concerns beyond ensuring the data is correctly formatted. Listable to all users.\n\n3. `/website_configuration/{documentId}`: Stores website-wide configurations.  This collection will hold a single document. No specific authorization concerns beyond ensuring that only authorized admin can modify this information.\n\nThis structure promotes clarity and simplifies security rules by avoiding hierarchical dependencies and segregating data with different access requirements. The design also facilitates future scalability and maintainability."
+    "reasoning": "The Firestore data structure is designed to support a tourism booking platform, prioritizing security, scalability, and ease of debugging. Authorization Independence is achieved through denormalization where necessary. The structure supports QAPs by segregating data based on access needs and employing a consistent access model. The following structure ensures that rules are simple, robust and easily debuggable.\n\n1.  `/services/{serviceId}`: Stores tourism service details.  No specific authorization concerns beyond ensuring the data is correctly formatted.  Listable to all users.\n\n2.  `/bookings/{bookingId}`: Stores booking requests made by users. This collection can be secured to allow only authenticated users to create bookings and admins to read them. \n\n3. `/website_configuration/{documentId}`: Stores website-wide configurations.  This collection will hold a single document. No specific authorization concerns beyond ensuring that only authorized admin can modify this information.\n\nThis structure promotes clarity and simplifies security rules by avoiding hierarchical dependencies and segregating data with different access requirements. The design also facilitates future scalability and maintainability."
   }
 }

@@ -30,9 +30,10 @@ import { Calendar } from '@/components/ui/calendar';
 import { CalendarIcon, Loader2 } from 'lucide-react';
 import { useToast } from '@/hooks/use-toast';
 import { cn } from '@/lib/utils';
-import { submitBooking } from '@/app/actions';
 import { services, type Service, FormField as ServiceFormField } from '@/lib/services';
 import { countryCodes } from '@/lib/country-codes';
+import { saveBooking } from '@/firebase/firestore/bookings';
+import { useFirestore } from '@/firebase';
 
 type BookingFormProps = {
   service: Service;
@@ -65,17 +66,16 @@ const FormLabelWithRequired: React.FC<{ children: React.ReactNode; required?: bo
 export default function BookingForm({ service }: BookingFormProps) {
   const [isPending, startTransition] = useTransition();
   const { toast } = useToast();
+  const firestore = useFirestore();
 
   const fullService = services.find(s => s.id === service.id);
 
   const dynamicSchema = useMemo(() => {
     const serviceWithFields = services.find(s => s.id === service.id);
     if (!serviceWithFields) {
-        // Fallback schema if service not found, though this is unlikely.
         return z.object({});
     }
 
-    // Dynamically create the Zod schema from service config
     const schema = serviceWithFields.bookingForm.fields.reduce(
       (schema, field) => {
         return schema.extend({ [field.name]: field.validation });
@@ -139,7 +139,6 @@ export default function BookingForm({ service }: BookingFormProps) {
 
   const handleWhatsAppRedirect = (data: FormValues) => {
     if (!fullService) return;
-    const formattedDate = data.date ? format(data.date, 'PPP') : 'Not specified';
     
     const allData = { ...form.getValues() };
 
@@ -155,23 +154,25 @@ export default function BookingForm({ service }: BookingFormProps) {
         ...data,
         date: data.date ? format(data.date, 'yyyy-MM-dd') : '',
         serviceName: service.name,
+        serviceId: service.slug,
         phone: `${data.countryCode || ''}${data.phone || ''}`,
+        createdAt: new Date().toISOString(),
       };
       
-      const result = await submitBooking(submissionData);
-      
-      if (result.success) {
+      try {
+        await saveBooking(firestore, submissionData);
         toast({
           title: 'Booking Request Sent!',
           description: "We've received your request and will redirect you to WhatsApp to confirm.",
         });
         handleWhatsAppRedirect(data);
         form.reset();
-      } else {
+      } catch (error) {
+        console.error("Error saving booking:", error);
         toast({
           variant: 'destructive',
           title: 'Uh oh! Something went wrong.',
-          description: result.error || 'There was a problem with your request.',
+          description: error instanceof Error ? error.message : 'There was a problem with your request.',
         });
       }
     });
@@ -190,18 +191,8 @@ export default function BookingForm({ service }: BookingFormProps) {
           } else if (Array.isArray(fieldConfig.options)) {
               options = fieldConfig.options;
           }
-
-          if (fieldConfig.type === 'group') {
-            return (
-              <div className="md:col-span-2" key={`${fieldConfig.name}-group`}>
-                <div className="flex gap-2">
-                  {/* Placeholder for group rendering logic */}
-                </div>
-              </div>
-            );
-          }
-
-          const spanClass = fieldConfig.name === 'specialRequests' || ['fullName', 'email'].includes(fieldConfig.name) ? 'md:col-span-2' : '';
+          
+          const spanClass = fieldConfig.name === 'specialRequests' || ['fullName', 'email', 'pickupLocation'].includes(fieldConfig.name) ? 'md:col-span-2' : '';
           
           if (fieldConfig.name === 'phone') {
             const countryCodeField = service.bookingForm.fields.find(f => f.name === 'countryCode');
@@ -393,5 +384,3 @@ export default function BookingForm({ service }: BookingFormProps) {
     </Form>
   );
 }
-
-    
