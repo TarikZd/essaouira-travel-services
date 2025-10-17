@@ -89,7 +89,7 @@ export default function ServicePage({ params }: { params: { slug: string } }) {
           <div className="lg:col-span-2 space-y-12">
              {/* Description and Features */}
             <section>
-              <h2 className="font-headline text-4xl text-primary">About this Adventure</h2>
+              <h2 className="font-headline text-4xl text-primary">{service.aboutTitle}</h2>
               <p className="mt-4 text-lg text-foreground/80">{service.description}</p>
               <div className="mt-8 grid grid-cols-1 sm:grid-cols-2 gap-6">
                 {service.features.map((feature, index) => (
@@ -126,7 +126,7 @@ export default function ServicePage({ params }: { params: { slug: string } }) {
              <Card className="sticky top-24 shadow-xl">
                <CardHeader>
                  <CardTitle className="font-headline text-3xl text-primary">
-                    {'Book Your Adventure'}
+                    {service.bookingTitle}
                  </CardTitle>
                </CardHeader>
                <CardContent>
@@ -139,5 +139,3 @@ export default function ServicePage({ params }: { params: { slug: string } }) {
     </div>
   );
 }
-
-    
