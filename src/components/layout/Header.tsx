@@ -23,8 +23,8 @@ import {
 
 export default function Header() {
   const [isOpen, setIsOpen] = useState(false);
-  const mainServices = services.slice(0, 3);
-  const moreServices = services.slice(3);
+  const mainServices = services.slice(0, 4);
+  const moreServices = services.slice(4);
 
   return (
     <header className="sticky top-0 z-50 w-full border-b border-border/40 bg-background/95 backdrop-blur supports-[backdrop-filter]:bg-background/60">

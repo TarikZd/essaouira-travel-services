@@ -37,7 +37,7 @@ export type Service = {
 export const services: Service[] = [
   {
     id: 1,
-    name: 'Airport Transfers',
+    name: 'Transfers',
     slug: 'airport-transfers',
     description: 'Start and end your journey with ease. We offer reliable, comfortable, and timely transfers to and from Essaouira-Mogador Airport (ESU) and Marrakech-Menara Airport (RAK). Travel in modern, air-conditioned vehicles with professional drivers who know the region inside and out.',
     features: ['Professional & Punctual Drivers', 'Modern, Air-Conditioned Vehicles', '24/7 Availability', 'Fixed & Transparent Pricing'],
@@ -65,9 +65,9 @@ export const services: Service[] = [
     },
     whatsappNumber: '212628438838',
     whatsappMessage: (data) => `
-*New Airport Transfer Request* 🚗
+*New Transfer Request* 🚗
 
-*Service:* Airport Transfers
+*Service:* Transfers
 *Name:* ${data.fullName}
 *Email:* ${data.email}
 *Date:* ${data.date}
@@ -78,86 +78,44 @@ export const services: Service[] = [
 `,
   },
   {
-    id: 2,
-    name: 'Quad Biking Adventure',
-    slug: 'quad-biking-adventure',
-    description: 'Experience the thrill of riding a quad bike across Essaouira\'s stunning landscapes. Our guided tours take you through vast sand dunes, along wild beaches, and into hidden forests. Perfect for adventure seekers of all skill levels.',
-    features: ['High-Quality Quad Bikes', 'Professional Guides & Safety Briefing', 'Explore Dunes, Beaches & Forests', 'All Safety Gear Provided'],
+    id: 5,
+    name: 'Outdoor Cooking Adventure',
+    slug: 'outdoor-cooking-adventure',
+    description: 'Join us for a unique culinary journey into the Moroccan countryside. You\'ll visit a local market to select fresh, seasonal ingredients, then learn to prepare a traditional tagine in a stunning outdoor setting. A true taste of Moroccan culture and hospitality.',
+    features: ['Guided Market Visit', 'Hands-on Cooking Class', 'Enjoy Your Meal in Nature', 'Learn Traditional Recipes'],
     pricing: {
-      amount: 50,
-      unit: 'per person (2 hours)',
-    },
-    difficulty: 'Moderate',
-    images: {
-      card: 'card-quad',
-      hero: 'hero-quad',
-      gallery: ['gallery-quad-1', 'gallery-quad-2', 'gallery-quad-3'],
-    },
-    bookingForm: {
-      fields: [
-        {
-          name: 'packageType',
-          label: 'Package Type',
-          type: 'select',
-          required: true,
-          options: ['2-Hour Discovery', 'Half-Day Adventure', 'Full-Day Expedition'],
-          validation: z.string().min(1, 'Package type is required'),
-        },
-      ],
-    },
-    whatsappNumber: '212628438838',
-    whatsappMessage: (data) => `
-*New Quad Biking Request* 🏍️
-
-*Service:* Quad Biking Adventure
-*Name:* ${data.fullName}
-*Email:* ${data.email}
-*Date:* ${data.date}
-*Phone:* ${data.phone}
-*Participants:* ${data.participants}
-*Package:* ${data.extras.packageType}
-*Special Requests:* ${data.specialRequests || 'None'}
-`,
-  },
-  {
-    id: 3,
-    name: 'Essaouira Souk Tour',
-    slug: 'essaouira-souk-tour',
-    description: 'Immerse yourself in the vibrant heart of Essaouira with a guided tour of its historic medina and bustling souks. Discover hidden alleyways, shop for local handicrafts, and taste the authentic flavors of Morocco with an expert local guide.',
-    features: ['Expert Local Guide', 'Discover Hidden Gems', 'Cultural & Historical Insights', 'Tasting of Local Delicacies'],
-    pricing: {
-      amount: 25,
+      amount: 80,
       unit: 'per person',
     },
     difficulty: 'Easy',
     images: {
-      card: 'card-souk',
-      hero: 'hero-souk',
-      gallery: ['gallery-souk-1', 'gallery-souk-2', 'gallery-souk-3'],
+      card: 'card-cooking',
+      hero: 'hero-cooking',
+      gallery: ['gallery-cooking-1', 'gallery-cooking-2', 'gallery-cooking-3'],
     },
     bookingForm: {
       fields: [
         {
-          name: 'tourType',
-          label: 'Tour Type',
-          type: 'select',
-          required: true,
-          options: ['Morning Tour (9am)', 'Afternoon Tour (2pm)'],
-          validation: z.string().min(1, 'Tour type is required'),
+          name: 'dietaryRestrictions',
+          label: 'Dietary Restrictions',
+          type: 'text',
+          required: false,
+          placeholder: 'e.g., vegetarian, nut allergy',
+          validation: z.string().optional(),
         },
       ],
     },
     whatsappNumber: '212628438838',
     whatsappMessage: (data) => `
-*New Souk Tour Request* 🛍️
+*New Outdoor Cooking Request* 🍲
 
-*Service:* Essaouira Souk Tour
+*Service:* Outdoor Cooking Adventure
 *Name:* ${data.fullName}
 *Email:* ${data.email}
 *Date:* ${data.date}
 *Phone:* ${data.phone}
 *Participants:* ${data.participants}
-*Tour Time:* ${data.extras.tourType}
+*Dietary Needs:* ${data.extras.dietaryRestrictions || 'None'}
 *Special Requests:* ${data.specialRequests || 'None'}
 `,
   },
@@ -204,44 +162,86 @@ export const services: Service[] = [
 `,
   },
   {
-    id: 5,
-    name: 'Outdoor Cooking Adventure',
-    slug: 'outdoor-cooking-adventure',
-    description: 'Join us for a unique culinary journey into the Moroccan countryside. You\'ll visit a local market to select fresh, seasonal ingredients, then learn to prepare a traditional tagine in a stunning outdoor setting. A true taste of Moroccan culture and hospitality.',
-    features: ['Guided Market Visit', 'Hands-on Cooking Class', 'Enjoy Your Meal in Nature', 'Learn Traditional Recipes'],
+    id: 3,
+    name: 'Essaouira Souk Tour',
+    slug: 'essaouira-souk-tour',
+    description: 'Immerse yourself in the vibrant heart of Essaouira with a guided tour of its historic medina and bustling souks. Discover hidden alleyways, shop for local handicrafts, and taste the authentic flavors of Morocco with an expert local guide.',
+    features: ['Expert Local Guide', 'Discover Hidden Gems', 'Cultural & Historical Insights', 'Tasting of Local Delicacies'],
     pricing: {
-      amount: 80,
+      amount: 25,
       unit: 'per person',
     },
     difficulty: 'Easy',
     images: {
-      card: 'card-cooking',
-      hero: 'hero-cooking',
-      gallery: ['gallery-cooking-1', 'gallery-cooking-2', 'gallery-cooking-3'],
+      card: 'card-souk',
+      hero: 'hero-souk',
+      gallery: ['gallery-souk-1', 'gallery-souk-2', 'gallery-souk-3'],
     },
     bookingForm: {
       fields: [
         {
-          name: 'dietaryRestrictions',
-          label: 'Dietary Restrictions',
-          type: 'text',
-          required: false,
-          placeholder: 'e.g., vegetarian, nut allergy',
-          validation: z.string().optional(),
+          name: 'tourType',
+          label: 'Tour Type',
+          type: 'select',
+          required: true,
+          options: ['Morning Tour (9am)', 'Afternoon Tour (2pm)'],
+          validation: z.string().min(1, 'Tour type is required'),
         },
       ],
     },
     whatsappNumber: '212628438838',
     whatsappMessage: (data) => `
-*New Outdoor Cooking Request* 🍲
+*New Souk Tour Request* 🛍️
 
-*Service:* Outdoor Cooking Adventure
+*Service:* Essaouira Souk Tour
 *Name:* ${data.fullName}
 *Email:* ${data.email}
 *Date:* ${data.date}
 *Phone:* ${data.phone}
 *Participants:* ${data.participants}
-*Dietary Needs:* ${data.extras.dietaryRestrictions || 'None'}
+*Tour Time:* ${data.extras.tourType}
+*Special Requests:* ${data.specialRequests || 'None'}
+`,
+  },
+  {
+    id: 2,
+    name: 'Quad Biking Adventure',
+    slug: 'quad-biking-adventure',
+    description: 'Experience the thrill of riding a quad bike across Essaouira\'s stunning landscapes. Our guided tours take you through vast sand dunes, along wild beaches, and into hidden forests. Perfect for adventure seekers of all skill levels.',
+    features: ['High-Quality Quad Bikes', 'Professional Guides & Safety Briefing', 'Explore Dunes, Beaches & Forests', 'All Safety Gear Provided'],
+    pricing: {
+      amount: 50,
+      unit: 'per person (2 hours)',
+    },
+    difficulty: 'Moderate',
+    images: {
+      card: 'card-quad',
+      hero: 'hero-quad',
+      gallery: ['gallery-quad-1', 'gallery-quad-2', 'gallery-quad-3'],
+    },
+    bookingForm: {
+      fields: [
+        {
+          name: 'packageType',
+          label: 'Package Type',
+          type: 'select',
+          required: true,
+          options: ['2-Hour Discovery', 'Half-Day Adventure', 'Full-Day Expedition'],
+          validation: z.string().min(1, 'Package type is required'),
+        },
+      ],
+    },
+    whatsappNumber: '212628438838',
+    whatsappMessage: (data) => `
+*New Quad Biking Request* 🏍️
+
+*Service:* Quad Biking Adventure
+*Name:* ${data.fullName}
+*Email:* ${data.email}
+*Date:* ${data.date}
+*Phone:* ${data.phone}
+*Participants:* ${data.participants}
+*Package:* ${data.extras.packageType}
 *Special Requests:* ${data.specialRequests || 'None'}
 `,
   },
