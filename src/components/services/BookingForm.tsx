@@ -31,7 +31,7 @@ import { CalendarIcon, Loader2 } from 'lucide-react';
 import { useToast } from '@/hooks/use-toast';
 import { cn } from '@/lib/utils';
 import { submitBooking } from '@/app/actions';
-import type { Service } from '@/lib/services';
+import { services, type Service } from '@/lib/services';
 
 type BookingFormProps = {
   service: Service;
@@ -41,10 +41,14 @@ export default function BookingForm({ service }: BookingFormProps) {
   const [isPending, startTransition] = useTransition();
   const { toast } = useToast();
 
+  const fullService = services.find(s => s.id === service.id);
+
   // Dynamically create the Zod schema
   const dynamicSchema = service.bookingForm.fields.reduce(
     (schema, field) => {
-      return schema.extend({ [field.name]: field.validation });
+      const fieldService = services.find(s => s.id === service.id)?.bookingForm.fields.find(f => f.name === field.name);
+      if (!fieldService) return schema;
+      return schema.extend({ [field.name]: fieldService.validation });
     },
     z.object({
       fullName: z.string().min(2, { message: 'Full name must be at least 2 characters.' }),
@@ -71,6 +75,7 @@ export default function BookingForm({ service }: BookingFormProps) {
   });
 
   const handleWhatsAppRedirect = (data: FormValues) => {
+    if (!fullService) return;
     const formattedDate = format(data.date, 'PPP');
     
     const extras = service.bookingForm.fields.reduce((acc, field) => {
@@ -84,9 +89,9 @@ export default function BookingForm({ service }: BookingFormProps) {
       extras,
     };
 
-    const message = service.whatsappMessage(messagePayload);
+    const message = fullService.whatsappMessage(messagePayload);
     const encodedMessage = encodeURIComponent(message);
-    const whatsappUrl = `https://wa.me/${service.whatsappNumber}?text=${encodedMessage}`;
+    const whatsappUrl = `https://wa.me/${fullService.whatsappNumber}?text=${encodedMessage}`;
     window.open(whatsappUrl, '_blank');
   };
 

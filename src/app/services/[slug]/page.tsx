@@ -1,3 +1,4 @@
+
 import { notFound } from 'next/navigation';
 import Image from 'next/image';
 import { services, Service } from '@/lib/services';
@@ -44,11 +45,12 @@ export default function ServicePage({ params }: { params: { slug: string } }) {
   }
 
   // Create a serializable version of the service object
+  const { whatsappMessage, ...serializableServiceData } = serviceData;
   const service = {
-    ...serviceData,
+    ...serializableServiceData,
     bookingForm: {
-      ...serviceData.bookingForm,
-      fields: serviceData.bookingForm.fields.map(({ validation, ...field }) => field),
+      ...serializableServiceData.bookingForm,
+      fields: serializableServiceData.bookingForm.fields.map(({ validation, ...field }) => field),
     },
   };
 
