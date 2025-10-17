@@ -75,7 +75,7 @@ export const services: Service[] = [
     whatsappMessage: (data) => `
 *New Transfer Request* 🚗
 
-*Service:* Transfers
+*Service:* Private Transfers
 *Name:* ${data.fullName}
 *Email:* ${data.email}
 *Date:* ${data.date}
@@ -200,7 +200,7 @@ export const services: Service[] = [
   },
   {
     id: 3,
-    name: 'Medina & Souk Walking Tour',
+    name: 'Souk Walking Tour',
     slug: 'essaouira-souk-tour',
     description: 'Step into the living history of Essaouira with a guided walking tour through its enchanting medina. Let our local expert lead you through labyrinthine alleys to vibrant souks, historic ramparts, and hidden artisan workshops. Discover the stories, sights, and flavors that make this city magical.',
     aboutTitle: 'About the Walking Tour',
@@ -232,7 +232,7 @@ export const services: Service[] = [
     whatsappMessage: (data) => `
 *New Souk Tour Request* 🛍️
 
-*Service:* Medina & Souk Walking Tour
+*Service:* Souk Walking Tour
 *Name:* ${data.fullName}
 *Email:* ${data.email}
 *Date:* ${data.date}
