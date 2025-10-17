@@ -134,13 +134,9 @@ export default function BookingForm({ service }: BookingFormProps) {
 
   useEffect(() => {
     if (isTransfer) {
-      form.reset({
-        ...defaultFormValues,
-        pickupLocation: pickupLocationValue,
-        dropoffLocation: '', // Reset dropoff when pickup changes
-      } as any);
+      form.setValue('dropoffLocation' as any, '');
     }
-  }, [pickupLocationValue, isTransfer, form, defaultFormValues]);
+  }, [pickupLocationValue, isTransfer, form]);
 
 
   const handleWhatsAppRedirect = (data: FormValues) => {
@@ -258,7 +254,7 @@ export default function BookingForm({ service }: BookingFormProps) {
                           </FormControl>
                           <SelectContent>
                             {countryCodes.map((country) => (
-                              <SelectItem key={country.code} value={country.dial_code}>
+                              <SelectItem key={`${country.code}-${country.dial_code}`} value={country.dial_code}>
                                 {country.code} ({country.dial_code})
                               </SelectItem>
                             ))}
@@ -448,3 +444,5 @@ export default function BookingForm({ service }: BookingFormProps) {
     </Form>
   );
 }
+
+    
