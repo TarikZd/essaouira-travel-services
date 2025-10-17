@@ -388,11 +388,11 @@ export default function BookingForm({ service }: BookingFormProps) {
                            </SelectTrigger>
                          </FormControl>
                          <SelectContent>
-                           {options?.map((option) => {
+                           {options?.map((option, index) => {
                              const value = typeof option === 'string' ? option : option.value;
                              const label = typeof option === 'string' ? option : option.label;
                              return (
-                               <SelectItem key={value} value={value}>
+                               <SelectItem key={`${value}-${index}`} value={value}>
                                  {label}
                                </SelectItem>
                              )
@@ -444,7 +444,3 @@ export default function BookingForm({ service }: BookingFormProps) {
     </Form>
   );
 }
-
-    
-
-    
