@@ -14,9 +14,17 @@ import {
   SheetTrigger,
 } from '@/components/ui/sheet';
 import { cn } from '@/lib/utils';
+import {
+  DropdownMenu,
+  DropdownMenuContent,
+  DropdownMenuItem,
+  DropdownMenuTrigger,
+} from '@/components/ui/dropdown-menu';
 
 export default function Header() {
   const [isOpen, setIsOpen] = useState(false);
+  const mainServices = services.slice(0, 3);
+  const moreServices = services.slice(3);
 
   return (
     <header className="sticky top-0 z-50 w-full border-b border-border/40 bg-background/95 backdrop-blur supports-[backdrop-filter]:bg-background/60">
@@ -32,7 +40,7 @@ export default function Header() {
 
         {/* Desktop Navigation */}
         <nav className="hidden items-center space-x-6 text-sm font-medium md:flex">
-          {services.map((service) => (
+          {mainServices.map((service) => (
             <Link
               key={service.id}
               href={`/services/${service.slug}`}
@@ -41,6 +49,22 @@ export default function Header() {
               {service.name}
             </Link>
           ))}
+          {moreServices.length > 0 && (
+            <DropdownMenu>
+              <DropdownMenuTrigger className="flex items-center gap-1 transition-colors hover:text-primary outline-none">
+                More
+              </DropdownMenuTrigger>
+              <DropdownMenuContent>
+                {moreServices.map((service) => (
+                  <DropdownMenuItem key={service.id} asChild>
+                    <Link href={`/services/${service.slug}`}>
+                      {service.name}
+                    </Link>
+                  </DropdownMenuItem>
+                ))}
+              </DropdownMenuContent>
+            </DropdownMenu>
+          )}
         </nav>
 
         {/* Mobile Navigation */}

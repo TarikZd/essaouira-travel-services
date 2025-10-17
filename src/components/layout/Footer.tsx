@@ -81,7 +81,7 @@ export default function Footer() {
                 </li>
                 <li className="flex items-center">
                   <Mail className="h-5 w-5 shrink-0 text-muted-foreground" />
-                  <a href="mailto:contact@essaouira-travel.services" className="ml-3 text-sm text-muted-foreground hover:text-foreground">contact@essaouira-travel.services</a>
+                  <a href="mailto:contact@essaouira-travel.services" className="ml-3 text-sm text-muted-foreground hover:text-foreground">moorisutility@gmail.com</a>
                 </li>
                 <li className="flex items-center">
                   <Phone className="h-5 w-5 shrink-0 text-muted-foreground" />

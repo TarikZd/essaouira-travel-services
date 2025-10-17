@@ -203,4 +203,46 @@ export const services: Service[] = [
 *Special Requests:* ${data.specialRequests || 'None'}
 `,
   },
+  {
+    id: 5,
+    name: 'Outdoor Cooking Adventure',
+    slug: 'outdoor-cooking-adventure',
+    description: 'Join us for a unique culinary journey into the Moroccan countryside. You\'ll visit a local market to select fresh, seasonal ingredients, then learn to prepare a traditional tagine in a stunning outdoor setting. A true taste of Moroccan culture and hospitality.',
+    features: ['Guided Market Visit', 'Hands-on Cooking Class', 'Enjoy Your Meal in Nature', 'Learn Traditional Recipes'],
+    pricing: {
+      amount: 80,
+      unit: 'per person',
+    },
+    difficulty: 'Easy',
+    images: {
+      card: 'card-cooking',
+      hero: 'hero-cooking',
+      gallery: ['gallery-cooking-1', 'gallery-cooking-2', 'gallery-cooking-3'],
+    },
+    bookingForm: {
+      fields: [
+        {
+          name: 'dietaryRestrictions',
+          label: 'Dietary Restrictions',
+          type: 'text',
+          required: false,
+          placeholder: 'e.g., vegetarian, nut allergy',
+          validation: z.string().optional(),
+        },
+      ],
+    },
+    whatsappNumber: '212628438838',
+    whatsappMessage: (data) => `
+*New Outdoor Cooking Request* 🍲
+
+*Service:* Outdoor Cooking Adventure
+*Name:* ${data.fullName}
+*Email:* ${data.email}
+*Date:* ${data.date}
+*Phone:* ${data.phone}
+*Participants:* ${data.participants}
+*Dietary Needs:* ${data.extras.dietaryRestrictions || 'None'}
+*Special Requests:* ${data.specialRequests || 'None'}
+`,
+  },
 ];
