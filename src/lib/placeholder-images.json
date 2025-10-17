@@ -1,3 +1,130 @@
 {
-  "placeholderImages": []
+  "placeholderImages": [
+    {
+      "id": "hero-home",
+      "description": "A beautiful panoramic view of a Moroccan beach at sunset.",
+      "imageUrl": "https://picsum.photos/seed/hero-home/1920/1080",
+      "imageHint": "moroccan beach"
+    },
+    {
+      "id": "card-transfers",
+      "description": "A modern van driving along a coastal road.",
+      "imageUrl": "https://picsum.photos/seed/card-transfers/400/300",
+      "imageHint": "coastal road"
+    },
+    {
+      "id": "card-quad",
+      "description": "A person riding a quad bike on sand dunes.",
+      "imageUrl": "https://picsum.photos/seed/card-quad/400/300",
+      "imageHint": "quad bike"
+    },
+    {
+      "id": "card-souk",
+      "description": "A vibrant and colorful Moroccan souk with spices and lanterns.",
+      "imageUrl": "https://picsum.photos/seed/card-souk/400/300",
+      "imageHint": "moroccan market"
+    },
+    {
+      "id": "card-beaches",
+      "description": "A secluded, pristine beach with dramatic rock formations.",
+      "imageUrl": "https://picsum.photos/seed/card-beaches/400/300",
+      "imageHint": "secluded beach"
+    },
+    {
+      "id": "hero-transfers",
+      "description": "View from inside a comfortable vehicle looking out at the Moroccan landscape.",
+      "imageUrl": "https://picsum.photos/seed/hero-transfers/1200/600",
+      "imageHint": "moroccan landscape"
+    },
+    {
+      "id": "hero-quad",
+      "description": "A line of quad bikes ready for an adventure on a sunny beach.",
+      "imageUrl": "https://picsum.photos/seed/hero-quad/1200/600",
+      "imageHint": "quad bikes"
+    },
+    {
+      "id": "hero-souk",
+      "description": "Close-up of intricate Moroccan crafts in a souk.",
+      "imageUrl": "https://picsum.photos/seed/hero-souk/1200/600",
+      "imageHint": "moroccan crafts"
+    },
+    {
+      "id": "hero-beaches",
+      "description": "Waves crashing on a wild, untamed Moroccan beach.",
+      "imageUrl": "https://picsum.photos/seed/hero-beaches/1200/600",
+      "imageHint": "ocean waves"
+    },
+    {
+      "id": "gallery-transfers-1",
+      "description": "A smiling driver standing next to a clean van.",
+      "imageUrl": "https://picsum.photos/seed/gallery-transfers-1/600/400",
+      "imageHint": "friendly driver"
+    },
+    {
+      "id": "gallery-transfers-2",
+      "description": "Spacious and clean interior of a passenger van.",
+      "imageUrl": "https://picsum.photos/seed/gallery-transfers-2/600/400",
+      "imageHint": "van interior"
+    },
+    {
+      "id": "gallery-transfers-3",
+      "description": "A group of happy travelers loading luggage.",
+      "imageUrl": "https://picsum.photos/seed/gallery-transfers-3/600/400",
+      "imageHint": "happy travelers"
+    },
+    {
+      "id": "gallery-quad-1",
+      "description": "A quad bike kicking up sand on a dune.",
+      "imageUrl": "https://picsum.photos/seed/gallery-quad-1/600/400",
+      "imageHint": "sand dune"
+    },
+    {
+      "id": "gallery-quad-2",
+      "description": "A group of people on quad bikes with the ocean in the background.",
+      "imageUrl": "https://picsum.photos/seed/gallery-quad-2/600/400",
+      "imageHint": "ocean background"
+    },
+    {
+      "id": "gallery-quad-3",
+      "description": "A guide explaining the route to quad bike riders.",
+      "imageUrl": "https://picsum.photos/seed/gallery-quad-3/600/400",
+      "imageHint": "tour guide"
+    },
+    {
+      "id": "gallery-souk-1",
+      "description": "Colorful leather slippers (babouches) arranged at a market stall.",
+      "imageUrl": "https://picsum.photos/seed/gallery-souk-1/600/400",
+      "imageHint": "moroccan slippers"
+    },
+    {
+      "id": "gallery-souk-2",
+      "description": "A merchant pouring traditional mint tea.",
+      "imageUrl": "https://picsum.photos/seed/gallery-souk-2/600/400",
+      "imageHint": "mint tea"
+    },
+    {
+      "id": "gallery-souk-3",
+      "description": "A narrow, bustling alleyway in the Essaouira medina.",
+      "imageUrl": "https://picsum.photos/seed/gallery-souk-3/600/400",
+      "imageHint": "medina alley"
+    },
+    {
+      "id": "gallery-beaches-1",
+      "description": "Camels walking along the shoreline at sunset.",
+      "imageUrl": "https://picsum.photos/seed/gallery-beaches-1/600/400",
+      "imageHint": "camels sunset"
+    },
+    {
+      "id": "gallery-beaches-2",
+      "description": "A person surfing a wave on a remote beach.",
+      "imageUrl": "https://picsum.photos/seed/gallery-beaches-2/600/400",
+      "imageHint": "surfing wave"
+    },
+    {
+      "id": "gallery-beaches-3",
+      "description": "Tide pools and unique rock formations on the coast.",
+      "imageUrl": "https://picsum.photos/seed/gallery-beaches-3/600/400",
+      "imageHint": "tide pools"
+    }
+  ]
 }
