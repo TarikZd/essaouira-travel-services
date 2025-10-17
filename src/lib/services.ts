@@ -18,7 +18,7 @@ export type Service = {
   slug: string;
   description: string;
   features: string[];
-  pricing: {
+  pricing?: {
     amount: number;
     unit: string;
   };
@@ -42,15 +42,10 @@ export const services: Service[] = [
     slug: 'airport-transfers',
     description: 'Start and end your journey with ease. We offer reliable, comfortable, and timely transfers to and from Essaouira-Mogador Airport (ESU) and Marrakech-Menara Airport (RAK). Travel in modern, air-conditioned vehicles with professional drivers who know the region inside and out.',
     features: ['Professional & Punctual Drivers', 'Modern, Air-Conditioned Vehicles', '24/7 Availability', 'Fixed & Transparent Pricing'],
-    pricing: {
-      amount: 30,
-      unit: 'per transfer (ESU)',
-    },
-    difficulty: 'Easy',
     images: {
       card: 'card-transfers',
       hero: 'hero-transfers',
-      gallery: ['gallery-transfers-1', 'gallery-transfers-2', 'gallery-transfers-3'],
+      gallery: ['gallery-transfers-1', 'gallery-transfers-2'],
     },
     bookingForm: {
       fields: [

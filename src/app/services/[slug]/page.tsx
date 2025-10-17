@@ -45,12 +45,12 @@ export default function ServicePage({ params }: { params: { slug: string } }) {
   }
 
   // Create a serializable version of the service object
-  const { whatsappMessage, ...serializableServiceData } = serviceData;
+  const { whatsappMessage, validation, ...serializableServiceData } = serviceData as any;
   const service = {
     ...serializableServiceData,
     bookingForm: {
       ...serializableServiceData.bookingForm,
-      fields: serializableServiceData.bookingForm.fields.map(({ validation, ...field }) => field),
+      fields: serializableServiceData.bookingForm.fields.map(({ validation, ...field }: any) => field),
     },
   };
 

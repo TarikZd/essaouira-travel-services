@@ -4,7 +4,7 @@
 import { useForm, useWatch } from 'react-hook-form';
 import { zodResolver } from '@hookform/resolvers/zod';
 import { z } from 'zod';
-import { useTransition, useMemo } from 'react';
+import { useTransition, useMemo, useEffect } from 'react';
 import { format } from 'date-fns';
 
 import { Button } from '@/components/ui/button';
@@ -53,56 +53,63 @@ export default function BookingForm({ service }: BookingFormProps) {
 
   const fullService = services.find(s => s.id === service.id);
 
-  // Base schema for common fields
-  let baseSchema = z.object({
-    fullName: z.string().min(2, { message: 'Full name must be at least 2 characters.' }),
-    email: z.string().email({ message: 'Please enter a valid email address.' }),
-    date: z.date({ required_error: 'A date for the booking is required.' }),
-    phone: z.string().min(5, { message: 'Please enter a valid phone number.' }),
-    specialRequests: z.string().optional(),
-  });
-  
-  if(service.slug !== 'airport-transfers'){
-    baseSchema = baseSchema.extend({
-      participants: z.coerce.number().min(1, { message: 'At least one participant is required.' }),
+  const dynamicSchema = useMemo(() => {
+    // Base schema for common fields
+    let baseSchema = z.object({
+      fullName: z.string().min(2, { message: 'Full name must be at least 2 characters.' }),
+      email: z.string().email({ message: 'Please enter a valid email address.' }),
+      date: z.date({ required_error: 'A date for the booking is required.' }),
+      phone: z.string().min(5, { message: 'Please enter a valid phone number.' }),
+      specialRequests: z.string().optional(),
     });
-  } else {
-    baseSchema = baseSchema.extend({
-      countryCode: z.string().min(1, 'Country code is required.'),
-      time: z.string().min(1, 'Time is required'),
-    });
-  }
+    
+    if(service.slug !== 'airport-transfers'){
+      baseSchema = baseSchema.extend({
+        participants: z.coerce.number().min(1, { message: 'At least one participant is required.' }),
+      });
+    } else {
+      baseSchema = baseSchema.extend({
+        countryCode: z.string().min(1, 'Country code is required.'),
+        time: z.string().min(1, 'Time is required'),
+      });
+    }
 
-  // Dynamically create the Zod schema
-  const dynamicSchema = service.bookingForm.fields.reduce(
-    (schema, field) => {
-      const fieldService = services.find(s => s.id === service.id)?.bookingForm.fields.find(f => f.name === field.name);
-      if (!fieldService) return schema;
-      return schema.extend({ [field.name]: fieldService.validation });
-    },
-    baseSchema
-  );
+    // Dynamically create the Zod schema
+    const schema = service.bookingForm.fields.reduce(
+      (schema, field) => {
+        const fieldService = services.find(s => s.id === service.id)?.bookingForm.fields.find(f => f.name === field.name);
+        if (!fieldService) return schema;
+        return schema.extend({ [field.name]: fieldService.validation });
+      },
+      baseSchema
+    );
+    return schema;
+  }, [service]);
+
 
   type FormValues = z.infer<typeof dynamicSchema>;
   
   const isTransfer = service.slug === 'airport-transfers';
 
-  const defaultFormValues: Partial<FormValues> = {
-    fullName: '',
-    email: '',
-    phone: '',
-    specialRequests: '',
-    ...service.bookingForm.fields.reduce((acc, field) => ({ ...acc, [field.name]: field.type === 'number' ? 0 : '' }), {}),
-  };
-
-  if(isTransfer){
-    (defaultFormValues as any).adults = 1;
-    (defaultFormValues as any).children = 0;
-    (defaultFormValues as any).countryCode = '+212';
-    (defaultFormValues as any).time = '';
-  } else {
-    (defaultFormValues as any).participants = 1;
-  }
+  const defaultFormValues: Partial<FormValues> = useMemo(() => {
+    const defaults: Partial<FormValues> = {
+      fullName: '',
+      email: '',
+      phone: '',
+      specialRequests: '',
+      ...service.bookingForm.fields.reduce((acc, field) => ({ ...acc, [field.name]: field.type === 'number' ? 0 : '' }), {}),
+    };
+  
+    if(isTransfer){
+      (defaults as any).adults = 1;
+      (defaults as any).children = 0;
+      (defaults as any).countryCode = '+212';
+      (defaults as any).time = '';
+    } else {
+      (defaults as any).participants = 1;
+    }
+    return defaults;
+  }, [service, isTransfer]);
 
   const form = useForm<FormValues>({
     resolver: zodResolver(dynamicSchema),
@@ -124,6 +131,16 @@ export default function BookingForm({ service }: BookingFormProps) {
     }
     return routes[pickupLocationValue] || [];
   }, [pickupLocationValue, service.slug, service.bookingForm.fields]);
+
+  useEffect(() => {
+    if (isTransfer) {
+      form.reset({
+        ...defaultFormValues,
+        pickupLocation: pickupLocationValue,
+        dropoffLocation: '', // Reset dropoff when pickup changes
+      } as any);
+    }
+  }, [pickupLocationValue, isTransfer, form, defaultFormValues]);
 
 
   const handleWhatsAppRedirect = (data: FormValues) => {
@@ -158,7 +175,7 @@ export default function BookingForm({ service }: BookingFormProps) {
       const extras = service.bookingForm.fields.reduce((acc, field) => {
           acc[field.name] = (data as any)[field.name];
           return acc;
-        }, {} as Record<string, string>);
+        }, {} as Record<string, any>);
         
       const fullPhoneNumber = isTransfer ? `${(data as any).countryCode}${(data as any).phone}` : data.phone;
       const participants = isTransfer ? (data as any).adults + (data as any).children : (data as any).participants;
@@ -201,7 +218,7 @@ export default function BookingForm({ service }: BookingFormProps) {
             control={form.control}
             name="fullName"
             render={({ field }) => (
-              <FormItem>
+              <FormItem className="md:col-span-2">
                 <FormLabel>Full Name</FormLabel>
                 <FormControl>
                   <Input placeholder="John Doe" {...field} />
@@ -214,7 +231,7 @@ export default function BookingForm({ service }: BookingFormProps) {
             control={form.control}
             name="email"
             render={({ field }) => (
-              <FormItem>
+              <FormItem className="md:col-span-2">
                 <FormLabel>Email</FormLabel>
                 <FormControl>
                   <Input placeholder="john.doe@example.com" {...field} />
@@ -270,7 +287,7 @@ export default function BookingForm({ service }: BookingFormProps) {
               control={form.control}
               name="phone"
               render={({ field }) => (
-                <FormItem>
+                <FormItem className="md:col-span-2">
                   <FormLabel>Phone Number</FormLabel>
                   <FormControl>
                     <Input placeholder="+1 (555) 123-4567" {...field} />
@@ -340,7 +357,7 @@ export default function BookingForm({ service }: BookingFormProps) {
                 control={form.control}
                 name={"participants" as any}
                 render={({ field }) => (
-                  <FormItem>
+                  <FormItem className="md:col-span-2">
                     <FormLabel>Number of Participants</FormLabel>
                     <FormControl>
                       <Input type="number" min="1" {...field} />
@@ -365,7 +382,7 @@ export default function BookingForm({ service }: BookingFormProps) {
                 control={form.control}
                 name={customField.name as any}
                 render={({ field }) => (
-                  <FormItem>
+                  <FormItem className={cn(customField.type === 'number' && 'md:col-span-1', service.slug === 'airport-transfers' ? 'md:col-span-1' : 'md:col-span-2')}>
                     <FormLabel>{customField.label}</FormLabel>
                     {customField.type === 'select' ? (
                        <Select onValueChange={field.onChange} defaultValue={field.value} value={field.value}>
@@ -388,7 +405,7 @@ export default function BookingForm({ service }: BookingFormProps) {
                        </Select>
                     ) : customField.type === 'number' ? (
                       <FormControl>
-                        <Input type="number" min={customField.name === 'children' ? 0 : 1} {...field} />
+                        <Input type="number" min={customField.name === 'children' ? 0 : 1} {...field} onChange={(e) => field.onChange(parseInt(e.target.value, 10))} />
                       </FormControl>
                     ) : (
                       <FormControl>

@@ -37,17 +37,8 @@ Search Query: {{{searchQuery}}}
 Browsing History: {{#if browsingHistory}}{{#each browsingHistory}}- {{{this}}}{{/each}}{{else}}No browsing history{{/if}}
 Available Services: {{#each availableServices}}- {{{this}}}{{/each}}
 
-Based on the above information, recommend the top services and briefly explain your reasoning for each recommendation.
-
-Format your response as follows:
-
-Recommended Services:
-- Service 1: Reasoning
-- Service 2: Reasoning
-...
-
-{{#each availableServices}}
-{{/each}}`,
+Based on the above information, recommend the top services and provide a concise explanation for your choices. Structure your response clearly.
+`,
 });
 
 const personalizedServiceRecommendationsFlow = ai.defineFlow(
@@ -58,19 +49,6 @@ const personalizedServiceRecommendationsFlow = ai.defineFlow(
   },
   async input => {
     const {output} = await prompt(input);
-    const parsedOutput = output!.text.split('\n').reduce((acc, line) => {
-      if (line.startsWith("-")) {
-        const [service, reasoning] = line.substring(2).split(":").map(s => s.trim());
-        acc.recommendedServices.push(service);
-        acc.reasoning += `- ${service}: ${reasoning}\n`;
-      }
-      return acc;
-    }, {recommendedServices: [], reasoning: ''});
-
-    return {
-      recommendedServices: parsedOutput.recommendedServices,
-      reasoning: parsedOutput.reasoning,
-    };
+    return output!;
   }
 );
-

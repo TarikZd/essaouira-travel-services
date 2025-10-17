@@ -17,7 +17,7 @@ const bookingSchema = z.object({
   specialRequests: z.string().optional(),
   serviceName: z.string(),
   time: z.string().optional(),
-  extras: z.record(z.string()).optional(),
+  extras: z.record(z.string().or(z.number())).optional(),
 });
 
 export async function submitBooking(formData: unknown) {
