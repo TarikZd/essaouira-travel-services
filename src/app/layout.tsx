@@ -1,3 +1,4 @@
+
 import type { Metadata } from 'next';
 import './globals.css';
 import { cn } from '@/lib/utils';
@@ -33,6 +34,7 @@ export default function RootLayout({
         className={cn(
           'min-h-screen bg-background font-body antialiased'
         )}
+        suppressHydrationWarning={true}
       >
         <div className="relative flex min-h-screen flex-col">
           <Header />
