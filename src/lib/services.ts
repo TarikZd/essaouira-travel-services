@@ -103,6 +103,14 @@ export const services: Service[] = [
     bookingForm: {
       fields: [
         {
+          name: 'pickupLocation',
+          label: 'Pick up Location',
+          type: 'text',
+          required: true,
+          placeholder: 'e.g., your hotel or riad',
+          validation: z.string().min(1, 'Pick up location is required'),
+        },
+        {
           name: 'dietaryRestrictions',
           label: 'Dietary Restrictions',
           type: 'text',
@@ -122,6 +130,7 @@ export const services: Service[] = [
 *Date:* ${data.date}
 *Time:* ${data.time}
 *Phone:* ${data.phone}
+*Pick up:* ${data.extras.pickupLocation}
 *Adults:* ${data.adults}
 *Children:* ${data.children}
 *Dietary Needs:* ${data.extras.dietaryRestrictions || 'None'}
@@ -147,6 +156,14 @@ export const services: Service[] = [
     bookingForm: {
       fields: [
         {
+          name: 'pickupLocation',
+          label: 'Pick up Location',
+          type: 'text',
+          required: true,
+          placeholder: 'e.g., your hotel or riad',
+          validation: z.string().min(1, 'Pick up location is required'),
+        },
+        {
           name: 'lunchPreference',
           label: 'Lunch Preference',
           type: 'select',
@@ -166,6 +183,7 @@ export const services: Service[] = [
 *Date:* ${data.date}
 *Time:* ${data.time}
 *Phone:* ${data.phone}
+*Pick up:* ${data.extras.pickupLocation}
 *Adults:* ${data.adults}
 *Children:* ${data.children}
 *Lunch Preference:* ${data.extras.lunchPreference}
@@ -189,7 +207,16 @@ export const services: Service[] = [
       gallery: ['gallery-souk-1', 'gallery-souk-2', 'gallery-souk-3'],
     },
     bookingForm: {
-      fields: [],
+      fields: [
+        {
+          name: 'pickupLocation',
+          label: 'Pick up Location',
+          type: 'text',
+          required: true,
+          placeholder: 'e.g., your hotel or riad',
+          validation: z.string().min(1, 'Pick up location is required'),
+        },
+      ],
     },
     whatsappNumber: '212628438838',
     whatsappMessage: (data) => `
@@ -201,6 +228,7 @@ export const services: Service[] = [
 *Date:* ${data.date}
 *Time:* ${data.time}
 *Phone:* ${data.phone}
+*Pick up:* ${data.extras.pickupLocation}
 *Adults:* ${data.adults}
 *Children:* ${data.children}
 *Special Requests:* ${data.specialRequests || 'None'}
@@ -225,6 +253,14 @@ export const services: Service[] = [
     bookingForm: {
       fields: [
         {
+          name: 'pickupLocation',
+          label: 'Pick up Location',
+          type: 'text',
+          required: true,
+          placeholder: 'e.g., your hotel or riad',
+          validation: z.string().min(1, 'Pick up location is required'),
+        },
+        {
           name: 'packageType',
           label: 'Package Type',
           type: 'select',
@@ -244,6 +280,7 @@ export const services: Service[] = [
 *Date:* ${data.date}
 *Time:* ${data.time}
 *Phone:* ${data.phone}
+*Pick up:* ${data.extras.pickupLocation}
 *Adults:* ${data.adults}
 *Children:* ${data.children}
 *Package:* ${data.extras.packageType}
@@ -254,7 +291,3 @@ export const services: Service[] = [
     const order = [1, 5, 4, 3, 2];
     return order.indexOf(a.id) - order.indexOf(b.id);
 });
-
-    
-
-    
