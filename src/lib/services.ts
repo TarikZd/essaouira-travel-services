@@ -176,7 +176,7 @@ export const services: Service[] = [
           label: 'Lunch Preference',
           type: 'select',
           required: true,
-          options: ['Mechoui', 'Barbecue', 'Meat Tajin', 'Chicken Tajin', 'Fresh Fish (if available)', 'Vegetarian Option'],
+          options: ['Mechoui', 'Barbecue', 'Meat Tajin', 'Chicken Tajin', 'Couscous', 'Fresh Fish (if available)', 'Vegetarian Option'],
           validation: z.string().min(1, 'Please select a lunch preference.'),
         }
       ],
