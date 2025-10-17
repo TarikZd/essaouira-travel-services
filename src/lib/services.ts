@@ -38,10 +38,10 @@ export type Service = {
 export const services: Service[] = [
   {
     id: 1,
-    name: 'Transfers',
+    name: 'Private Transfers',
     slug: 'airport-transfers',
-    description: 'Start and end your journey with ease. We offer reliable, comfortable, and timely transfers to and from Essaouira-Mogador Airport (ESU) and Marrakech-Menara Airport (RAK). Travel in modern, air-conditioned vehicles with professional drivers who know the region inside and out.',
-    features: ['Professional & Punctual Drivers', 'Modern, Air-Conditioned Vehicles', '24/7 Availability', 'Fixed & Transparent Pricing'],
+    description: 'Travel with confidence and comfort. Our private transfer service ensures a seamless connection between major airports, cities, and coastal towns. Whether you\'re arriving at Marrakech or exploring the coast, our professional drivers and modern vehicles guarantee a stress-free journey.',
+    features: ['Service to Major Airports & Cities', 'Private, Air-Conditioned Vehicles', 'Professional & Punctual Drivers', '24/7 Availability for All Flights'],
     images: {
       card: 'card-transfers',
       hero: 'hero-transfers',
@@ -86,10 +86,10 @@ export const services: Service[] = [
   },
   {
     id: 5,
-    name: 'Outdoor Cooking Adventure',
+    name: 'Berber Cooking Class',
     slug: 'outdoor-cooking-adventure',
-    description: 'Join us for a unique culinary journey into the Moroccan countryside. You\'ll visit a local market to select fresh, seasonal ingredients, then learn to prepare a traditional tagine in a stunning outdoor setting. A true taste of Moroccan culture and hospitality.',
-    features: ['Guided Market Visit', 'Hands-on Cooking Class', 'Enjoy Your Meal in Nature', 'Learn Traditional Recipes'],
+    description: 'Immerse yourself in authentic Berber culture with a hands-on cooking class in the serene countryside. You\'ll start by picking fresh ingredients at a local market, then learn the secrets of crafting a perfect tagine in a traditional outdoor kitchen. It’s more than a meal—it’s a connection to the heart of Morocco.',
+    features: ['Authentic Berber-Led Experience', 'Guided Souk Shopping for Ingredients', 'Hands-On Traditional Cooking Class', 'Dine in a Beautiful Countryside Setting'],
     pricing: {
       amount: 80,
       unit: 'per person',
@@ -107,7 +107,7 @@ export const services: Service[] = [
           label: 'Pick up Location',
           type: 'text',
           required: true,
-          placeholder: 'e.g., your hotel or riad',
+          placeholder: 'e.g., your hotel or riad in Essaouira',
           validation: z.string().min(1, 'Pick up location is required'),
         },
         {
@@ -115,16 +115,16 @@ export const services: Service[] = [
           label: 'Dietary Restrictions',
           type: 'text',
           required: false,
-          placeholder: 'e.g., vegetarian, nut allergy',
+          placeholder: 'e.g., vegetarian, gluten-free',
           validation: z.string().optional(),
         },
       ],
     },
     whatsappNumber: '212628438838',
     whatsappMessage: (data) => `
-*New Outdoor Cooking Request* 🍲
+*New Cooking Class Request* 🍲
 
-*Service:* Outdoor Cooking Adventure
+*Service:* Berber Cooking Class
 *Name:* ${data.fullName}
 *Email:* ${data.email}
 *Date:* ${data.date}
@@ -139,10 +139,10 @@ export const services: Service[] = [
   },
   {
     id: 4,
-    name: 'Wild Beaches Excursion',
+    name: 'Secret Beaches 4x4 Tour',
     slug: 'wild-beaches-excursion',
-    description: 'Escape the crowds and discover the untouched beauty of the wild beaches south of Essaouira. This half-day excursion takes you to secluded coves, dramatic cliffs, and pristine sands. Enjoy a traditional lunch in a local village.',
-    features: ['Visit Secluded & Untouched Beaches', 'Stunning Coastal Scenery', 'Includes Traditional Lunch', 'Comfortable 4x4 Transportation'],
+    description: 'Journey off the beaten path to uncover the wild, untouched coastline south of Essaouira. Our 4x4 tour takes you to secret beaches, dramatic sea cliffs, and hidden fishing villages. This half-day adventure includes a delicious, traditional lunch with a local family, offering a true taste of Moroccan hospitality.',
+    features: ['Explore Hidden Beaches and Coves', 'Travel in a Comfortable 4x4 Vehicle', 'Stunning Coastal & Cliffside Scenery', 'Authentic Lunch with a Local Family'],
     pricing: {
       amount: 70,
       unit: 'per person',
@@ -160,7 +160,7 @@ export const services: Service[] = [
           label: 'Pick up Location',
           type: 'text',
           required: true,
-          placeholder: 'e.g., your hotel or riad',
+          placeholder: 'e.g., your hotel or riad in Essaouira',
           validation: z.string().min(1, 'Pick up location is required'),
         },
         {
@@ -168,7 +168,7 @@ export const services: Service[] = [
           label: 'Lunch Preference',
           type: 'select',
           required: true,
-          options: ['Standard (Chicken Tagine)', 'Vegetarian', 'Fish (if available)'],
+          options: ['Standard (Chicken Tagine)', 'Vegetarian Option', 'Fresh Fish (if available)'],
           validation: z.string().min(1, 'Please select a lunch preference.'),
         }
       ],
@@ -177,7 +177,7 @@ export const services: Service[] = [
     whatsappMessage: (data) => `
 *New Wild Beaches Request* 🏖️
 
-*Service:* Wild Beaches Excursion
+*Service:* Secret Beaches 4x4 Tour
 *Name:* ${data.fullName}
 *Email:* ${data.email}
 *Date:* ${data.date}
@@ -192,10 +192,10 @@ export const services: Service[] = [
   },
   {
     id: 3,
-    name: 'Essaouira Souk Tour',
+    name: 'Medina & Souk Walking Tour',
     slug: 'essaouira-souk-tour',
-    description: 'Immerse yourself in the vibrant heart of Essaouira with a guided tour of its historic medina and bustling souks. Discover hidden alleyways, shop for local handicrafts, and taste the authentic flavors of Morocco with an expert local guide.',
-    features: ['Expert Local Guide', 'Discover Hidden Gems', 'Cultural & Historical Insights', 'Tasting of Local Delicacies'],
+    description: 'Step into the living history of Essaouira with a guided walking tour through its enchanting medina. Let our local expert lead you through labyrinthine alleys to vibrant souks, historic ramparts, and hidden artisan workshops. Discover the stories, sights, and flavors that make this city magical.',
+    features: ['Insider Knowledge from a Local Guide', 'Visit the Historic Ramparts & Port', 'Explore Bustling Souks & Artisan Shops', 'Taste Traditional Moroccan Mint Tea'],
     pricing: {
       amount: 25,
       unit: 'per person',
@@ -210,11 +210,11 @@ export const services: Service[] = [
       fields: [
         {
           name: 'pickupLocation',
-          label: 'Pick up Location',
+          label: 'Meeting Point',
           type: 'text',
           required: true,
-          placeholder: 'e.g., your hotel or riad',
-          validation: z.string().min(1, 'Pick up location is required'),
+          placeholder: 'e.g., Bab Sbaa (main gate)',
+          validation: z.string().min(1, 'A meeting point is required'),
         },
       ],
     },
@@ -222,13 +222,13 @@ export const services: Service[] = [
     whatsappMessage: (data) => `
 *New Souk Tour Request* 🛍️
 
-*Service:* Essaouira Souk Tour
+*Service:* Medina & Souk Walking Tour
 *Name:* ${data.fullName}
 *Email:* ${data.email}
 *Date:* ${data.date}
 *Time:* ${data.time}
 *Phone:* ${data.phone}
-*Pick up:* ${data.extras.pickupLocation}
+*Meeting Point:* ${data.extras.pickupLocation}
 *Adults:* ${data.adults}
 *Children:* ${data.children}
 *Special Requests:* ${data.specialRequests || 'None'}
@@ -236,10 +236,10 @@ export const services: Service[] = [
   },
   {
     id: 2,
-    name: 'Quad Biking Adventure',
+    name: 'Coastal Quad Biking',
     slug: 'quad-biking-adventure',
-    description: 'Experience the thrill of riding a quad bike across Essaouira\'s stunning landscapes. Our guided tours take you through vast sand dunes, along wild beaches, and into hidden forests. Perfect for adventure seekers of all skill levels.',
-    features: ['High-Quality Quad Bikes', 'Professional Guides & Safety Briefing', 'Explore Dunes, Beaches & Forests', 'All Safety Gear Provided'],
+    description: 'Unleash your inner adventurer on a thrilling quad biking tour along Essaouira\'s spectacular coastline. Ride across vast sand dunes, cruise along windswept beaches, and navigate through shady argan forests. Our expert guides ensure a safe and unforgettable experience for all skill levels.',
+    features: ['Ride Through Dunes, Beaches & Forests', 'High-Quality, Well-Maintained Quads', 'Full Safety Briefing & Equipment', 'Guided by Professional Instructors'],
     pricing: {
       amount: 50,
       unit: 'per person (2 hours)',
@@ -257,16 +257,16 @@ export const services: Service[] = [
           label: 'Pick up Location',
           type: 'text',
           required: true,
-          placeholder: 'e.g., your hotel or riad',
+          placeholder: 'e.g., your hotel or riad in Essaouira',
           validation: z.string().min(1, 'Pick up location is required'),
         },
         {
           name: 'packageType',
-          label: 'Package Type',
+          label: 'Tour Duration',
           type: 'select',
           required: true,
-          options: ['2-Hour Discovery', 'Half-Day Adventure', 'Full-Day Expedition'],
-          validation: z.string().min(1, 'Package type is required'),
+          options: ['2-Hour Discovery Ride', 'Half-Day Coastal Adventure', 'Full-Day Dune Expedition'],
+          validation: z.string().min(1, 'Please select a tour duration.'),
         },
       ],
     },
@@ -274,7 +274,7 @@ export const services: Service[] = [
     whatsappMessage: (data) => `
 *New Quad Biking Request* 🏍️
 
-*Service:* Quad Biking Adventure
+*Service:* Coastal Quad Biking
 *Name:* ${data.fullName}
 *Email:* ${data.email}
 *Date:* ${data.date}
@@ -283,7 +283,7 @@ export const services: Service[] = [
 *Pick up:* ${data.extras.pickupLocation}
 *Adults:* ${data.adults}
 *Children:* ${data.children}
-*Package:* ${data.extras.packageType}
+*Tour Duration:* ${data.extras.packageType}
 *Special Requests:* ${data.specialRequests || 'None'}
 `,
   },
