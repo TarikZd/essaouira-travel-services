@@ -41,10 +41,18 @@ type BookingFormProps = {
 const routes: Record<string, string[]> = {
     "Essaouira": ["Marrakech", "Marrakesh Airport", "Agadir", "Agafay", "Taghazout", "Imsouen", "El Jadida", "Oualidia", "Imlil", "Ouirgane", "Taroudant", "Agadir Airport", "Essaouira Airport"],
     "Essaouira Airport": ["Marrakech", "Marrakesh Airport", "Agadir", "Agafay", "Taghazout", "Imsouen", "El Jadida", "Oualidia", "Imlil", "Ouirgane", "Taroudant", "Agadir Airport", "Essaouira"],
-    "Marrakech": ["Essaouira", "Essaouira Airport", "Agadir", "Agafay", "Taghazout", "Imsouen", "El Jadida", "Oualidia", "Imlil", "Ouirgane", "Taroudant", "Agadir Airport"],
-    "Marrakesh Airport": ["Essaouira", "Essaouira Airport", "Agadir", "Agafay", "Taghazout", "Imsouen", "El Jadida", "Oualidia", "Imlil", "Ouirgane", "Taroudant", "Agadir Airport"],
+    "Marrakech": ["Essaouira", "Essaouira Airport", "Agadir", "Agafay", "Taghazout", "Imsouen", "El Jadida", "Oualidia", "Imlil", "Ouirgane", "Taroudant", "Agadir Airport", "Agadir"],
+    "Marrakesh Airport": ["Essaouira", "Essaouira Airport", "Agadir", "Agafay", "Taghazout", "Imsouen", "El Jadida", "Oualidia", "Imlil", "Ouirgane", "Taroudant", "Agadir Airport", "Agadir"],
     "Agadir": ["Essaouira", "Essaouira Airport", "Marrakech", "Marrakesh Airport", "Agafay", "Taghazout", "Imsouen", "El Jadida", "Oualidia", "Imlil", "Ouirgane", "Taroudant", "Agadir Airport"],
     "Agadir Airport": ["Essaouira", "Essaouira Airport", "Marrakech", "Marrakesh Airport", "Agafay", "Taghazout", "Imsouen", "El Jadida", "Oualidia", "Imlil", "Ouirgane", "Taroudant", "Agadir"],
+    "Agafay": ["Essaouira", "Essaouira Airport", "Marrakech", "Marrakesh Airport", "Agadir", "Agadir Airport"],
+    "Taghazout": ["Essaouira", "Essaouira Airport", "Marrakech", "Marrakesh Airport", "Agadir", "Agadir Airport"],
+    "Imsouen": ["Essaouira", "Essaouira Airport", "Marrakech", "Marrakesh Airport", "Agadir", "Agadir Airport"],
+    "El Jadida": ["Essaouira", "Essaouira Airport", "Marrakech", "Marrakesh Airport", "Agadir", "Agadir Airport"],
+    "Oualidia": ["Essaouira", "Essaouira Airport", "Marrakech", "Marrakesh Airport", "Agadir", "Agadir Airport"],
+    "Imlil": ["Essaouira", "Essaouira Airport", "Marrakech", "Marrakesh Airport", "Agadir", "Agadir Airport"],
+    "Ouirgane": ["Essaouira", "Essaouira Airport", "Marrakech", "Marrakesh Airport", "Agadir", "Agadir Airport"],
+    "Taroudant": ["Essaouira", "Essaouira Airport", "Marrakech", "Marrakesh Airport", "Agadir", "Agadir Airport"],
 };
 
 const FormLabelWithRequired: React.FC<{ children: React.ReactNode; required?: boolean }> = ({ children, required }) => (
@@ -75,11 +83,12 @@ export default function BookingForm({ service }: BookingFormProps) {
     });
 
     // Dynamically create the Zod schema from service config
-    const schema = service.bookingForm.fields.reduce(
+    const serviceWithFields = services.find(s => s.id === service.id);
+    if (!serviceWithFields) return baseSchema;
+
+    const schema = serviceWithFields.bookingForm.fields.reduce(
       (schema, field) => {
-        const fieldService = services.find(s => s.id === service.id)?.bookingForm.fields.find(f => f.name === field.name);
-        if (!fieldService) return schema;
-        return schema.extend({ [field.name]: fieldService.validation });
+        return schema.extend({ [field.name]: field.validation });
       },
       baseSchema
     );
@@ -101,8 +110,14 @@ export default function BookingForm({ service }: BookingFormProps) {
       adults: 1,
       children: 0,
       specialRequests: '',
-      ...service.bookingForm.fields.reduce((acc, field) => ({ ...acc, [field.name]: field.type === 'number' ? 0 : '' }), {}),
     };
+
+    const serviceWithFields = services.find(s => s.id === service.id);
+    if (serviceWithFields) {
+        serviceWithFields.bookingForm.fields.forEach(field => {
+            (defaults as any)[field.name] = field.type === 'number' ? 0 : '';
+        });
+    }
   
     return defaults;
   }, [service]);
@@ -422,11 +437,9 @@ export default function BookingForm({ service }: BookingFormProps) {
               <Loader2 className="mr-2 h-4 w-4 animate-spin" />
               Submitting...
             </>
-          ) : 'Send Booking Inquiry'}
+          ) : ( service.name === 'Transfers' ? 'Book Your Transfer' : 'Send Booking Inquiry' )}
         </Button>
       </form>
     </Form>
   );
 }
-
-    

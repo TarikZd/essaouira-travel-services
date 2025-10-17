@@ -54,7 +54,7 @@ export const services: Service[] = [
           label: 'Pick up Location',
           type: 'select',
           required: true,
-          options: ['Essaouira', 'Essaouira Airport', 'Marrakech', 'Marrakesh Airport', 'Agadir', 'Agadir Airport'],
+          options: ['Essaouira', 'Essaouira Airport', 'Marrakech', 'Marrakesh Airport', 'Agadir', 'Agadir Airport', 'Agafay', 'Taghazout', 'Imsouen', 'El Jadida', 'Oualidia', 'Imlil', 'Ouirgane', 'Taroudant'],
           validation: z.string().min(1, 'Pick up location is required'),
         },
         {
@@ -62,7 +62,7 @@ export const services: Service[] = [
             label: 'Drop off Location',
             type: 'select',
             required: true,
-            options: ['Marrakech', 'Marrakesh Airport', 'Agadir', 'Agafay', 'Taghazout', 'Imsouen', 'El Jadida', 'Oualidia', 'Imlil', 'Ouirgane', 'Taroudant', 'Agadir Airport', 'Essaouira Airport', 'Essaouira'],
+            options: [],
             validation: z.string().min(1, 'Drop off location is required'),
         },
       ],
