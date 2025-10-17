@@ -4,17 +4,17 @@ import { Facebook, Instagram, Phone, Mail, MapPin, Wind } from 'lucide-react';
 const socialLinks = [
   {
     name: 'Facebook',
-    url: '#',
+    url: 'https://www.facebook.com/profile.php?id=61581484462605',
     icon: <Facebook className="h-5 w-5" />,
   },
   {
     name: 'Instagram',
-    url: '#',
+    url: 'https://www.instagram.com/moorish.travels/',
     icon: <Instagram className="h-5 w-5" />,
   },
   {
     name: 'TikTok',
-    url: '#',
+    url: 'https://www.tiktok.com/@moorishtravels',
     icon: (
       <svg
         className="h-5 w-5"
@@ -22,13 +22,13 @@ const socialLinks = [
         viewBox="0 0 24 24"
         aria-hidden="true"
       >
-        <path d="M12.525.02c1.31-.02 2.61-.01 3.91-.02.08 1.53.63 3.09 1.75 4.17 1.12 1.11 2.7 1.65 4.28 1.7.03 1.5.02 3 .02 4.48-.15-1.55-.72-3.1-1.83-4.18-1.11-1.1-2.7-1.64-4.28-1.69-.02-1.52-.01-3.04-.01-4.56h-1.5c-.01 2.45-.02 4.91-.01 7.36.01 2.3.02 4.6.01 6.9 0 1.61-.53 3.2-1.66 4.31-1.1 1.08-2.63 1.6-4.2 1.6-.02 1.5-.01 3-.01 4.48.15-1.55.72-3.1 1.83-4.18 1.11-1.1 2.7-1.64 4.28-1.69.02-2.43.01-4.87.01-7.3Zm-3.11 6.55c-1.35-.02-2.69-.05-4.04-.04.01-1.49.01-2.99.02-4.48-1.55.13-3.09.7-4.18 1.81-1.08 1.1-1.62 2.68-1.68 4.27-.04 1.51-.03 3.02-.03 4.53h1.5c.01-2.45.02-4.91.01-7.36.01-2.3.02-4.6.01-6.9 0-1.61.53-3.2 1.66-4.31 1.1-1.08 2.63-1.6 4.2-1.6.03-1.5.02-3 .02-4.48Z" />
+        <path d="M12.525.02c1.31-.02 2.61-.01 3.91-.02.08 1.53.63 3.09 1.75 4.17 1.12 1.11 2.7 1.65 4.28 1.7.03 1.5.02 3 .02 4.48-.15-1.55-.72-3.1-1.83-4.18-1.11-1.1-2.7-1.64-4.28-1.69-.02-1.52-.01-3.04-.01-4.56h-1.5c-.01 2.45-.02 4.91-.01 7.36.01 2.3.02 4.6.01 6.9 0 1.61-.53 3.2-1.66 4.31-1.1 1.08-2.63 1.6-4.2 1.6-.02 1.5-.01 3-.01 4.48.15-1.55.72-3.1 1.83-4.18 1.11-1.1 2.7-1.64 4.28-1.69.02-2.43.01-4.87.01-7.3Zm-3.11 6.55c-1.35-.02-2.69-.05-4.04-.04.01-1.49.01-2.99.02-4.48-1.55.13-3.09.7-4.18 1.81-1.08 1.1-1.62 2.68-1.68 4.27-.04 1.51-.03 3.02-.03 4.53h1.5c.01-2.45.02-4.91.01-7.36.01-2.3.02-4.6.01-6.9 0-1.61.53-3.2 1.66-4.31 1.1-1.08 2.63 1.6 4.2-1.6.03-1.5.02-3 .02-4.48Z" />
       </svg>
     ),
   },
   {
     name: 'WhatsApp',
-    url: 'https://wa.me/1234567890',
+    url: 'https://wa.me/212628438838',
     icon: (
       // Using a path from lucide-icons for WhatsApp
       <svg
@@ -81,11 +81,11 @@ export default function Footer() {
                 </li>
                 <li className="flex items-center">
                   <Mail className="h-5 w-5 shrink-0 text-muted-foreground" />
-                  <a href="mailto:contact@mca.com" className="ml-3 text-sm text-muted-foreground hover:text-foreground">contact@mca.com</a>
+                  <a href="mailto:contact@essaouira-travel.services" className="ml-3 text-sm text-muted-foreground hover:text-foreground">contact@essaouira-travel.services</a>
                 </li>
                 <li className="flex items-center">
                   <Phone className="h-5 w-5 shrink-0 text-muted-foreground" />
-                  <a href="tel:+212-555-1234" className="ml-3 text-sm text-muted-foreground hover:text-foreground">+212 555-1234</a>
+                  <a href="tel:+212628438838" className="ml-3 text-sm text-muted-foreground hover:text-foreground">+212 628 438 838</a>
                 </li>
               </ul>
             </div>
