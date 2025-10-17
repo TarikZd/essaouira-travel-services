@@ -125,11 +125,9 @@ export default function ServicePage({ params }: { params: { slug: string } }) {
           <aside className="lg:col-span-1">
              <Card className="sticky top-24 shadow-xl">
                <CardHeader>
-                 <CardTitle className="font-headline text-3xl text-primary">Book Your Spot</CardTitle>
-                 <div className="flex items-baseline gap-2 pt-2">
-                   <span className="text-4xl font-bold text-foreground">${service.pricing.amount}</span>
-                   <span className="text-muted-foreground">/ {service.pricing.unit}</span>
-                 </div>
+                 <CardTitle className="font-headline text-3xl text-primary">
+                    {service.slug === 'airport-transfers' ? 'Book Your Transfer' : 'Book Your Spot'}
+                 </CardTitle>
                </CardHeader>
                <CardContent>
                  <BookingForm service={service as Service} />
