@@ -1,0 +1,261 @@
+{
+  "entities": {
+    "Service": {
+      "$schema": "http://json-schema.org/draft-07/schema#",
+      "title": "Service",
+      "type": "object",
+      "description": "Represents a tourism service offered on the platform.",
+      "properties": {
+        "id": {
+          "type": "string",
+          "description": "Unique identifier for the service."
+        },
+        "name": {
+          "type": "string",
+          "description": "Name of the service (e.g., 'Essaouira Transfers')."
+        },
+        "description": {
+          "type": "string",
+          "description": "Detailed description of the service."
+        },
+        "features": {
+          "type": "array",
+          "description": "List of features offered by the service.",
+          "items": {
+            "type": "string"
+          }
+        },
+        "pricing": {
+          "type": "string",
+          "description": "Pricing details for the service (if applicable)."
+        },
+        "imageUrls": {
+          "type": "array",
+          "description": "URLs of images associated with the service.",
+          "items": {
+            "type": "string"
+          }
+        },
+        "difficultyLevel": {
+          "type": "string",
+          "description": "Difficulty level of the service (if applicable)."
+        }
+      },
+      "required": [
+        "id",
+        "name",
+        "description",
+        "features",
+        "imageUrls"
+      ]
+    },
+    "Booking": {
+      "$schema": "http://json-schema.org/draft-07/schema#",
+      "title": "Booking",
+      "type": "object",
+      "description": "Represents a booking request made by a user.",
+      "properties": {
+        "id": {
+          "type": "string",
+          "description": "Unique identifier for the booking."
+        },
+        "serviceId": {
+          "type": "string",
+          "description": "Reference to the Service entity. (Relationship: Service 1:N Booking)"
+        },
+        "fullName": {
+          "type": "string",
+          "description": "Full name of the person making the booking."
+        },
+        "email": {
+          "type": "string",
+          "description": "Email address of the person making the booking.",
+          "format": "email"
+        },
+        "date": {
+          "type": "string",
+          "description": "Date for which the booking is requested.",
+          "format": "date-time"
+        },
+        "serviceSpecificField1": {
+          "type": "string",
+          "description": "Service-specific field 1 (e.g., Number of Passengers)."
+        },
+        "serviceSpecificField2": {
+          "type": "string",
+          "description": "Service-specific field 2 (e.g., Destination)."
+        },
+        "serviceSpecificField3": {
+          "type": "string",
+          "description": "Service-specific field 3 (if needed)."
+        },
+        "numberOfParticipants": {
+          "type": "number",
+          "description": "Number of participants for the service."
+        },
+        "countryCode": {
+          "type": "string",
+          "description": "International country code for the phone number."
+        },
+        "phoneNumber": {
+          "type": "string",
+          "description": "Phone number of the person making the booking."
+        },
+        "specialRequests": {
+          "type": "string",
+          "description": "Any special requests or comments."
+        }
+      },
+      "required": [
+        "id",
+        "serviceId",
+        "fullName",
+        "email",
+        "date",
+        "numberOfParticipants",
+        "countryCode",
+        "phoneNumber"
+      ]
+    },
+    "WebsiteConfiguration": {
+      "$schema": "http://json-schema.org/draft-07/schema#",
+      "title": "WebsiteConfiguration",
+      "type": "object",
+      "description": "Represents the configuration settings for the website.",
+      "properties": {
+        "id": {
+          "type": "string",
+          "description": "Unique identifier for the website configuration. Should only be one entry in the database."
+        },
+        "websiteName": {
+          "type": "string",
+          "description": "Name of the website."
+        },
+        "websiteTagline": {
+          "type": "string",
+          "description": "Tagline for the website."
+        },
+        "logoImageUrl": {
+          "type": "string",
+          "description": "URL of the website logo image."
+        },
+        "faviconImageUrl": {
+          "type": "string",
+          "description": "URL of the website favicon image."
+        },
+        "contactPhone": {
+          "type": "string",
+          "description": "Contact phone number for the business."
+        },
+        "contactEmail": {
+          "type": "string",
+          "description": "Contact email address for the business.",
+          "format": "email"
+        },
+        "contactAddress": {
+          "type": "string",
+          "description": "Contact address for the business."
+        },
+        "whatsappNumber": {
+          "type": "string",
+          "description": "WhatsApp number for booking submissions."
+        },
+        "facebookUrl": {
+          "type": "string",
+          "description": "URL of the Facebook page."
+        },
+        "instagramUrl": {
+          "type": "string",
+          "description": "URL of the Instagram profile."
+        },
+        "tiktokUrl": {
+          "type": "string",
+          "description": "URL of the TikTok profile."
+        },
+        "googleAnalyticsId": {
+          "type": "string",
+          "description": "Google Analytics ID for website tracking."
+        },
+        "googleAppsScriptUrl": {
+          "type": "string",
+          "description": "URL of the Google Apps Script for saving form data."
+        }
+      },
+      "required": [
+        "id",
+        "websiteName",
+        "websiteTagline",
+        "logoImageUrl",
+        "faviconImageUrl",
+        "contactPhone",
+        "contactEmail",
+        "contactAddress",
+        "whatsappNumber",
+        "facebookUrl",
+        "instagramUrl",
+        "tiktokUrl",
+        "googleAnalyticsId",
+        "googleAppsScriptUrl"
+      ]
+    }
+  },
+  "auth": {
+    "providers": [
+      "password",
+      "anonymous"
+    ]
+  },
+  "firestore": {
+    "structure": [
+      {
+        "path": "/services/{serviceId}",
+        "definition": {
+          "entityName": "Service",
+          "schema": {
+            "$ref": "#/backend/entities/Service"
+          },
+          "description": "Stores tourism service details. Listable to all users.",
+          "params": [
+            {
+              "name": "serviceId",
+              "description": "Unique identifier for the service."
+            }
+          ]
+        }
+      },
+      {
+        "path": "/bookings/{bookingId}",
+        "definition": {
+          "entityName": "Booking",
+          "schema": {
+            "$ref": "#/backend/entities/Booking"
+          },
+          "description": "Stores booking requests made by users. Listable to all users.",
+          "params": [
+            {
+              "name": "bookingId",
+              "description": "Unique identifier for the booking."
+            }
+          ]
+        }
+      },
+      {
+        "path": "/website_configuration/{documentId}",
+        "definition": {
+          "entityName": "WebsiteConfiguration",
+          "schema": {
+            "$ref": "#/backend/entities/WebsiteConfiguration"
+          },
+          "description": "Stores website configuration. There will likely be only one document in this collection.",
+          "params": [
+            {
+              "name": "documentId",
+              "description": "Unique identifier for the configuration document."
+            }
+          ]
+        }
+      }
+    ],
+    "reasoning": "The Firestore data structure is designed to support a tourism booking platform, prioritizing security, scalability, and ease of debugging. Authorization Independence is achieved through denormalization where necessary. The structure supports QAPs by segregating data based on access needs and employing a consistent access model. The following structure ensures that rules are simple, robust and easily debuggable.\n\n1.  `/services/{serviceId}`: Stores tourism service details.  No specific authorization concerns beyond ensuring the data is correctly formatted.  Listable to all users.\n\n2.  `/bookings/{bookingId}`: Stores booking requests made by users.  No specific authorization concerns beyond ensuring the data is correctly formatted. Listable to all users.\n\n3. `/website_configuration/{documentId}`: Stores website-wide configurations.  This collection will hold a single document. No specific authorization concerns beyond ensuring that only authorized admin can modify this information.\n\nThis structure promotes clarity and simplifies security rules by avoiding hierarchical dependencies and segregating data with different access requirements. The design also facilitates future scalability and maintainability."
+  }
+}
