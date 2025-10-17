@@ -55,13 +55,6 @@ export const services: Service[] = [
     bookingForm: {
       fields: [
         {
-          name: 'time',
-          label: 'Time',
-          type: 'time',
-          required: true,
-          validation: z.string().min(1, 'Time is required'),
-        },
-        {
           name: 'pickupLocation',
           label: 'Pick up Location',
           type: 'select',
@@ -101,7 +94,7 @@ export const services: Service[] = [
 *Name:* ${data.fullName}
 *Email:* ${data.email}
 *Date:* ${data.date}
-*Time:* ${data.extras.time}
+*Time:* ${data.time}
 *Phone:* ${data.phone}
 *Pick up:* ${data.extras.pickupLocation}
 *Drop off:* ${data.extras.dropoffLocation}

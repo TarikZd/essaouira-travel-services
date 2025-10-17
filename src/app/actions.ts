@@ -16,6 +16,7 @@ const bookingSchema = z.object({
   phone: z.string().min(1, 'Phone number is required.'),
   specialRequests: z.string().optional(),
   serviceName: z.string(),
+  time: z.string().optional(),
   extras: z.record(z.string()).optional(),
 });
 

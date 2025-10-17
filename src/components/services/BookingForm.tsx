@@ -69,6 +69,7 @@ export default function BookingForm({ service }: BookingFormProps) {
   } else {
     baseSchema = baseSchema.extend({
       countryCode: z.string().min(1, 'Country code is required.'),
+      time: z.string().min(1, 'Time is required'),
     });
   }
 
@@ -98,6 +99,7 @@ export default function BookingForm({ service }: BookingFormProps) {
     (defaultFormValues as any).adults = 1;
     (defaultFormValues as any).children = 0;
     (defaultFormValues as any).countryCode = '+212';
+    (defaultFormValues as any).time = '';
   } else {
     (defaultFormValues as any).participants = 1;
   }
@@ -134,11 +136,13 @@ export default function BookingForm({ service }: BookingFormProps) {
     }, {} as Record<string, string>);
     
     const fullPhoneNumber = isTransfer ? `${(data as any).countryCode}${(data as any).phone}` : data.phone;
+    const time = isTransfer ? (data as any).time : '';
 
     const messagePayload = {
       ...data,
       date: formattedDate,
       phone: fullPhoneNumber,
+      time,
       extras,
     };
 
@@ -158,6 +162,7 @@ export default function BookingForm({ service }: BookingFormProps) {
         
       const fullPhoneNumber = isTransfer ? `${(data as any).countryCode}${(data as any).phone}` : data.phone;
       const participants = isTransfer ? (data as any).adults + (data as any).children : (data as any).participants;
+      const time = isTransfer ? (data as any).time : undefined;
 
       const submissionData = {
         ...data,
@@ -165,6 +170,7 @@ export default function BookingForm({ service }: BookingFormProps) {
         serviceName: service.name,
         phone: fullPhoneNumber,
         participants,
+        time,
         extras
       };
       
@@ -275,41 +281,59 @@ export default function BookingForm({ service }: BookingFormProps) {
             />
           )}
 
-          <FormField
-            control={form.control}
-            name="date"
-            render={({ field }) => (
-              <FormItem className="flex flex-col">
-                <FormLabel>Date</FormLabel>
-                <Popover>
-                  <PopoverTrigger asChild>
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-6 md:col-span-2">
+            <FormField
+              control={form.control}
+              name="date"
+              render={({ field }) => (
+                <FormItem className="flex flex-col">
+                  <FormLabel>Date</FormLabel>
+                  <Popover>
+                    <PopoverTrigger asChild>
+                      <FormControl>
+                        <Button
+                          variant={'outline'}
+                          className={cn(
+                            'w-full pl-3 text-left font-normal',
+                            !field.value && 'text-muted-foreground'
+                          )}
+                        >
+                          {field.value ? format(field.value, 'PPP') : <span>Pick a date</span>}
+                          <CalendarIcon className="ml-auto h-4 w-4 opacity-50" />
+                        </Button>
+                      </FormControl>
+                    </PopoverTrigger>
+                    <PopoverContent className="w-auto p-0" align="start">
+                      <Calendar
+                        mode="single"
+                        selected={field.value}
+                        onSelect={field.onChange}
+                        disabled={(date) => date < new Date(new Date().setDate(new Date().getDate() - 1))}
+                        initialFocus
+                      />
+                    </PopoverContent>
+                  </Popover>
+                  <FormMessage />
+                </FormItem>
+              )}
+            />
+            {isTransfer && (
+              <FormField
+                control={form.control}
+                name="time"
+                render={({ field }) => (
+                  <FormItem>
+                    <FormLabel>Time</FormLabel>
                     <FormControl>
-                      <Button
-                        variant={'outline'}
-                        className={cn(
-                          'w-full pl-3 text-left font-normal',
-                          !field.value && 'text-muted-foreground'
-                        )}
-                      >
-                        {field.value ? format(field.value, 'PPP') : <span>Pick a date</span>}
-                        <CalendarIcon className="ml-auto h-4 w-4 opacity-50" />
-                      </Button>
+                      <Input type="time" {...field} />
                     </FormControl>
-                  </PopoverTrigger>
-                  <PopoverContent className="w-auto p-0" align="start">
-                    <Calendar
-                      mode="single"
-                      selected={field.value}
-                      onSelect={field.onChange}
-                      disabled={(date) => date < new Date(new Date().setDate(new Date().getDate() - 1))}
-                      initialFocus
-                    />
-                  </PopoverContent>
-                </Popover>
-                <FormMessage />
-              </FormItem>
+                    <FormMessage />
+                  </FormItem>
+                )}
+              />
             )}
-          />
+          </div>
+          
 
           {!isTransfer && (
              <FormField
