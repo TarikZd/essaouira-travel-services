@@ -76,8 +76,8 @@ export const services: Service[] = [
           name: 'children',
           label: 'Children (under 12)',
           type: 'number',
-          required: true,
-          validation: z.coerce.number().min(0, 'Number of children cannot be negative.'),
+          required: false,
+          validation: z.coerce.number().min(0, 'Number of children cannot be negative.').optional(),
         },
       ],
     },
@@ -159,13 +159,21 @@ export const services: Service[] = [
     bookingForm: {
       fields: [
         {
-          name: 'dietaryRestrictions',
-          label: 'Dietary Restrictions',
-          type: 'text',
-          required: false,
-          placeholder: 'e.g., vegetarian, gluten-free',
-          validation: z.string().optional(),
+          name: 'pickupTime',
+          label: 'Preferred Pickup Time',
+          type: 'select',
+          required: true,
+          options: ['Morning (9:00 AM)', 'Afternoon (2:00 PM)'],
+          validation: z.string().min(1, 'Please select a pickup time.'),
         },
+        {
+          name: 'lunchPreference',
+          label: 'Lunch Preference',
+          type: 'select',
+          required: true,
+          options: ['Standard (Chicken Tagine)', 'Vegetarian', 'Fish (if available)'],
+          validation: z.string().min(1, 'Please select a lunch preference.'),
+        }
       ],
     },
     whatsappNumber: '212628438838',
@@ -178,7 +186,8 @@ export const services: Service[] = [
 *Date:* ${data.date}
 *Phone:* ${data.phone}
 *Participants:* ${data.participants}
-*Dietary Needs:* ${data.extras.dietaryRestrictions || 'None'}
+*Pickup Time:* ${data.extras.pickupTime}
+*Lunch Preference:* ${data.extras.lunchPreference}
 *Special Requests:* ${data.specialRequests || 'None'}
 `,
   },
@@ -270,3 +279,5 @@ export const services: Service[] = [
     const order = [1, 5, 4, 3, 2];
     return order.indexOf(a.id) - order.indexOf(b.id);
 });
+
+    
