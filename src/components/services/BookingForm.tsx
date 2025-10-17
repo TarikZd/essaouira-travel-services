@@ -31,7 +31,7 @@ import { CalendarIcon, Loader2 } from 'lucide-react';
 import { useToast } from '@/hooks/use-toast';
 import { cn } from '@/lib/utils';
 import { submitBooking } from '@/app/actions';
-import { services, type Service } from '@/lib/services';
+import { services, type Service, FormField as ServiceFormField } from '@/lib/services';
 import { countryCodes } from '@/lib/country-codes';
 
 type BookingFormProps = {
@@ -47,6 +47,13 @@ const routes: Record<string, string[]> = {
     "Agadir Airport": ["Essaouira", "Essaouira Airport", "Marrakech", "Marrakesh Airport", "Agafay", "Taghazout", "Imsouen", "El Jadida", "Oualidia", "Imlil", "Ouirgane", "Taroudant", "Agadir"],
 };
 
+const FormLabelWithRequired: React.FC<{ children: React.ReactNode; required?: boolean }> = ({ children, required }) => (
+    <FormLabel>
+      {children}
+      {required && <span className="text-red-500 ml-1">*</span>}
+    </FormLabel>
+);
+
 export default function BookingForm({ service }: BookingFormProps) {
   const [isPending, startTransition] = useTransition();
   const { toast } = useToast();
@@ -61,20 +68,13 @@ export default function BookingForm({ service }: BookingFormProps) {
       date: z.date({ required_error: 'A date for the booking is required.' }),
       phone: z.string().min(5, { message: 'Please enter a valid phone number.' }),
       specialRequests: z.string().optional(),
+      time: z.string().min(1, 'Time is required'),
+      adults: z.coerce.number().min(1, 'At least one adult is required.'),
+      children: z.coerce.number().min(0, 'Number of children cannot be negative.').optional(),
+      countryCode: z.string().min(1, 'Country code is required.'),
     });
-    
-    if(service.slug !== 'airport-transfers'){
-      baseSchema = baseSchema.extend({
-        participants: z.coerce.number().min(1, { message: 'At least one participant is required.' }),
-      });
-    } else {
-      baseSchema = baseSchema.extend({
-        countryCode: z.string().min(1, 'Country code is required.'),
-        time: z.string().min(1, 'Time is required'),
-      });
-    }
 
-    // Dynamically create the Zod schema
+    // Dynamically create the Zod schema from service config
     const schema = service.bookingForm.fields.reduce(
       (schema, field) => {
         const fieldService = services.find(s => s.id === service.id)?.bookingForm.fields.find(f => f.name === field.name);
@@ -96,20 +96,16 @@ export default function BookingForm({ service }: BookingFormProps) {
       fullName: '',
       email: '',
       phone: '',
+      countryCode: '+212',
+      time: '',
+      adults: 1,
+      children: 0,
       specialRequests: '',
       ...service.bookingForm.fields.reduce((acc, field) => ({ ...acc, [field.name]: field.type === 'number' ? 0 : '' }), {}),
     };
   
-    if(isTransfer){
-      (defaults as any).adults = 1;
-      (defaults as any).children = 0;
-      (defaults as any).countryCode = '+212';
-      (defaults as any).time = '';
-    } else {
-      (defaults as any).participants = 1;
-    }
     return defaults;
-  }, [service, isTransfer]);
+  }, [service]);
 
   const form = useForm<FormValues>({
     resolver: zodResolver(dynamicSchema),
@@ -125,7 +121,7 @@ export default function BookingForm({ service }: BookingFormProps) {
     if (service.slug !== 'airport-transfers' || !pickupLocationValue) {
       const destField = service.bookingForm.fields.find(f => f.name === 'dropoffLocation');
       if (Array.isArray(destField?.options)) {
-        return destField?.options.filter(opt => typeof opt === 'string');
+        return destField?.options.filter((opt): opt is string => typeof opt === 'string');
       }
       return [];
     }
@@ -148,14 +144,12 @@ export default function BookingForm({ service }: BookingFormProps) {
       return acc;
     }, {} as Record<string, string>);
     
-    const fullPhoneNumber = isTransfer ? `${(data as any).countryCode}${(data as any).phone}` : data.phone;
-    const time = isTransfer ? (data as any).time : '';
+    const fullPhoneNumber = `${data.countryCode}${data.phone}`;
 
     const messagePayload = {
       ...data,
       date: formattedDate,
       phone: fullPhoneNumber,
-      time,
       extras,
     };
 
@@ -173,9 +167,8 @@ export default function BookingForm({ service }: BookingFormProps) {
           return acc;
         }, {} as Record<string, any>);
         
-      const fullPhoneNumber = isTransfer ? `${(data as any).countryCode}${(data as any).phone}` : data.phone;
-      const participants = isTransfer ? (data as any).adults + (data as any).children : (data as any).participants;
-      const time = isTransfer ? (data as any).time : undefined;
+      const fullPhoneNumber = `${data.countryCode}${data.phone}`;
+      const participants = data.adults + (data.children || 0);
 
       const submissionData = {
         ...data,
@@ -183,7 +176,6 @@ export default function BookingForm({ service }: BookingFormProps) {
         serviceName: service.name,
         phone: fullPhoneNumber,
         participants,
-        time,
         extras
       };
       
@@ -206,6 +198,53 @@ export default function BookingForm({ service }: BookingFormProps) {
     });
   }
 
+  const renderField = (customField: ServiceFormField) => {
+    let options: (string | { label: string; value: string })[] = [];
+    if (customField.name === 'dropoffLocation' && isTransfer) {
+        options = destinationOptions;
+    } else if (Array.isArray(customField.options)) {
+        options = customField.options;
+    }
+
+    return (
+      <FormField
+        key={customField.name}
+        control={form.control}
+        name={customField.name as any}
+        render={({ field }) => (
+          <FormItem className="md:col-span-2">
+            <FormLabelWithRequired required={customField.required}>{customField.label}</FormLabelWithRequired>
+            {customField.type === 'select' ? (
+               <Select onValueChange={field.onChange} defaultValue={field.value} value={field.value}>
+                 <FormControl>
+                   <SelectTrigger>
+                     <SelectValue placeholder={customField.placeholder || 'Select an option'} />
+                   </SelectTrigger>
+                 </FormControl>
+                 <SelectContent>
+                   {options?.map((option, index) => {
+                     const value = typeof option === 'string' ? option : option.value;
+                     const label = typeof option === 'string' ? option : option.label;
+                     return (
+                       <SelectItem key={`${value}-${index}`} value={value}>
+                         {label}
+                       </SelectItem>
+                     )
+                   })}
+                 </SelectContent>
+               </Select>
+            ) : (
+              <FormControl>
+                <Input type={customField.type} placeholder={customField.placeholder} {...field} />
+              </FormControl>
+            )}
+            <FormMessage />
+          </FormItem>
+        )}
+      />
+    );
+  }
+
   return (
     <Form {...form}>
       <form onSubmit={form.handleSubmit(onSubmit)} className="space-y-6">
@@ -215,7 +254,7 @@ export default function BookingForm({ service }: BookingFormProps) {
             name="fullName"
             render={({ field }) => (
               <FormItem className="md:col-span-2">
-                <FormLabel>Full Name</FormLabel>
+                <FormLabelWithRequired required>Full Name</FormLabelWithRequired>
                 <FormControl>
                   <Input placeholder="John Doe" {...field} />
                 </FormControl>
@@ -228,7 +267,7 @@ export default function BookingForm({ service }: BookingFormProps) {
             name="email"
             render={({ field }) => (
               <FormItem className="md:col-span-2">
-                <FormLabel>Email</FormLabel>
+                <FormLabelWithRequired required>Email</FormLabelWithRequired>
                 <FormControl>
                   <Input placeholder="john.doe@example.com" {...field} />
                 </FormControl>
@@ -237,13 +276,12 @@ export default function BookingForm({ service }: BookingFormProps) {
             )}
           />
 
-          {isTransfer ? (
             <div className="md:col-span-2">
-              <FormLabel>Phone Number</FormLabel>
+              <FormLabelWithRequired required>Phone Number</FormLabelWithRequired>
               <div className="flex gap-2 mt-2">
                   <FormField
                     control={form.control}
-                    name={"countryCode" as any}
+                    name={"countryCode"}
                     render={({ field }) => (
                       <FormItem className="w-1/3">
                         <Select onValueChange={field.onChange} defaultValue={field.value}>
@@ -278,21 +316,6 @@ export default function BookingForm({ service }: BookingFormProps) {
                   />
               </div>
             </div>
-          ) : (
-            <FormField
-              control={form.control}
-              name="phone"
-              render={({ field }) => (
-                <FormItem className="md:col-span-2">
-                  <FormLabel>Phone Number</FormLabel>
-                  <FormControl>
-                    <Input placeholder="+1 (555) 123-4567" {...field} />
-                  </FormControl>
-                  <FormMessage />
-                </FormItem>
-              )}
-            />
-          )}
 
           <div className="grid grid-cols-1 md:grid-cols-2 gap-6 md:col-span-2">
             <FormField
@@ -300,7 +323,7 @@ export default function BookingForm({ service }: BookingFormProps) {
               name="date"
               render={({ field }) => (
                 <FormItem className="flex flex-col">
-                  <FormLabel>Date</FormLabel>
+                  <FormLabelWithRequired required>Date</FormLabelWithRequired>
                   <Popover>
                     <PopoverTrigger asChild>
                       <FormControl>
@@ -330,13 +353,12 @@ export default function BookingForm({ service }: BookingFormProps) {
                 </FormItem>
               )}
             />
-            {isTransfer && (
               <FormField
                 control={form.control}
                 name="time"
                 render={({ field }) => (
                   <FormItem>
-                    <FormLabel>Time</FormLabel>
+                    <FormLabelWithRequired required>Time</FormLabelWithRequired>
                     <FormControl>
                       <Input type="time" {...field} />
                     </FormControl>
@@ -344,83 +366,45 @@ export default function BookingForm({ service }: BookingFormProps) {
                   </FormItem>
                 )}
               />
-            )}
           </div>
           
-
-          {!isTransfer && (
+          <div className="grid grid-cols-2 gap-6 md:col-span-2">
              <FormField
                 control={form.control}
-                name={"participants" as any}
+                name={"adults"}
                 render={({ field }) => (
-                  <FormItem className="md:col-span-2">
-                    <FormLabel>Number of Participants</FormLabel>
+                  <FormItem>
+                    <FormLabelWithRequired required>Adults</FormLabelWithRequired>
                     <FormControl>
-                      <Input type="number" min="1" {...field} />
+                       <Input type="number" min="1" {...field} onChange={(e) => field.onChange(parseInt(e.target.value, 10))} />
                     </FormControl>
                     <FormMessage />
                   </FormItem>
                 )}
               />
-          )}
-
-          {service.bookingForm.fields.map((customField) => {
-            let options: (string | { label: string; value: string })[] = [];
-            if (customField.name === 'dropoffLocation') {
-                options = destinationOptions;
-            } else if (Array.isArray(customField.options)) {
-                options = customField.options;
-            }
-
-            return (
-              <FormField
-                key={customField.name}
+               <FormField
                 control={form.control}
-                name={customField.name as any}
+                name={"children"}
                 render={({ field }) => (
-                  <FormItem className={cn(customField.type === 'number' && 'md:col-span-1', service.slug === 'airport-transfers' ? 'md:col-span-1' : 'md:col-span-2')}>
-                    <FormLabel>{customField.label}</FormLabel>
-                    {customField.type === 'select' ? (
-                       <Select onValueChange={field.onChange} defaultValue={field.value} value={field.value}>
-                         <FormControl>
-                           <SelectTrigger>
-                             <SelectValue placeholder={customField.placeholder || 'Select an option'} />
-                           </SelectTrigger>
-                         </FormControl>
-                         <SelectContent>
-                           {options?.map((option, index) => {
-                             const value = typeof option === 'string' ? option : option.value;
-                             const label = typeof option === 'string' ? option : option.label;
-                             return (
-                               <SelectItem key={`${value}-${index}`} value={value}>
-                                 {label}
-                               </SelectItem>
-                             )
-                           })}
-                         </SelectContent>
-                       </Select>
-                    ) : customField.type === 'number' ? (
-                      <FormControl>
-                        <Input type="number" min={customField.name === 'children' ? 0 : 1} {...field} onChange={(e) => field.onChange(parseInt(e.target.value, 10))} />
-                      </FormControl>
-                    ) : (
-                      <FormControl>
-                        <Input type={customField.type} placeholder={customField.placeholder} {...field} />
-                      </FormControl>
-                    )}
+                  <FormItem>
+                    <FormLabelWithRequired>Children (under 12)</FormLabelWithRequired>
+                    <FormControl>
+                       <Input type="number" min="0" {...field} onChange={(e) => field.onChange(parseInt(e.target.value, 10))} />
+                    </FormControl>
                     <FormMessage />
                   </FormItem>
                 )}
               />
-            )
-          })}
+          </div>
+
+          {service.bookingForm.fields.map(renderField)}
         </div>
         <FormField
             control={form.control}
             name="specialRequests"
             render={({ field }) => (
               <FormItem>
-                <FormLabel>Special Requests</FormLabel>
+                <FormLabelWithRequired>Special Requests</FormLabelWithRequired>
                 <FormControl>
                   <Textarea
                     placeholder="Tell us anything else we need to know"
@@ -444,3 +428,5 @@ export default function BookingForm({ service }: BookingFormProps) {
     </Form>
   );
 }
+
+    

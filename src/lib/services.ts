@@ -65,20 +65,6 @@ export const services: Service[] = [
             options: ['Marrakech', 'Marrakesh Airport', 'Agadir', 'Agafay', 'Taghazout', 'Imsouen', 'El Jadida', 'Oualidia', 'Imlil', 'Ouirgane', 'Taroudant', 'Agadir Airport', 'Essaouira Airport', 'Essaouira'],
             validation: z.string().min(1, 'Drop off location is required'),
         },
-        {
-          name: 'adults',
-          label: 'Adults',
-          type: 'number',
-          required: true,
-          validation: z.coerce.number().min(1, 'At least one adult is required.'),
-        },
-        {
-          name: 'children',
-          label: 'Children (under 12)',
-          type: 'number',
-          required: false,
-          validation: z.coerce.number().min(0, 'Number of children cannot be negative.').optional(),
-        },
       ],
     },
     whatsappNumber: '212628438838',
@@ -93,8 +79,8 @@ export const services: Service[] = [
 *Phone:* ${data.phone}
 *Pick up:* ${data.extras.pickupLocation}
 *Drop off:* ${data.extras.dropoffLocation}
-*Adults:* ${data.extras.adults}
-*Children:* ${data.extras.children}
+*Adults:* ${data.adults}
+*Children:* ${data.children}
 *Special Requests:* ${data.specialRequests || 'None'}
 `,
   },
@@ -134,8 +120,10 @@ export const services: Service[] = [
 *Name:* ${data.fullName}
 *Email:* ${data.email}
 *Date:* ${data.date}
+*Time:* ${data.time}
 *Phone:* ${data.phone}
-*Participants:* ${data.participants}
+*Adults:* ${data.adults}
+*Children:* ${data.children}
 *Dietary Needs:* ${data.extras.dietaryRestrictions || 'None'}
 *Special Requests:* ${data.specialRequests || 'None'}
 `,
@@ -159,14 +147,6 @@ export const services: Service[] = [
     bookingForm: {
       fields: [
         {
-          name: 'pickupTime',
-          label: 'Preferred Pickup Time',
-          type: 'select',
-          required: true,
-          options: ['Morning (9:00 AM)', 'Afternoon (2:00 PM)'],
-          validation: z.string().min(1, 'Please select a pickup time.'),
-        },
-        {
           name: 'lunchPreference',
           label: 'Lunch Preference',
           type: 'select',
@@ -184,9 +164,10 @@ export const services: Service[] = [
 *Name:* ${data.fullName}
 *Email:* ${data.email}
 *Date:* ${data.date}
+*Time:* ${data.time}
 *Phone:* ${data.phone}
-*Participants:* ${data.participants}
-*Pickup Time:* ${data.extras.pickupTime}
+*Adults:* ${data.adults}
+*Children:* ${data.children}
 *Lunch Preference:* ${data.extras.lunchPreference}
 *Special Requests:* ${data.specialRequests || 'None'}
 `,
@@ -208,16 +189,7 @@ export const services: Service[] = [
       gallery: ['gallery-souk-1', 'gallery-souk-2', 'gallery-souk-3'],
     },
     bookingForm: {
-      fields: [
-        {
-          name: 'tourType',
-          label: 'Tour Type',
-          type: 'select',
-          required: true,
-          options: ['Morning Tour (9am)', 'Afternoon Tour (2pm)'],
-          validation: z.string().min(1, 'Tour type is required'),
-        },
-      ],
+      fields: [],
     },
     whatsappNumber: '212628438838',
     whatsappMessage: (data) => `
@@ -227,9 +199,10 @@ export const services: Service[] = [
 *Name:* ${data.fullName}
 *Email:* ${data.email}
 *Date:* ${data.date}
+*Time:* ${data.time}
 *Phone:* ${data.phone}
-*Participants:* ${data.participants}
-*Tour Time:* ${data.extras.tourType}
+*Adults:* ${data.adults}
+*Children:* ${data.children}
 *Special Requests:* ${data.specialRequests || 'None'}
 `,
   },
@@ -269,8 +242,10 @@ export const services: Service[] = [
 *Name:* ${data.fullName}
 *Email:* ${data.email}
 *Date:* ${data.date}
+*Time:* ${data.time}
 *Phone:* ${data.phone}
-*Participants:* ${data.participants}
+*Adults:* ${data.adults}
+*Children:* ${data.children}
 *Package:* ${data.extras.packageType}
 *Special Requests:* ${data.specialRequests || 'None'}
 `,
@@ -279,5 +254,7 @@ export const services: Service[] = [
     const order = [1, 5, 4, 3, 2];
     return order.indexOf(a.id) - order.indexOf(b.id);
 });
+
+    
 
     

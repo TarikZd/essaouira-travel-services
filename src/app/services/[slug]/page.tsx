@@ -45,7 +45,7 @@ export default function ServicePage({ params }: { params: { slug: string } }) {
   }
 
   // Create a serializable version of the service object
-  const { whatsappMessage, validation, ...serializableServiceData } = serviceData as any;
+  const { whatsappMessage, ...serializableServiceData } = serviceData as any;
   const service = {
     ...serializableServiceData,
     bookingForm: {
@@ -126,7 +126,7 @@ export default function ServicePage({ params }: { params: { slug: string } }) {
              <Card className="sticky top-24 shadow-xl">
                <CardHeader>
                  <CardTitle className="font-headline text-3xl text-primary">
-                    {service.slug === 'airport-transfers' ? 'Book Your Transfer' : 'Book Your Spot'}
+                    {'Book Your Adventure'}
                  </CardTitle>
                </CardHeader>
                <CardContent>
@@ -139,3 +139,5 @@ export default function ServicePage({ params }: { params: { slug: string } }) {
     </div>
   );
 }
+
+    
