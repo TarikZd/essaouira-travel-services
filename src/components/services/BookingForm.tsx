@@ -1,10 +1,10 @@
 
 'use client';
 
-import { useForm } from 'react-hook-form';
+import { useForm, useWatch } from 'react-hook-form';
 import { zodResolver } from '@hookform/resolvers/zod';
 import { z } from 'zod';
-import { useTransition } from 'react';
+import { useTransition, useMemo } from 'react';
 import { format } from 'date-fns';
 
 import { Button } from '@/components/ui/button';
@@ -35,6 +35,15 @@ import { services, type Service } from '@/lib/services';
 
 type BookingFormProps = {
   service: Service;
+};
+
+const routes: Record<string, string[]> = {
+    "Essaouira": ["Marrakech", "Marrakesh Airport", "Agadir", "Agafay", "Taghazout", "Imsouen", "El Jadida", "Oualidia", "Imlil", "Ouirgane", "Taroudant", "Agadir Airport", "Essaouira Airport"],
+    "Essaouira Airport": ["Marrakech", "Marrakesh Airport", "Agadir", "Agafay", "Taghazout", "Imsouen", "El Jadida", "Oualidia", "Imlil", "Ouirgane", "Taroudant", "Agadir Airport", "Essaouira"],
+    "Marrakech": ["Essaouira", "Essaouira Airport", "Agadir", "Agafay", "Taghazout", "Imsouen", "El Jadida", "Oualidia", "Imlil", "Ouirgane", "Taroudant", "Agadir Airport"],
+    "Marrakesh Airport": ["Essaouira", "Essaouira Airport", "Agadir", "Agafay", "Taghazout", "Imsouen", "El Jadida", "Oualidia", "Imlil", "Ouirgane", "Taroudant", "Agadir Airport"],
+    "Agadir": ["Essaouira", "Essaouira Airport", "Marrakech", "Marrakesh Airport", "Agafay", "Taghazout", "Imsouen", "El Jadida", "Oualidia", "Imlil", "Ouirgane", "Taroudant", "Agadir Airport"],
+    "Agadir Airport": ["Essaouira", "Essaouira Airport", "Marrakech", "Marrakesh Airport", "Agafay", "Taghazout", "Imsouen", "El Jadida", "Oualidia", "Imlil", "Ouirgane", "Taroudant", "Agadir"],
 };
 
 export default function BookingForm({ service }: BookingFormProps) {
@@ -73,6 +82,20 @@ export default function BookingForm({ service }: BookingFormProps) {
       ...service.bookingForm.fields.reduce((acc, field) => ({ ...acc, [field.name]: '' }), {}),
     },
   });
+  
+  const departureValue = useWatch({
+    control: form.control,
+    name: 'departure' as any, 
+  });
+
+  const destinationOptions = useMemo(() => {
+    if (service.slug !== 'airport-transfers' || !departureValue) {
+      const destField = service.bookingForm.fields.find(f => f.name === 'destination');
+      return destField?.options || [];
+    }
+    return routes[departureValue] || [];
+  }, [departureValue, service.slug, service.bookingForm.fields]);
+
 
   const handleWhatsAppRedirect = (data: FormValues) => {
     if (!fullService) return;
@@ -220,39 +243,42 @@ export default function BookingForm({ service }: BookingFormProps) {
               </FormItem>
             )}
           />
-          {service.bookingForm.fields.map((customField) => (
-            <FormField
-              key={customField.name}
-              control={form.control}
-              name={customField.name as any}
-              render={({ field }) => (
-                <FormItem>
-                  <FormLabel>{customField.label}</FormLabel>
-                  {customField.type === 'select' ? (
-                     <Select onValueChange={field.onChange} defaultValue={field.value}>
-                       <FormControl>
-                         <SelectTrigger>
-                           <SelectValue placeholder={customField.placeholder || 'Select an option'} />
-                         </SelectTrigger>
-                       </FormControl>
-                       <SelectContent>
-                         {customField.options?.map((option) => (
-                           <SelectItem key={option} value={option}>
-                             {option}
-                           </SelectItem>
-                         ))}
-                       </SelectContent>
-                     </Select>
-                  ) : (
-                    <FormControl>
-                      <Input type={customField.type} placeholder={customField.placeholder} {...field} />
-                    </FormControl>
-                  )}
-                  <FormMessage />
-                </FormItem>
-              )}
-            />
-          ))}
+          {service.bookingForm.fields.map((customField) => {
+            const options = customField.name === 'destination' ? destinationOptions : customField.options;
+            return (
+              <FormField
+                key={customField.name}
+                control={form.control}
+                name={customField.name as any}
+                render={({ field }) => (
+                  <FormItem>
+                    <FormLabel>{customField.label}</FormLabel>
+                    {customField.type === 'select' ? (
+                       <Select onValueChange={field.onChange} defaultValue={field.value} value={field.value}>
+                         <FormControl>
+                           <SelectTrigger>
+                             <SelectValue placeholder={customField.placeholder || 'Select an option'} />
+                           </SelectTrigger>
+                         </FormControl>
+                         <SelectContent>
+                           {options?.map((option) => (
+                             <SelectItem key={option} value={option}>
+                               {option}
+                             </SelectItem>
+                           ))}
+                         </SelectContent>
+                       </Select>
+                    ) : (
+                      <FormControl>
+                        <Input type={customField.type} placeholder={customField.placeholder} {...field} />
+                      </FormControl>
+                    )}
+                    <FormMessage />
+                  </FormItem>
+                )}
+              />
+            )
+          })}
         </div>
         <FormField
             control={form.control}

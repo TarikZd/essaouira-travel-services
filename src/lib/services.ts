@@ -54,13 +54,21 @@ export const services: Service[] = [
     bookingForm: {
       fields: [
         {
-          name: 'destination',
-          label: 'Destination',
+          name: 'departure',
+          label: 'Departure',
           type: 'select',
           required: true,
-          options: ['From Airport to City', 'From City to Airport'],
-          validation: z.string().min(1, 'Destination is required'),
+          options: ['Essaouira', 'Essaouira Airport', 'Marrakech', 'Marrakesh Airport', 'Agadir', 'Agadir Airport'],
+          validation: z.string().min(1, 'Departure location is required'),
         },
+        {
+            name: 'destination',
+            label: 'Destination',
+            type: 'select',
+            required: true,
+            options: ['Marrakech', 'Marrakesh Airport', 'Agadir', 'Agafay', 'Taghazout', 'Imsouen', 'El Jadida', 'Oualidia', 'Imlil', 'Ouirgane', 'Taroudant', 'Agadir Airport', 'Essaouira Airport', 'Essaouira'],
+            validation: z.string().min(1, 'Destination is required'),
+        }
       ],
     },
     whatsappNumber: '212628438838',
@@ -73,6 +81,7 @@ export const services: Service[] = [
 *Date:* ${data.date}
 *Phone:* ${data.phone}
 *Participants:* ${data.participants}
+*Departure:* ${data.extras.departure}
 *Destination:* ${data.extras.destination}
 *Special Requests:* ${data.specialRequests || 'None'}
 `,
@@ -245,4 +254,7 @@ export const services: Service[] = [
 *Special Requests:* ${data.specialRequests || 'None'}
 `,
   },
-];
+].sort((a, b) => {
+    const order = [1, 5, 4, 3, 2];
+    return order.indexOf(a.id) - order.indexOf(b.id);
+});
