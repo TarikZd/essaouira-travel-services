@@ -31,7 +31,7 @@ export default function Header() {
           <Link href="/" className="flex items-center space-x-2">
             <Wind className="h-6 w-6 text-primary" />
             <span className="hidden font-bold sm:inline-block font-headline">
-              Moroccan Coastal Adventures
+              Essaouira Travel Services
             </span>
           </Link>
         </div>
@@ -62,7 +62,7 @@ export default function Header() {
               <SheetHeader>
                 <SheetTitle className="flex items-center space-x-2">
                   <Wind className="h-6 w-6 text-primary" />
-                  <span className="font-bold font-headline">MCA</span>
+                  <span className="font-bold font-headline">ETS</span>
                 </SheetTitle>
               </SheetHeader>
               <div className="mt-8 flex flex-col space-y-4">
@@ -84,3 +84,5 @@ export default function Header() {
     </header>
   );
 }
+
+    

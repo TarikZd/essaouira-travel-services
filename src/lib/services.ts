@@ -5,7 +5,7 @@ import type { ZodType } from 'zod';
 export type FormField = {
   name: string;
   label: string;
-  type: 'text' | 'number' | 'select' | 'tel' | 'time' | 'date' | 'textarea';
+  type: 'text' | 'number' | 'select' | 'tel' | 'time' | 'date' | 'textarea' | 'email';
   required: boolean;
   placeholder?: string;
   options?: string[] | { label: string; value: string }[];
@@ -76,8 +76,8 @@ export const services: Service[] = [
     id: 1,
     name: 'Private Transfers',
     slug: 'airport-transfers',
-    description: 'Travel with confidence and comfort. Our private transfer service ensures a seamless connection between major airports, cities, and coastal towns. Whether you\'re arriving at Marrakech or exploring the coast, our professional drivers and modern vehicles guarantee a stress-free journey.',
-    aboutTitle: 'About Your Transfer',
+    description: 'Travel with confidence and comfort with our private transfer service in Essaouira. We ensure a seamless connection between Marrakech, Agadir, and local airports, coastal towns, and more. Our professional drivers and modern vehicles guarantee a stress-free journey to your Moroccan destination.',
+    aboutTitle: 'About Your Private Transfer',
     bookingTitle: 'Book Your Transfer',
     features: ['Service to Major Airports & Cities', 'Private, Air-Conditioned Vehicles', 'Professional & Punctual Drivers', '24/7 Availability for All Flights'],
     images: {
@@ -126,10 +126,10 @@ export const services: Service[] = [
     id: 5,
     name: 'Berber Cooking Class',
     slug: 'outdoor-cooking-adventure',
-    description: 'Immerse yourself in authentic Berber culture with a hands-on cooking class in a serene countryside setting. Your day begins with a guided trip to a local souk to pick fresh, vibrant ingredients. Then, you\'ll learn the age-old secrets of crafting a perfect tagine in a traditional outdoor kitchen. It’s more than a meal—it’s a genuine connection to the heart of Moroccan culinary heritage.',
+    description: 'Immerse yourself in authentic Berber culture with a hands-on cooking class in a serene Essaouira countryside setting. Your day begins with a guided trip to a local souk to pick fresh, vibrant ingredients. Then, you\'ll learn the age-old secrets of crafting a perfect Moroccan tagine or couscous in a traditional outdoor kitchen. It’s a genuine connection to the heart of Moroccan culinary heritage.',
     aboutTitle: 'About the Cooking Class',
-    bookingTitle: 'Book Your Cooking Class',
-    features: ['Authentic Berber-Led Experience', 'Guided Souk Shopping for Ingredients', 'Hands-On Traditional Cooking Class', 'Dine in a Beautiful Countryside Setting'],
+    bookingTitle: 'Book Your Culinary Adventure',
+    features: ['Authentic Berber-Led Experience', 'Guided Souk Shopping for Ingredients', 'Hands-On Traditional Moroccan Cooking', 'Dine in a Beautiful Countryside Setting'],
     pricing: {
       amount: 80,
       unit: 'per person',
@@ -190,10 +190,10 @@ export const services: Service[] = [
     id: 4,
     name: 'Secret Beaches 4x4 Tour',
     slug: 'wild-beaches-excursion',
-    description: 'Journey off the beaten path to uncover the wild, untouched coastline south of Essaouira. Our comfortable 4x4 vehicles will take you to secret beaches, dramatic sea cliffs, and hidden fishing villages. This half-day adventure includes a delicious, traditionally prepared lunch with a local Berber family, offering you a true taste of Moroccan hospitality and culture.',
+    description: 'Journey off the beaten path to uncover the wild, untouched coastline south of Essaouira. Our comfortable 4x4 vehicles will take you to secret beaches, dramatic sea cliffs, and hidden fishing villages. This half-day adventure includes a delicious, traditionally prepared lunch with a local Berber family, offering a true taste of Moroccan hospitality.',
     aboutTitle: 'About the 4x4 Tour',
-    bookingTitle: 'Book Your 4x4 Tour',
-    features: ['Explore Hidden Beaches and Coves', 'Travel in a Comfortable 4x4 Vehicle', 'Stunning Coastal & Cliffside Scenery', 'Authentic Lunch with a Local Family'],
+    bookingTitle: 'Book Your 4x4 Coastal Tour',
+    features: ['Explore Hidden Beaches and Coves', 'Travel in a Comfortable 4x4 Vehicle', 'Stunning Coastal & Cliffside Scenery', 'Authentic Moroccan Lunch Included'],
     pricing: {
       amount: 70,
       unit: 'per person',
@@ -246,7 +246,7 @@ export const services: Service[] = [
     name: 'Souk Walking Tour',
     slug: 'essaouira-souk-tour',
     description: 'Step into the living history of Essaouira with a guided walking tour through its enchanting medina. Let our local expert lead you through labyrinthine alleys to vibrant souks, historic ramparts, and hidden artisan workshops. Discover the stories, sights, and flavors that make this UNESCO World Heritage city so magical.',
-    aboutTitle: 'About the Walking Tour',
+    aboutTitle: 'About the Medina Tour',
     bookingTitle: 'Book Your Walking Tour',
     features: ['Insider Knowledge from a Local Guide', 'Visit the Historic Ramparts & Port', 'Explore Bustling Souks & Artisan Shops', 'Taste Traditional Moroccan Mint Tea'],
     pricing: {
@@ -291,8 +291,8 @@ export const services: Service[] = [
     id: 2,
     name: 'Coastal Quad Biking',
     slug: 'quad-biking-adventure',
-    description: 'Unleash your inner adventurer on a thrilling quad biking tour along Essaouira\'s spectacular coastline. Ride across vast sand dunes, cruise along windswept beaches, and navigate through shady argan forests. Our expert guides ensure a safe and unforgettable experience for all skill levels, from beginners to seasoned riders.',
-    aboutTitle: 'About Quad Biking',
+    description: 'Unleash your inner adventurer on a thrilling quad biking tour along Essaouira\'s spectacular coastline. Ride across vast sand dunes, cruise along windswept beaches, and navigate through shady argan forests. Our expert guides ensure a safe and unforgettable experience for all skill levels.',
+    aboutTitle: 'About Quad Biking in Essaouira',
     bookingTitle: 'Book Your Quad Bike Adventure',
     features: ['Ride Through Dunes, Beaches & Forests', 'High-Quality, Well-Maintained Quads', 'Full Safety Briefing & Equipment', 'Guided by Professional Instructors'],
     pricing: {

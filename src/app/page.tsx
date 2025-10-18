@@ -1,3 +1,4 @@
+
 import Image from 'next/image';
 import Link from 'next/link';
 import { Button } from '@/components/ui/button';
@@ -28,13 +29,13 @@ export default function Home() {
         <div className="absolute inset-0 bg-black/50" />
         <div className="relative z-10 flex h-full flex-col items-center justify-center text-center">
           <h1 className="font-headline text-5xl font-bold md:text-7xl">
-            Moroccan Coastal Adventures
+            Essaouira Travel Services
           </h1>
           <p className="mt-4 max-w-2xl text-lg md:text-xl">
-            Discover Morocco&apos;s Hidden Coastal Treasures
+            Your Premier Guide to Unforgettable Coastal Adventures
           </p>
           <Button asChild className="mt-8 bg-accent text-accent-foreground hover:bg-accent/90">
-            <Link href="#services">Explore Our Adventures</Link>
+            <Link href="#services">Explore Our Services</Link>
           </Button>
         </div>
       </section>
@@ -45,10 +46,10 @@ export default function Home() {
           <div className="grid grid-cols-1 items-center gap-12 md:grid-cols-2">
             <div>
               <h2 className="font-headline text-4xl font-bold text-primary">
-                Our Story
+                Your Local Essaouira Experts
               </h2>
               <p className="mt-4 text-lg text-foreground/80">
-                For over a decade, Moroccan Coastal Adventures has been the leading
+                For over a decade, Essaouira Travel Services has been the leading
                 expert in crafting unforgettable experiences along the beautiful
                 shores of Essaouira. Our passion is sharing the magic of Morocco,
                 from thrilling water sports to serene beach escapades.
@@ -74,7 +75,7 @@ export default function Home() {
             <div className="relative h-80 w-full overflow-hidden rounded-xl shadow-lg">
                <Image
                 src="https://picsum.photos/seed/about-us/600/400"
-                alt="Happy tourists in Morocco"
+                alt="Happy tourists enjoying a tour in Essaouira, Morocco"
                 fill
                 className="object-cover"
                 data-ai-hint="happy tourists"
@@ -88,11 +89,10 @@ export default function Home() {
       <section id="services" className="py-16 md:py-24 bg-card">
         <div className="container mx-auto text-center">
           <h2 className="font-headline text-4xl font-bold text-primary">
-            Our Adventures
+            Our Essaouira Adventures
           </h2>
           <p className="mx-auto mt-4 max-w-3xl text-lg text-foreground/80">
-            Whether you seek adrenaline-pumping action or peaceful exploration, we
-            have the perfect coastal adventure waiting for you.
+            From adrenaline-pumping quad biking tours to relaxing cultural explorations, we have the perfect Essaouira adventure waiting for you.
           </p>
           <ServiceList services={services} />
         </div>
@@ -102,10 +102,10 @@ export default function Home() {
       <section id="recommendations" className="py-16 md:py-24">
          <div className="container mx-auto text-center">
            <h2 className="font-headline text-4xl font-bold text-primary">
-             Find Your Perfect Adventure
+             Find Your Perfect Essaouira Adventure
            </h2>
            <p className="mx-auto mt-4 max-w-3xl text-lg text-foreground/80">
-            Tell us what you&apos;re looking for, and our AI-powered guide will suggest the best activities based on your interests and past explorations.
+            Tell us what you're looking for, and our AI-powered guide will suggest the best activities for your trip to Essaouira based on your interests.
            </p>
            <Card className="mx-auto mt-8 max-w-4xl bg-card shadow-lg">
              <CardContent className="p-6 md:p-8">
@@ -117,3 +117,5 @@ export default function Home() {
     </div>
   );
 }
+
+    

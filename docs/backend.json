@@ -153,11 +153,11 @@
         },
         "websiteName": {
           "type": "string",
-          "description": "Name of the website."
+          "description": "Name of the website, e.g. 'Essaouira Travel Services'."
         },
         "websiteTagline": {
           "type": "string",
-          "description": "Tagline for the website."
+          "description": "Tagline for the website, e.g. 'Your Premier Guide to Unforgettable Coastal Adventures'."
         },
         "logoImageUrl": {
           "type": "string",
@@ -199,10 +199,6 @@
         "googleAnalyticsId": {
           "type": "string",
           "description": "Google Analytics ID for website tracking."
-        },
-        "googleAppsScriptUrl": {
-          "type": "string",
-          "description": "URL of the Google Apps Script for saving form data."
         }
       },
       "required": [
@@ -217,9 +213,7 @@
         "whatsappNumber",
         "facebookUrl",
         "instagramUrl",
-        "tiktokUrl",
-        "googleAnalyticsId",
-        "googleAppsScriptUrl"
+        "tiktokUrl"
       ]
     }
   },
@@ -283,3 +277,5 @@
     "reasoning": "The Firestore data structure is designed to support a tourism booking platform, prioritizing security, scalability, and ease of debugging. Authorization Independence is achieved through denormalization where necessary. The structure supports QAPs by segregating data based on access needs and employing a consistent access model. The following structure ensures that rules are simple, robust and easily debuggable.\n\n1.  `/services/{serviceId}`: Stores tourism service details.  No specific authorization concerns beyond ensuring the data is correctly formatted.  Listable to all users.\n\n2.  `/bookings/{bookingId}`: Stores booking requests made by users. This collection can be secured to allow only authenticated users to create bookings and admins to read them. \n\n3. `/website_configuration/{documentId}`: Stores website-wide configurations.  This collection will hold a single document. No specific authorization concerns beyond ensuring that only authorized admin can modify this information.\n\nThis structure promotes clarity and simplifies security rules by avoiding hierarchical dependencies and segregating data with different access requirements. The design also facilitates future scalability and maintainability."
   }
 }
+
+    

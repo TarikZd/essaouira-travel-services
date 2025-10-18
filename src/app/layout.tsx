@@ -8,8 +8,8 @@ import Footer from '@/components/layout/Footer';
 import { FirebaseClientProvider } from '@/firebase/client-provider';
 
 export const metadata: Metadata = {
-  title: 'Moroccan Coastal Adventures',
-  description: "Discover Morocco's Hidden Coastal Treasures",
+  title: 'Essaouira Travel Services | Your Guide to Coastal Morocco',
+  description: "Explore the best of Essaouira and the Moroccan coast. We offer private transfers, quad biking, souk tours, cooking classes, and 4x4 adventures. Book your unforgettable Moroccan experience today.",
 };
 
 export default function RootLayout({
@@ -49,3 +49,5 @@ export default function RootLayout({
     </html>
   );
 }
+
+    

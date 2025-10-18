@@ -1,3 +1,4 @@
+
 import Link from 'next/link';
 import { Facebook, Instagram, Phone, Mail, MapPin, Wind } from 'lucide-react';
 
@@ -52,11 +53,11 @@ export default function Footer() {
             <Link href="/" className="flex items-center space-x-2">
               <Wind className="h-8 w-8 text-primary" />
               <span className="text-xl font-bold font-headline">
-                Moroccan Coastal Adventures
+                Essaouira Travel Services
               </span>
             </Link>
             <p className="mt-4 text-sm text-muted-foreground">
-              Discover Morocco&apos;s Hidden Coastal Treasures since 2010.
+              Your expert guide to unforgettable adventures in Essaouira since 2010.
             </p>
           </div>
           <div className="md:col-span-3 grid grid-cols-1 sm:grid-cols-3 gap-8">
@@ -66,7 +67,7 @@ export default function Footer() {
               </h3>
               <ul className="mt-4 space-y-2">
                 <li><Link href="#about" className="text-sm text-muted-foreground hover:text-foreground">About Us</Link></li>
-                <li><Link href="#services" className="text-sm text-muted-foreground hover:text-foreground">Services</Link></li>
+                <li><Link href="#services" className="text-sm text-muted-foreground hover:text-foreground">Our Services</Link></li>
                 <li><Link href="#recommendations" className="text-sm text-muted-foreground hover:text-foreground">Find Your Adventure</Link></li>
               </ul>
             </div>
@@ -111,9 +112,11 @@ export default function Footer() {
           </div>
         </div>
         <div className="mt-8 border-t border-border pt-8 text-center text-sm text-muted-foreground">
-          <p>&copy; {new Date().getFullYear()} Moroccan Coastal Adventures. All rights reserved.</p>
+          <p>&copy; {new Date().getFullYear()} Essaouira Travel Services. All rights reserved.</p>
         </div>
       </div>
     </footer>
   );
 }
+
+    

@@ -22,8 +22,8 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
   }
 
   return {
-    title: `${service.name} | Moroccan Coastal Adventures`,
-    description: service.description.substring(0, 150),
+    title: `${service.name} | Essaouira Travel Services`,
+    description: service.description.substring(0, 160),
   };
 }
 
@@ -139,3 +139,5 @@ export default function ServicePage({ params }: { params: { slug: string } }) {
     </div>
   );
 }
+
+    
