@@ -1,103 +1,118 @@
-import Image from "next/image";
+import Image from 'next/image';
+import Link from 'next/link';
+import { Button } from '@/components/ui/button';
+import { services } from '@/lib/services';
+import ServiceList from '@/components/services/ServiceList';
+import { Card, CardContent } from '@/components/ui/card';
+import { PlaceHolderImages } from '@/lib/placeholder-images';
+import RecommendationEngine from '@/components/ai/RecommendationEngine';
+import { Award, Star, Users } from 'lucide-react';
 
 export default function Home() {
-  return (
-    <div className="font-sans grid grid-rows-[20px_1fr_20px] items-center justify-items-center min-h-screen p-8 pb-20 gap-16 sm:p-20">
-      <main className="flex flex-col gap-[32px] row-start-2 items-center sm:items-start">
-        <Image
-          className="dark:invert"
-          src="/next.svg"
-          alt="Next.js logo"
-          width={180}
-          height={38}
-          priority
-        />
-        <ol className="font-mono list-inside list-decimal text-sm/6 text-center sm:text-left">
-          <li className="mb-2 tracking-[-.01em]">
-            Get started by editing{" "}
-            <code className="bg-black/[.05] dark:bg-white/[.06] font-mono font-semibold px-1 py-0.5 rounded">
-              app/page.tsx
-            </code>
-            .
-          </li>
-          <li className="tracking-[-.01em]">
-            Save and see your changes instantly.
-          </li>
-        </ol>
+  const heroImage = PlaceHolderImages.find((img) => img.id === 'hero-home');
 
-        <div className="flex gap-4 items-center flex-col sm:flex-row">
-          <a
-            className="rounded-full border border-solid border-transparent transition-colors flex items-center justify-center bg-foreground text-background gap-2 hover:bg-[#383838] dark:hover:bg-[#ccc] font-medium text-sm sm:text-base h-10 sm:h-12 px-4 sm:px-5 sm:w-auto"
-            href="https://vercel.com/new?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            <Image
-              className="dark:invert"
-              src="/vercel.svg"
-              alt="Vercel logomark"
-              width={20}
-              height={20}
-            />
-            Deploy to Vercel
-          </a>
-          <a
-            className="rounded-full border border-solid border-black/[.08] dark:border-white/[.145] transition-colors flex items-center justify-center hover:bg-[#f2f2f2] dark:hover:bg-[#1a1a1a] hover:border-transparent font-medium text-sm sm:text-base h-10 sm:h-12 px-4 sm:px-5 w-full sm:w-auto md:w-[158px]"
-            href="https://nextjs.org/docs?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            Read our docs
-          </a>
+  return (
+    <div className="flex flex-col">
+      {/* Hero Section */}
+      <section className="relative h-[60vh] w-full text-white">
+        {heroImage && (
+          <Image
+            src={heroImage.imageUrl}
+            alt={heroImage.description}
+            fill
+            className="object-cover"
+            priority
+            data-ai-hint={heroImage.imageHint}
+          />
+        )}
+        <div className="absolute inset-0 bg-black/50" />
+        <div className="relative z-10 flex h-full flex-col items-center justify-center text-center">
+          <h1 className="font-headline text-5xl font-bold md:text-7xl text-white">
+            Essaouira Travel Services
+          </h1>
+          <p className="mt-4 max-w-2xl text-lg md:text-xl text-white">
+            Your Premier Guide to Unforgettable Coastal Adventures
+          </p>
+          <Button asChild className="mt-8 bg-accent text-accent-foreground hover:bg-accent/90">
+            <Link href="#services">Explore Our Services</Link>
+          </Button>
         </div>
-      </main>
-      <footer className="row-start-3 flex gap-[24px] flex-wrap items-center justify-center">
-        <a
-          className="flex items-center gap-2 hover:underline hover:underline-offset-4"
-          href="https://nextjs.org/learn?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          <Image
-            aria-hidden
-            src="/file.svg"
-            alt="File icon"
-            width={16}
-            height={16}
-          />
-          Learn
-        </a>
-        <a
-          className="flex items-center gap-2 hover:underline hover:underline-offset-4"
-          href="https://vercel.com/templates?framework=next.js&utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          <Image
-            aria-hidden
-            src="/window.svg"
-            alt="Window icon"
-            width={16}
-            height={16}
-          />
-          Examples
-        </a>
-        <a
-          className="flex items-center gap-2 hover:underline hover:underline-offset-4"
-          href="https://nextjs.org?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          <Image
-            aria-hidden
-            src="/globe.svg"
-            alt="Globe icon"
-            width={16}
-            height={16}
-          />
-          Go to nextjs.org →
-        </a>
-      </footer>
+      </section>
+
+      {/* About Us Section */}
+      <section id="about" className="py-16 md:py-24">
+        <div className="container mx-auto">
+          <div className="grid grid-cols-1 items-center gap-12 md:grid-cols-2">
+            <div>
+              <h2 className="font-headline text-4xl font-bold text-primary">
+                Your Local Essaouira Experts
+              </h2>
+              <p className="mt-4 text-lg text-black" style={{ color: '#000000' }}>
+                For over a decade, Essaouira Travel Services has been the leading
+                expert in crafting unforgettable experiences along the beautiful
+                shores of Essaouira. Our passion is sharing the magic of Morocco,
+                from thrilling water sports to serene beach escapades.
+              </p>
+              <div className="mt-8 grid grid-cols-3 gap-4 text-center">
+                <div className="rounded-lg border bg-card p-4 shadow-sm">
+                  <Award className="mx-auto mb-2 h-8 w-8" style={{ color: '#FFD700' }} />
+                  <p className="font-bold text-xl text-black">5+ Years</p>
+                  <p className="text-sm text-black">Experience</p>
+                </div>
+                <div className="rounded-lg border bg-card p-4 shadow-sm">
+                  <Users className="mx-auto mb-2 h-8 w-8 text-primary" />
+                  <p className="font-bold text-xl text-black">1,000+</p>
+                  <p className="text-sm text-black">Happy Guests</p>
+                </div>
+                <div className="rounded-lg border bg-card p-4 shadow-sm">
+                  <Star className="mx-auto mb-2 h-8 w-8" style={{ color: '#FFD700' }} />
+                  <p className="font-bold text-xl text-black">4.9/5</p>
+                  <p className="text-sm text-black">Average Rating</p>
+                </div>
+              </div>
+            </div>
+            <div className="relative h-80 w-full overflow-hidden rounded-xl shadow-lg">
+               <Image
+                src="https://picsum.photos/seed/about-us/600/400"
+                alt="Happy tourists enjoying a tour in Essaouira, Morocco"
+                fill
+                className="object-cover"
+                data-ai-hint="happy tourists"
+              />
+            </div>
+          </div>
+        </div>
+      </section>
+
+      {/* Services Section */}
+      <section id="services" className="py-16 md:py-24 bg-card">
+        <div className="container mx-auto text-center">
+          <h2 className="font-headline text-4xl font-bold text-primary">
+            Our Essaouira Adventures
+          </h2>
+          <p className="mx-auto mt-4 max-w-3xl text-lg text-black" style={{ color: '#000000' }}>
+            From adrenaline-pumping quad biking tours to relaxing cultural explorations, we have the perfect Essaouira adventure waiting for you.
+          </p>
+          <ServiceList services={services} />
+        </div>
+      </section>
+
+      {/* AI Recommendation Section */}
+      <section id="recommendations" className="py-16 md:py-24">
+         <div className="container mx-auto text-center">
+           <h2 className="font-headline text-4xl font-bold text-primary">
+             Find Your Perfect Essaouira Adventure
+           </h2>
+           <p className="mx-auto mt-4 max-w-3xl text-lg text-black" style={{ color: '#000000' }}>
+            Tell us what you're looking for, and our AI-powered guide will suggest the best activities for your trip to Essaouira based on your interests.
+           </p>
+           <Card className="mx-auto mt-8 max-w-4xl bg-card shadow-lg">
+             <CardContent className="p-6 md:p-8">
+               <RecommendationEngine />
+             </CardContent>
+           </Card>
+         </div>
+       </section>
     </div>
   );
 }

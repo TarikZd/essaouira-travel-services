@@ -1,4 +1,3 @@
-
 import { notFound } from 'next/navigation';
 import Image from 'next/image';
 import { services, Service } from '@/lib/services';
@@ -12,8 +11,9 @@ type Props = {
   params: { slug: string };
 };
 
-export async function generateMetadata({ params }: Props): Promise<Metadata> {
-  const service = services.find((s) => s.slug === params.slug);
+export async function generateMetadata({ params }: { params: Promise<{ slug: string }> }): Promise<Metadata> {
+  const { slug } = await params;
+  const service = services.find((s) => s.slug === slug);
 
   if (!service) {
     return {
@@ -37,8 +37,9 @@ const getService = (slug: string): Service | undefined => {
   return services.find((s) => s.slug === slug);
 };
 
-export default function ServicePage({ params }: { params: { slug: string } }) {
-  const serviceData = getService(params.slug);
+export default async function ServicePage({ params }: { params: Promise<{ slug: string }> }) {
+  const { slug } = await params;
+  const serviceData = getService(slug);
 
   if (!serviceData) {
     notFound();
@@ -95,7 +96,7 @@ export default function ServicePage({ params }: { params: { slug: string } }) {
                 {service.features.map((feature: string, index: number) => (
                   <div key={index} className="flex items-center gap-3">
                     <div className="text-primary">{icons[index % icons.length]}</div>
-                    <span className="font-medium">{feature}</span>
+                    <span className="font-medium text-black">{feature}</span>
                   </div>
                 ))}
               </div>
@@ -120,7 +121,7 @@ export default function ServicePage({ params }: { params: { slug: string } }) {
                </div>
             </section>
           </div>
-          
+
           {/* Booking Form Card */}
           <aside className="lg:col-span-1">
              <Card className="sticky top-24 shadow-xl">

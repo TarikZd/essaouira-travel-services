@@ -152,10 +152,10 @@ export default function BookingForm({ service }: BookingFormProps) {
     startTransition(async () => {
       const submissionData = {
         ...data,
-        date: data.date ? format(data.date, 'yyyy-MM-dd') : '',
+        date: (data as any).date ? format((data as any).date, 'yyyy-MM-dd') : '',
         serviceName: service.name,
         serviceId: service.slug,
-        phone: `${data.countryCode || ''}${data.phone || ''}`,
+        phone: `${(data as any).countryCode || ''}${(data as any).phone || ''}`,
         createdAt: new Date().toISOString(),
       };
       
@@ -196,7 +196,7 @@ export default function BookingForm({ service }: BookingFormProps) {
           
           if (fieldConfig.name === 'phone') {
             const countryCodeField = service.bookingForm.fields.find(f => f.name === 'countryCode');
-            if (!countryCodeField) return null;
+            if (!countryCodeField) return <></>;
             return (
                 <div className="md:col-span-2" key="phone-group">
                     <FormLabelWithRequired required={fieldConfig.required}>Phone Number</FormLabelWithRequired>
@@ -213,11 +213,11 @@ export default function BookingForm({ service }: BookingFormProps) {
                                     </SelectTrigger>
                                 </FormControl>
                                 <SelectContent>
-                                    {countryCodes.map((country) => (
-                                    <SelectItem key={`${country.code}-${country.dial_code}`} value={country.dial_code}>
-                                        {country.code} ({country.dial_code})
-                                    </SelectItem>
-                                    ))}
+                              {countryCodes.map((country, index) => (
+                                <SelectItem key={index} value={country.dial_code}>
+                                  {country.code} ({country.dial_code})
+                                </SelectItem>
+                              ))}
                                 </SelectContent>
                                 </Select>
                                 <FormMessage />
@@ -240,7 +240,7 @@ export default function BookingForm({ service }: BookingFormProps) {
                 </div>
             );
           }
-          if (fieldConfig.name === 'countryCode') return null;
+          if (fieldConfig.name === 'countryCode') return <></>;
 
           if (fieldConfig.name === 'adults') {
             const childrenField = service.bookingForm.fields.find(f => f.name === 'children');
@@ -271,7 +271,7 @@ export default function BookingForm({ service }: BookingFormProps) {
               </div>
             );
           }
-          if (fieldConfig.name === 'children') return null;
+          if (fieldConfig.name === 'children') return <></>;
           
           if (fieldConfig.name === 'date') {
             const timeField = service.bookingForm.fields.find(f => f.name === 'time');
@@ -324,7 +324,7 @@ export default function BookingForm({ service }: BookingFormProps) {
               </div>
             );
           }
-          if (fieldConfig.name === 'time') return null;
+          if (fieldConfig.name === 'time') return <></>;
 
           return (
             <FormItem key={fieldConfig.name} className={spanClass}>

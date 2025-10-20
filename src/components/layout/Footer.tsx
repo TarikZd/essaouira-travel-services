@@ -1,6 +1,6 @@
 
 import Link from 'next/link';
-import { Facebook, Instagram, Phone, Mail, MapPin, Wind } from 'lucide-react';
+import { Facebook, Instagram, Phone, Mail, MapPin, Wind, Video } from 'lucide-react';
 
 const socialLinks = [
   {
@@ -52,7 +52,7 @@ export default function Footer() {
           <div className="md:col-span-1">
             <Link href="/" className="flex items-center space-x-2">
               <Wind className="h-8 w-8 text-primary" />
-              <span className="text-xl font-bold font-headline">
+              <span className="text-xl font-bold font-headline text-black">
                 Essaouira Travel Services
               </span>
             </Link>
@@ -118,5 +118,3 @@ export default function Footer() {
     </footer>
   );
 }
-
-    

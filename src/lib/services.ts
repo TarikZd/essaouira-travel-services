@@ -68,7 +68,7 @@ export type Service = {
     fields: FormField[];
   };
   whatsappNumber: string;
-  whatsappMessage: (data: any) => string;
+  whatsappMessage: (data: Record<string, any>) => string;
 };
 
 export const services: Service[] = [
@@ -80,6 +80,7 @@ export const services: Service[] = [
     aboutTitle: 'About Your Private Transfer',
     bookingTitle: 'Book Your Transfer',
     features: ['Service to Major Airports & Cities', 'Private, Air-Conditioned Vehicles', 'Professional & Punctual Drivers', '24/7 Availability for All Flights'],
+    difficulty: 'Moderate' as const,
     images: {
       card: 'card-transfers',
       hero: 'hero-transfers',
@@ -106,7 +107,7 @@ export const services: Service[] = [
       ]),
     },
     whatsappNumber: '212628438838',
-    whatsappMessage: (data) => `
+    whatsappMessage: (data: Record<string, any>) => `
 *New Transfer Request* 🚗
 
 *Service:* Private Transfers
@@ -134,7 +135,7 @@ export const services: Service[] = [
       amount: 80,
       unit: 'per person',
     },
-    difficulty: 'Easy',
+    difficulty: 'Easy' as const,
     images: {
       card: 'card-cooking',
       hero: 'hero-cooking',
@@ -169,7 +170,7 @@ export const services: Service[] = [
       ]),
     },
     whatsappNumber: '212628438838',
-    whatsappMessage: (data) => `
+    whatsappMessage: (data: Record<string, any>) => `
 *New Cooking Class Request* 🍲
 
 *Service:* Berber Cooking Class
@@ -198,7 +199,7 @@ export const services: Service[] = [
       amount: 70,
       unit: 'per person',
     },
-    difficulty: 'Moderate',
+    difficulty: 'Moderate' as const,
     images: {
       card: 'card-beaches',
       hero: 'hero-beaches',
@@ -225,7 +226,7 @@ export const services: Service[] = [
       ]),
     },
     whatsappNumber: '212628438838',
-    whatsappMessage: (data) => `
+    whatsappMessage: (data: Record<string, any>) => `
 *New Wild Beaches Request* 🏖️
 
 *Service:* Secret Beaches 4x4 Tour
@@ -253,7 +254,7 @@ export const services: Service[] = [
       amount: 25,
       unit: 'per person',
     },
-    difficulty: 'Easy',
+    difficulty: 'Easy' as const,
     images: {
       card: 'card-souk',
       hero: 'hero-souk',
@@ -272,7 +273,7 @@ export const services: Service[] = [
       ]),
     },
     whatsappNumber: '212628438838',
-    whatsappMessage: (data) => `
+    whatsappMessage: (data: Record<string, any>) => `
 *New Souk Tour Request* 🛍️
 
 *Service:* Souk Walking Tour
@@ -299,7 +300,7 @@ export const services: Service[] = [
       amount: 50,
       unit: 'per person (2 hours)',
     },
-    difficulty: 'Moderate',
+    difficulty: 'Moderate' as const,
     images: {
       card: 'card-quad',
       hero: 'hero-quad',
@@ -326,7 +327,7 @@ export const services: Service[] = [
       ]),
     },
     whatsappNumber: '212628438838',
-    whatsappMessage: (data) => `
+    whatsappMessage: (data: Record<string, any>) => `
 *New Quad Biking Request* 🏍️
 
 *Service:* Coastal Quad Biking
@@ -346,5 +347,3 @@ export const services: Service[] = [
     const order = [1, 5, 4, 3, 2];
     return order.indexOf(a.id) - order.indexOf(b.id);
 });
-
-    
