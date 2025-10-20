@@ -1,7 +1,11 @@
 /** @type {import('next').NextConfig} */
 const nextConfig = {
-    images: {
-        domains: ['images.unsplash.com', 'picsum.photos'],
+    webpack: (config) => {
+        config.optimization.splitChunks = {
+            chunks: 'all',
+            maxSize: 244 * 1024, // 244 KiB
+        };
+        return config;
     },
 };
 
