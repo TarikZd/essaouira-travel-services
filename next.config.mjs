@@ -4,10 +4,6 @@ const nextConfig = {
   images: {
     domains: ['images.unsplash.com', 'picsum.photos'],
   },
-  experimental: {
-    optimizeCss: true,
-    swcMinify: true,
-  },
   webpack: (config, { isServer }) => {
     if (!isServer) {
       config.optimization.splitChunks.cacheGroups = {
