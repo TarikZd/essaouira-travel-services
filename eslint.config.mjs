@@ -29,6 +29,9 @@ export default tseslint.config(
       ...tseslint.configs.recommended.rules,
       ...reactPlugin.configs.recommended.rules,
       ...reactHooksPlugin.configs.recommended.rules,
+      'react/react-in-jsx-scope': 'off',
+      'react/prop-types': 'off',
+      'react-hooks/purity': 'off',
     },
     settings: {
       react: {
