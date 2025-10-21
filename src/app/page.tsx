@@ -6,7 +6,6 @@ import { services } from '@/lib/services';
 import ServiceList from '@/components/services/ServiceList';
 import { Card, CardContent } from '@/components/ui/card';
 import { PlaceHolderImages } from '@/lib/placeholder-images';
-import RecommendationEngine from '@/components/ai/RecommendationEngine';
 import { Award, Star, Users } from 'lucide-react';
 
 export default function Home() {
@@ -97,25 +96,6 @@ export default function Home() {
           <ServiceList services={services} />
         </div>
       </section>
-
-      {/* AI Recommendation Section */}
-      <section id="recommendations" className="py-16 md:py-24">
-         <div className="container mx-auto text-center">
-           <h2 className="font-headline text-4xl font-bold text-primary">
-             Find Your Perfect Essaouira Adventure
-           </h2>
-           <p className="mx-auto mt-4 max-w-3xl text-lg text-foreground/80">
-            Tell us what you're looking for, and our AI-powered guide will suggest the best activities for your trip to Essaouira based on your interests.
-           </p>
-           <Card className="mx-auto mt-8 max-w-4xl bg-card shadow-lg">
-             <CardContent className="p-6 md:p-8">
-               <RecommendationEngine />
-             </CardContent>
-           </Card>
-         </div>
-       </section>
     </div>
   );
 }
-
-    
