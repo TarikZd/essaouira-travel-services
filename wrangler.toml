@@ -1,6 +1,2 @@
 name = "essaouira-travel-services"
-compatibility_date = "2024-03-27"
-
-[pages]
-build = "npm run build"
-build-output-dir = ".next"
+pages_build_output_dir = ".next"
