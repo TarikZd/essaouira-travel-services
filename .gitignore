@@ -1,3 +1,4 @@
+
 # See https://help.github.com/articles/ignoring-files/ for more about ignoring files.
 
 # dependencies
@@ -29,37 +30,3 @@ yarn-error.log*
 .env.development.local
 .env.test.local
 .env.production.local
-.env
-
-# vercel
-.vercel
-
-# typescript
-*.tsbuildinfo
-next-env.d.ts
-
-# cache
-.next/cache
-
-# firebase
-.firebaserc
-firestore.rules
-apphosting.yaml
-
-# cloudflare
-wrangler.toml
-
-# configs
-jsconfig.json
-postcss.config.mjs
-tailwind.config.ts
-next.config.mjs
-next.config.ts
-tsconfig.json
-
-# generated
-components.json
-package-lock.json
-
-#temp
-.modified

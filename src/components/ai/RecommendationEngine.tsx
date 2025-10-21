@@ -30,8 +30,6 @@ export default function RecommendationEngine() {
         setBrowsingHistory(newHistory);
       }
     }
-  // We only want to run this on pathname change, not browsingHistory change.
-  // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [pathname]);
 
   const handleSubmit = (e: React.FormEvent<HTMLFormElement>) => {
