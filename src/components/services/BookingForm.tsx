@@ -40,20 +40,20 @@ type BookingFormProps = {
 };
 
 const routes: Record<string, string[]> = {
-    "Essaouira": ["Marrakech", "Marrakesh Airport", "Agadir", "Agafay", "Taghazout", "Imsouen", "El Jadida", "Oualidia", "Imlil", "Ouirgane", "Taroudant", "Agadir Airport", "Essaouira Airport"],
-    "Essaouira Airport": ["Marrakech", "Marrakesh Airport", "Agadir", "Agafay", "Taghazout", "Imsouen", "El Jadida", "Oualidia", "Imlil", "Ouirgane", "Taroudant", "Agadir Airport", "Essaouira"],
-    "Marrakech": ["Essaouira", "Essaouira Airport", "Agadir", "Agafay", "Taghazout", "Imsouen", "El Jadida", "Oualidia", "Imlil", "Ouirgane", "Taroudant", "Agadir Airport", "Agadir"],
-    "Marrakesh Airport": ["Essaouira", "Essaouira Airport", "Agadir", "Agafay", "Taghazout", "Imsouen", "El Jadida", "Oualidia", "Imlil", "Ouirgane", "Taroudant", "Agadir Airport", "Agadir"],
-    "Agadir": ["Essaouira", "Essaouira Airport", "Marrakech", "Marrakesh Airport", "Agafay", "Taghazout", "Imsouen", "El Jadida", "Oualidia", "Imlil", "Ouirgane", "Taroudant", "Agadir Airport"],
-    "Agadir Airport": ["Essaouira", "Essaouira Airport", "Marrakech", "Marrakesh Airport", "Agafay", "Taghazout", "Imsouen", "El Jadida", "Oualidia", "Imlil", "Ouirgane", "Taroudant", "Agadir"],
-    "Agafay": ["Essaouira", "Essaouira Airport", "Marrakech", "Marrakesh Airport", "Agadir", "Agadir Airport"],
-    "Taghazout": ["Essaouira", "Essaouira Airport", "Marrakech", "Marrakesh Airport", "Agadir", "Agadir Airport"],
-    "Imsouen": ["Essaouira", "Essaouira Airport", "Marrakech", "Marrakesh Airport", "Agadir", "Agadir Airport"],
-    "El Jadida": ["Essaouira", "Essaouira Airport", "Marrakech", "Marrakesh Airport", "Agadir", "Agadir Airport"],
-    "Oualidia": ["Essaouira", "Essaouira Airport", "Marrakech", "Marrakesh Airport", "Agadir", "Agadir Airport"],
-    "Imlil": ["Essaouira", "Essaouira Airport", "Marrakech", "Marrakesh Airport", "Agadir", "Agadir Airport"],
-    "Ouirgane": ["Essaouira", "Essaouira Airport", "Marrakech", "Marrakesh Airport", "Agadir", "Agadir Airport"],
-    "Taroudant": ["Essaouira", "Essaouira Airport", "Marrakech", "Marrakesh Airport", "Agadir", "Agadir Airport"],
+    "Essaouira": ["Marrakech", "Aéroport Marrakech", "Agadir", "Agafay", "Taghazout", "Imsouane", "El Jadida", "Oualidia", "Imlil", "Ouirgane", "Taroudant", "Aéroport Agadir", "Aéroport Essaouira"],
+    "Aéroport Essaouira": ["Marrakech", "Aéroport Marrakech", "Agadir", "Agafay", "Taghazout", "Imsouane", "El Jadida", "Oualidia", "Imlil", "Ouirgane", "Taroudant", "Aéroport Agadir", "Essaouira"],
+    "Marrakech": ["Essaouira", "Aéroport Essaouira", "Agadir", "Agafay", "Taghazout", "Imsouane", "El Jadida", "Oualidia", "Imlil", "Ouirgane", "Taroudant", "Aéroport Agadir", "Agadir"],
+    "Aéroport Marrakech": ["Essaouira", "Aéroport Essaouira", "Agadir", "Agafay", "Taghazout", "Imsouane", "El Jadida", "Oualidia", "Imlil", "Ouirgane", "Taroudant", "Aéroport Agadir", "Agadir"],
+    "Agadir": ["Essaouira", "Aéroport Essaouira", "Marrakech", "Aéroport Marrakech", "Agafay", "Taghazout", "Imsouane", "El Jadida", "Oualidia", "Imlil", "Ouirgane", "Taroudant", "Aéroport Agadir"],
+    "Aéroport Agadir": ["Essaouira", "Aéroport Essaouira", "Marrakech", "Aéroport Marrakech", "Agafay", "Taghazout", "Imsouane", "El Jadida", "Oualidia", "Imlil", "Ouirgane", "Taroudant", "Agadir"],
+    "Agafay": ["Essaouira", "Aéroport Essaouira", "Marrakech", "Aéroport Marrakech", "Agadir", "Aéroport Agadir"],
+    "Taghazout": ["Essaouira", "Aéroport Essaouira", "Marrakech", "Aéroport Marrakech", "Agadir", "Aéroport Agadir"],
+    "Imsouane": ["Essaouira", "Aéroport Essaouira", "Marrakech", "Aéroport Marrakech", "Agadir", "Aéroport Agadir"],
+    "El Jadida": ["Essaouira", "Aéroport Essaouira", "Marrakech", "Aéroport Marrakech", "Agadir", "Aéroport Agadir"],
+    "Oualidia": ["Essaouira", "Aéroport Essaouira", "Marrakech", "Aéroport Marrakech", "Agadir", "Aéroport Agadir"],
+    "Imlil": ["Essaouira", "Aéroport Essaouira", "Marrakech", "Aéroport Marrakech", "Agadir", "Aéroport Agadir"],
+    "Ouirgane": ["Essaouira", "Aéroport Essaouira", "Marrakech", "Aéroport Marrakech", "Agadir", "Aéroport Agadir"],
+    "Taroudant": ["Essaouira", "Aéroport Essaouira", "Marrakech", "Aéroport Marrakech", "Agadir", "Aéroport Agadir"],
 };
 
 const FormLabelWithRequired: React.FC<{ children: React.ReactNode; required?: boolean }> = ({ children, required }) => (
@@ -193,7 +193,7 @@ export default function BookingForm({ service }: BookingFormProps) {
               options = fieldConfig.options;
           }
           
-          const spanClass = fieldConfig.name === 'specialRequests' || ['fullName', 'email', 'pickupLocation'].includes(fieldConfig.name) ? 'md:col-span-2' : '';
+          const spanClass = fieldConfig.name === 'specialRequests' || ['fullName', 'email', 'pickupLocation', 'dropoffLocation'].includes(fieldConfig.name) ? 'md:col-span-2' : '';
           
           if (fieldConfig.name === 'phone') {
             const countryCodeField = service.bookingForm.fields.find(f => f.name === 'countryCode');
