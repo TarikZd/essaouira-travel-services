@@ -66,7 +66,7 @@ export default function ServiceCard({ service, onBook }: ServiceCardProps) {
             onClick={() => onBook?.(service.slug)}
             className="w-full bg-primary text-black hover:bg-yellow-500 font-bold group-hover:scale-[1.02] transition-transform"
         >
-          Book This Service <ArrowRight className="ml-2 h-4 w-4" />
+          Réserver ce service <ArrowRight className="ml-2 h-4 w-4" />
         </Button>
       </CardFooter>
     </Card>

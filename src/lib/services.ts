@@ -13,15 +13,15 @@ export type FormField = {
 };
 
 const commonFields: FormField[] = [
-    { name: 'fullName', label: 'Full Name', type: 'text', required: true, placeholder: 'John Doe', validation: z.string().min(2, { message: 'Full name must be at least 2 characters.' }) },
-    { name: 'email', label: 'Email', type: 'email', required: true, placeholder: 'john.doe@example.com', validation: z.string().email({ message: 'Please enter a valid email address.' }) },
-    { name: 'countryCode', label: 'Country Code', type: 'select', required: true, validation: z.string().min(1, 'Country code is required.') },
-    { name: 'phone', label: 'Phone Number', type: 'tel', required: true, placeholder: '555 123-4567', validation: z.string().min(5, { message: 'Please enter a valid phone number.' })},
-    { name: 'date', label: 'Date', type: 'date', required: true, validation: z.date({ required_error: 'A date for the booking is required.' }) },
-    { name: 'time', label: 'Time', type: 'time', required: true, validation: z.string().min(1, 'A time is required.') },
-    { name: 'adults', label: 'Adults', type: 'number', required: true, validation: z.coerce.number().min(1, 'At least one adult is required.') },
-    { name: 'children', label: 'Children (under 12)', type: 'number', required: false, validation: z.coerce.number().min(0, 'Number of children cannot be negative.').optional() },
-    { name: 'specialRequests', label: 'Special Requests', type: 'textarea', required: false, placeholder: 'Tell us anything else we need to know', validation: z.string().optional() }
+    { name: 'fullName', label: 'Nom Complet', type: 'text', required: true, placeholder: 'Jean Dupont', validation: z.string().min(2, { message: 'Le nom doit contenir au moins 2 caractères.' }) },
+    { name: 'email', label: 'Email', type: 'email', required: true, placeholder: 'jean.dupont@example.com', validation: z.string().email({ message: 'Veuillez entrer une adresse email valide.' }) },
+    { name: 'countryCode', label: 'Code Pays', type: 'select', required: true, validation: z.string().min(1, 'Le code pays est requis.') },
+    { name: 'phone', label: 'Téléphone', type: 'tel', required: true, placeholder: '06 00 00 00 00', validation: z.string().min(5, { message: 'Numéro de téléphone invalide.' })},
+    { name: 'date', label: 'Date', type: 'date', required: true, validation: z.date({ required_error: 'La date est requise.' }) },
+    { name: 'time', label: 'Heure', type: 'time', required: true, validation: z.string().min(1, "L'heure est requise.") },
+    { name: 'adults', label: 'Adultes', type: 'number', required: true, validation: z.coerce.number().min(1, 'Au moins 1 adulte requis.') },
+    { name: 'children', label: 'Enfants (-12 ans)', type: 'number', required: false, validation: z.coerce.number().min(0, "Ne peut pas être négatif.").optional() },
+    { name: 'specialRequests', label: 'Demandes Spéciales', type: 'textarea', required: false, placeholder: 'Siège bébé, bagages supplémentaires...', validation: z.string().optional() }
 ];
 
 const getFieldsForService = (specificFields: FormField[]): FormField[] => {
@@ -74,12 +74,12 @@ export type Service = {
 export const services: Service[] = [
   {
     id: 1,
-    name: 'Private Transfers',
+    name: 'Transferts Privés',
     slug: 'airport-transfers',
-    description: 'Travel with confidence and comfort with our private transfer service in Essaouira. We ensure a seamless connection between Marrakech, Agadir, and local airports, coastal towns, and more. Our professional drivers and modern vehicles guarantee a stress-free journey to your Moroccan destination.',
-    aboutTitle: 'About Your Private Transfer',
-    bookingTitle: 'Book Your Transfer',
-    features: ['Service to Major Airports & Cities', 'Private, Air-Conditioned Vehicles', 'Professional & Punctual Drivers', '24/7 Availability for All Flights'],
+    description: 'Voyagez en toute confiance et confort avec notre service de transfert privé à Essaouira. Nous assurons une liaison fluide entre Marrakech, Agadir, les aéroports et les villes côtières. Nos chauffeurs professionnels et véhicules modernes vous garantissent un trajet sans stress vers votre destination.',
+    aboutTitle: 'À propos de votre transfert',
+    bookingTitle: 'Réservez votre transfert',
+    features: ['Service vers Aéroports & Villes Majeures', 'Véhicules Privés Climatisés', 'Chauffeurs Professionnels & Ponctuels', 'Disponibilité 24/7 pour tous les vols'],
     difficulty: 'Moderate' as const,
     images: {
       card: 'card-transfers',
@@ -90,50 +90,50 @@ export const services: Service[] = [
       fields: getFieldsForService([
         {
           name: 'pickupLocation',
-          label: 'Pick up Location',
+          label: 'Lieu de prise en charge',
           type: 'select',
           required: true,
-          options: ['Essaouira', 'Essaouira Airport', 'Marrakech', 'Marrakesh Airport', 'Agadir', 'Agadir Airport', 'Agafay', 'Taghazout', 'Imsouen', 'El Jadida', 'Oualidia', 'Imlil', 'Ouirgane', 'Taroudant'],
-          validation: z.string().min(1, 'Pick up location is required'),
+          options: ['Essaouira', 'Aéroport Essaouira', 'Marrakech', 'Aéroport Marrakech', 'Agadir', 'Aéroport Agadir', 'Agafay', 'Taghazout', 'Imsouane', 'El Jadida', 'Oualidia', 'Imlil', 'Ouirgane', 'Taroudant'],
+          validation: z.string().min(1, 'Le lieu de départ est requis'),
         },
         {
             name: 'dropoffLocation',
-            label: 'Drop off Location',
+            label: 'Lieu de dépose',
             type: 'select',
             required: true,
             options: [],
-            validation: z.string().min(1, 'Drop off location is required'),
+            validation: z.string().min(1, "Le lieu d'arrivée est requis"),
         },
       ]),
     },
     whatsappNumber: '212628438838',
     whatsappMessage: (data: Record<string, any>) => `
-*New Transfer Request* 🚗
+*Nouvelle Demande de Transfert* 🚗
 
-*Service:* Private Transfers
-*Name:* ${data.fullName}
+*Service:* Transferts Privés
+*Nom:* ${data.fullName}
 *Email:* ${data.email}
 *Date:* ${data.date}
-*Time:* ${data.time}
-*Phone:* ${data.phone}
-*Pick up:* ${data.pickupLocation}
-*Drop off:* ${data.dropoffLocation}
-*Adults:* ${data.adults}
-*Children:* ${data.children || 0}
-*Special Requests:* ${data.specialRequests || 'None'}
+*Heure:* ${data.time}
+*Tél:* ${data.phone}
+*Départ:* ${data.pickupLocation}
+*Arrivée:* ${data.dropoffLocation}
+*Adultes:* ${data.adults}
+*Enfants:* ${data.children || 0}
+*Demande Spéciale:* ${data.specialRequests || 'Aucune'}
 `,
   },
   {
     id: 5,
-    name: 'Berber Cooking Class',
+    name: 'Cours de Cuisine Berbère',
     slug: 'outdoor-cooking-adventure',
-    description: 'Immerse yourself in authentic Berber culture with a hands-on cooking class in a serene Essaouira countryside setting. Your day begins with a guided trip to a local souk to pick fresh, vibrant ingredients. Then, you\'ll learn the age-old secrets of crafting a perfect Moroccan tagine or couscous in a traditional outdoor kitchen. It’s a genuine connection to the heart of Moroccan culinary heritage.',
-    aboutTitle: 'About the Cooking Class',
-    bookingTitle: 'Book Your Culinary Adventure',
-    features: ['Authentic Berber-Led Experience', 'Guided Souk Shopping for Ingredients', 'Hands-On Traditional Moroccan Cooking', 'Dine in a Beautiful Countryside Setting'],
+    description: 'Plongez dans la culture berbère authentique avec un cours de cuisine pratique dans la campagne d\'Essaouira. Votre journée commence par une visite guidée du souk local pour choisir des ingrédients frais. Ensuite, apprenez les secrets ancestraux pour préparer un tajine ou un couscous parfait dans une cuisine traditionnelle en plein air.',
+    aboutTitle: 'À propos du cours de cuisine',
+    bookingTitle: 'Réservez votre aventure culinaire',
+    features: ['Expérience Authentique Berbère', 'Visite Guidée du Souk', 'Cuisine Traditionnelle Marocaine', 'Déjeuner dans la Campagne'],
     pricing: {
       amount: 80,
-      unit: 'per person',
+      unit: 'par personne',
     },
     difficulty: 'Easy' as const,
     images: {
@@ -145,59 +145,59 @@ export const services: Service[] = [
       fields: getFieldsForService([
         {
           name: 'pickupLocation',
-          label: 'Pick up Location',
+          label: 'Lieu de prise en charge',
           type: 'text',
           required: true,
-          placeholder: 'e.g., your hotel or riad in Essaouira',
-          validation: z.string().min(1, 'Pick up location is required'),
+          placeholder: 'ex: votre hôtel ou Riad',
+          validation: z.string().min(1, 'Le lieu est requis'),
         },
         {
           name: 'dishPreference',
-          label: 'Dish Preference',
+          label: 'Plat Préféré',
           type: 'select',
           required: true,
-          options: ['Mechoui', 'Barbecue', 'Meat Tajin', 'Chicken Tajin', 'Couscous', 'Fresh Fish (if available)', 'Vegetarian Option'],
-          validation: z.string().min(1, 'Please select your preferred dish.'),
+          options: ['Mechoui', 'Barbecue', 'Tajine Viande', 'Tajine Poulet', 'Couscous', 'Poisson Frais (si dispo)', 'Végétarien'],
+          validation: z.string().min(1, 'Veuillez choisir un plat.'),
         },
         {
           name: 'dietaryRestrictions',
-          label: 'Dietary Restrictions',
+          label: 'Restrictions Alimentaires',
           type: 'text',
           required: false,
-          placeholder: 'e.g., vegetarian, gluten-free',
+          placeholder: 'ex: végétarien, sans gluten',
           validation: z.string().optional(),
         },
       ]),
     },
     whatsappNumber: '212628438838',
     whatsappMessage: (data: Record<string, any>) => `
-*New Cooking Class Request* 🍲
+*Nouvelle Demande Cours de Cuisine* 🍲
 
-*Service:* Berber Cooking Class
-*Name:* ${data.fullName}
+*Service:* Cours de Cuisine Berbère
+*Nom:* ${data.fullName}
 *Email:* ${data.email}
 *Date:* ${data.date}
-*Time:* ${data.time}
-*Phone:* ${data.phone}
-*Pick up:* ${data.pickupLocation}
-*Adults:* ${data.adults}
-*Children:* ${data.children || 0}
-*Dish Preference:* ${data.dishPreference}
-*Dietary Needs:* ${data.dietaryRestrictions || 'None'}
-*Special Requests:* ${data.specialRequests || 'None'}
+*Heure:* ${data.time}
+*Tél:* ${data.phone}
+*Départ:* ${data.pickupLocation}
+*Adultes:* ${data.adults}
+*Enfants:* ${data.children || 0}
+*Plat:* ${data.dishPreference}
+*Régime:* ${data.dietaryRestrictions || 'Aucun'}
+*Demande Spéciale:* ${data.specialRequests || 'Aucune'}
 `,
   },
   {
     id: 4,
-    name: 'Secret Beaches 4x4 Tour',
+    name: 'Plages Sauvages 4x4',
     slug: 'wild-beaches-excursion',
-    description: 'Journey off the beaten path to uncover the wild, untouched coastline south of Essaouira. Our comfortable 4x4 vehicles will take you to secret beaches, dramatic sea cliffs, and hidden fishing villages. This half-day adventure includes a delicious, traditionally prepared lunch with a local Berber family, offering a true taste of Moroccan hospitality.',
-    aboutTitle: 'About the 4x4 Tour',
-    bookingTitle: 'Book Your 4x4 Coastal Tour',
-    features: ['Explore Hidden Beaches and Coves', 'Travel in a Comfortable 4x4 Vehicle', 'Stunning Coastal & Cliffside Scenery', 'Authentic Moroccan Lunch Included'],
+    description: 'Sortez des sentiers battus pour découvrir le littoral sauvage et intact au sud d\'Essaouira. Nos 4x4 confortables vous emmènent vers des plages secrètes, des falaises spectaculaires et des villages de pêcheurs cachés. Cette aventure d\'une demi-journée inclut un délicieux déjeuner traditionnel chez l\'habitant.',
+    aboutTitle: 'À propos du tour 4x4',
+    bookingTitle: 'Réservez votre tour 4x4',
+    features: ['Exploration de Plages Cachées', 'Transport en 4x4 Confortable', 'Paysages Côtiers Spectaculaires', 'Déjeuner Authentique Inclus'],
     pricing: {
       amount: 70,
-      unit: 'per person',
+      unit: 'par personne',
     },
     difficulty: 'Moderate' as const,
     images: {
@@ -209,50 +209,50 @@ export const services: Service[] = [
       fields: getFieldsForService([
         {
           name: 'pickupLocation',
-          label: 'Pick up Location',
+          label: 'Lieu de prise en charge',
           type: 'text',
           required: true,
-          placeholder: 'e.g., your hotel or riad in Essaouira',
-          validation: z.string().min(1, 'Pick up location is required'),
+          placeholder: 'ex: votre hôtel ou Riad',
+          validation: z.string().min(1, 'Le lieu est requis'),
         },
         {
           name: 'lunchPreference',
-          label: 'Lunch Preference',
+          label: 'Préférence Déjeuner',
           type: 'select',
           required: true,
-          options: ['Mechoui', 'Barbecue', 'Meat Tajin', 'Chicken Tajin', 'Couscous', 'Fresh Fish (if available)', 'Vegetarian Option'],
-          validation: z.string().min(1, 'Please select a lunch preference.'),
+          options: ['Mechoui', 'Barbecue', 'Tajine Viande', 'Tajine Poulet', 'Couscous', 'Poisson Frais (si dispo)', 'Végétarien'],
+          validation: z.string().min(1, 'Veuillez choisir un déjeuner.'),
         }
       ]),
     },
     whatsappNumber: '212628438838',
     whatsappMessage: (data: Record<string, any>) => `
-*New Wild Beaches Request* 🏖️
+*Nouvelle Demande Plages Sauvages* 🏖️
 
-*Service:* Secret Beaches 4x4 Tour
-*Name:* ${data.fullName}
+*Service:* Plages Sauvages 4x4
+*Nom:* ${data.fullName}
 *Email:* ${data.email}
 *Date:* ${data.date}
-*Time:* ${data.time}
-*Phone:* ${data.phone}
-*Pick up:* ${data.pickupLocation}
-*Adults:* ${data.adults}
-*Children:* ${data.children || 0}
-*Lunch Preference:* ${data.lunchPreference}
-*Special Requests:* ${data.specialRequests || 'None'}
+*Heure:* ${data.time}
+*Tél:* ${data.phone}
+*Départ:* ${data.pickupLocation}
+*Adultes:* ${data.adults}
+*Enfants:* ${data.children || 0}
+*Déjeuner:* ${data.lunchPreference}
+*Demande Spéciale:* ${data.specialRequests || 'Aucune'}
 `,
   },
   {
     id: 3,
-    name: 'Souk Walking Tour',
+    name: 'Visite Guidée des Souks',
     slug: 'essaouira-souk-tour',
-    description: 'Step into the living history of Essaouira with a guided walking tour through its enchanting medina. Let our local expert lead you through labyrinthine alleys to vibrant souks, historic ramparts, and hidden artisan workshops. Discover the stories, sights, and flavors that make this UNESCO World Heritage city so magical.',
-    aboutTitle: 'About the Medina Tour',
-    bookingTitle: 'Book Your Walking Tour',
-    features: ['Insider Knowledge from a Local Guide', 'Visit the Historic Ramparts & Port', 'Explore Bustling Souks & Artisan Shops', 'Taste Traditional Moroccan Mint Tea'],
+    description: 'Entrez dans l\'histoire vivante d\'Essaouira avec une visite guidée à pied à travers sa médina enchanteresse. Laissez notre expert local vous guider dans les ruelles labyrinthiques vers les souks vibrants, les remparts historiques et les ateliers d\'artisans cachés. Découvrez les histoires, les vues et les saveurs qui rendent cette ville magique.',
+    aboutTitle: 'À propos de la visite',
+    bookingTitle: 'Réservez votre visite guidée',
+    features: ['Guide Local Expert', 'Visite des Remparts & du Port', 'Exploration des Souks & Artisans', 'Thé à la Menthe Inclus'],
     pricing: {
       amount: 25,
-      unit: 'per person',
+      unit: 'par personne',
     },
     difficulty: 'Easy' as const,
     images: {
@@ -264,41 +264,41 @@ export const services: Service[] = [
       fields: getFieldsForService([
         {
           name: 'pickupLocation',
-          label: 'Meeting Point',
+          label: 'Point de Rencontre',
           type: 'text',
           required: true,
-          placeholder: 'e.g., Bab Sbaa (main gate)',
-          validation: z.string().min(1, 'A meeting point is required'),
+          placeholder: 'ex: Bab Sbaa (porte principale)',
+          validation: z.string().min(1, 'Le point de rencontre est requis'),
         },
       ]),
     },
     whatsappNumber: '212628438838',
     whatsappMessage: (data: Record<string, any>) => `
-*New Souk Tour Request* 🛍️
+*Nouvelle Demande Visite Souk* 🛍️
 
-*Service:* Souk Walking Tour
-*Name:* ${data.fullName}
+*Service:* Visite Guidée des Souks
+*Nom:* ${data.fullName}
 *Email:* ${data.email}
 *Date:* ${data.date}
-*Time:* ${data.time}
-*Phone:* ${data.phone}
-*Meeting Point:* ${data.pickupLocation}
-*Adults:* ${data.adults}
-*Children:* ${data.children || 0}
-*Special Requests:* ${data.specialRequests || 'None'}
+*Heure:* ${data.time}
+*Tél:* ${data.phone}
+*Lieu:* ${data.pickupLocation}
+*Adultes:* ${data.adults}
+*Enfants:* ${data.children || 0}
+*Demande Spéciale:* ${data.specialRequests || 'Aucune'}
 `,
   },
   {
     id: 2,
-    name: 'Coastal Quad Biking',
+    name: 'Aventure Quad Côtière',
     slug: 'quad-biking-adventure',
-    description: 'Unleash your inner adventurer on a thrilling quad biking tour along Essaouira\'s spectacular coastline. Ride across vast sand dunes, cruise along windswept beaches, and navigate through shady argan forests. Our expert guides ensure a safe and unforgettable experience for all skill levels.',
-    aboutTitle: 'About Quad Biking in Essaouira',
-    bookingTitle: 'Book Your Quad Bike Adventure',
-    features: ['Ride Through Dunes, Beaches & Forests', 'High-Quality, Well-Maintained Quads', 'Full Safety Briefing & Equipment', 'Guided by Professional Instructors'],
+    description: 'Libérez votre côté aventurier avec une excursion en quad palpitante le long du littoral spectaculaire d\'Essaouira. Traversez de vastes dunes de sable, longez des plages balayées par le vent et naviguez à travers des forêts d\'arganiers. Nos guides experts assurent une expérience sûre et inoubliable pour tous les niveaux.',
+    aboutTitle: 'À propos du Quad à Essaouira',
+    bookingTitle: 'Réservez votre aventure Quad',
+    features: ['Dunes, Plages & Forêts', 'Quads Modernes & Entretenus', 'Briefing Sécurité & Équipement', 'Guides Professionnels'],
     pricing: {
       amount: 50,
-      unit: 'per person (2 hours)',
+      unit: 'par personne (2 heures)',
     },
     difficulty: 'Moderate' as const,
     images: {
@@ -310,37 +310,37 @@ export const services: Service[] = [
       fields: getFieldsForService([
         {
           name: 'pickupLocation',
-          label: 'Pick up Location',
+          label: 'Lieu de prise en charge',
           type: 'text',
           required: true,
-          placeholder: 'e.g., your hotel or riad in Essaouira',
-          validation: z.string().min(1, 'Pick up location is required'),
+          placeholder: 'ex: votre hôtel ou Riad',
+          validation: z.string().min(1, 'Le lieu est requis'),
         },
         {
           name: 'packageType',
-          label: 'Tour Duration',
+          label: 'Durée du Tour',
           type: 'select',
           required: true,
-          options: ['2-Hour Discovery Ride', 'Half-Day Coastal Adventure', 'Full-Day Dune Expedition'],
-          validation: z.string().min(1, 'Please select a tour duration.'),
+          options: ['Balade Découverte 2h', 'Demi-journée Aventure', 'Expédition Dunes Journée'],
+          validation: z.string().min(1, 'Veuillez choisir une durée.'),
         },
       ]),
     },
     whatsappNumber: '212628438838',
     whatsappMessage: (data: Record<string, any>) => `
-*New Quad Biking Request* 🏍️
+*Nouvelle Demande Quad* 🏍️
 
-*Service:* Coastal Quad Biking
-*Name:* ${data.fullName}
+*Service:* Aventure Quad Côtière
+*Nom:* ${data.fullName}
 *Email:* ${data.email}
 *Date:* ${data.date}
-*Time:* ${data.time}
-*Phone:* ${data.phone}
-*Pick up:* ${data.pickupLocation}
-*Adults:* ${data.adults}
-*Children:* ${data.children || 0}
-*Tour Duration:* ${data.packageType}
-*Special Requests:* ${data.specialRequests || 'None'}
+*Heure:* ${data.time}
+*Tél:* ${data.phone}
+*Départ:* ${data.pickupLocation}
+*Adultes:* ${data.adults}
+*Enfants:* ${data.children || 0}
+*Durée:* ${data.packageType}
+*Demande Spéciale:* ${data.specialRequests || 'Aucune'}
 `,
   },
 ].sort((a, b) => {

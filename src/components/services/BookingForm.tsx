@@ -163,8 +163,8 @@ export default function BookingForm({ service }: BookingFormProps) {
       try {
         await saveBooking(firestore, submissionData);
         toast({
-          title: 'Booking Request Sent!',
-          description: "We've received your request and will redirect you to WhatsApp to confirm.",
+          title: 'Demande envoyée !',
+          description: "Nous avons bien reçu votre demande et allons vous rediriger vers WhatsApp pour confirmation.",
         });
         handleWhatsAppRedirect(data);
         form.reset();
@@ -172,8 +172,8 @@ export default function BookingForm({ service }: BookingFormProps) {
         console.error("Error saving booking:", error);
         toast({
           variant: 'destructive',
-          title: 'Uh oh! Something went wrong.',
-          description: error instanceof Error ? error.message : 'There was a problem with your request.',
+          title: 'Oups ! Une erreur est survenue.',
+          description: error instanceof Error ? error.message : 'Il y a eu un problème avec votre demande.',
         });
       }
     });
@@ -199,8 +199,8 @@ export default function BookingForm({ service }: BookingFormProps) {
             const countryCodeField = service.bookingForm.fields.find(f => f.name === 'countryCode');
             if (!countryCodeField) return <></>;
             return (
-                <div className="md:col-span-2" key="phone-group">
-                    <FormLabelWithRequired required={fieldConfig.required}>Phone Number</FormLabelWithRequired>
+                    <div className="md:col-span-2" key="phone-group">
+                    <FormLabelWithRequired required={fieldConfig.required}>Téléphone</FormLabelWithRequired>
                     <div className="flex gap-2 mt-2">
                         <FormField
                             control={form.control}
@@ -290,7 +290,7 @@ export default function BookingForm({ service }: BookingFormProps) {
                               !field.value && 'text-muted-foreground'
                           )}
                           >
-                          {field.value ? format(field.value, 'PPP') : <span>Pick a date</span>}
+                          {field.value ? format(field.value, 'PPP') : <span>Choisir une date</span>}
                           <CalendarIcon className="ml-auto h-4 w-4 opacity-50" />
                           </Button>
                       </FormControl>
@@ -334,7 +334,7 @@ export default function BookingForm({ service }: BookingFormProps) {
                   <Select onValueChange={field.onChange} defaultValue={field.value} value={field.value}>
                     <FormControl>
                       <SelectTrigger className="bg-white/5 border-white/20 text-white">
-                        <SelectValue placeholder={fieldConfig.placeholder || 'Select an option'} />
+                        <SelectValue placeholder={fieldConfig.placeholder || 'Sélectionner une option'} />
                       </SelectTrigger>
                     </FormControl>
                     <SelectContent>
