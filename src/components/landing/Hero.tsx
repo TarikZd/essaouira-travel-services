@@ -53,7 +53,7 @@ export default function Hero() {
                 onClick={openWhatsApp}
                 variant="outline" 
                 size="lg" 
-                className="bg-black/40 text-primary border-primary hover:bg-primary hover:text-black font-bold px-8 py-6 text-lg rounded-full w-full sm:w-auto backdrop-blur-sm transition-all"
+                className="bg-black/80 text-primary border-primary hover:bg-primary hover:text-black font-bold px-8 py-6 text-lg rounded-full w-full sm:w-auto backdrop-blur-sm transition-all"
             >
               <MessageCircle className="mr-2 h-5 w-5" />
               WhatsApp Direct

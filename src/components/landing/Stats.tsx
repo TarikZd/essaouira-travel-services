@@ -15,7 +15,7 @@ export default function Stats() {
       <div className="container mx-auto px-4">
         <div className="grid grid-cols-2 md:grid-cols-4 gap-8 md:gap-12">
           {stats.map((stat, idx) => (
-            <div key={idx} className="flex flex-col items-center text-center group">
+            <div key={`${stat.label}-${idx}`} className="flex flex-col items-center text-center group">
               <div className="mb-4 w-12 h-12 rounded-full bg-primary/10 flex items-center justify-center group-hover:bg-primary transition-colors duration-300">
                 <stat.icon className="w-6 h-6 text-primary group-hover:text-black transition-colors duration-300" />
               </div>

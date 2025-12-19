@@ -50,7 +50,7 @@ export default function Destinations() {
 
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
           {destinations.map((dest, idx) => (
-            <Card key={idx} className="group overflow-hidden bg-white/5 border-white/10 hover:border-primary/50 transition-all duration-300">
+            <Card key={`${dest.from}-${idx}`} className="group overflow-hidden bg-white/5 border-white/10 hover:border-primary/50 transition-all duration-300">
               <div className="relative h-64 overflow-hidden">
                 <Image
                   src={dest.image}
