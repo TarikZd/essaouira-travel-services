@@ -37,7 +37,7 @@ const getService = (slug: string): Service | undefined => {
   return services.find((s) => s.slug === slug);
 };
 
-export default function ServicePage({ params }: { params: { slug: string } }) {
+export default async function ServicePage({ params }: { params: { slug: string } }) {
   const serviceData = getService(params.slug);
 
   if (!serviceData) {
