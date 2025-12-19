@@ -1,118 +1,103 @@
+'use client';
 
-import Link from 'next/link';
-import { Facebook, Instagram, Phone, Mail, MapPin, Wind, Video } from 'lucide-react';
+import { Facebook, Instagram, Phone, Mail, MapPin, Car, MessageCircle } from 'lucide-react';
 
 const socialLinks = [
   {
     name: 'Facebook',
-    url: 'https://www.facebook.com/profile.php?id=61581484462605',
+    url: '#',
     icon: <Facebook className="h-5 w-5" />,
   },
   {
     name: 'Instagram',
-    url: 'https://www.instagram.com/moorish.travels/',
+    url: '#',
     icon: <Instagram className="h-5 w-5" />,
-  },
-  {
-    name: 'TikTok',
-    url: 'https://www.tiktok.com/@moorishtravels',
-    icon: (
-      <svg
-        className="h-5 w-5"
-        fill="currentColor"
-        viewBox="0 0 24 24"
-        aria-hidden="true"
-      >
-        <path d="M12.525.02c1.31-.02 2.61-.01 3.91-.02.08 1.53.63 3.09 1.75 4.17 1.12 1.11 2.7 1.65 4.28 1.7.03 1.5.02 3 .02 4.48-.15-1.55-.72-3.1-1.83-4.18-1.11-1.1-2.7-1.64-4.28-1.69-.02-1.52-.01-3.04-.01-4.56h-1.5c-.01 2.45-.02 4.91-.01 7.36.01 2.3.02 4.6.01 6.9 0 1.61-.53 3.2-1.66 4.31-1.1 1.08-2.63 1.6-4.2 1.6-.02 1.5-.01 3-.01 4.48.15-1.55.72-3.1 1.83-4.18 1.11-1.1 2.7-1.64 4.28-1.69.02-2.43.01-4.87.01-7.3Zm-3.11 6.55c-1.35-.02-2.69-.05-4.04-.04.01-1.49.01-2.99.02-4.48-1.55.13-3.09.7-4.18 1.81-1.08 1.1-1.62 2.68-1.68 4.27-.04 1.51-.03 3.02-.03 4.53h1.5c.01-2.45.02-4.91.01-7.36.01-2.3.02-4.6.01-6.9 0-1.61.53-3.2 1.66-4.31 1.1-1.08 2.63 1.6 4.2-1.6.03-1.5.02-3 .02-4.48Z" />
-      </svg>
-    ),
   },
   {
     name: 'WhatsApp',
     url: 'https://wa.me/212628438838',
-    icon: (
-      // Using a path from lucide-icons for WhatsApp
-      <svg
-        className="h-5 w-5"
-        fill="currentColor"
-        viewBox="0 0 24 24"
-        aria-hidden="true"
-      >
-        <path d="M16.75 13.96c.25.13.4.38.4.66v1.52c0 .63-.51 1.14-1.14 1.14-.16 0-.32-.03-.48-.09-.57-.24-2.22-.99-3.95-2.71-1.85-1.85-2.5-3.5-2.71-3.95-.06-.16-.09-.32-.09-.48 0-.63.51-1.14 1.14-1.14h1.52c.28 0 .53.15.66.4.45.88.9 1.76.9 1.76.13.25.06.56-.15.73l-.6.53c-.15.13-.17.36-.05.51.32.44.82.94 1.26 1.38.44.44.94.94 1.38 1.26.15.12.38.1.51-.05l.53-.6c.17-.21.48-.28.73-.15 0 0 .88.45 1.76.9zM12 2a10 10 0 1 0 10 10A10 10 0 0 0 12 2zm0 18a8 8 0 1 1 8-8 8 8 0 0 1-8 8z" />
-      </svg>
-    ),
+    icon: <MessageCircle className="h-5 w-5" />,
   },
 ];
 
 export default function Footer() {
+  const currentYear = new Date().getFullYear();
+
   return (
-    <footer className="bg-card">
-      <div className="container mx-auto py-12 px-4 sm:px-6 lg:px-8">
-        <div className="grid grid-cols-1 gap-8 md:grid-cols-4">
-          <div className="md:col-span-1">
-            <Link href="/" className="flex items-center space-x-2">
-              <Wind className="h-8 w-8 text-primary" />
-              <span className="text-xl font-bold font-headline text-black">
-                Essaouira Travel Services
+    <footer className="bg-black border-t border-white/10 text-gray-400">
+      <div className="container mx-auto py-16 px-4">
+        <div className="grid grid-cols-1 md:grid-cols-4 gap-12">
+          
+          {/* Brand Column */}
+          <div className="space-y-4">
+            <div className="flex items-center space-x-2">
+              <Car className="h-8 w-8 text-primary" />
+              <span className="text-xl font-bold font-headline text-white">
+                TAXI <span className="text-primary">ESSAOUIRA</span>
               </span>
-            </Link>
-            <p className="mt-4 text-sm text-muted-foreground">
-              Your expert guide to unforgettable adventures in Essaouira since 2010.
+            </div>
+            <p className="text-sm leading-relaxed">
+              Votre partenaire de confiance pour tous vos déplacements au Maroc. 
+              Service professionnel, ponctuel et confortable 24/7.
             </p>
           </div>
-          <div className="md:col-span-3 grid grid-cols-1 sm:grid-cols-3 gap-8">
-            <div>
-              <h3 className="text-md font-semibold font-headline tracking-wider text-primary">
-                Explore
-              </h3>
-              <ul className="mt-4 space-y-2">
-                <li><Link href="#about" className="text-sm text-muted-foreground hover:text-foreground">About Us</Link></li>
-                <li><Link href="#services" className="text-sm text-muted-foreground hover:text-foreground">Our Services</Link></li>
-                <li><Link href="#recommendations" className="text-sm text-muted-foreground hover:text-foreground">Find Your Adventure</Link></li>
-              </ul>
-            </div>
-            <div>
-              <h3 className="text-md font-semibold font-headline tracking-wider text-primary">
-                Contact Us
-              </h3>
-              <ul className="mt-4 space-y-2">
-                <li className="flex items-start">
-                  <MapPin className="h-5 w-5 mt-0.5 shrink-0 text-muted-foreground" />
-                  <span className="ml-3 text-sm text-muted-foreground">Essaouira, Morocco</span>
-                </li>
-                <li className="flex items-center">
-                  <Mail className="h-5 w-5 shrink-0 text-muted-foreground" />
-                  <a href="mailto:contact@essaouira-travel.services" className="ml-3 text-sm text-muted-foreground hover:text-foreground">moorisutility@gmail.com</a>
-                </li>
-                <li className="flex items-center">
-                  <Phone className="h-5 w-5 shrink-0 text-muted-foreground" />
-                  <a href="tel:+212628438838" className="ml-3 text-sm text-muted-foreground hover:text-foreground">+212 628 438 838</a>
-                </li>
-              </ul>
-            </div>
-            <div>
-              <h3 className="text-md font-semibold font-headline tracking-wider text-primary">
-                Follow Us
-              </h3>
-              <div className="mt-4 flex space-x-4">
-                {socialLinks.map((social) => (
-                  <a
-                    key={social.name}
-                    href={social.url}
-                    target="_blank"
-                    rel="noopener noreferrer"
-                    className="text-muted-foreground hover:text-primary"
-                  >
-                    <span className="sr-only">{social.name}</span>
-                    {social.icon}
-                  </a>
-                ))}
-              </div>
+
+          {/* Quick Links */}
+          <div>
+            <h3 className="text-white font-bold mb-6 font-headline">Navigation</h3>
+            <ul className="space-y-3">
+              <li><a href="#hero" className="hover:text-primary transition-colors">Accueil</a></li>
+              <li><a href="#services" className="hover:text-primary transition-colors">Nos Services</a></li>
+              <li><a href="#destinations" className="hover:text-primary transition-colors">Destinations</a></li>
+              <li><a href="#contact" className="hover:text-primary transition-colors">Réservation</a></li>
+            </ul>
+          </div>
+
+          {/* Contact Info */}
+          <div>
+            <h3 className="text-white font-bold mb-6 font-headline">Contact</h3>
+            <ul className="space-y-4">
+              <li className="flex items-start">
+                <MapPin className="h-5 w-5 mt-1 mr-3 text-primary shrink-0" />
+                <span>Essaouira, Maroc</span>
+              </li>
+              <li className="flex items-center">
+                <Phone className="h-5 w-5 mr-3 text-primary shrink-0" />
+                <a href="tel:+212628438838" className="hover:text-white transition-colors">+212 628 438 838</a>
+              </li>
+              <li className="flex items-center">
+                <Mail className="h-5 w-5 mr-3 text-primary shrink-0" />
+                <a href="mailto:contact@taxi-essaouira.com" className="hover:text-white transition-colors">contact@taxi-essaouira.com</a>
+              </li>
+            </ul>
+          </div>
+
+          {/* Legal / Social */}
+          <div>
+            <h3 className="text-white font-bold mb-6 font-headline">Suivez-nous</h3>
+            <div className="flex space-x-4 mb-6">
+              {socialLinks.map((social) => (
+                <a
+                  key={social.name}
+                  href={social.url}
+                  className="w-10 h-10 rounded-full bg-white/5 flex items-center justify-center hover:bg-primary hover:text-black transition-all"
+                  aria-label={social.name}
+                >
+                  {social.icon}
+                </a>
+              ))}
             </div>
           </div>
         </div>
-        <div className="mt-8 border-t border-border pt-8 text-center text-sm text-muted-foreground">
-          <p>&copy; {new Date().getFullYear()} Essaouira Travel Services. All rights reserved.</p>
+
+        {/* SEO & Credits */}
+        <div className="mt-16 pt-8 border-t border-white/10 text-xs text-center md:text-left">
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+            <p>&copy; {currentYear} Essaouira Travel Services. Tous droits réservés.</p>
+            <p className="text-gray-600 md:text-right">
+              Taxi Marrakech Essaouira • Transfert Aéroport • Excursion Essaouira • Taxi Agadir Essaouira
+            </p>
+          </div>
         </div>
       </div>
     </footer>

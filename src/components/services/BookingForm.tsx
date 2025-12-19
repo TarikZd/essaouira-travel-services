@@ -27,7 +27,7 @@ import {
 } from '@/components/ui/select';
 import { Popover, PopoverContent, PopoverTrigger } from '@/components/ui/popover';
 import { Calendar } from '@/components/ui/calendar';
-import { CalendarIcon, Loader2 } from 'lucide-react';
+import { CalendarIcon, Loader2, Send } from 'lucide-react';
 import { useToast } from '@/hooks/use-toast';
 import { cn } from '@/lib/utils';
 import { services, type Service, FormField as ServiceFormField } from '@/lib/services';
@@ -57,13 +57,14 @@ const routes: Record<string, string[]> = {
 };
 
 const FormLabelWithRequired: React.FC<{ children: React.ReactNode; required?: boolean }> = ({ children, required }) => (
-    <FormLabel>
+    <FormLabel className="text-white">
       {children}
-      {required && <span className="text-red-500 ml-1">*</span>}
+      {required && <span className="text-primary ml-1">*</span>}
     </FormLabel>
 );
 
 export default function BookingForm({ service }: BookingFormProps) {
+  // ... (previous hook logic remains same until return) ...
   const [isPending, startTransition] = useTransition();
   const { toast } = useToast();
   const firestore = useFirestore();
@@ -208,16 +209,16 @@ export default function BookingForm({ service }: BookingFormProps) {
                             <FormItem className="w-1/3">
                                 <Select onValueChange={field.onChange} defaultValue={field.value} value={field.value}>
                                 <FormControl>
-                                    <SelectTrigger>
+                                    <SelectTrigger className="bg-white/5 border-white/20 text-white">
                                     <SelectValue placeholder="Code" />
                                     </SelectTrigger>
                                 </FormControl>
                                 <SelectContent>
-                              {countryCodes.map((country, index) => (
+                                {countryCodes.map((country, index) => (
                                 <SelectItem key={index} value={country.dial_code}>
                                   {country.code} ({country.dial_code})
                                 </SelectItem>
-                              ))}
+                                ))}
                                 </SelectContent>
                                 </Select>
                                 <FormMessage />
@@ -230,7 +231,7 @@ export default function BookingForm({ service }: BookingFormProps) {
                             render={({ field }) => (
                             <FormItem className="w-2/3">
                                 <FormControl>
-                                <Input type="tel" placeholder="555 123-4567" {...field} />
+                                <Input type="tel" placeholder="555 123-4567" {...field} className="bg-white/5 border-white/20 text-white placeholder:text-gray-500" />
                                 </FormControl>
                                 <FormMessage />
                             </FormItem>
@@ -249,7 +250,7 @@ export default function BookingForm({ service }: BookingFormProps) {
                 <FormItem>
                   <FormLabelWithRequired required={fieldConfig.required}>{fieldConfig.label}</FormLabelWithRequired>
                   <FormControl>
-                    <Input type="number" min="1" {...field} onChange={(e) => field.onChange(parseInt(e.target.value, 10))} />
+                    <Input type="number" min="1" {...field} onChange={(e) => field.onChange(parseInt(e.target.value, 10))} className="bg-white/5 border-white/20 text-white placeholder:text-gray-500" />
                   </FormControl>
                   <FormMessage />
                 </FormItem>
@@ -261,7 +262,7 @@ export default function BookingForm({ service }: BookingFormProps) {
                     <FormItem>
                         <FormLabelWithRequired required={childrenField.required}>{childrenField.label}</FormLabelWithRequired>
                         <FormControl>
-                        <Input type="number" min="0" {...childrenFieldProps} onChange={(e) => childrenFieldProps.onChange(parseInt(e.target.value, 10))} />
+                        <Input type="number" min="0" {...childrenFieldProps} onChange={(e) => childrenFieldProps.onChange(parseInt(e.target.value, 10))} className="bg-white/5 border-white/20 text-white placeholder:text-gray-500" />
                         </FormControl>
                         <FormMessage />
                     </FormItem>
@@ -285,7 +286,7 @@ export default function BookingForm({ service }: BookingFormProps) {
                           <Button
                           variant={'outline'}
                           className={cn(
-                              'w-full pl-3 text-left font-normal',
+                              'w-full pl-3 text-left font-normal bg-white/5 border-white/20 text-white hover:bg-white/10 hover:text-white',
                               !field.value && 'text-muted-foreground'
                           )}
                           >
@@ -314,7 +315,7 @@ export default function BookingForm({ service }: BookingFormProps) {
                       <FormItem>
                           <FormLabelWithRequired required={timeField.required}>{timeField.label}</FormLabelWithRequired>
                           <FormControl>
-                          <Input type="time" {...timeFieldProps} />
+                          <Input type="time" {...timeFieldProps} className="bg-white/5 border-white/20 text-white placeholder:text-gray-500" />
                           </FormControl>
                           <FormMessage />
                       </FormItem>
@@ -332,7 +333,7 @@ export default function BookingForm({ service }: BookingFormProps) {
                 {fieldConfig.type === 'select' ? (
                   <Select onValueChange={field.onChange} defaultValue={field.value} value={field.value}>
                     <FormControl>
-                      <SelectTrigger>
+                      <SelectTrigger className="bg-white/5 border-white/20 text-white">
                         <SelectValue placeholder={fieldConfig.placeholder || 'Select an option'} />
                       </SelectTrigger>
                     </FormControl>
@@ -350,11 +351,11 @@ export default function BookingForm({ service }: BookingFormProps) {
                   </Select>
                 ) : fieldConfig.type === 'textarea' ? (
                   <FormControl>
-                    <Textarea placeholder={fieldConfig.placeholder} {...field} />
+                    <Textarea placeholder={fieldConfig.placeholder} {...field} className="bg-white/5 border-white/20 text-white placeholder:text-gray-500 min-h-[100px]" />
                   </FormControl>
                 ) : (
                   <FormControl>
-                    <Input type={fieldConfig.type} placeholder={fieldConfig.placeholder} {...field} />
+                    <Input type={fieldConfig.type} placeholder={fieldConfig.placeholder} {...field} className="bg-white/5 border-white/20 text-white placeholder:text-gray-500" />
                   </FormControl>
                 )}
               <FormMessage />
@@ -372,13 +373,18 @@ export default function BookingForm({ service }: BookingFormProps) {
           {service.bookingForm.fields.map(renderField)}
         </div>
 
-        <Button type="submit" disabled={isPending} className="w-full bg-accent text-accent-foreground hover:bg-accent/90">
+        <Button type="submit" disabled={isPending} className="w-full bg-primary text-black hover:bg-yellow-500 font-bold py-6 text-lg rounded-xl transition-all hover:scale-[1.02] shadow-lg shadow-primary/20">
           {isPending ? (
             <>
               <Loader2 className="mr-2 h-4 w-4 animate-spin" />
-              Submitting...
+              Confirmation...
             </>
-          ) : ( service.bookingTitle || 'Send Booking Inquiry' )}
+          ) : ( 
+            <span className="flex items-center">
+              {service.bookingTitle || 'Confirmer la Réservation'}
+              <Send className="ml-2 h-5 w-5" />
+            </span>
+           )}
         </Button>
       </form>
     </Form>

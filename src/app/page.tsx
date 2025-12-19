@@ -1,119 +1,147 @@
+'use client';
 
-import Image from 'next/image';
-import Link from 'next/link';
-import { Button } from '@/components/ui/button';
-import { services } from '@/lib/services';
-import ServiceList from '@/components/services/ServiceList';
-import { Card, CardContent } from '@/components/ui/card';
-import { PlaceHolderImages } from '@/lib/placeholder-images';
+import { useState } from 'react';
+import { services, type Service } from '@/lib/services';
+import Hero from '@/components/landing/Hero';
+import Stats from '@/components/landing/Stats';
+import Destinations from '@/components/landing/Destinations';
+import ServiceCard from '@/components/services/ServiceCard';
+import BookingForm from '@/components/services/BookingForm';
 import RecommendationEngine from '@/components/ai/RecommendationEngine';
-import { Award, Star, Users } from 'lucide-react';
+import { Card, CardContent } from '@/components/ui/card';
+import { cn } from '@/lib/utils';
+import { Car, Sparkles, MapPin } from 'lucide-react';
 
 export default function Home() {
-  const heroImage = PlaceHolderImages.find((img) => img.id === 'hero-home');
+  const [selectedService, setSelectedService] = useState<Service>(services[0]);
+
+  const handleServiceSelect = (slug: string) => {
+    const service = services.find(s => s.slug === slug);
+    if (service) {
+      setSelectedService(service);
+      document.getElementById('contact')?.scrollIntoView({ behavior: 'smooth' });
+    }
+  };
 
   return (
-    <div className="flex flex-col">
-      {/* Hero Section */}
-      <section className="relative h-[60vh] w-full text-white">
-        {heroImage && (
-          <Image
-            src={heroImage.imageUrl}
-            alt={heroImage.description}
-            fill
-            className="object-cover"
-            priority
-            data-ai-hint={heroImage.imageHint}
-          />
-        )}
-        <div className="absolute inset-0 bg-black/50" />
-        <div className="relative z-10 flex h-full flex-col items-center justify-center text-center">
-          <h1 className="font-headline text-5xl font-bold md:text-7xl">
-            Essaouira Travel Services
-          </h1>
-          <p className="mt-4 max-w-2xl text-lg md:text-xl">
-            Your Premier Guide to Unforgettable Coastal Adventures
-          </p>
-          <Button asChild className="mt-8 bg-accent text-accent-foreground hover:bg-accent/90">
-            <Link href="#services">Explore Our Services</Link>
-          </Button>
-        </div>
-      </section>
+    <div className="flex flex-col bg-black min-h-screen">
+      <Hero />
+      
+      <Stats />
 
-      {/* About Us Section */}
-      <section id="about" className="py-16 md:py-24">
-        <div className="container mx-auto">
-          <div className="grid grid-cols-1 items-center gap-12 md:grid-cols-2">
-            <div>
-              <h2 className="font-headline text-4xl font-bold text-primary">
-                Your Local Essaouira Experts
-              </h2>
-              <p className="mt-4 text-lg text-foreground/80">
-                For over a decade, Essaouira Travel Services has been the leading
-                expert in crafting unforgettable experiences along the beautiful
-                shores of Essaouira. Our passion is sharing the magic of Morocco,
-                from thrilling water sports to serene beach escapades.
-              </p>
-              <div className="mt-8 grid grid-cols-3 gap-4 text-center">
-                <div className="rounded-lg border bg-card p-4 shadow-sm">
-                  <Award className="mx-auto mb-2 h-8 w-8 text-accent" />
-                  <p className="font-bold text-xl">10+ Years</p>
-                  <p className="text-sm text-muted-foreground">Experience</p>
-                </div>
-                <div className="rounded-lg border bg-card p-4 shadow-sm">
-                  <Users className="mx-auto mb-2 h-8 w-8 text-accent" />
-                  <p className="font-bold text-xl">5,000+</p>
-                  <p className="text-sm text-muted-foreground">Happy Guests</p>
-                </div>
-                <div className="rounded-lg border bg-card p-4 shadow-sm">
-                  <Star className="mx-auto mb-2 h-8 w-8 text-accent" />
-                  <p className="font-bold text-xl">4.9/5</p>
-                  <p className="text-sm text-muted-foreground">Average Rating</p>
-                </div>
-              </div>
-            </div>
-            <div className="relative h-80 w-full overflow-hidden rounded-xl shadow-lg">
-               <Image
-                src="https://picsum.photos/seed/about-us/600/400"
-                alt="Happy tourists enjoying a tour in Essaouira, Morocco"
-                fill
-                className="object-cover"
-                data-ai-hint="happy tourists"
+      {/* AI Recommendation Section */}
+      <section id="recommendations" className="py-20 bg-gradient-to-b from-black to-gray-900 border-b border-white/5">
+         <div className="container mx-auto px-4 text-center">
+           <div className="inline-block p-3 rounded-full bg-primary/10 mb-6">
+             <Sparkles className="w-8 h-8 text-primary" />
+           </div>
+           <h2 className="font-headline text-3xl md:text-5xl font-bold text-white mb-6">
+             Assistant Voyage <span className="text-primary">IA</span>
+           </h2>
+           <p className="mx-auto max-w-2xl text-lg text-gray-400 mb-12">
+            Pas sûr de ce que vous cherchez ? Laissez notre assistant intelligent vous suggérer les meilleures activités pour votre séjour à Essaouira.
+           </p>
+           <div className="max-w-4xl mx-auto">
+             <RecommendationEngine onBook={handleServiceSelect} />
+           </div>
+         </div>
+       </section>
+
+      {/* Services Section */}
+      <section id="services" className="py-24 bg-black">
+        <div className="container mx-auto px-4">
+          <div className="text-center mb-16">
+            <h2 className="font-headline text-3xl md:text-5xl font-bold text-white mb-4">
+              Nos <span className="text-primary">Services</span>
+            </h2>
+            <p className="text-gray-400 max-w-2xl mx-auto">
+              Des transferts privés aux excursions exclusives, nous offrons une gamme complète de services pour rendre votre voyage inoubliable.
+            </p>
+          </div>
+          
+          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+            {services.map((service) => (
+              <ServiceCard 
+                key={service.id} 
+                service={service} 
+                onBook={handleServiceSelect}
               />
-            </div>
+            ))}
           </div>
         </div>
       </section>
 
-      {/* Services Section */}
-      <section id="services" className="py-16 md:py-24 bg-card">
-        <div className="container mx-auto text-center">
-          <h2 className="font-headline text-4xl font-bold text-primary">
-            Our Essaouira Adventures
-          </h2>
-          <p className="mx-auto mt-4 max-w-3xl text-lg text-foreground/80">
-            From adrenaline-pumping quad biking tours to relaxing cultural explorations, we have the perfect Essaouira adventure waiting for you.
-          </p>
-          <ServiceList services={services} />
+      <Destinations />
+
+      {/* Reviews/Social Proof Placeholder */}
+      <section id="reviews" className="py-20 bg-white/5 border-y border-white/10">
+        <div className="container mx-auto px-4 text-center">
+             <h2 className="font-headline text-3xl md:text-4xl font-bold text-white mb-12">
+              Ce que disent nos <span className="text-primary">clients</span>
+            </h2>
+            <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
+                {[1, 2, 3].map((i) => (
+                    <Card key={i} className="bg-black/40 border-white/10 p-6">
+                        <div className="flex justify-center mb-4">
+                            {[1, 2, 3, 4, 5].map((star) => (
+                                <span key={star} className="text-primary text-xl">★</span>
+                            ))}
+                        </div>
+                        <p className="text-gray-300 italic mb-4">"Service impeccable, chauffeur ponctuel et voiture très confortable. Je recommande vivement pour tous vos trajets au Maroc !"</p>
+                        <p className="text-primary font-bold">- Client Vérifié</p>
+                    </Card>
+                ))}
+            </div>
         </div>
       </section>
 
-      {/* AI Recommendation Section */}
-      <section id="recommendations" className="py-16 md:py-24">
-         <div className="container mx-auto text-center">
-           <h2 className="font-headline text-4xl font-bold text-primary">
-             Find Your Perfect Essaouira Adventure
-           </h2>
-           <p className="mx-auto mt-4 max-w-3xl text-lg text-foreground/80">
-            Tell us what you're looking for, and our AI-powered guide will suggest the best activities for your trip to Essaouira based on your interests.
-           </p>
-           <Card className="mx-auto mt-8 max-w-4xl bg-card shadow-lg">
-             <CardContent className="p-6 md:p-8">
-               <RecommendationEngine />
-             </CardContent>
-           </Card>
-         </div>
-       </section>
+      {/* Contact & Booking Section */}
+      <section id="contact" className="py-24 bg-black relative">
+        <div className="container mx-auto px-4">
+            <div className="grid grid-cols-1 lg:grid-cols-2 gap-16">
+                <div>
+                    <h2 className="font-headline text-4xl md:text-5xl font-bold text-white mb-6">
+                        Contact & <br/><span className="text-primary">Réservation</span>
+                    </h2>
+                    <p className="text-gray-400 text-lg mb-8 leading-relaxed">
+                        Remplissez le formulaire pour obtenir un devis gratuit ou réserver directement votre trajet. 
+                        Une fois envoyé, nous vous contacterons immédiatement sur <strong>WhatsApp</strong> pour confirmer les détails.
+                    </p>
+                    
+                    <div className="space-y-6">
+                        <div className="flex items-center space-x-4 text-white">
+                            <div className="w-12 h-12 rounded-full bg-white/10 flex items-center justify-center">
+                                <Car className="w-6 h-6 text-primary" />
+                            </div>
+                            <div>
+                                <h4 className="font-bold">Service 24/7</h4>
+                                <p className="text-gray-500">Disponible jour et nuit</p>
+                            </div>
+                        </div>
+                         <div className="flex items-center space-x-4 text-white">
+                            <div className="w-12 h-12 rounded-full bg-white/10 flex items-center justify-center">
+                                <MapPin className="w-6 h-6 text-primary" />
+                            </div>
+                            <div>
+                                <h4 className="font-bold">Couverture Nationale</h4>
+                                <p className="text-gray-500">Marrakech, Essaouira, Agadir, etc.</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div className="bg-gray-900/50 backdrop-blur-sm p-8 rounded-3xl border border-white/10 shadow-2xl">
+                    <div className="mb-6 pb-6 border-b border-white/10">
+                        <p className="text-sm text-gray-400 uppercase tracking-widest mb-2">Service Sélectionné</p>
+                        <h3 className="text-2xl font-bold text-primary flex items-center">
+                            {selectedService.name}
+                        </h3>
+                    </div>
+                    <BookingForm service={selectedService} />
+                </div>
+            </div>
+        </div>
+      </section>
     </div>
   );
 }

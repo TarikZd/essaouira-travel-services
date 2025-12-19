@@ -1,15 +1,17 @@
-
-import type { Metadata } from 'next';
-import './globals.css';
-import { cn } from '@/lib/utils';
-import { Toaster } from '@/components/ui/toaster';
-import Header from '@/components/layout/Header';
-import Footer from '@/components/layout/Footer';
-import { FirebaseClientProvider } from '@/firebase/client-provider';
+import type { Metadata } from "next";
+import "./globals.css";
+import { cn } from "@/lib/utils";
+import { Toaster } from "@/components/ui/toaster";
+import Header from "@/components/layout/Header";
+import Footer from "@/components/layout/Footer";
+import { FirebaseClientProvider } from "@/firebase/client-provider";
 
 export const metadata: Metadata = {
-  title: 'Essaouira Travel Services | Your Guide to Coastal Morocco',
-  description: "Explore the best of Essaouira and the Moroccan coast. We offer private transfers, quad biking, souk tours, cooking classes, and 4x4 adventures. Book your unforgettable Moroccan experience today.",
+  title: "Taxi Marrakech Essaouira - Taxi Essaouira Marrakech",
+  description:
+    "Taxi Marrakech, Taxi Essaouira, transport Taxi Marrakech Essaouira pas cher en 2h30 de route, réserver Taxi Marrakech Essaouira depuis l'Aéroport, Taxi sécurisé et climatisé, Taxi Marrakech Essaouira, Transfert Aéroport",
+  keywords:
+    "Taxi Marrakech Essaouira, transport Essaouira, Taxi Essaouira aeroport, transport Marrakech Essaouira, voyage pas cher, transport Taxi pas cher, cab Marrakech Essaouira, transport Taxi Essaouira maroc, Taxi agadir Essaouira, Taxi Marrakech to essaouira, Taxi excursion Marrakech Essaouira, holidy taxis, Taxi from Marrakech to Essaouira, prix taxi, réservation taxi, tarif taxi, Riad, Taxi aeroport Marrakech, Taxi Marrakech casablanca, Taxi Essaouira casablanca",
 };
 
 export default function RootLayout({
@@ -18,7 +20,7 @@ export default function RootLayout({
   children: React.ReactNode;
 }>) {
   return (
-    <html lang="en" suppressHydrationWarning>
+    <html lang="fr" suppressHydrationWarning>
       <head>
         <link rel="preconnect" href="https://fonts.googleapis.com" />
         <link
@@ -27,14 +29,12 @@ export default function RootLayout({
           crossOrigin="anonymous"
         />
         <link
-          href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@700&family=PT+Sans:wght@400;700&display=swap"
+          href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Outfit:wght@600;700;800&display=swap"
           rel="stylesheet"
         />
       </head>
       <body
-        className={cn(
-          'min-h-screen bg-background font-body antialiased'
-        )}
+        className={cn("min-h-screen bg-background font-body antialiased")}
         suppressHydrationWarning={true}
       >
         <FirebaseClientProvider>
@@ -49,5 +49,3 @@ export default function RootLayout({
     </html>
   );
 }
-
-    

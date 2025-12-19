@@ -1,45 +1,72 @@
-
 import Image from 'next/image';
-import Link from 'next/link';
-import { ArrowRight } from 'lucide-react';
+import { ArrowRight, Car, ChefHat, Mountain, Map, Bike } from 'lucide-react';
 import { Button } from '@/components/ui/button';
 import { Card, CardContent, CardFooter, CardHeader, CardTitle } from '@/components/ui/card';
 import type { Service } from '@/lib/services';
 import { PlaceHolderImages } from '@/lib/placeholder-images';
+import { cn } from '@/lib/utils';
 
 type ServiceCardProps = {
   service: Service;
+  onBook?: (serviceId: string) => void;
 };
 
-export default function ServiceCard({ service }: ServiceCardProps) {
+export default function ServiceCard({ service, onBook }: ServiceCardProps) {
   const cardImage = PlaceHolderImages.find((img) => img.id === service.images.card);
   const shortDescription = service.description.split('. ')[0] + '.';
 
+  const getIcon = (id: number) => {
+    switch (id) {
+      case 1: return <Car className="h-10 w-10 text-primary mb-4" />;
+      case 5: return <ChefHat className="h-10 w-10 text-primary mb-4" />;
+      case 4: return <Mountain className="h-10 w-10 text-primary mb-4" />;
+      case 3: return <Map className="h-10 w-10 text-primary mb-4" />;
+      case 2: return <Bike className="h-10 w-10 text-primary mb-4" />;
+      default: return <Car className="h-10 w-10 text-primary mb-4" />;
+    }
+  };
+
   return (
-    <Card className="flex h-full flex-col overflow-hidden transition-shadow duration-300 hover:shadow-xl">
-      <CardHeader className="relative h-48 w-full p-0">
+    <Card className="group flex h-full flex-col overflow-hidden bg-white/5 border-white/10 hover:border-primary/50 transition-all duration-300 hover:-translate-y-2 hover:shadow-2xl hover:shadow-primary/10">
+      <CardHeader className="relative h-56 w-full p-0 overflow-hidden">
         {cardImage && (
-          <Image
-            src={cardImage.imageUrl}
-            alt={cardImage.description}
-            fill
-            className="object-cover"
-            sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
-            data-ai-hint={cardImage.imageHint}
-          />
+          <>
+            <div className="absolute inset-0 bg-gradient-to-t from-black/80 to-transparent z-10" />
+            <Image
+              src={cardImage.imageUrl}
+              alt={cardImage.description}
+              fill
+              className="object-cover transition-transform duration-500 group-hover:scale-110"
+              sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
+            />
+            <div className="absolute bottom-4 left-6 z-20">
+              {getIcon(service.id)}
+              <CardTitle className="font-headline text-2xl text-white group-hover:text-primary transition-colors">
+                {service.name}
+              </CardTitle>
+            </div>
+          </>
         )}
       </CardHeader>
       <CardContent className="flex-grow p-6">
-        <CardTitle className="font-headline text-2xl text-primary">{service.name}</CardTitle>
-        <p className="mt-2 text-sm text-muted-foreground">
+        <p className="text-gray-400 leading-relaxed">
           {shortDescription}
         </p>
+        <ul className="mt-4 space-y-2">
+            {service.features.slice(0, 2).map((feature, i) => (
+                <li key={i} className="flex items-center text-sm text-gray-500">
+                    <span className="w-1.5 h-1.5 rounded-full bg-primary mr-2" />
+                    {feature}
+                </li>
+            ))}
+        </ul>
       </CardContent>
       <CardFooter className="p-6 pt-0">
-        <Button asChild variant="link" className="p-0 text-primary">
-          <Link href={`/services/${service.slug}`}>
-            Learn More <ArrowRight className="ml-2 h-4 w-4" />
-          </Link>
+        <Button 
+            onClick={() => onBook?.(service.slug)}
+            className="w-full bg-primary text-black hover:bg-yellow-500 font-bold group-hover:scale-[1.02] transition-transform"
+        >
+          Book This Service <ArrowRight className="ml-2 h-4 w-4" />
         </Button>
       </CardFooter>
     </Card>

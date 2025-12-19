@@ -1,11 +1,9 @@
-
 'use client';
 
 import Link from 'next/link';
-import { Menu, Wind, X } from 'lucide-react';
+import { Menu, Car, X } from 'lucide-react';
 import { Button } from '@/components/ui/button';
-import { services } from '@/lib/services';
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 import {
   Sheet,
   SheetContent,
@@ -14,67 +12,94 @@ import {
   SheetTrigger,
 } from '@/components/ui/sheet';
 import { cn } from '@/lib/utils';
-import {
-  DropdownMenu,
-  DropdownMenuContent,
-  DropdownMenuItem,
-  DropdownMenuTrigger,
-} from '@/components/ui/dropdown-menu';
 
 export default function Header() {
   const [isOpen, setIsOpen] = useState(false);
+  const [scrolled, setScrolled] = useState(false);
+
+  useEffect(() => {
+    const handleScroll = () => {
+      setScrolled(window.scrollY > 50);
+    };
+    window.addEventListener('scroll', handleScroll);
+    return () => window.removeEventListener('scroll', handleScroll);
+  }, []);
+
+  const navLinks = [
+    { label: 'Accueil', href: '#hero' },
+    { label: 'Services', href: '#services' },
+    { label: 'Destinations', href: '#destinations' },
+    { label: 'Avis', href: '#reviews' },
+    { label: 'Contact', href: '#contact' },
+  ];
+
+  const scrollToSection = (e: React.MouseEvent<HTMLAnchorElement>, href: string) => {
+    e.preventDefault();
+    const targetId = href.replace('#', '');
+    const elem = document.getElementById(targetId);
+    elem?.scrollIntoView({ behavior: 'smooth' });
+    setIsOpen(false);
+  };
 
   return (
-    <header className="fixed top-0 z-50 w-full bg-transparent backdrop-blur">
-      <div className="container mx-auto flex h-16 items-center">
-        <div className="mr-4 flex">
-          <Link href="/" className="flex items-center space-x-2">
-            <Wind className="h-6 w-6 text-primary" />
-            <span className="hidden font-bold sm:inline-block font-headline text-black">
-              Essaouira Travel Services
-            </span>
-          </Link>
-        </div>
+    <header className={cn(
+      "fixed top-0 z-50 w-full transition-all duration-300",
+      scrolled ? "bg-black/90 backdrop-blur-md py-4 shadow-lg border-b border-white/10" : "bg-transparent py-6"
+    )}>
+      <div className="container mx-auto px-4 md:px-8 flex items-center justify-between">
+        <Link href="/" className="flex items-center space-x-2">
+          <Car className="h-8 w-8 text-primary" />
+          <span className="font-bold text-xl font-headline tracking-tighter">
+            TAXI <span className="text-primary">ESSAOUIRA</span>
+          </span>
+        </Link>
 
         {/* Desktop Navigation */}
-        <nav className="hidden items-center space-x-6 text-sm font-medium md:flex">
-          {services.map((service) => (
-            <Link
-              key={service.id}
-              href={`/services/${service.slug}`}
-              className="transition-colors text-black hover:text-primary whitespace-nowrap"
+        <nav className="hidden items-center space-x-8 text-sm font-semibold md:flex">
+          {navLinks.map((link) => (
+            <a
+              key={link.label}
+              href={link.href}
+              onClick={(e) => scrollToSection(e, link.href)}
+              className="transition-colors text-white/80 hover:text-primary uppercase tracking-widest text-[11px]"
             >
-              {service.name}
-            </Link>
+              {link.label}
+            </a>
           ))}
+          <Button 
+            className="bg-primary text-black hover:bg-yellow-500 font-bold px-6 rounded-full"
+            onClick={() => document.getElementById('contact')?.scrollIntoView({ behavior: 'smooth' })}
+          >
+            RÉSERVER
+          </Button>
         </nav>
 
         {/* Mobile Navigation */}
-        <div className="flex flex-1 items-center justify-end space-x-4 md:hidden">
+        <div className="md:hidden">
           <Sheet open={isOpen} onOpenChange={setIsOpen}>
             <SheetTrigger asChild>
-              <Button variant="ghost" size="icon" className="text-black">
-                <Menu />
-                <span className="sr-only">Open Menu</span>
+              <Button variant="ghost" size="icon" className="text-white hover:bg-white/10">
+                <Menu className="h-6 w-6" />
+                <span className="sr-only">Menu</span>
               </Button>
             </SheetTrigger>
-            <SheetContent side="left">
+            <SheetContent side="right" className="bg-black border-white/10 text-white">
               <SheetHeader>
-                <SheetTitle className="flex items-center space-x-2">
-                  <Wind className="h-6 w-6 text-primary" />
-                  <span className="font-bold font-headline">ETS</span>
+                <SheetTitle className="flex items-center space-x-2 text-white">
+                  <Car className="h-8 w-8 text-primary" />
+                  <span className="font-bold font-headline tracking-tighter">TAXI ESSAOUIRA</span>
                 </SheetTitle>
               </SheetHeader>
-              <div className="mt-8 flex flex-col space-y-4">
-                {services.map((service) => (
-                  <Link
-                    key={service.id}
-                    href={`/services/${service.slug}`}
-                    className="text-lg transition-colors hover:text-primary"
-                    onClick={() => setIsOpen(false)}
+              <div className="mt-12 flex flex-col space-y-6">
+                {navLinks.map((link) => (
+                  <a
+                    key={link.label}
+                    href={link.href}
+                    onClick={(e) => scrollToSection(e, link.href)}
+                    className="text-2xl font-bold transition-colors hover:text-primary"
                   >
-                    {service.name}
-                  </Link>
+                    {link.label}
+                  </a>
                 ))}
               </div>
             </SheetContent>

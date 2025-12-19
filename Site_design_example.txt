@@ -1,0 +1,2150 @@
+<!DOCTYPE html>
+<html lang="fr">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+    <link rel="icon" type="image/svg+xml" href="taxi-marrakech-essaouira.png">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Taxi Marrakech Essaouira - Taxi Essaouira Marrakech</title>
+    <meta name="description"
+        content="Taxi Marrakech, Taxi Essaouira, transport Taxi Marrakech Essaouira pas cher en 2h30 de route, réserver Taxi Marrakech Essaouira depuis l'Aéroport, Taxi sécurisé et climatisé, Taxi Marrakech Essaouira, Transfert Aéroport">
+    <meta name="Keywords"
+        content="Taxi Marrakech Essaouira, transport Essaouira,Taxi Essaouira aeroport, transport Marrakech Essaouira, voyage pas cher, transport Taxi pas cher, cab Marrakech Essaouira, transport Taxi Essaouira maroc, Taxi agadir Essaouira ,Taxi Marrakech to essaouira?Taxi excursion Marrakech Essaouira ? holidy taxis, Taxi from Marrakech to Essaouira, Taxi agadir Essaouira, prix taxi,Taxi Essaouira marrkech, réservation taxi, pas cher, tarif taxi, Riad,Taxi Essaouira agadir, Taxi aeroport Marrakech,Taxi Marrakech casablanca, Taxi Essaouira casablanca">
+    <meta name="author" content="Taxi Essaouira">
+    <meta name="google-site-verification" content="mjbgj8ZBIpn-NXgfxNULY67PKiSgkFi-3jWNRaNxt9c">
+    <!-- Google tag (gtag.js) -->
+    <script async="" src="https://www.googletagmanager.com/gtag/js?id=G-07XKXTMJM2">
+    </script>
+    <script>
+        window.dataLayer = window.dataLayer || [];
+        function gtag() { dataLayer.push(arguments); }
+        gtag('js', new Date());
+
+        gtag('config', 'G-07XKXTMJM2');
+    </script>
+    <script src="assets/index-c6745b93.js" defer=""></script>
+    <link rel="stylesheet" href="assets/index-f2aaa93d.css">
+
+    <style>
+        .logo {
+            height: 6em;
+            padding: 1.5em;
+            will-change: filter;
+            transition: filter 300ms;
+        }
+
+        .logo:hover {
+            filter: drop-shadow(0 0 2em #646cffaa);
+        }
+
+        .logo.react:hover {
+            filter: drop-shadow(0 0 2em #61dafbaa);
+        }
+
+        @keyframes logo-spin {
+            from {
+                transform: rotate(0deg);
+            }
+
+            to {
+                transform: rotate(360deg);
+            }
+        }
+
+        @media (prefers-reduced-motion: no-preference) {
+            a:nth-of-type(2) .logo {
+                animation: logo-spin infinite 20s linear;
+            }
+        }
+
+        .card {
+            padding: 2em;
+        }
+
+        .read-the-docs {
+            color: #888;
+        }
+    </style>
+    <style id="eefljgmhgaidffapnppcmmafobefjece-9084cce4-615a-4b2c-9c9c-924ab24cd9a2-style">
+        .eefljgmhgaidffapnppcmmafobefjece-9084cce4-615a-4b2c-9c9c-924ab24cd9a2-modal {
+            display: block;
+            background-color: rgba(0, 0, 0, 0);
+            align-items: center;
+            justify-content: center;
+            z-index: 90000;
+        }
+
+        .eefljgmhgaidffapnppcmmafobefjece-9084cce4-615a-4b2c-9c9c-924ab24cd9a2-modal-content {
+            background-color: white;
+            padding: 20px;
+            border-radius: 10px;
+            box-shadow: 0 2px 8px rgba(0, 0, 0, 0.2);
+        }
+
+        /* The Modal (background) */
+        .eefljgmhgaidffapnppcmmafobefjece-9084cce4-615a-4b2c-9c9c-924ab24cd9a2-modal-2 {
+            display: block;
+            /* Hidden by default */
+            position: fixed;
+            /* Stay in place */
+            z-index: 9999;
+            /* Sit on top */
+            left: 0;
+            top: 0;
+            padding-top: 5%;
+            /* Location of the box */
+            width: 100%;
+            /* Full width */
+            height: 100%;
+            /* Full height */
+            background-color: rgb(0, 0, 0);
+            /* Fallback color */
+            background-color: rgba(0, 0, 0, 0.4);
+            /* Black w/ opacity */
+        }
+
+
+        /* Help Icon Styles */
+        .eefljgmhgaidffapnppcmmafobefjece-9084cce4-615a-4b2c-9c9c-924ab24cd9a2-bsr-help-icon {
+            width: 25px;
+            height: 25px;
+            border-radius: 100px;
+            margin: 5px;
+            line-height: 1.2;
+            border: 1px solid #ddd;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            cursor: pointer;
+            text-align: center;
+            color: rgb(255, 255, 255);
+            background-color: rgb(130, 87, 254);
+        }
+
+        .eefljgmhgaidffapnppcmmafobefjece-9084cce4-615a-4b2c-9c9c-924ab24cd9a2-circle-icon {
+            width: 25px;
+            height: 25px;
+            border-radius: 100px;
+            margin: 5px;
+            line-height: 1.2;
+            border: 1px solid transparent;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            cursor: pointer;
+            color: black;
+        }
+
+        .eefljgmhgaidffapnppcmmafobefjece-9084cce4-615a-4b2c-9c9c-924ab24cd9a2-show {
+            display: block;
+        }
+
+        .eefljgmhgaidffapnppcmmafobefjece-9084cce4-615a-4b2c-9c9c-924ab24cd9a2-hide {
+            display: none;
+        }
+
+        .eefljgmhgaidffapnppcmmafobefjece-9084cce4-615a-4b2c-9c9c-924ab24cd9a2-close-icon {
+            position: absolute;
+            top: 5px;
+            right: 5px;
+            width: 20px;
+            height: 20px;
+            border-radius: 100px;
+            line-height: 1.2;
+            border: 1px solid #ddd;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            cursor: pointer;
+        }
+
+        .eefljgmhgaidffapnppcmmafobefjece-9084cce4-615a-4b2c-9c9c-924ab24cd9a2-close-icon:hover {
+            background-color: #e32b2b;
+            color: white;
+        }
+
+        .eefljgmhgaidffapnppcmmafobefjece-9084cce4-615a-4b2c-9c9c-924ab24cd9a2-kdplogoword {
+            color: rgb(130, 87, 254);
+        }
+
+        .eefljgmhgaidffapnppcmmafobefjece-9084cce4-615a-4b2c-9c9c-924ab24cd9a2-bsr-td {
+            padding-left: 5px;
+            padding-right: 5px;
+            margin-left: 3px;
+            margin-right: 3px;
+            text-align: start;
+            color: #000;
+            border: 2px solid #E0D6FF;
+        }
+
+        .eefljgmhgaidffapnppcmmafobefjece-9084cce4-615a-4b2c-9c9c-924ab24cd9a2-main-table {
+            height: 170px;
+            width: 100%;
+            border-collapse: collapse;
+            border: 2px solid white;
+            color: white;
+            text-align: center;
+            font-size: 16px;
+        }
+
+        .eefljgmhgaidffapnppcmmafobefjece-9084cce4-615a-4b2c-9c9c-924ab24cd9a2-box-wrapper {
+            background: white;
+            color: black;
+            box-shadow: rgba(0, 0, 0, 0.2) 0px 4px 8px 0px;
+            border-radius: 10px;
+        }
+
+        .eefljgmhgaidffapnppcmmafobefjece-9084cce4-615a-4b2c-9c9c-924ab24cd9a2-top-box {
+            display: flex;
+            border-top-left-radius: 10px;
+            border-top-right-radius: 10px;
+            border: 2px solid rgb(130, 87, 254);
+            border-bottom: 1px solid rgb(130, 87, 254);
+            width: 100%;
+            height: 40px;
+            line-height: 40px;
+            text-align: start;
+        }
+
+        .eefljgmhgaidffapnppcmmafobefjece-9084cce4-615a-4b2c-9c9c-924ab24cd9a2-bottom-box {
+            display: flex;
+            border-bottom-left-radius: 10px;
+            border-bottom-right-radius: 10px;
+            border: 2px solid rgb(130, 87, 254);
+            border-top: 1px solid rgb(130, 87, 254);
+            width: 100%;
+            height: 40px;
+            line-height: 40px;
+            text-align: start;
+        }
+
+        .eefljgmhgaidffapnppcmmafobefjece-9084cce4-615a-4b2c-9c9c-924ab24cd9a2-inner-box {
+            display: flex;
+            border: 2px solid rgb(130, 87, 254);
+            border-bottom: 1px solid rgb(130, 87, 254);
+            border-top: 1px solid rgb(130, 87, 254);
+            width: 100%;
+            height: 40px;
+            line-height: 40px;
+            text-align: start;
+        }
+
+        .eefljgmhgaidffapnppcmmafobefjece-9084cce4-615a-4b2c-9c9c-924ab24cd9a2-left-box {
+            width: 80px;
+            border-right: 2px solid rgb(130, 87, 254);
+            margin: 0px 6px 0px 6px;
+        }
+
+        .eefljgmhgaidffapnppcmmafobefjece-9084cce4-615a-4b2c-9c9c-924ab24cd9a2-card {
+            perspective: 600px;
+            position: relative;
+        }
+
+        .eefljgmhgaidffapnppcmmafobefjece-9084cce4-615a-4b2c-9c9c-924ab24cd9a2-card.eefljgmhgaidffapnppcmmafobefjece-9084cce4-615a-4b2c-9c9c-924ab24cd9a2-is-switched .eefljgmhgaidffapnppcmmafobefjece-9084cce4-615a-4b2c-9c9c-924ab24cd9a2-card__wrapper {
+            animation: eefljgmhgaidffapnppcmmafobefjece-9084cce4-615a-4b2c-9c9c-924ab24cd9a2-rotate 0.5s linear both;
+        }
+
+        .eefljgmhgaidffapnppcmmafobefjece-9084cce4-615a-4b2c-9c9c-924ab24cd9a2-card__wrapper {
+            transform-style: preserve-3d;
+            animation: eefljgmhgaidffapnppcmmafobefjece-9084cce4-615a-4b2c-9c9c-924ab24cd9a2-rotate-inverse 0.5s linear both;
+        }
+
+        .eefljgmhgaidffapnppcmmafobefjece-9084cce4-615a-4b2c-9c9c-924ab24cd9a2-card__side {
+            backface-visibility: hidden;
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+        }
+
+        .eefljgmhgaidffapnppcmmafobefjece-9084cce4-615a-4b2c-9c9c-924ab24cd9a2-card__side.eefljgmhgaidffapnppcmmafobefjece-9084cce4-615a-4b2c-9c9c-924ab24cd9a2-is-active {
+            position: static;
+        }
+
+        .eefljgmhgaidffapnppcmmafobefjece-9084cce4-615a-4b2c-9c9c-924ab24cd9a2-card__side--back {
+            transform: rotateY(180deg);
+        }
+
+        @keyframes eefljgmhgaidffapnppcmmafobefjece-9084cce4-615a-4b2c-9c9c-924ab24cd9a2-rotate {
+            0% {
+                transform: rotateY(0);
+            }
+
+            70% {
+                transform: rotateY(200deg);
+            }
+
+            100% {
+                transform: rotateY(180deg);
+            }
+        }
+
+        @keyframes eefljgmhgaidffapnppcmmafobefjece-9084cce4-615a-4b2c-9c9c-924ab24cd9a2-rotate-inverse {
+            0% {
+                transform: rotateY(180deg);
+            }
+
+            70% {
+                transform: rotateY(-20deg);
+            }
+
+            100% {
+                transform: rotateY(0);
+            }
+        }
+
+        .eefljgmhgaidffapnppcmmafobefjece-9084cce4-615a-4b2c-9c9c-924ab24cd9a2-card {}
+
+        .eefljgmhgaidffapnppcmmafobefjece-9084cce4-615a-4b2c-9c9c-924ab24cd9a2-card__side {}
+
+        .eefljgmhgaidffapnppcmmafobefjece-9084cce4-615a-4b2c-9c9c-924ab24cd9a2-card__side--back {}
+
+
+        .eefljgmhgaidffapnppcmmafobefjece-9084cce4-615a-4b2c-9c9c-924ab24cd9a2-tooltip {
+            position: relative;
+            display: inline-block;
+        }
+
+        .eefljgmhgaidffapnppcmmafobefjece-9084cce4-615a-4b2c-9c9c-924ab24cd9a2-tooltip .eefljgmhgaidffapnppcmmafobefjece-9084cce4-615a-4b2c-9c9c-924ab24cd9a2-tooltiptext {
+            visibility: hidden;
+            min-width: max-content;
+            background-color: white;
+            color: black;
+            text-align: center;
+            border-radius: 6px;
+            padding: 8px;
+
+            /* Position the tooltip */
+            position: absolute;
+            z-index: 1;
+            top: 100%;
+            left: 50%;
+            margin-left: -60px;
+            box-shadow: 0 0 5px rgba(0, 0, 0, 0.1);
+        }
+
+        .eefljgmhgaidffapnppcmmafobefjece-9084cce4-615a-4b2c-9c9c-924ab24cd9a2-tooltip:hover .eefljgmhgaidffapnppcmmafobefjece-9084cce4-615a-4b2c-9c9c-924ab24cd9a2-tooltiptext {
+            visibility: visible;
+        }
+
+        .eefljgmhgaidffapnppcmmafobefjece-9084cce4-615a-4b2c-9c9c-924ab24cd9a2-text-btn {
+            border: none;
+            background-color: inherit;
+            margin: 0 8px;
+            padding: 0;
+            font-size: 16px;
+            font-wight: 600;
+            cursor: pointer;
+            display: inline-block;
+            text-decoration: underline;
+        }
+
+        .eefljgmhgaidffapnppcmmafobefjece-9084cce4-615a-4b2c-9c9c-924ab24cd9a2-text-btn:hover {
+            background-image: linear-gradient(270.09deg, #6b49fc -13.64%, #de85ff 86.14%, #e26ff1 106.56%);
+            -webkit-background-clip: text;
+            background-clip: text;
+            color: transparent;
+            text-decoration: none;
+        }
+
+        .eefljgmhgaidffapnppcmmafobefjece-9084cce4-615a-4b2c-9c9c-924ab24cd9a2-text-btn.active {
+            background-image: linear-gradient(270.09deg, #6b49fc -13.64%, #de85ff 86.14%, #e26ff1 106.56%);
+            -webkit-background-clip: text;
+            background-clip: text;
+            color: transparent;
+            text-decoration: none;
+        }
+
+
+
+        /* Safari */
+        @-webkit-keyframes eefljgmhgaidffapnppcmmafobefjece-9084cce4-615a-4b2c-9c9c-924ab24cd9a2-spin {
+            0% {
+                -webkit-transform: rotate(0deg);
+            }
+
+            100% {
+                -webkit-transform: rotate(360deg);
+            }
+        }
+
+        @keyframes eefljgmhgaidffapnppcmmafobefjece-9084cce4-615a-4b2c-9c9c-924ab24cd9a2-spin {
+            0% {
+                transform: rotate(0deg);
+            }
+
+            100% {
+                transform: rotate(360deg);
+            }
+        }
+
+        .eefljgmhgaidffapnppcmmafobefjece-9084cce4-615a-4b2c-9c9c-924ab24cd9a2-loader {
+            border: 16px solid #f3f3f3;
+            /* Light grey */
+            border-top: 16px solid #6b49fc;
+            /* Dark Green */
+            border-radius: 50%;
+            width: 200px;
+            height: 200px;
+            animation: eefljgmhgaidffapnppcmmafobefjece-9084cce4-615a-4b2c-9c9c-924ab24cd9a2-spinloader 2s linear infinite;
+        }
+
+        .eefljgmhgaidffapnppcmmafobefjece-9084cce4-615a-4b2c-9c9c-924ab24cd9a2-loader img {
+            padding: 40px;
+            animation: eefljgmhgaidffapnppcmmafobefjece-9084cce4-615a-4b2c-9c9c-924ab24cd9a2-spinlogo 2s linear infinite;
+            width: 200px;
+            height: 168px;
+        }
+
+        @keyframes eefljgmhgaidffapnppcmmafobefjece-9084cce4-615a-4b2c-9c9c-924ab24cd9a2-spinloader {
+            0% {
+                transform: rotate(0deg);
+            }
+
+            100% {
+                transform: rotate(360deg);
+            }
+        }
+
+        @keyframes eefljgmhgaidffapnppcmmafobefjece-9084cce4-615a-4b2c-9c9c-924ab24cd9a2-spinlogo {
+            0% {
+                transform: rotate(360deg);
+            }
+
+            100% {
+                transform: rotate(0deg);
+            }
+        }
+
+        .eefljgmhgaidffapnppcmmafobefjece-9084cce4-615a-4b2c-9c9c-924ab24cd9a2-gradient-btn {
+            background-image: linear-gradient(270.09deg, #6b49fc -13.64%, #de85ff 86.14%, #e26ff1 106.56%);
+            color: white;
+            border: none;
+            padding: 0;
+            font-size: 16px;
+            font-wight: 600;
+            cursor: pointer;
+            display: inline-block;
+            width: fit-content;
+            padding: 8px;
+            border-radius: 8px;
+        }
+
+        .eefljgmhgaidffapnppcmmafobefjece-9084cce4-615a-4b2c-9c9c-924ab24cd9a2-gradient-btn:hover {
+            background-position: right center;
+        }
+
+        .eefljgmhgaidffapnppcmmafobefjece-9084cce4-615a-4b2c-9c9c-924ab24cd9a2-deep-view-modal-nav-bar {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 20px;
+        }
+
+        .eefljgmhgaidffapnppcmmafobefjece-9084cce4-615a-4b2c-9c9c-924ab24cd9a2-deep-view-modal-nav-bar-search input {
+            width: 20rem;
+            height: 40px;
+            border-radius: 20px;
+            border: 1px solid #ccc;
+            padding: 0 10px;
+            font-size: 14px;
+        }
+
+        .eefljgmhgaidffapnppcmmafobefjece-9084cce4-615a-4b2c-9c9c-924ab24cd9a2-deep-view-modal-nav-bar-search input:focus {
+            outline: none;
+        }
+
+        .eefljgmhgaidffapnppcmmafobefjece-9084cce4-615a-4b2c-9c9c-924ab24cd9a2-rounded-btn {
+            width: 40px;
+            height: 40px;
+            border-radius: 20px;
+            border: 1px solid #ccc;
+            background-color: #fff;
+            cursor: pointer;
+        }
+
+        .eefljgmhgaidffapnppcmmafobefjece-9084cce4-615a-4b2c-9c9c-924ab24cd9a2-rounded-btn:hover {
+            background-color: #ccc;
+        }
+
+        .eefljgmhgaidffapnppcmmafobefjece-9084cce4-615a-4b2c-9c9c-924ab24cd9a2-rounded-btn:active {
+            background-color: #aaa;
+        }
+
+        .eefljgmhgaidffapnppcmmafobefjece-9084cce4-615a-4b2c-9c9c-924ab24cd9a2-deep-icon {
+            width: 40px;
+            height: 40px;
+            border-radius: 20px;
+            border: 1px solid #ccc;
+            background-color: #fff;
+            cursor: pointer;
+        }
+
+        .eefljgmhgaidffapnppcmmafobefjece-9084cce4-615a-4b2c-9c9c-924ab24cd9a2-icon-text {
+            color: rgb(130, 87, 254);
+        }
+
+        #eefljgmhgaidffapnppcmmafobefjece-9084cce4-615a-4b2c-9c9c-924ab24cd9a2-scrollable-list {
+            max-height: 50vh;
+            min-height: 50vh;
+            overflow: auto;
+        }
+
+        .eefljgmhgaidffapnppcmmafobefjece-9084cce4-615a-4b2c-9c9c-924ab24cd9a2-deep-view-modal-nav-bar-tabs {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 20px;
+        }
+
+        .eefljgmhgaidffapnppcmmafobefjece-9084cce4-615a-4b2c-9c9c-924ab24cd9a2-tablinks {
+            background-color: #f2f2f2;
+            color: black;
+            padding: 8px 16px;
+            width: 100%;
+            border: none;
+            text-align: left;
+            cursor: pointer;
+            transition: 0.3s;
+        }
+
+        .eefljgmhgaidffapnppcmmafobefjece-9084cce4-615a-4b2c-9c9c-924ab24cd9a2-tablinks:hover {
+            background-color: #ddd;
+        }
+
+        .eefljgmhgaidffapnppcmmafobefjece-9084cce4-615a-4b2c-9c9c-924ab24cd9a2-tablinks.active {
+            background-color: #ccc;
+        }
+
+        .eefljgmhgaidffapnppcmmafobefjece-9084cce4-615a-4b2c-9c9c-924ab24cd9a2-productCard {
+            border: 1px solid black;
+            padding: 8px;
+            margin-bottom: 8px;
+            font-family: "Nunito Sans", "--apple-system", BlinkMacSystemFont, "Segoe UI", Roboto, Oxygen, Ubuntu, Cantarell, "Open Sans", "Helvetica Neue", sans-serif;
+            position: relative;
+            border-radius: 4px;
+            border: 1px solid rgb(217, 224, 232);
+            background-color: rgb(255, 255, 255);
+            max-width: 400px;
+            display: block;
+            grid-template-columns: 207px 200px;
+            gap: 8px;
+            direction: ltr;
+            display: flex !important;
+            flex-direction: column !important;
+            text-align: start;
+        }
+
+        .eefljgmhgaidffapnppcmmafobefjece-9084cce4-615a-4b2c-9c9c-924ab24cd9a2-cardAsinDiv {
+            font-stretch: normal;
+            font-style: normal;
+            letter-spacing: normal;
+            margin: 0px;
+            padding: 0px;
+            text-transform: none;
+            font-size: 16px;
+            line-height: 24px;
+            font-weight: 700;
+            color: rgb(19, 25, 31);
+            display: flex;
+        }
+
+        .eefljgmhgaidffapnppcmmafobefjece-9084cce4-615a-4b2c-9c9c-924ab24cd9a2-categoryDiv {
+            font-stretch: normal;
+            font-style: normal;
+            font-weight: normal;
+            letter-spacing: normal;
+            margin: 0px;
+            padding: 0px;
+            text-transform: none;
+            font-size: 14px;
+            line-height: 30px;
+            /*color: rgb(43, 57, 72);*/
+            white-space: nowrap;
+            display: flex;
+            -webkit-box-align: center;
+            align-items: center;
+            color: rgb(0, 129, 255) !important;
+        }
+
+        .eefljgmhgaidffapnppcmmafobefjece-9084cce4-615a-4b2c-9c9c-924ab24cd9a2-restCardDataDiv {
+            display: flex;
+            flex-flow: wrap;
+            gap: 8px;
+            -webkit-box-pack: justify;
+            justify-content: space-between;
+        }
+
+        .eefljgmhgaidffapnppcmmafobefjece-9084cce4-615a-4b2c-9c9c-924ab24cd9a2-sales {
+            display: flex;
+            -webkit-box-pack: justify;
+            justify-content: space-between;
+            gap: 4px;
+            /*flex-direction: column;*/
+        }
+
+        .eefljgmhgaidffapnppcmmafobefjece-9084cce4-615a-4b2c-9c9c-924ab24cd9a2-salesVale {
+            flex-direction: column;
+        }
+
+        .eefljgmhgaidffapnppcmmafobefjece-9084cce4-615a-4b2c-9c9c-924ab24cd9a2-product-details-popup-card {
+            position: fixed;
+            display: none;
+            z-index: 9999;
+            background: white;
+            width: fit-content;
+            height: fit-content;
+            top: 40px;
+            right: 20px;
+            padding: 8px;
+            box-shadow: 0 10px 15px -3px rgb(0 0 0 / 0.1), 0 4px 6px -4px rgb(0 0 0 / 0.1);
+            border-radius: 8px;
+        }
+
+        .eefljgmhgaidffapnppcmmafobefjece-9084cce4-615a-4b2c-9c9c-924ab24cd9a2-action-div {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            flex-wrap: wrap;
+            width: 100%;
+        }
+
+        .eefljgmhgaidffapnppcmmafobefjece-9084cce4-615a-4b2c-9c9c-924ab24cd9a2-mui-white-btn {
+            background-color: #fff !important;
+            color: #047cfe !important;
+            border: 1px solid #dde0e3;
+            padding: 4px 8px;
+            font-size: 16px;
+            cursor: pointer;
+            border-radius: 4px;
+            text-align: center;
+            text-decoration: none;
+        }
+
+        .eefljgmhgaidffapnppcmmafobefjece-9084cce4-615a-4b2c-9c9c-924ab24cd9a2-mui-white-btn:hover {
+            background-color: #f0f0f0;
+        }
+
+        .eefljgmhgaidffapnppcmmafobefjece-9084cce4-615a-4b2c-9c9c-924ab24cd9a2-mui-purple-btn {
+            background-color: rgb(130, 87, 254);
+            color: white !important;
+            padding: 8px 28px;
+            font-size: 16px;
+            cursor: pointer;
+            border-radius: 16px;
+            text-align: center;
+            box-shadow: 0px 3px 1px -2px rgba(0, 0, 0, 0.2), 0px 2px 2px 0px rgba(0, 0, 0, 0.14), 0px 1px 5px 0px rgba(0, 0, 0, 0.12);
+        }
+
+        .eefljgmhgaidffapnppcmmafobefjece-9084cce4-615a-4b2c-9c9c-924ab24cd9a2-mui-purple-btn:hover {
+            background-color: rgb(101 48 254);
+        }
+
+        .eefljgmhgaidffapnppcmmafobefjece-9084cce4-615a-4b2c-9c9c-924ab24cd9a2-mui-purple-btn:active {
+            background-color: rgb(101 48 254);
+        }
+
+        .eefljgmhgaidffapnppcmmafobefjece-9084cce4-615a-4b2c-9c9c-924ab24cd9a2-mui-purple-btn:disabled {
+            background-color: rgb(186 166 243);
+            color: #9e9e9e;
+            cursor: not-allowed;
+        }
+
+        .eefljgmhgaidffapnppcmmafobefjece-9084cce4-615a-4b2c-9c9c-924ab24cd9a2-prod-list-items {
+            font-stretch: normal;
+            font-style: normal;
+            font-weight: normal;
+            letter-spacing: normal;
+            margin: 0px;
+            padding: 0px;
+            text-transform: none;
+            font-size: 14px;
+            line-height: 18px;
+            color: rgb(43, 57, 72);
+            white-space: nowrap;
+            display: flex;
+            -webkit-box-align: center;
+            align-items: center;
+        }
+
+        .eefljgmhgaidffapnppcmmafobefjece-9084cce4-615a-4b2c-9c9c-924ab24cd9a2-list-items-a {
+            color: #047cfe !important;
+            margin-right: 4px;
+            text-overflow: ellipsis;
+            overflow: hidden;
+            text-align: center;
+        }
+
+        .eefljgmhgaidffapnppcmmafobefjece-9084cce4-615a-4b2c-9c9c-924ab24cd9a2-floating-menu-icon {
+            display: flex;
+            position: fixed;
+            bottom: 90px;
+            right: 0px;
+            z-index: 999;
+            color: #212121;
+            background: white;
+            box-shadow: rgba(103, 132, 162, 0.08) 0px 2px 3px, rgba(103, 132, 162, 0.16) 0px 1px 8px;
+            border-radius: 6px 0px 0px 6px;
+            cursor: pointer;
+        }
+
+        .eefljgmhgaidffapnppcmmafobefjece-9084cce4-615a-4b2c-9c9c-924ab24cd9a2-floating-menu-item {
+            display: flex;
+            flex-wrap: nowrap;
+            align-items: center;
+            font-stretch: normal;
+            font-style: normal;
+            font-weight: normal;
+            letter-spacing: normal;
+            text-transform: none;
+            font-size: 16px;
+            line-height: 24px;
+            color: #212121 !important;
+            fill: #212121;
+            gap: 8px;
+            border-radius: 6px;
+            background-color: rgb(242, 245, 247);
+            padding: 12px 16px;
+            cursor: pointer;
+        }
+
+        .eefljgmhgaidffapnppcmmafobefjece-9084cce4-615a-4b2c-9c9c-924ab24cd9a2-floating-menu-item svg {
+            width: 24px;
+            height: 24px;
+            fill: #212121;
+        }
+
+        .eefljgmhgaidffapnppcmmafobefjece-9084cce4-615a-4b2c-9c9c-924ab24cd9a2-floating-menu-item path {
+            fill: #212121;
+        }
+
+        .eefljgmhgaidffapnppcmmafobefjece-9084cce4-615a-4b2c-9c9c-924ab24cd9a2-floating-menu-item a {
+            color: #212121 !important;
+        }
+
+        .eefljgmhgaidffapnppcmmafobefjece-9084cce4-615a-4b2c-9c9c-924ab24cd9a2-floating-menu-item:hover {
+            background-color: rgb(230, 236, 240);
+        }
+
+        .eefljgmhgaidffapnppcmmafobefjece-9084cce4-615a-4b2c-9c9c-924ab24cd9a2-title {
+            font-size: 16px;
+            font-weight: 600;
+            color: #212121;
+            margin: 16px 0px 16px 16px;
+            padding: 0;
+            margin: 0;
+            width: max-content;
+        }
+
+        .eefljgmhgaidffapnppcmmafobefjece-9084cce4-615a-4b2c-9c9c-924ab24cd9a2-subtitle {
+            font-size: 14px;
+            font-weight: 400;
+            color: #212121;
+            padding: 0;
+            margin: 0;
+            width: max-content;
+        }
+
+
+
+        .eefljgmhgaidffapnppcmmafobefjece-9084cce4-615a-4b2c-9c9c-924ab24cd9a2-purple-btn {
+            display: -webkit-inline-box;
+            display: -webkit-inline-flex;
+            display: -ms-inline-flexbox;
+            display: inline-flex;
+            -webkit-align-items: center;
+            -webkit-box-align: center;
+            -ms-flex-align: center;
+            align-items: center;
+            -webkit-box-pack: center;
+            -ms-flex-pack: center;
+            -webkit-justify-content: center;
+            justify-content: center;
+            position: relative;
+            box-sizing: border-box;
+            -webkit-tap-highlight-color: transparent;
+            background-color: transparent;
+            outline: 0;
+            border: 0;
+            margin: 0;
+            border-radius: 0;
+            padding: 0;
+            cursor: pointer;
+            -webkit-user-select: none;
+            -moz-user-select: none;
+            -ms-user-select: none;
+            user-select: none;
+            vertical-align: middle;
+            -moz-appearance: none;
+            -webkit-appearance: none;
+            -webkit-text-decoration: none;
+            text-decoration: none;
+            color: inherit;
+            font-family: '__Roboto_42e952', '__Roboto_Fallback_42e952';
+            font-weight: 500;
+            font-size: 0.9375rem;
+            line-height: 1.75;
+            text-transform: uppercase;
+            min-width: 64px;
+            padding: 8px 22px;
+            border-radius: 4px;
+            -webkit-transition: background-color 250ms cubic-bezier(0.4, 0, 0.2, 1) 0ms, box-shadow 250ms cubic-bezier(0.4, 0, 0.2, 1) 0ms, border-color 250ms cubic-bezier(0.4, 0, 0.2, 1) 0ms, color 250ms cubic-bezier(0.4, 0, 0.2, 1) 0ms;
+            transition: background-color 250ms cubic-bezier(0.4, 0, 0.2, 1) 0ms, box-shadow 250ms cubic-bezier(0.4, 0, 0.2, 1) 0ms, border-color 250ms cubic-bezier(0.4, 0, 0.2, 1) 0ms, color 250ms cubic-bezier(0.4, 0, 0.2, 1) 0ms;
+            color: #fff;
+            background-color: #7449fb;
+            box-shadow: 0px 3px 1px -2px rgba(0, 0, 0, 0.2), 0px 2px 2px 0px rgba(0, 0, 0, 0.14), 0px 1px 5px 0px rgba(0, 0, 0, 0.12);
+            width: 100%;
+            text-transform: none;
+            border-radius: 16px;
+            margin-top: 24px;
+            margin-bottom: 16px;
+        }
+
+        .eefljgmhgaidffapnppcmmafobefjece-9084cce4-615a-4b2c-9c9c-924ab24cd9a2-input-group {
+            position: relative;
+            margin-bottom: 16px;
+        }
+
+        .eefljgmhgaidffapnppcmmafobefjece-9084cce4-615a-4b2c-9c9c-924ab24cd9a2-input-group label {
+            position: absolute;
+            top: 9px;
+            left: 10px;
+            font-size: 16px;
+            color: #cdcdcd;
+            font-weight: normal;
+            padding: 2px 5px;
+            z-index: 5;
+            -webkit-transition: all 0.3s linear;
+            transition: all 0.3s linear;
+        }
+
+        .eefljgmhgaidffapnppcmmafobefjece-9084cce4-615a-4b2c-9c9c-924ab24cd9a2-input-group input {
+            outline: none;
+            display: block;
+            width: 100%;
+            height: 40px;
+            position: relative;
+            z-index: 3;
+            border: 1px solid #d9d9d9;
+            padding: 10px 10px;
+            background: #ffffff;
+            box-sizing: border-box;
+            font-wieght: 400;
+            -webkit-transition: 0.3s ease;
+            transition: 0.3s ease;
+            border-radius: 4px;
+        }
+
+
+        .eefljgmhgaidffapnppcmmafobefjece-9084cce4-615a-4b2c-9c9c-924ab24cd9a2-input-group.focused label {
+            background: #fff;
+            font-size: 12px;
+            top: -8px;
+            left: 5px;
+            color: #7449fb;
+        }
+
+        .eefljgmhgaidffapnppcmmafobefjece-9084cce4-615a-4b2c-9c9c-924ab24cd9a2-input-group span.validate-tooltip {
+            margin-top: 0;
+        }
+
+        .eefljgmhgaidffapnppcmmafobefjece-9084cce4-615a-4b2c-9c9c-924ab24cd9a2-wrapper {
+            width: 400px;
+            background: #fff;
+            margin: 20px auto;
+            min-height: 200px;
+            border: 1px solid #f3f3f3;
+        }
+
+        .eefljgmhgaidffapnppcmmafobefjece-9084cce4-615a-4b2c-9c9c-924ab24cd9a2-wrapper .eefljgmhgaidffapnppcmmafobefjece-9084cce4-615a-4b2c-9c9c-924ab24cd9a2-inner-warpper {
+            padding: 50px 30px 60px;
+            box-shadow: 1px 1.732px 10px 0px rgba(0, 0, 0, 0.063);
+        }
+
+        .eefljgmhgaidffapnppcmmafobefjece-9084cce4-615a-4b2c-9c9c-924ab24cd9a2-wrapper .eefljgmhgaidffapnppcmmafobefjece-9084cce4-615a-4b2c-9c9c-924ab24cd9a2-title {
+            margin-top: 0;
+        }
+
+        .eefljgmhgaidffapnppcmmafobefjece-9084cce4-615a-4b2c-9c9c-924ab24cd9a2-wrapper .eefljgmhgaidffapnppcmmafobefjece-9084cce4-615a-4b2c-9c9c-924ab24cd9a2-supporter {
+            margin-top: 10px;
+            font-size: 14px;
+            color: #8E8E8E;
+            cursor: pointer;
+        }
+
+        .wrongpass {
+            display: none;
+            color: rgb(215, 71, 71);
+            font-style: normal;
+            font-weight: 600;
+            font-size: 100%;
+            line-height: 33px;
+            margin: 0%;
+        }
+
+        .eefljgmhgaidffapnppcmmafobefjece-9084cce4-615a-4b2c-9c9c-924ab24cd9a2-loader-s {
+            border: 8px solid #f3f3f3;
+            border-top: 8px solid #3498db;
+            border-radius: 50%;
+            width: 40px;
+            height: 40px;
+            animation: eefljgmhgaidffapnppcmmafobefjece-9084cce4-615a-4b2c-9c9c-924ab24cd9a2-spin 2s linear infinite;
+            display: none;
+        }
+
+        @keyframes eefljgmhgaidffapnppcmmafobefjece-9084cce4-615a-4b2c-9c9c-924ab24cd9a2-spin {
+            0% {
+                transform: rotate(0deg);
+            }
+
+            100% {
+                transform: rotate(360deg);
+            }
+        }
+
+        .hide-loader {
+            display: none;
+        }
+
+        .pricing-table td {
+            padding: 8px;
+        }
+
+        .pricing-table th {
+            padding: 8px !important;
+        }
+
+        .eefljgmhgaidffapnppcmmafobefjece-9084cce4-615a-4b2c-9c9c-924ab24cd9a2-svg-inline {
+            height: 1em;
+        }
+
+        .price-popup {
+            cursor: pointer;
+        }
+
+        .eefljgmhgaidffapnppcmmafobefjece-9084cce4-615a-4b2c-9c9c-924ab24cd9a2-white-rounded-box {
+            background: white;
+            color: black;
+            padding: 8px;
+            border-radius: 16px;
+            border: 2px solid rgb(130, 87, 254);
+            box-shadow: rgba(0, 0, 0, 0.2) 0px 4px 8px 0px;
+        }
+
+        .eefljgmhgaidffapnppcmmafobefjece-9084cce4-615a-4b2c-9c9c-924ab24cd9a2-underline-text-hover:hover {
+            text-decoration: underline;
+        }
+
+        .eefljgmhgaidffapnppcmmafobefjece-9084cce4-615a-4b2c-9c9c-924ab24cd9a2-product-summary-card {
+            background: #fff;
+            border: 2px solid #e0d6ff;
+            border-radius: 18px;
+            box-shadow: 0 4px 12px rgba(196, 193, 246, 0.2);
+            padding: 16px;
+            min-width: 220px;
+            max-width: 320px;
+            margin: 0 auto;
+            width: 100%;
+        }
+
+        .eefljgmhgaidffapnppcmmafobefjece-9084cce4-615a-4b2c-9c9c-924ab24cd9a2-product-summary-card-header {
+            font-size: 18px;
+            font-weight: 600;
+            color: #222;
+            text-align: center;
+            margin-bottom: 16px;
+        }
+
+        .eefljgmhgaidffapnppcmmafobefjece-9084cce4-615a-4b2c-9c9c-924ab24cd9a2-product-summary-card-content {
+            font-size: 24px;
+            font-weight: 700;
+            color: #222;
+            text-align: center;
+            height: 60%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .eefljgmhgaidffapnppcmmafobefjece-9084cce4-615a-4b2c-9c9c-924ab24cd9a2-product-summary-rounded-btn {
+            border-radius: 24px;
+            padding: 8px 24px;
+            background-color: #ffffff;
+            text-decoration: none;
+            color: #047cfe !important;
+            font-size: 16px;
+            font-weight: 600;
+            text-align: center;
+            display: block;
+            border: 1px solid #e0d6ff;
+            box-shadow: 0 4px 16px 0 rgba(123, 97, 255, 0.07);
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            justify-content: center;
+        }
+
+        .eefljgmhgaidffapnppcmmafobefjece-9084cce4-615a-4b2c-9c9c-924ab24cd9a2-product-summary {
+            display: block;
+            background: radial-gradient(circle at 50% 50%, #F2F4FC, #DAD9FF);
+            padding: 16px;
+            border-radius: 24px;
+        }
+    </style>
+</head>
+
+<body data-titans-quick-view-extension-id="eefljgmhgaidffapnppcmmafobefjece">
+    <div id="root">
+        <div class="min-h-screen bg-white">
+            <nav class="fixed top-0 w-full z-50 transition-all duration-300 bg-black/90 backdrop-blur-sm"
+                style="transform: none;">
+                <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+                    <div class="flex justify-between items-center h-16">
+                        <div class="flex items-center space-x-2"><svg xmlns="http://www.w3.org/2000/svg" width="24"
+                                height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
+                                stroke-linecap="round" stroke-linejoin="round"
+                                class="lucide lucide-car h-8 w-8 text-yellow-400">
+                                <path
+                                    d="M19 17h2c.6 0 1-.4 1-1v-3c0-.9-.7-1.7-1.5-1.9C18.7 10.6 16 10 16 10s-1.3-1.4-2.2-2.3c-.5-.4-1.1-.7-1.8-.7H5c-.6 0-1.1.4-1.4.9l-1.4 2.9A3.7 3.7 0 0 0 2 12v4c0 .6.4 1 1 1h2">
+                                </path>
+                                <circle cx="7" cy="17" r="2"></circle>
+                                <path d="M9 17h6"></path>
+                                <circle cx="17" cy="17" r="2"></circle>
+                            </svg><img src="taxi-essaouira-marrakech.png" alt="Taxi Marrakech Essaouira"
+                                style="width: 75%;"></div>
+                        <div class="hidden md:flex space-x-8"><button
+                                class="text-white hover:text-yellow-400 font-medium transition-colors duration-200">Accueil</button><button
+                                class="text-white hover:text-yellow-400 font-medium transition-colors duration-200">Services</button><button
+                                class="text-white hover:text-yellow-400 font-medium transition-colors duration-200">Destinations</button><button
+                                class="text-white hover:text-yellow-400 font-medium transition-colors duration-200">Pourquoi
+                                nous</button><button
+                                class="text-white hover:text-yellow-400 font-medium transition-colors duration-200">Contact</button>
+                        </div>
+                        <div class="md:hidden"><button class="text-white hover:text-yellow-400"><svg
+                                    xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24"
+                                    fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"
+                                    stroke-linejoin="round" class="lucide lucide-menu h-6 w-6">
+                                    <line x1="4" x2="20" y1="12" y2="12"></line>
+                                    <line x1="4" x2="20" y1="6" y2="6"></line>
+                                    <line x1="4" x2="20" y1="18" y2="18"></line>
+                                </svg></button></div>
+                    </div>
+                </div>
+            </nav>
+            <main>
+                <section id="hero" class="relative min-h-screen flex items-center justify-center overflow-hidden">
+                    <div class="absolute inset-0 bg-cover bg-center bg-no-repeat"
+                        style="background-image: linear-gradient(rgba(0, 0, 0, 0.6), rgba(0, 0, 0, 0.6)), url(&quot;Taxi-Marrakech-Essaouira.jpg&quot;);">
+                    </div>
+                    <div class="relative z-10 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center text-white">
+                        <div class="space-y-8" style="opacity: 1; transform: none;">
+                            <h1 class="text-4xl md:text-6xl font-bold leading-tight">Taxi Transport Touristique<span
+                                    class="block text-2xl md:text-3xl text-yellow-400 mt-2">Transferts rapides et
+                                    confortables</span></h1>
+                            <p class="text-xl md:text-2xl max-w-3xl mx-auto leading-relaxed">Service de transport privé
+                                professionnel, Tours, Excursions entre Essaouira, Marrakech, Casablanca, Agadir et tous
+                                les aéroports du Maroc</p>
+                            <div class="grid grid-cols-1 md:grid-cols-3 gap-6 max-w-4xl mx-auto mt-12">
+                                <div class="bg-white/10 backdrop-blur-sm rounded-lg p-6 border border-white/20"
+                                    style="opacity: 1; transform: none;"><svg xmlns="http://www.w3.org/2000/svg"
+                                        width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                                        stroke-width="2" stroke-linecap="round" stroke-linejoin="round"
+                                        class="lucide lucide-map-pin h-8 w-8 text-yellow-400 mx-auto mb-3">
+                                        <path
+                                            d="M20 10c0 4.993-5.539 10.193-7.399 11.799a1 1 0 0 1-1.202 0C9.539 20.193 4 14.993 4 10a8 8 0 0 1 16 0">
+                                        </path>
+                                        <circle cx="12" cy="10" r="3"></circle>
+                                    </svg>
+                                    <h3 class="text-lg font-semibold mb-2">Toutes destinations</h3>
+                                    <p class="text-sm opacity-90">Aéroports, villes, excursions personnalisées</p>
+                                </div>
+                                <div class="bg-white/10 backdrop-blur-sm rounded-lg p-6 border border-white/20"
+                                    style="opacity: 1; transform: none;"><svg xmlns="http://www.w3.org/2000/svg"
+                                        width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                                        stroke-width="2" stroke-linecap="round" stroke-linejoin="round"
+                                        class="lucide lucide-clock h-8 w-8 text-yellow-400 mx-auto mb-3">
+                                        <circle cx="12" cy="12" r="10"></circle>
+                                        <polyline points="12 6 12 12 16 14"></polyline>
+                                    </svg>
+                                    <h3 class="text-lg font-semibold mb-2">Disponible 24/7</h3>
+                                    <p class="text-sm opacity-90">Service continu, réservation flexible</p>
+                                </div>
+                                <div class="bg-white/10 backdrop-blur-sm rounded-lg p-6 border border-white/20"
+                                    style="opacity: 1; transform: none;"><svg xmlns="http://www.w3.org/2000/svg"
+                                        width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                                        stroke-width="2" stroke-linecap="round" stroke-linejoin="round"
+                                        class="lucide lucide-users h-8 w-8 text-yellow-400 mx-auto mb-3">
+                                        <path d="M16 21v-2a4 4 0 0 0-4-4H6a4 4 0 0 0-4 4v2"></path>
+                                        <circle cx="9" cy="7" r="4"></circle>
+                                        <path d="M22 21v-2a4 4 0 0 0-3-3.87"></path>
+                                        <path d="M16 3.13a4 4 0 0 1 0 7.75"></path>
+                                    </svg>
+                                    <h3 class="text-lg font-semibold mb-2">Chauffeurs pros</h3>
+                                    <p class="text-sm opacity-90">Expérimentés, courtois et ponctuels</p>
+                                </div>
+                            </div>
+                            <div class="flex flex-col sm:flex-row gap-4 justify-center items-center mt-12"
+                                style="opacity: 1; transform: none;"><button
+                                    class="bg-yellow-400 hover:bg-yellow-500 text-black px-8 py-4 rounded-lg font-semibold text-lg transition-all duration-300 transform hover:scale-105 flex items-center space-x-2"><span>Réserver
+                                        maintenant</span><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24"
+                                        viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
+                                        stroke-linecap="round" stroke-linejoin="round"
+                                        class="lucide lucide-arrow-right h-5 w-5">
+                                        <path d="M5 12h14"></path>
+                                        <path d="m12 5 7 7-7 7"></path>
+                                    </svg></button><a href="https://wa.me/212648672832" target="_blank"
+                                    rel="noopener noreferrer"
+                                    class="bg-black hover:bg-gray-900 text-yellow-400 border-2 border-yellow-400 px-8 py-4 rounded-lg font-semibold text-lg transition-all duration-300 transform hover:scale-105">Contact
+                                    WhatsApp</a></div>
+                        </div>
+                    </div>
+                </section>
+                <section id="services" class="py-20 bg-black">
+                    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+                        <div class="text-center mb-16" style="opacity: 0; transform: translateY(30px);">
+                            <h2 class="text-4xl font-bold text-yellow-400 mb-4">Services Taxi Marrakech Essaouira</h2>
+                            <p class="text-xl text-white max-w-3xl mx-auto">Services Taxi Marrakech Essaouira pour les
+                                circuits ou les Transferts Aéroport qui vous permet de réserver en ligne sur place et
+                                d'effectuer des transferts depuis l'aéroport de Marrakech vers tous les hôtels situés
+                                dans le centre-ville de Marrakech et dans toute la région.</p>
+                        </div>
+                        <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
+                            <div class="bg-white rounded-xl shadow-lg hover:shadow-xl transition-all duration-300 transform hover:-translate-y-2 p-8"
+                                style="opacity: 0; transform: translateY(50px);">
+                                <div
+                                    class="w-16 h-16 rounded-full bg-yellow-50 text-yellow-600 border-yellow-200 border-2 flex items-center justify-center mb-6 mx-auto">
+                                    <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24"
+                                        fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"
+                                        stroke-linejoin="round" class="lucide lucide-plane h-8 w-8">
+                                        <path
+                                            d="M17.8 19.2 16 11l3.5-3.5C21 6 21.5 4 21 3c-1-.5-3 0-4.5 1.5L13 8 4.8 6.2c-.5-.1-.9.1-1.1.5l-.3.5c-.2.5-.1 1 .3 1.3L9 12l-2 3H4l-1 1 3 2 2 3 1-1v-3l3-2 3.5 5.3c.3.4.8.5 1.3.3l.5-.2c.4-.3.6-.7.5-1.2z">
+                                        </path>
+                                    </svg></div>
+                                <h3 class="text-xl font-bold text-gray-900 mb-3 text-center">Transferts Aéroports</h3>
+                                <p class="text-gray-600 mb-4 text-center">Navette privée entre aéroports et destinations
+                                </p>
+                                <ul class="space-y-2">
+                                    <li class="text-sm text-gray-500 flex items-center">
+                                        <div class="w-2 h-2 bg-yellow-600 rounded-full mr-3 flex-shrink-0"></div>
+                                        Aéroport Essaouira ⇄ Ville
+                                    </li>
+                                    <li class="text-sm text-gray-500 flex items-center">
+                                        <div class="w-2 h-2 bg-yellow-600 rounded-full mr-3 flex-shrink-0"></div>
+                                        Aéroport Marrakech ⇄ Essaouira
+                                    </li>
+                                    <li class="text-sm text-gray-500 flex items-center">
+                                        <div class="w-2 h-2 bg-yellow-600 rounded-full mr-3 flex-shrink-0"></div>Tous
+                                        aéroports du Maroc
+                                    </li>
+                                </ul>
+                            </div>
+                            <div class="bg-white rounded-xl shadow-lg hover:shadow-xl transition-all duration-300 transform hover:-translate-y-2 p-8"
+                                style="opacity: 0; transform: translateY(50px);">
+                                <div
+                                    class="w-16 h-16 rounded-full bg-black text-yellow-400 border-yellow-400 border-2 flex items-center justify-center mb-6 mx-auto">
+                                    <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24"
+                                        fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"
+                                        stroke-linejoin="round" class="lucide lucide-map-pin h-8 w-8">
+                                        <path
+                                            d="M20 10c0 4.993-5.539 10.193-7.399 11.799a1 1 0 0 1-1.202 0C9.539 20.193 4 14.993 4 10a8 8 0 0 1 16 0">
+                                        </path>
+                                        <circle cx="12" cy="10" r="3"></circle>
+                                    </svg></div>
+                                <h3 class="text-xl font-bold text-gray-900 mb-3 text-center">Transferts Inter-villes
+                                </h3>
+                                <p class="text-gray-600 mb-4 text-center">Liaisons directes entre les principales villes
+                                </p>
+                                <ul class="space-y-2">
+                                    <li class="text-sm text-gray-500 flex items-center">
+                                        <div class="w-2 h-2 bg-yellow-600 rounded-full mr-3 flex-shrink-0"></div>
+                                        Essaouira ⇄ Marrakech
+                                    </li>
+                                    <li class="text-sm text-gray-500 flex items-center">
+                                        <div class="w-2 h-2 bg-yellow-600 rounded-full mr-3 flex-shrink-0"></div>
+                                        Essaouira ⇄ Agadir
+                                    </li>
+                                    <li class="text-sm text-gray-500 flex items-center">
+                                        <div class="w-2 h-2 bg-yellow-600 rounded-full mr-3 flex-shrink-0"></div>
+                                        Essaouira ⇄ Casablanca
+                                    </li>
+                                </ul>
+                            </div>
+                            <div class="bg-white rounded-xl shadow-lg hover:shadow-xl transition-all duration-300 transform hover:-translate-y-2 p-8"
+                                style="opacity: 0; transform: translateY(50px);">
+                                <div
+                                    class="w-16 h-16 rounded-full bg-yellow-100 text-black border-yellow-300 border-2 flex items-center justify-center mb-6 mx-auto">
+                                    <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24"
+                                        fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"
+                                        stroke-linejoin="round" class="lucide lucide-car h-8 w-8">
+                                        <path
+                                            d="M19 17h2c.6 0 1-.4 1-1v-3c0-.9-.7-1.7-1.5-1.9C18.7 10.6 16 10 16 10s-1.3-1.4-2.2-2.3c-.5-.4-1.1-.7-1.8-.7H5c-.6 0-1.1.4-1.4.9l-1.4 2.9A3.7 3.7 0 0 0 2 12v4c0 .6.4 1 1 1h2">
+                                        </path>
+                                        <circle cx="7" cy="17" r="2"></circle>
+                                        <path d="M9 17h6"></path>
+                                        <circle cx="17" cy="17" r="2"></circle>
+                                    </svg></div>
+                                <h3 class="text-xl font-bold text-gray-900 mb-3 text-center">Excursions Privées</h3>
+                                <p class="text-gray-600 mb-4 text-center">Découverte personnalisée du Maroc</p>
+                                <ul class="space-y-2">
+                                    <li class="text-sm text-gray-500 flex items-center">
+                                        <div class="w-2 h-2 bg-yellow-600 rounded-full mr-3 flex-shrink-0"></div>
+                                        Circuits sur mesure
+                                    </li>
+                                    <li class="text-sm text-gray-500 flex items-center">
+                                        <div class="w-2 h-2 bg-yellow-600 rounded-full mr-3 flex-shrink-0"></div>Visites
+                                        guidées
+                                    </li>
+                                    <li class="text-sm text-gray-500 flex items-center">
+                                        <div class="w-2 h-2 bg-yellow-600 rounded-full mr-3 flex-shrink-0"></div>
+                                        Journées découverte
+                                    </li>
+                                </ul>
+                            </div>
+                            <div class="bg-white rounded-xl shadow-lg hover:shadow-xl transition-all duration-300 transform hover:-translate-y-2 p-8"
+                                style="opacity: 0; transform: translateY(50px);">
+                                <div
+                                    class="w-16 h-16 rounded-full bg-gray-900 text-yellow-400 border-yellow-400 border-2 flex items-center justify-center mb-6 mx-auto">
+                                    <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24"
+                                        fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"
+                                        stroke-linejoin="round" class="lucide lucide-clock h-8 w-8">
+                                        <circle cx="12" cy="12" r="10"></circle>
+                                        <polyline points="12 6 12 12 16 14"></polyline>
+                                    </svg></div>
+                                <h3 class="text-xl font-bold text-gray-900 mb-3 text-center">Mise à disposition</h3>
+                                <p class="text-gray-600 mb-4 text-center">Véhicule avec chauffeur à votre service</p>
+                                <ul class="space-y-2">
+                                    <li class="text-sm text-gray-500 flex items-center">
+                                        <div class="w-2 h-2 bg-yellow-600 rounded-full mr-3 flex-shrink-0"></div>
+                                        Demi-journée
+                                    </li>
+                                    <li class="text-sm text-gray-500 flex items-center">
+                                        <div class="w-2 h-2 bg-yellow-600 rounded-full mr-3 flex-shrink-0"></div>Journée
+                                        complète
+                                    </li>
+                                    <li class="text-sm text-gray-500 flex items-center">
+                                        <div class="w-2 h-2 bg-yellow-600 rounded-full mr-3 flex-shrink-0"></div>
+                                        Plusieurs jours
+                                    </li>
+                                </ul>
+                            </div>
+                        </div>
+                        <div class="text-center mt-16" style="opacity: 0; transform: translateY(30px);">
+                            <div
+                                class="bg-black text-yellow-400 rounded-2xl p-8 max-w-4xl mx-auto border-2 border-yellow-400">
+                                <h3 class="text-2xl font-bold mb-4 text-yellow-400">Réservation simple et rapide</h3>
+                                <p class="text-lg mb-6 text-white">Contactez-nous par WhatsApp, téléphone ou formulaire
+                                    pour un devis personnalisé</p>
+                                <div class="flex flex-col sm:flex-row gap-4 justify-center"><a
+                                        href="https://wa.me/212648672832" target="_blank" rel="noopener noreferrer"
+                                        class="bg-green-600 hover:bg-green-700 text-white px-6 py-3 rounded-lg font-semibold transition-colors duration-300">WhatsApp
+                                        Direct</a><button
+                                        class="bg-yellow-400 text-black hover:bg-yellow-500 px-6 py-3 rounded-lg font-semibold transition-colors duration-300">Demander
+                                        un devis</button></div>
+                            </div>
+                        </div>
+                        <div class="mt-16 bg-yellow-400 rounded-2xl p-8 max-w-4xl mx-auto"
+                            style="opacity: 0; transform: translateY(30px);">
+                            <div class="flex flex-col md:flex-row items-center space-y-6 md:space-y-0 md:space-x-8">
+                                <div class="flex-shrink-0"><img src="taxi-essaouira-marrakech.jpg"
+                                        alt="Taxi Marrakech Essaouira"
+                                        class="w-32 h-32 md:w-40 md:h-40 rounded-full object-cover border-4 border-black">
+                                </div>
+                                <div class="text-center md:text-left">
+                                    <h3 class="text-2xl font-bold text-black mb-4">Réservez une navette en ligne en
+                                        toute tranquillité 24/7</h3>
+                                    <p class="text-black text-lg mb-6">Vous recevez directement une estimation de prix
+                                        pendant les étapes de votre réservation. Nous mettons à votre disposition notre
+                                        service Taxi Marrakech Essaouira avec un large choix de véhicules standards
+                                        modernes et climatisés 24h/7.</p>
+                                    <div class="flex flex-col sm:flex-row gap-4 justify-center md:justify-start"><button
+                                            class="bg-black text-yellow-400 hover:bg-gray-900 px-6 py-3 rounded-lg font-semibold transition-colors duration-300">Réserver
+                                            votre Taxi à l'avance</button></div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </section>
+                <section id="destinations" class="py-20 bg-yellow-50">
+                    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+                        <div class="text-center mb-16" style="opacity: 0; transform: translateY(30px);">
+                            <h2 class="text-4xl font-bold text-gray-900 mb-4">Taxi Marrakech Essaouira, Agadir :
+                                découvrir les villes enchantées du Maroc</h2>
+                            <p class="text-xl text-gray-600 max-w-3xl mx-auto">Nous vous proposons les meilleurs
+                                transports équipés de tout le confort et de toutes les commodités à des prix
+                                compétitifs. Appelez-nous et nous serons là pour vous.</p>
+                        </div>
+                        <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
+                            <div class="bg-white rounded-xl shadow-lg hover:shadow-2xl transition-all duration-300 transform hover:-translate-y-2 overflow-hidden"
+                                style="opacity: 0; transform: translateY(50px);">
+                                <div class="relative h-48 overflow-hidden"><img
+                                        src="https://taxi-essaouira-transfert.com/assets/img/blog/essaouira2.jpg"
+                                        alt="Essaouira"
+                                        class="w-full h-full object-cover transition-transform duration-300 hover:scale-110">
+                                    <div
+                                        class="absolute top-4 right-4 bg-yellow-400 text-black px-3 py-1 rounded-full text-sm font-semibold">
+                                        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24"
+                                            viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
+                                            stroke-linecap="round" stroke-linejoin="round"
+                                            class="lucide lucide-clock h-4 w-4 inline mr-1">
+                                            <circle cx="12" cy="12" r="10"></circle>
+                                            <polyline points="12 6 12 12 16 14"></polyline>
+                                        </svg>Base de départ</div>
+                                </div>
+                                <div class="p-6">
+                                    <h3 class="text-xl font-bold text-gray-900 mb-2 flex items-center"><svg
+                                            xmlns="http://www.w3.org/2000/svg" width="24" height="24"
+                                            viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
+                                            stroke-linecap="round" stroke-linejoin="round"
+                                            class="lucide lucide-map-pin h-5 w-5 text-yellow-600 mr-2">
+                                            <path
+                                                d="M20 10c0 4.993-5.539 10.193-7.399 11.799a1 1 0 0 1-1.202 0C9.539 20.193 4 14.993 4 10a8 8 0 0 1 16 0">
+                                            </path>
+                                            <circle cx="12" cy="10" r="3"></circle>
+                                        </svg>Essaouira</h3>
+                                    <p class="text-gray-600 mb-4">Ville côtière historique, patrimoine UNESCO</p>
+                                    <div class="space-y-2">
+                                        <h4 class="font-semibold text-gray-900 flex items-center"><svg
+                                                xmlns="http://www.w3.org/2000/svg" width="24" height="24"
+                                                viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
+                                                stroke-linecap="round" stroke-linejoin="round"
+                                                class="lucide lucide-star h-4 w-4 text-yellow-500 mr-1">
+                                                <path
+                                                    d="M11.525 2.295a.53.53 0 0 1 .95 0l2.31 4.679a2.123 2.123 0 0 0 1.595 1.16l5.166.756a.53.53 0 0 1 .294.904l-3.736 3.638a2.123 2.123 0 0 0-.611 1.878l.882 5.14a.53.53 0 0 1-.771.56l-4.618-2.428a2.122 2.122 0 0 0-1.973 0L6.396 21.01a.53.53 0 0 1-.77-.56l.881-5.139a2.122 2.122 0 0 0-.611-1.879L2.16 9.795a.53.53 0 0 1 .294-.906l5.165-.755a2.122 2.122 0 0 0 1.597-1.16z">
+                                                </path>
+                                            </svg>Points d'intérêt</h4>
+                                        <ul class="space-y-1">
+                                            <li class="text-sm text-gray-500 flex items-center">
+                                                <div class="w-2 h-2 bg-yellow-600 rounded-full mr-3 flex-shrink-0">
+                                                </div>Médina historique
+                                            </li>
+                                            <li class="text-sm text-gray-500 flex items-center">
+                                                <div class="w-2 h-2 bg-yellow-600 rounded-full mr-3 flex-shrink-0">
+                                                </div>Port de pêche
+                                            </li>
+                                            <li class="text-sm text-gray-500 flex items-center">
+                                                <div class="w-2 h-2 bg-yellow-600 rounded-full mr-3 flex-shrink-0">
+                                                </div>Plages magnifiques
+                                            </li>
+                                        </ul>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="bg-white rounded-xl shadow-lg hover:shadow-2xl transition-all duration-300 transform hover:-translate-y-2 overflow-hidden"
+                                style="opacity: 0; transform: translateY(50px);">
+                                <div class="relative h-48 overflow-hidden"><img
+                                        src="https://taxi-essaouira-transfert.com/assets/img/blog/marrakech.jpg"
+                                        alt="Marrakech"
+                                        class="w-full h-full object-cover transition-transform duration-300 hover:scale-110">
+                                    <div
+                                        class="absolute top-4 right-4 bg-yellow-400 text-black px-3 py-1 rounded-full text-sm font-semibold">
+                                        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24"
+                                            viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
+                                            stroke-linecap="round" stroke-linejoin="round"
+                                            class="lucide lucide-clock h-4 w-4 inline mr-1">
+                                            <circle cx="12" cy="12" r="10"></circle>
+                                            <polyline points="12 6 12 12 16 14"></polyline>
+                                        </svg>2h30 de trajet</div>
+                                </div>
+                                <div class="p-6">
+                                    <h3 class="text-xl font-bold text-gray-900 mb-2 flex items-center"><svg
+                                            xmlns="http://www.w3.org/2000/svg" width="24" height="24"
+                                            viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
+                                            stroke-linecap="round" stroke-linejoin="round"
+                                            class="lucide lucide-map-pin h-5 w-5 text-yellow-600 mr-2">
+                                            <path
+                                                d="M20 10c0 4.993-5.539 10.193-7.399 11.799a1 1 0 0 1-1.202 0C9.539 20.193 4 14.993 4 10a8 8 0 0 1 16 0">
+                                            </path>
+                                            <circle cx="12" cy="10" r="3"></circle>
+                                        </svg>Marrakech</h3>
+                                    <p class="text-gray-600 mb-4">Ville impériale, cœur touristique du Maroc</p>
+                                    <div class="space-y-2">
+                                        <h4 class="font-semibold text-gray-900 flex items-center"><svg
+                                                xmlns="http://www.w3.org/2000/svg" width="24" height="24"
+                                                viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
+                                                stroke-linecap="round" stroke-linejoin="round"
+                                                class="lucide lucide-star h-4 w-4 text-yellow-500 mr-1">
+                                                <path
+                                                    d="M11.525 2.295a.53.53 0 0 1 .95 0l2.31 4.679a2.123 2.123 0 0 0 1.595 1.16l5.166.756a.53.53 0 0 1 .294.904l-3.736 3.638a2.123 2.123 0 0 0-.611 1.878l.882 5.14a.53.53 0 0 1-.771.56l-4.618-2.428a2.122 2.122 0 0 0-1.973 0L6.396 21.01a.53.53 0 0 1-.77-.56l.881-5.139a2.122 2.122 0 0 0-.611-1.879L2.16 9.795a.53.53 0 0 1 .294-.906l5.165-.755a2.122 2.122 0 0 0 1.597-1.16z">
+                                                </path>
+                                            </svg>Points d'intérêt</h4>
+                                        <ul class="space-y-1">
+                                            <li class="text-sm text-gray-500 flex items-center">
+                                                <div class="w-2 h-2 bg-yellow-600 rounded-full mr-3 flex-shrink-0">
+                                                </div>Place Jemaa el-Fna
+                                            </li>
+                                            <li class="text-sm text-gray-500 flex items-center">
+                                                <div class="w-2 h-2 bg-yellow-600 rounded-full mr-3 flex-shrink-0">
+                                                </div>Palais et jardins
+                                            </li>
+                                            <li class="text-sm text-gray-500 flex items-center">
+                                                <div class="w-2 h-2 bg-yellow-600 rounded-full mr-3 flex-shrink-0">
+                                                </div>Souks traditionnels
+                                            </li>
+                                        </ul>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="bg-white rounded-xl shadow-lg hover:shadow-2xl transition-all duration-300 transform hover:-translate-y-2 overflow-hidden"
+                                style="opacity: 0; transform: translateY(50px);">
+                                <div class="relative h-48 overflow-hidden"><img
+                                        src="https://taxi-essaouira-transfert.com/assets/img/blog/agadir2.jpg"
+                                        alt="Agadir"
+                                        class="w-full h-full object-cover transition-transform duration-300 hover:scale-110">
+                                    <div
+                                        class="absolute top-4 right-4 bg-yellow-400 text-black px-3 py-1 rounded-full text-sm font-semibold">
+                                        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24"
+                                            viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
+                                            stroke-linecap="round" stroke-linejoin="round"
+                                            class="lucide lucide-clock h-4 w-4 inline mr-1">
+                                            <circle cx="12" cy="12" r="10"></circle>
+                                            <polyline points="12 6 12 12 16 14"></polyline>
+                                        </svg>2h de trajet</div>
+                                </div>
+                                <div class="p-6">
+                                    <h3 class="text-xl font-bold text-gray-900 mb-2 flex items-center"><svg
+                                            xmlns="http://www.w3.org/2000/svg" width="24" height="24"
+                                            viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
+                                            stroke-linecap="round" stroke-linejoin="round"
+                                            class="lucide lucide-map-pin h-5 w-5 text-yellow-600 mr-2">
+                                            <path
+                                                d="M20 10c0 4.993-5.539 10.193-7.399 11.799a1 1 0 0 1-1.202 0C9.539 20.193 4 14.993 4 10a8 8 0 0 1 16 0">
+                                            </path>
+                                            <circle cx="12" cy="10" r="3"></circle>
+                                        </svg>Agadir</h3>
+                                    <p class="text-gray-600 mb-4">Station balnéaire moderne, plages de sable fin</p>
+                                    <div class="space-y-2">
+                                        <h4 class="font-semibold text-gray-900 flex items-center"><svg
+                                                xmlns="http://www.w3.org/2000/svg" width="24" height="24"
+                                                viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
+                                                stroke-linecap="round" stroke-linejoin="round"
+                                                class="lucide lucide-star h-4 w-4 text-yellow-500 mr-1">
+                                                <path
+                                                    d="M11.525 2.295a.53.53 0 0 1 .95 0l2.31 4.679a2.123 2.123 0 0 0 1.595 1.16l5.166.756a.53.53 0 0 1 .294.904l-3.736 3.638a2.123 2.123 0 0 0-.611 1.878l.882 5.14a.53.53 0 0 1-.771.56l-4.618-2.428a2.122 2.122 0 0 0-1.973 0L6.396 21.01a.53.53 0 0 1-.77-.56l.881-5.139a2.122 2.122 0 0 0-.611-1.879L2.16 9.795a.53.53 0 0 1 .294-.906l5.165-.755a2.122 2.122 0 0 0 1.597-1.16z">
+                                                </path>
+                                            </svg>Points d'intérêt</h4>
+                                        <ul class="space-y-1">
+                                            <li class="text-sm text-gray-500 flex items-center">
+                                                <div class="w-2 h-2 bg-yellow-600 rounded-full mr-3 flex-shrink-0">
+                                                </div>Plage d'Agadir
+                                            </li>
+                                            <li class="text-sm text-gray-500 flex items-center">
+                                                <div class="w-2 h-2 bg-yellow-600 rounded-full mr-3 flex-shrink-0">
+                                                </div>Marina moderne
+                                            </li>
+                                            <li class="text-sm text-gray-500 flex items-center">
+                                                <div class="w-2 h-2 bg-yellow-600 rounded-full mr-3 flex-shrink-0">
+                                                </div>Golf et loisirs
+                                            </li>
+                                        </ul>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="bg-white rounded-xl shadow-lg hover:shadow-2xl transition-all duration-300 transform hover:-translate-y-2 overflow-hidden"
+                                style="opacity: 0; transform: translateY(50px);">
+                                <div class="relative h-48 overflow-hidden"><img
+                                        src="https://taxi-essaouira-transfert.com/assets/img/blog/casa.jpg"
+                                        alt="Casablanca"
+                                        class="w-full h-full object-cover transition-transform duration-300 hover:scale-110">
+                                    <div
+                                        class="absolute top-4 right-4 bg-yellow-400 text-black px-3 py-1 rounded-full text-sm font-semibold">
+                                        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24"
+                                            viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
+                                            stroke-linecap="round" stroke-linejoin="round"
+                                            class="lucide lucide-clock h-4 w-4 inline mr-1">
+                                            <circle cx="12" cy="12" r="10"></circle>
+                                            <polyline points="12 6 12 12 16 14"></polyline>
+                                        </svg>4h de trajet</div>
+                                </div>
+                                <div class="p-6">
+                                    <h3 class="text-xl font-bold text-gray-900 mb-2 flex items-center"><svg
+                                            xmlns="http://www.w3.org/2000/svg" width="24" height="24"
+                                            viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
+                                            stroke-linecap="round" stroke-linejoin="round"
+                                            class="lucide lucide-map-pin h-5 w-5 text-yellow-600 mr-2">
+                                            <path
+                                                d="M20 10c0 4.993-5.539 10.193-7.399 11.799a1 1 0 0 1-1.202 0C9.539 20.193 4 14.993 4 10a8 8 0 0 1 16 0">
+                                            </path>
+                                            <circle cx="12" cy="10" r="3"></circle>
+                                        </svg>Casablanca</h3>
+                                    <p class="text-gray-600 mb-4">Capitale économique, architecture moderne</p>
+                                    <div class="space-y-2">
+                                        <h4 class="font-semibold text-gray-900 flex items-center"><svg
+                                                xmlns="http://www.w3.org/2000/svg" width="24" height="24"
+                                                viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
+                                                stroke-linecap="round" stroke-linejoin="round"
+                                                class="lucide lucide-star h-4 w-4 text-yellow-500 mr-1">
+                                                <path
+                                                    d="M11.525 2.295a.53.53 0 0 1 .95 0l2.31 4.679a2.123 2.123 0 0 0 1.595 1.16l5.166.756a.53.53 0 0 1 .294.904l-3.736 3.638a2.123 2.123 0 0 0-.611 1.878l.882 5.14a.53.53 0 0 1-.771.56l-4.618-2.428a2.122 2.122 0 0 0-1.973 0L6.396 21.01a.53.53 0 0 1-.77-.56l.881-5.139a2.122 2.122 0 0 0-.611-1.879L2.16 9.795a.53.53 0 0 1 .294-.906l5.165-.755a2.122 2.122 0 0 0 1.597-1.16z">
+                                                </path>
+                                            </svg>Points d'intérêt</h4>
+                                        <ul class="space-y-1">
+                                            <li class="text-sm text-gray-500 flex items-center">
+                                                <div class="w-2 h-2 bg-yellow-600 rounded-full mr-3 flex-shrink-0">
+                                                </div>Mosquée Hassan II
+                                            </li>
+                                            <li class="text-sm text-gray-500 flex items-center">
+                                                <div class="w-2 h-2 bg-yellow-600 rounded-full mr-3 flex-shrink-0">
+                                                </div>Corniche
+                                            </li>
+                                            <li class="text-sm text-gray-500 flex items-center">
+                                                <div class="w-2 h-2 bg-yellow-600 rounded-full mr-3 flex-shrink-0">
+                                                </div>Centre moderne
+                                            </li>
+                                        </ul>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="mt-16 bg-white rounded-2xl shadow-xl p-8 max-w-6xl mx-auto"
+                            style="opacity: 0; transform: translateY(30px);">
+                            <div class="grid grid-cols-1 lg:grid-cols-2 gap-8 items-center">
+                                <div>
+                                    <h3 class="text-2xl font-bold text-gray-900 mb-4">Transfert Marrakech-Essaouira :
+                                        réservez en ligne maintenant</h3>
+                                    <p class="text-gray-600 mb-6">Réservez votre taxi en ligne en quelques clics simples
+                                        et recevez une confirmation immédiate. Vous pouvez également nous contacter par
+                                        téléphone ou par e-mail pour réserver votre course. Besoin d'un taxi Essaouira,
+                                        à Marrakech ? Ne cherchez plus !</p>
+                                    <div class="bg-black text-yellow-400 p-4 rounded-lg">
+                                        <h4 class="font-bold mb-2">Taxi Marrakech Essaouira Aller Retour</h4>
+                                        <p class="text-sm text-white">Embarquez pour un voyage captivant à travers le
+                                            Maroc, de la vibrante ville de Marrakech à l'enchanteresse ville côtière
+                                            d'Essaouira.</p>
+                                    </div>
+                                </div>
+                                <div class="flex justify-center"><img
+                                        src="https://images.unsplash.com/photo-1544620347-c4fd4a3d5957?ixlib=rb-4.0.3&amp;auto=format&amp;fit=crop&amp;w=500&amp;q=80"
+                                        alt="Taxi Marrakech Essaouira service"
+                                        class="w-full max-w-md rounded-xl shadow-lg"></div>
+                            </div>
+                        </div>
+                        <div class="mt-16 text-center" style="opacity: 0; transform: translateY(30px);">
+                            <div
+                                class="bg-gradient-to-r from-black to-gray-900 text-yellow-400 rounded-2xl p-8 max-w-4xl mx-auto border-2 border-yellow-400">
+                                <h3 class="text-2xl font-bold mb-4">Autres destinations disponibles</h3>
+                                <p class="text-lg mb-6 text-white">Rabat, Fès, Ouarzazate, Merzouga... Nous desservons
+                                    tout le Maroc</p>
+                                <div class="flex flex-wrap justify-center gap-3"><span
+                                        class="bg-yellow-400/20 backdrop-blur-sm px-4 py-2 rounded-full text-sm font-medium text-yellow-400 border border-yellow-400/30">Rabat</span><span
+                                        class="bg-yellow-400/20 backdrop-blur-sm px-4 py-2 rounded-full text-sm font-medium text-yellow-400 border border-yellow-400/30">Fès</span><span
+                                        class="bg-yellow-400/20 backdrop-blur-sm px-4 py-2 rounded-full text-sm font-medium text-yellow-400 border border-yellow-400/30">Ouarzazate</span><span
+                                        class="bg-yellow-400/20 backdrop-blur-sm px-4 py-2 rounded-full text-sm font-medium text-yellow-400 border border-yellow-400/30">Merzouga</span><span
+                                        class="bg-yellow-400/20 backdrop-blur-sm px-4 py-2 rounded-full text-sm font-medium text-yellow-400 border border-yellow-400/30">Chefchaouen</span><span
+                                        class="bg-yellow-400/20 backdrop-blur-sm px-4 py-2 rounded-full text-sm font-medium text-yellow-400 border border-yellow-400/30">Tanger</span>
+                                </div><button
+                                    class="mt-6 bg-yellow-400 hover:bg-yellow-500 text-black px-8 py-3 rounded-lg font-bold transition-colors duration-300">Demander
+                                    votre destination</button>
+                            </div>
+                        </div>
+                    </div>
+                </section>
+                <section id="why-choose" class="py-20 bg-white">
+                    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+                        <div class="text-center mb-16" style="opacity: 0; transform: translateY(30px);">
+                            <h2 class="text-4xl font-bold text-gray-900 mb-4">Pourquoi nous choisir ?</h2>
+                            <p class="text-xl text-gray-600 max-w-3xl mx-auto">Notre engagement : vous offrir le
+                                meilleur service de transport privé au Maroc</p>
+                        </div>
+                        <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8 mb-16">
+                            <div class="bg-white rounded-xl shadow-lg hover:shadow-xl transition-all duration-300 transform hover:-translate-y-2 p-8"
+                                style="opacity: 0; transform: translateY(50px);">
+                                <div
+                                    class="w-16 h-16 rounded-full bg-green-50 text-green-600 border-green-200 border-2 flex items-center justify-center mb-6 mx-auto">
+                                    <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24"
+                                        fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"
+                                        stroke-linejoin="round" class="lucide lucide-shield h-8 w-8">
+                                        <path
+                                            d="M20 13c0 5-3.5 7.5-7.66 8.95a1 1 0 0 1-.67-.01C7.5 20.5 4 18 4 13V6a1 1 0 0 1 1-1c2 0 4.5-1.2 6.24-2.72a1.17 1.17 0 0 1 1.52 0C14.51 3.81 17 5 19 5a1 1 0 0 1 1 1z">
+                                        </path>
+                                    </svg></div>
+                                <h3 class="text-xl font-bold text-gray-900 mb-3 text-center">Sécurité garantie</h3>
+                                <p class="text-gray-600 text-center leading-relaxed">Véhicules entretenus, assurance
+                                    complète, chauffeurs expérimentés</p>
+                            </div>
+                            <div class="bg-white rounded-xl shadow-lg hover:shadow-xl transition-all duration-300 transform hover:-translate-y-2 p-8"
+                                style="opacity: 0; transform: translateY(50px);">
+                                <div
+                                    class="w-16 h-16 rounded-full bg-yellow-50 text-yellow-600 border-yellow-200 border-2 flex items-center justify-center mb-6 mx-auto">
+                                    <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24"
+                                        fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"
+                                        stroke-linejoin="round" class="lucide lucide-dollar-sign h-8 w-8">
+                                        <line x1="12" x2="12" y1="2" y2="22"></line>
+                                        <path d="M17 5H9.5a3.5 3.5 0 0 0 0 7h5a3.5 3.5 0 0 1 0 7H6"></path>
+                                    </svg></div>
+                                <h3 class="text-xl font-bold text-gray-900 mb-3 text-center">Prix compétitifs</h3>
+                                <p class="text-gray-600 text-center leading-relaxed">Tarifs transparents, pas de frais
+                                    cachés, devis gratuit</p>
+                            </div>
+                            <div class="bg-white rounded-xl shadow-lg hover:shadow-xl transition-all duration-300 transform hover:-translate-y-2 p-8"
+                                style="opacity: 0; transform: translateY(50px);">
+                                <div
+                                    class="w-16 h-16 rounded-full bg-black text-yellow-400 border-yellow-400 border-2 flex items-center justify-center mb-6 mx-auto">
+                                    <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24"
+                                        fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"
+                                        stroke-linejoin="round" class="lucide lucide-clock h-8 w-8">
+                                        <circle cx="12" cy="12" r="10"></circle>
+                                        <polyline points="12 6 12 12 16 14"></polyline>
+                                    </svg></div>
+                                <h3 class="text-xl font-bold text-gray-900 mb-3 text-center">Disponibilité 24/7</h3>
+                                <p class="text-gray-600 text-center leading-relaxed">Service continu, réservation
+                                    flexible, ponctualité assurée</p>
+                            </div>
+                            <div class="bg-white rounded-xl shadow-lg hover:shadow-xl transition-all duration-300 transform hover:-translate-y-2 p-8"
+                                style="opacity: 0; transform: translateY(50px);">
+                                <div
+                                    class="w-16 h-16 rounded-full bg-yellow-100 text-black border-yellow-300 border-2 flex items-center justify-center mb-6 mx-auto">
+                                    <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24"
+                                        fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"
+                                        stroke-linejoin="round" class="lucide lucide-users h-8 w-8">
+                                        <path d="M16 21v-2a4 4 0 0 0-4-4H6a4 4 0 0 0-4 4v2"></path>
+                                        <circle cx="9" cy="7" r="4"></circle>
+                                        <path d="M22 21v-2a4 4 0 0 0-3-3.87"></path>
+                                        <path d="M16 3.13a4 4 0 0 1 0 7.75"></path>
+                                    </svg></div>
+                                <h3 class="text-xl font-bold text-gray-900 mb-3 text-center">Chauffeurs professionnels
+                                </h3>
+                                <p class="text-gray-600 text-center leading-relaxed">Courtois, ponctuels, connaissant
+                                    parfaitement la région</p>
+                            </div>
+                            <div class="bg-white rounded-xl shadow-lg hover:shadow-xl transition-all duration-300 transform hover:-translate-y-2 p-8"
+                                style="opacity: 0; transform: translateY(50px);">
+                                <div
+                                    class="w-16 h-16 rounded-full bg-gray-900 text-yellow-400 border-yellow-400 border-2 flex items-center justify-center mb-6 mx-auto">
+                                    <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24"
+                                        fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"
+                                        stroke-linejoin="round" class="lucide lucide-car h-8 w-8">
+                                        <path
+                                            d="M19 17h2c.6 0 1-.4 1-1v-3c0-.9-.7-1.7-1.5-1.9C18.7 10.6 16 10 16 10s-1.3-1.4-2.2-2.3c-.5-.4-1.1-.7-1.8-.7H5c-.6 0-1.1.4-1.4.9l-1.4 2.9A3.7 3.7 0 0 0 2 12v4c0 .6.4 1 1 1h2">
+                                        </path>
+                                        <circle cx="7" cy="17" r="2"></circle>
+                                        <path d="M9 17h6"></path>
+                                        <circle cx="17" cy="17" r="2"></circle>
+                                    </svg></div>
+                                <h3 class="text-xl font-bold text-gray-900 mb-3 text-center">Véhicules confortables</h3>
+                                <p class="text-gray-600 text-center leading-relaxed">Flotte moderne, climatisation,
+                                    espace bagages généreux</p>
+                            </div>
+                            <div class="bg-white rounded-xl shadow-lg hover:shadow-xl transition-all duration-300 transform hover:-translate-y-2 p-8"
+                                style="opacity: 0; transform: translateY(50px);">
+                                <div
+                                    class="w-16 h-16 rounded-full bg-yellow-200 text-black border-yellow-400 border-2 flex items-center justify-center mb-6 mx-auto">
+                                    <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24"
+                                        fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"
+                                        stroke-linejoin="round" class="lucide lucide-star h-8 w-8">
+                                        <path
+                                            d="M11.525 2.295a.53.53 0 0 1 .95 0l2.31 4.679a2.123 2.123 0 0 0 1.595 1.16l5.166.756a.53.53 0 0 1 .294.904l-3.736 3.638a2.123 2.123 0 0 0-.611 1.878l.882 5.14a.53.53 0 0 1-.771.56l-4.618-2.428a2.122 2.122 0 0 0-1.973 0L6.396 21.01a.53.53 0 0 1-.77-.56l.881-5.139a2.122 2.122 0 0 0-.611-1.879L2.16 9.795a.53.53 0 0 1 .294-.906l5.165-.755a2.122 2.122 0 0 0 1.597-1.16z">
+                                        </path>
+                                    </svg></div>
+                                <h3 class="text-xl font-bold text-gray-900 mb-3 text-center">Service personnalisé</h3>
+                                <p class="text-gray-600 text-center leading-relaxed">écoute client, adaptabilité,
+                                    conseils touristiques</p>
+                            </div>
+                        </div>
+                        <div class="bg-white rounded-2xl shadow-xl p-8 mb-16"
+                            style="opacity: 0; transform: translateY(30px);">
+                            <h3 class="text-2xl font-bold text-gray-900 text-center mb-8">Nos chiffres parlent pour nous
+                            </h3>
+                            <div class="grid grid-cols-2 md:grid-cols-4 gap-8">
+                                <div class="text-center" style="opacity: 0; transform: scale(0.8);">
+                                    <div class="text-3xl md:text-4xl font-bold text-yellow-600 mb-2">500+</div>
+                                    <div class="text-gray-600 font-medium">Clients satisfaits</div>
+                                </div>
+                                <div class="text-center" style="opacity: 0; transform: scale(0.8);">
+                                    <div class="text-3xl md:text-4xl font-bold text-yellow-600 mb-2">5</div>
+                                    <div class="text-gray-600 font-medium">Années d'expérience</div>
+                                </div>
+                                <div class="text-center" style="opacity: 0; transform: scale(0.8);">
+                                    <div class="text-3xl md:text-4xl font-bold text-yellow-600 mb-2">24/7</div>
+                                    <div class="text-gray-600 font-medium">Service disponible</div>
+                                </div>
+                                <div class="text-center" style="opacity: 0; transform: scale(0.8);">
+                                    <div class="text-3xl md:text-4xl font-bold text-yellow-600 mb-2">100%</div>
+                                    <div class="text-gray-600 font-medium">Satisfaction client</div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="mb-16 bg-yellow-50 rounded-2xl p-8 max-w-6xl mx-auto border-2 border-yellow-200"
+                            style="opacity: 0; transform: translateY(30px);">
+                            <div class="grid grid-cols-1 lg:grid-cols-2 gap-8 items-center">
+                                <div>
+                                    <h3 class="text-2xl font-bold text-gray-900 mb-4">Taxi Marrakech Aéroport Essaouira
+                                    </h3>
+                                    <p class="text-gray-600 mb-6">Commencez votre aventure à Essaouira sans souci grâce
+                                        à notre service fiable de transfert depuis l'aéroport. Nos chauffeurs
+                                        expérimentés vous accueilleront à l'aéroport Marrakech Menara (RAK), vous
+                                        aideront à porter vos bagages et vous assureront un voyage confortable jusqu'à
+                                        votre destination à Essaouira.</p>
+                                    <div class="bg-black text-yellow-400 p-4 rounded-lg">
+                                        <p class="text-sm text-white">Choisissez notre service de taxi privé pour une
+                                            expérience directe et personnalisée adaptée à votre horaire. Voyagez dans le
+                                            confort et le style dans nos véhicules climatisés, équipés de suffisamment
+                                            d'espace pour les passagers et les bagages.</p>
+                                    </div>
+                                </div>
+                                <div class="flex justify-center"><img
+                                        src="https://taxi-essaouira-transfert.com/taxi-marrakech-essaouira-skoda.png"
+                                        alt="Taxi aéroport Marrakech Essaouira"
+                                        class="w-full max-w-md rounded-xl shadow-lg"></div>
+                            </div>
+                        </div>
+                        <div class="text-center" style="opacity: 0; transform: translateY(30px);">
+                            <div
+                                class="bg-gradient-to-r from-black to-gray-900 text-yellow-400 rounded-2xl p-8 max-w-4xl mx-auto border-2 border-yellow-400">
+                                <h3 class="text-2xl font-bold mb-4">Prêt à voyager avec nous ?</h3>
+                                <p class="text-lg mb-6 text-white">Rejoignez nos centaines de clients satisfaits et
+                                    découvrez la différence</p>
+                                <div class="flex flex-col sm:flex-row gap-4 justify-center"><a
+                                        href="https://wa.me/212648672832" target="_blank" rel="noopener noreferrer"
+                                        class="bg-yellow-400 hover:bg-yellow-500 text-black px-8 py-3 rounded-lg font-semibold transition-colors duration-300">Contact
+                                        immédiat</a><button
+                                        class="bg-yellow-400 hover:bg-yellow-500 text-black px-8 py-3 rounded-lg font-semibold transition-colors duration-300">Demander
+                                        un devis</button></div>
+                            </div>
+                        </div>
+                    </div>
+                </section>
+                <section id="contact" class="py-20 bg-black">
+                    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+                        <div class="text-center mb-16" style="opacity: 0; transform: translateY(30px);">
+                            <h2 class="text-4xl font-bold text-yellow-400 mb-4">Contact &amp; Devis Gratuit</h2>
+                            <p class="text-xl text-white max-w-3xl mx-auto">Contactez-nous pour un devis personnalisé et
+                                réservez votre transport privé</p>
+                        </div>
+                        <div class="mb-12 bg-yellow-400 rounded-2xl p-8 max-w-6xl mx-auto"
+                            style="opacity: 0; transform: translateY(30px);">
+                            <div class="grid grid-cols-1 lg:grid-cols-2 gap-8 items-center">
+                                <div>
+                                    <h3 class="text-2xl font-bold text-black mb-4">Véhicules pour assurer les
+                                        déplacements vers toutes les directions</h3>
+                                    <p class="text-black mb-6">Taxi Marrakech Essaouira est une compagnie de taxi
+                                        professionnelle qui propose des services de transport fiables et confortables
+                                        entre Marrakech et Essaouira. Nous disposons d'une flotte de véhicules modernes
+                                        et bien entretenus conduits par des chauffeurs expérimentés et sympathiques.</p>
+                                    <div class="bg-black text-yellow-400 p-4 rounded-lg">
+                                        <p class="text-sm text-white">Nous offrons des tarifs compétitifs et nos
+                                            services peuvent être réservés à l'avance en ligne ou par téléphone avec
+                                            professionnalisme et respect réservation de taxi et vtc.</p>
+                                    </div>
+                                </div>
+                                <div class="flex justify-center"><img src="taxi-essaouira-marrakech.jpg"
+                                        alt="Flotte taxi Marrakech Essaouira"
+                                        class="w-full max-w-sm rounded-xl shadow-lg"></div>
+                            </div>
+                        </div>
+                        <div class="grid grid-cols-1 lg:grid-cols-2 gap-12">
+                            <div style="opacity: 0; transform: translateX(-50px);">
+                                <div class="bg-gray-900 rounded-2xl shadow-xl p-8 border border-yellow-400">
+                                    <h3 class="text-2xl font-bold text-yellow-400 mb-6">Demande de devis</h3>
+                                    <form class="space-y-6">
+                                        <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+                                            <div><label class="block text-sm font-medium text-white mb-2">Nom complet
+                                                    *</label><input type="text" name="name" required=""
+                                                    class="w-full px-4 py-3 border border-gray-600 bg-gray-800 text-white rounded-lg focus:ring-2 focus:ring-yellow-400 focus:border-transparent transition-all duration-200"
+                                                    placeholder="Votre nom" value=""></div>
+                                            <div><label class="block text-sm font-medium text-white mb-2">Email
+                                                    *</label><input type="email" name="email" required=""
+                                                    class="w-full px-4 py-3 border border-gray-600 bg-gray-800 text-white rounded-lg focus:ring-2 focus:ring-yellow-400 focus:border-transparent transition-all duration-200"
+                                                    placeholder="votre@email.com" value=""></div>
+                                        </div>
+                                        <div><label class="block text-sm font-medium text-white mb-2">Téléphone
+                                                *</label><input type="tel" name="phone" required=""
+                                                class="w-full px-4 py-3 border border-gray-600 bg-gray-800 text-white rounded-lg focus:ring-2 focus:ring-yellow-400 focus:border-transparent transition-all duration-200"
+                                                placeholder="+212 648 672 832" value=""></div>
+                                        <div><label class="block text-sm font-medium text-white mb-2">Trajet souhaité
+                                                *</label><select name="route" required=""
+                                                class="w-full px-4 py-3 border border-gray-600 bg-gray-800 text-white rounded-lg focus:ring-2 focus:ring-yellow-400 focus:border-transparent transition-all duration-200">
+                                                <option value="">Sélectionner un trajet</option>
+                                                <option value="Aéroport Essaouira â‡„ Ville d'Essaouira">Aéroport
+                                                    Essaouira â‡„ Ville d'Essaouira</option>
+                                                <option value="Essaouira â‡„ Marrakech">Essaouira â‡„ Marrakech</option>
+                                                <option value="Aéroport Marrakech â‡„ Essaouira">Aéroport Marrakech â‡„
+                                                    Essaouira</option>
+                                                <option value="Essaouira â‡„ Agadir">Essaouira â‡„ Agadir</option>
+                                                <option value="Essaouira â‡„ Casablanca">Essaouira â‡„ Casablanca
+                                                </option>
+                                                <option value="Autre destination (préciser dans le message)">Autre
+                                                    destination (préciser dans le message)</option>
+                                            </select></div>
+                                        <div class="grid grid-cols-1 md:grid-cols-3 gap-4">
+                                            <div><label class="block text-sm font-medium text-white mb-2">Date
+                                                    *</label><input type="date" name="date" required=""
+                                                    class="w-full px-4 py-3 border border-gray-600 bg-gray-800 text-white rounded-lg focus:ring-2 focus:ring-yellow-400 focus:border-transparent transition-all duration-200"
+                                                    value=""></div>
+                                            <div><label class="block text-sm font-medium text-white mb-2">Heure
+                                                    *</label><input type="time" name="time" required=""
+                                                    class="w-full px-4 py-3 border border-gray-600 bg-gray-800 text-white rounded-lg focus:ring-2 focus:ring-yellow-400 focus:border-transparent transition-all duration-200"
+                                                    value=""></div>
+                                            <div><label
+                                                    class="block text-sm font-medium text-white mb-2">Passagers</label><select
+                                                    name="passengers"
+                                                    class="w-full px-4 py-3 border border-gray-600 bg-gray-800 text-white rounded-lg focus:ring-2 focus:ring-yellow-400 focus:border-transparent transition-all duration-200">
+                                                    <option value="1">1 passager</option>
+                                                    <option value="2">2 passagers</option>
+                                                    <option value="3">3 passagers</option>
+                                                    <option value="4">4 passagers</option>
+                                                    <option value="5">5 passagers</option>
+                                                    <option value="6">6 passagers</option>
+                                                    <option value="7">7 passagers</option>
+                                                    <option value="8">8 passagers</option>
+                                                </select></div>
+                                        </div>
+                                        <div><label class="block text-sm font-medium text-white mb-2">Message
+                                                (optionnel)</label><textarea name="message" rows="4"
+                                                class="w-full px-4 py-3 border border-gray-600 bg-gray-800 text-white rounded-lg focus:ring-2 focus:ring-yellow-400 focus:border-transparent transition-all duration-200"
+                                                placeholder="Informations complémentaires..."></textarea></div><button
+                                            type="submit"
+                                            class="w-full bg-yellow-400 hover:bg-yellow-500 disabled:bg-yellow-600 text-black py-4 px-6 rounded-lg font-semibold text-lg transition-all duration-300 transform hover:scale-105 flex items-center justify-center space-x-2"><svg
+                                                xmlns="http://www.w3.org/2000/svg" width="24" height="24"
+                                                viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
+                                                stroke-linecap="round" stroke-linejoin="round"
+                                                class="lucide lucide-send h-5 w-5">
+                                                <path
+                                                    d="M14.536 21.686a.5.5 0 0 0 .937-.024l6.5-19a.496.496 0 0 0-.635-.635l-19 6.5a.5.5 0 0 0-.024.937l7.93 3.18a2 2 0 0 1 1.112 1.11z">
+                                                </path>
+                                                <path d="m21.854 2.147-10.94 10.939"></path>
+                                            </svg><span>Envoyer la demande</span></button>
+                                    </form>
+                                </div>
+                            </div>
+                            <div class="space-y-8" style="opacity: 0; transform: translateX(50px);">
+                                <div class="bg-gray-900 rounded-2xl shadow-xl p-8 border border-yellow-400">
+                                    <h3 class="text-2xl font-bold text-yellow-400 mb-6">Nos coordonnées</h3>
+                                    <div class="space-y-6">
+                                        <div class="flex items-center space-x-4">
+                                            <div
+                                                class="w-12 h-12 bg-yellow-400 text-black rounded-full flex items-center justify-center flex-shrink-0">
+                                                <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24"
+                                                    viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                                                    stroke-width="2" stroke-linecap="round" stroke-linejoin="round"
+                                                    class="lucide lucide-phone h-6 w-6">
+                                                    <path
+                                                        d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 22 16.92z">
+                                                    </path>
+                                                </svg></div>
+                                            <div>
+                                                <h4 class="font-semibold text-yellow-400">Téléphone</h4><a
+                                                    href="tel:+212648672832"
+                                                    class="text-white hover:text-yellow-400 transition-colors duration-200">+212
+                                                    648 672 832</a>
+                                            </div>
+                                        </div>
+                                        <div class="flex items-center space-x-4">
+                                            <div
+                                                class="w-12 h-12 bg-yellow-400 text-black rounded-full flex items-center justify-center flex-shrink-0">
+                                                <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24"
+                                                    viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                                                    stroke-width="2" stroke-linecap="round" stroke-linejoin="round"
+                                                    class="lucide lucide-message-circle h-6 w-6">
+                                                    <path d="M7.9 20A9 9 0 1 0 4 16.1L2 22Z"></path>
+                                                </svg></div>
+                                            <div>
+                                                <h4 class="font-semibold text-yellow-400">WhatsApp</h4><a
+                                                    href="https://wa.me/212648672832"
+                                                    class="text-white hover:text-yellow-400 transition-colors duration-200">+212
+                                                    648 672 832</a>
+                                            </div>
+                                        </div>
+                                        <div class="flex items-center space-x-4">
+                                            <div
+                                                class="w-12 h-12 bg-yellow-400 text-black rounded-full flex items-center justify-center flex-shrink-0">
+                                                <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24"
+                                                    viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                                                    stroke-width="2" stroke-linecap="round" stroke-linejoin="round"
+                                                    class="lucide lucide-mail h-6 w-6">
+                                                    <rect width="20" height="16" x="2" y="4" rx="2"></rect>
+                                                    <path d="m22 7-8.97 5.7a1.94 1.94 0 0 1-2.06 0L2 7"></path>
+                                                </svg></div>
+                                            <div>
+                                                <h4 class="font-semibold text-yellow-400">Email</h4><a
+                                                    href="mailto:taxi.prive.essaouira@gmail.com"
+                                                    class="text-white hover:text-yellow-400 transition-colors duration-200">taxi.prive.essaouira@gmail.com</a>
+                                            </div>
+                                        </div>
+                                        <div class="flex items-center space-x-4">
+                                            <div
+                                                class="w-12 h-12 bg-yellow-400 text-black rounded-full flex items-center justify-center flex-shrink-0">
+                                                <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24"
+                                                    viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                                                    stroke-width="2" stroke-linecap="round" stroke-linejoin="round"
+                                                    class="lucide lucide-map-pin h-6 w-6">
+                                                    <path
+                                                        d="M20 10c0 4.993-5.539 10.193-7.399 11.799a1 1 0 0 1-1.202 0C9.539 20.193 4 14.993 4 10a8 8 0 0 1 16 0">
+                                                    </path>
+                                                    <circle cx="12" cy="10" r="3"></circle>
+                                                </svg></div>
+                                            <div>
+                                                <h4 class="font-semibold text-yellow-400">Localisation</h4><a href="#"
+                                                    class="text-white hover:text-yellow-400 transition-colors duration-200">Essaouira,
+                                                    Maroc</a>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="bg-gradient-to-br from-yellow-400 to-yellow-500 text-black rounded-2xl p-8">
+                                    <div class="flex items-center space-x-3 mb-4"><svg
+                                            xmlns="http://www.w3.org/2000/svg" width="24" height="24"
+                                            viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
+                                            stroke-linecap="round" stroke-linejoin="round"
+                                            class="lucide lucide-clock h-6 w-6">
+                                            <circle cx="12" cy="12" r="10"></circle>
+                                            <polyline points="12 6 12 12 16 14"></polyline>
+                                        </svg>
+                                        <h3 class="text-xl font-bold">Horaires de service</h3>
+                                    </div>
+                                    <div class="space-y-2 text-black">
+                                        <p><span class="font-semibold">Service client :</span> 8h - 22h</p>
+                                        <p><span class="font-semibold">Réservations :</span> 24h/24, 7j/7</p>
+                                        <p><span class="font-semibold">Urgences :</span> Disponible 24h/24</p>
+                                    </div>
+                                </div>
+                                <div class="bg-green-50 border border-green-200 rounded-2xl p-8">
+                                    <h3 class="text-xl font-bold text-green-800 mb-4">Contact rapide WhatsApp</h3>
+                                    <p class="text-green-700 mb-4">Pour une réponse immédiate, contactez-nous
+                                        directement sur WhatsApp</p><a href="https://wa.me/212648672832" target="_blank"
+                                        rel="noopener noreferrer"
+                                        class="inline-flex items-center space-x-2 bg-green-600 hover:bg-green-700 text-white px-6 py-3 rounded-lg font-semibold transition-colors duration-300"><svg
+                                            xmlns="http://www.w3.org/2000/svg" width="24" height="24"
+                                            viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
+                                            stroke-linecap="round" stroke-linejoin="round"
+                                            class="lucide lucide-message-circle h-5 w-5">
+                                            <path d="M7.9 20A9 9 0 1 0 4 16.1L2 22Z"></path>
+                                        </svg><span>Ouvrir WhatsApp</span></a>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </section>
+            </main>
+            <footer class="bg-black text-white">
+                <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-16">
+                    <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
+                        <div class="space-y-6" style="opacity: 0; transform: translateY(30px);">
+                            <div class="flex items-center space-x-3"><svg xmlns="http://www.w3.org/2000/svg" width="24"
+                                    height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
+                                    stroke-linecap="round" stroke-linejoin="round"
+                                    class="lucide lucide-car h-8 w-8 text-yellow-400">
+                                    <path
+                                        d="M19 17h2c.6 0 1-.4 1-1v-3c0-.9-.7-1.7-1.5-1.9C18.7 10.6 16 10 16 10s-1.3-1.4-2.2-2.3c-.5-.4-1.1-.7-1.8-.7H5c-.6 0-1.1.4-1.4.9l-1.4 2.9A3.7 3.7 0 0 0 2 12v4c0 .6.4 1 1 1h2">
+                                    </path>
+                                    <circle cx="7" cy="17" r="2"></circle>
+                                    <path d="M9 17h6"></path>
+                                    <circle cx="17" cy="17" r="2"></circle>
+                                </svg>
+                                <h3 class="text-xl font-bold text-yellow-400">À propos</h3>
+                            </div>
+                            <p class="text-gray-300 leading-relaxed">Taxi Privé Essaouira, votre partenaire de confiance
+                                pour tous vos déplacements au Maroc. Service professionnel, confortable et sécurisé
+                                depuis 2019.</p>
+                            <div class="space-y-3"><button
+                                    class="block text-gray-400 hover:text-yellow-400 transition-colors duration-200 text-sm">Notre
+                                    histoire</button><button
+                                    class="block text-gray-400 hover:text-yellow-400 transition-colors duration-200 text-sm">Notre
+                                    équipe</button><button
+                                    class="block text-gray-400 hover:text-yellow-400 transition-colors duration-200 text-sm">Nos
+                                    valeurs</button><button
+                                    class="block text-gray-400 hover:text-yellow-400 transition-colors duration-200 text-sm">Témoignages
+                                    clients</button></div>
+                        </div>
+                        <div class="space-y-6" style="opacity: 0; transform: translateY(30px);">
+                            <h3 class="text-xl font-bold text-yellow-400">Contact</h3>
+                            <div class="space-y-4">
+                                <div class="flex items-start space-x-3"><svg xmlns="http://www.w3.org/2000/svg"
+                                        width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                                        stroke-width="2" stroke-linecap="round" stroke-linejoin="round"
+                                        class="lucide lucide-phone h-5 w-5 text-yellow-400 mt-0.5 flex-shrink-0">
+                                        <path
+                                            d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 22 16.92z">
+                                        </path>
+                                    </svg>
+                                    <div>
+                                        <p class="text-sm text-gray-400 mb-1">Téléphone</p><a href="tel:+212648672832"
+                                            class="text-white hover:text-yellow-400 transition-colors duration-200 text-sm">+212
+                                            648 672 832</a>
+                                    </div>
+                                </div>
+                                <div class="flex items-start space-x-3"><svg xmlns="http://www.w3.org/2000/svg"
+                                        width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                                        stroke-width="2" stroke-linecap="round" stroke-linejoin="round"
+                                        class="lucide lucide-message-circle h-5 w-5 text-yellow-400 mt-0.5 flex-shrink-0">
+                                        <path d="M7.9 20A9 9 0 1 0 4 16.1L2 22Z"></path>
+                                    </svg>
+                                    <div>
+                                        <p class="text-sm text-gray-400 mb-1">WhatsApp</p><a
+                                            href="https://wa.me/212648672832"
+                                            class="text-white hover:text-yellow-400 transition-colors duration-200 text-sm">+212
+                                            648 672 832</a>
+                                    </div>
+                                </div>
+                                <div class="flex items-start space-x-3"><svg xmlns="http://www.w3.org/2000/svg"
+                                        width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                                        stroke-width="2" stroke-linecap="round" stroke-linejoin="round"
+                                        class="lucide lucide-mail h-5 w-5 text-yellow-400 mt-0.5 flex-shrink-0">
+                                        <rect width="20" height="16" x="2" y="4" rx="2"></rect>
+                                        <path d="m22 7-8.97 5.7a1.94 1.94 0 0 1-2.06 0L2 7"></path>
+                                    </svg>
+                                    <div>
+                                        <p class="text-sm text-gray-400 mb-1">Email</p><a
+                                            href="mailto:taxi.prive.essaouira@gmail.com"
+                                            class="text-white hover:text-yellow-400 transition-colors duration-200 text-sm">taxi.prive.essaouira@gmail.com</a>
+                                    </div>
+                                </div>
+                                <div class="flex items-start space-x-3"><svg xmlns="http://www.w3.org/2000/svg"
+                                        width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                                        stroke-width="2" stroke-linecap="round" stroke-linejoin="round"
+                                        class="lucide lucide-map-pin h-5 w-5 text-yellow-400 mt-0.5 flex-shrink-0">
+                                        <path
+                                            d="M20 10c0 4.993-5.539 10.193-7.399 11.799a1 1 0 0 1-1.202 0C9.539 20.193 4 14.993 4 10a8 8 0 0 1 16 0">
+                                        </path>
+                                        <circle cx="12" cy="10" r="3"></circle>
+                                    </svg>
+                                    <div>
+                                        <p class="text-sm text-gray-400 mb-1">Adresse</p><a href="#"
+                                            class="text-white hover:text-yellow-400 transition-colors duration-200 text-sm">Essaouira,
+                                            Maroc</a>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="bg-gray-900 rounded-lg p-4 border border-yellow-400/20">
+                                <div class="flex items-center space-x-2 mb-2"><svg xmlns="http://www.w3.org/2000/svg"
+                                        width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                                        stroke-width="2" stroke-linecap="round" stroke-linejoin="round"
+                                        class="lucide lucide-clock h-4 w-4 text-yellow-400">
+                                        <circle cx="12" cy="12" r="10"></circle>
+                                        <polyline points="12 6 12 12 16 14"></polyline>
+                                    </svg><span class="text-sm font-semibold text-yellow-400">Horaires</span></div>
+                                <div class="text-xs text-gray-400 space-y-1">
+                                    <p>Service client : 8h - 22h</p>
+                                    <p>Réservations : 24h/24, 7j/7</p>
+                                    <p>Urgences : Disponible 24h/24</p>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="space-y-6" style="opacity: 0; transform: translateY(30px);">
+                            <h3 class="text-xl font-bold text-yellow-400">Liens utiles</h3>
+                            <div class="space-y-3">
+                                <div><button
+                                        class="block text-gray-400 hover:text-yellow-400 transition-colors duration-200 text-sm">Nos
+                                        services</button></div>
+                                <div><button
+                                        class="block text-gray-400 hover:text-yellow-400 transition-colors duration-200 text-sm">Destinations</button>
+                                </div>
+                                <div><button
+                                        class="block text-gray-400 hover:text-yellow-400 transition-colors duration-200 text-sm">Tarifs</button>
+                                </div>
+                                <div><button
+                                        class="block text-gray-400 hover:text-yellow-400 transition-colors duration-200 text-sm">FAQ</button>
+                                </div>
+                                <div><a href="#"
+                                        class="block text-gray-400 hover:text-yellow-400 transition-colors duration-200 text-sm flex items-center space-x-1"><span>Conditions
+                                            générales</span><svg xmlns="http://www.w3.org/2000/svg" width="24"
+                                            height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                                            stroke-width="2" stroke-linecap="round" stroke-linejoin="round"
+                                            class="lucide lucide-external-link h-3 w-3">
+                                            <path d="M15 3h6v6"></path>
+                                            <path d="M10 14 21 3"></path>
+                                            <path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"></path>
+                                        </svg></a></div>
+                                <div><a href="#"
+                                        class="block text-gray-400 hover:text-yellow-400 transition-colors duration-200 text-sm flex items-center space-x-1"><span>Politique
+                                            de confidentialité</span><svg xmlns="http://www.w3.org/2000/svg" width="24"
+                                            height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                                            stroke-width="2" stroke-linecap="round" stroke-linejoin="round"
+                                            class="lucide lucide-external-link h-3 w-3">
+                                            <path d="M15 3h6v6"></path>
+                                            <path d="M10 14 21 3"></path>
+                                            <path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"></path>
+                                        </svg></a></div>
+                            </div>
+                            <div class="bg-yellow-400/10 rounded-lg p-4 border border-yellow-400/30">
+                                <h4 class="text-sm font-semibold text-yellow-400 mb-2">Destinations populaires</h4>
+                                <div class="grid grid-cols-2 gap-1 text-xs text-gray-400"><span>•
+                                        Marrakech</span><span>• Agadir</span><span>• Casablanca</span><span>•
+                                        Rabat</span><span>• Aéroports</span><span>• Excursions</span></div>
+                            </div>
+                        </div>
+                        <div class="space-y-6" style="opacity: 0; transform: translateY(30px);">
+                            <h3 class="text-xl font-bold text-yellow-400">Réservation</h3>
+                            <div class="space-y-4">
+                                <div
+                                    class="bg-gray-900 rounded-lg p-4 border border-gray-800 hover:border-yellow-400/30 transition-colors duration-200">
+                                    <h4 class="text-sm font-semibold text-white mb-1">Réservation en ligne</h4>
+                                    <p class="text-xs text-gray-400 mb-3">Formulaire de devis gratuit</p><button
+                                        class="w-full px-3 py-2 rounded text-xs font-semibold transition-colors duration-200 bg-yellow-400 hover:bg-yellow-500 text-black">Demander
+                                        un devis</button>
+                                </div>
+                                <div
+                                    class="bg-gray-900 rounded-lg p-4 border border-gray-800 hover:border-yellow-400/30 transition-colors duration-200">
+                                    <h4 class="text-sm font-semibold text-white mb-1">Contact WhatsApp</h4>
+                                    <p class="text-xs text-gray-400 mb-3">Réponse immédiate 24/7</p><button
+                                        class="w-full px-3 py-2 rounded text-xs font-semibold transition-colors duration-200 bg-green-600 hover:bg-green-700 text-white">Ouvrir
+                                        WhatsApp</button>
+                                </div>
+                                <div
+                                    class="bg-gray-900 rounded-lg p-4 border border-gray-800 hover:border-yellow-400/30 transition-colors duration-200">
+                                    <h4 class="text-sm font-semibold text-white mb-1">Appel direct</h4>
+                                    <p class="text-xs text-gray-400 mb-3">Service client disponible</p><button
+                                        class="w-full px-3 py-2 rounded text-xs font-semibold transition-colors duration-200 bg-gray-800 hover:bg-gray-900 text-yellow-400 border border-yellow-400">Appeler
+                                        maintenant</button>
+                                </div>
+                            </div>
+                            <div
+                                class="bg-gradient-to-r from-yellow-400/20 to-yellow-500/20 rounded-lg p-4 border border-yellow-400/30">
+                                <h4 class="text-sm font-semibold text-yellow-400 mb-2">Devis gratuit</h4>
+                                <p class="text-xs text-gray-300 mb-3">Obtenez votre tarif personnalisé en quelques clics
+                                </p><button
+                                    class="w-full bg-yellow-400 hover:bg-yellow-500 text-black px-3 py-2 rounded text-xs font-bold transition-colors duration-200">Calculer
+                                    mon tarif</button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="border-t border-gray-800">
+                    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-6">
+                        <div class="flex flex-col md:flex-row justify-between items-center space-y-4 md:space-y-0">
+                            <div class="flex items-center space-x-4">
+                                <div class="flex items-center space-x-2"><svg xmlns="http://www.w3.org/2000/svg"
+                                        width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                                        stroke-width="2" stroke-linecap="round" stroke-linejoin="round"
+                                        class="lucide lucide-car h-6 w-6 text-yellow-400">
+                                        <path
+                                            d="M19 17h2c.6 0 1-.4 1-1v-3c0-.9-.7-1.7-1.5-1.9C18.7 10.6 16 10 16 10s-1.3-1.4-2.2-2.3c-.5-.4-1.1-.7-1.8-.7H5c-.6 0-1.1.4-1.4.9l-1.4 2.9A3.7 3.7 0 0 0 2 12v4c0 .6.4 1 1 1h2">
+                                        </path>
+                                        <circle cx="7" cy="17" r="2"></circle>
+                                        <path d="M9 17h6"></path>
+                                        <circle cx="17" cy="17" r="2"></circle>
+                                    </svg><span class="font-bold text-yellow-400">Taxi Privé Essaouira</span></div><span
+                                    class="text-gray-500 text-sm">|</span><span class="text-gray-400 text-sm">Transport
+                                    professionnel au Maroc</span>
+                            </div>
+                            <div
+                                class="flex flex-col md:flex-row items-center space-y-2 md:space-y-0 md:space-x-6 text-sm text-gray-400">
+                                <span>© 2009 - 2025 Taxi Privé Essaouira. Tous droits réservés.</span>
+                                <div class="flex items-center space-x-4"><a href="#"
+                                        class="hover:text-yellow-400 transition-colors duration-200">Mentions
+                                        légales</a><a href="#"
+                                        class="hover:text-yellow-400 transition-colors duration-200">CGV</a><a href="#"
+                                        class="hover:text-yellow-400 transition-colors duration-200">Confidentialité</a>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="mt-4 pt-4 border-t border-gray-800">
+                            <div class="text-center">
+                                <p class="text-xs text-gray-500">Service de taxi privé professionnel à Essaouira •
+                                    Transferts aéroports • Liaisons inter-villes • Excursions personnalisées</p>
+                                <div class="flex justify-center items-center space-x-4 mt-2"><span
+                                        class="text-xs text-gray-600">Disponible 24h/24</span><span
+                                        class="text-gray-600">•</span><span class="text-xs text-gray-600">Devis
+                                        gratuit</span><span class="text-gray-600">•</span><span
+                                        class="text-xs text-gray-600">Paiement sécurisé</span></div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </footer>
+        </div>
+    </div>
+
+</body>
+
+</html>

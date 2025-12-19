@@ -11,28 +11,18 @@ import { getRecommendations } from '@/app/actions';
 import { Service, services } from '@/lib/services';
 import Link from 'next/link';
 
-export default function RecommendationEngine() {
+interface RecommendationEngineProps {
+  onBook?: (slug: string) => void;
+}
+
+export default function RecommendationEngine({ onBook }: RecommendationEngineProps) {
   const [searchQuery, setSearchQuery] = useState('');
   const [recommendations, setRecommendations] = useState<Service[]>([]);
   const [reasoning, setReasoning] = useState('');
   const [error, setError] = useState<string | null>(null);
   const [isPending, startTransition] = useTransition();
-  const [browsingHistory, setBrowsingHistory] = useState<string[]>([]);
-  
-  const pathname = usePathname();
-
-  useEffect(() => {
-    if (pathname.startsWith('/services/')) {
-      const serviceSlug = pathname.split('/')[2];
-      const serviceName = services.find(s => s.slug === serviceSlug)?.name;
-      if (serviceName && !browsingHistory.includes(serviceName)) {
-        const newHistory = [...browsingHistory, serviceName];
-        setBrowsingHistory(newHistory);
-      }
-    }
-  // We only want to run this on pathname change, not browsingHistory change.
-  // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [pathname]);
+  // Browsing history can remain even if unused for now in OnePage
+  const [browsingHistory] = useState<string[]>([]);
 
   const handleSubmit = (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
@@ -51,6 +41,14 @@ export default function RecommendationEngine() {
     });
   };
 
+  const handleBookClick = (slug: string) => {
+    if (onBook) {
+        onBook(slug);
+    } else {
+        document.getElementById('contact')?.scrollIntoView({ behavior: 'smooth' });
+    }
+  };
+
   return (
     <div className="space-y-6">
       <form onSubmit={handleSubmit} className="flex flex-col sm:flex-row gap-4">
@@ -58,57 +56,61 @@ export default function RecommendationEngine() {
           type="text"
           value={searchQuery}
           onChange={(e) => setSearchQuery(e.target.value)}
-          placeholder="e.g., 'a relaxing day on the beach' or 'thrilling adventure'"
-          className="flex-grow text-base"
+          placeholder="Ex: 'Une journée relaxante à la plage' ou 'Aventure 4x4'"
+          className="flex-grow text-base bg-white/10 border-white/20 text-white placeholder:text-gray-400 h-14 rounded-xl"
         />
-        <Button type="submit" disabled={isPending} className="bg-primary hover:bg-primary/90">
+        <Button type="submit" disabled={isPending} className="bg-primary text-black hover:bg-yellow-500 font-bold h-14 px-8 rounded-xl text-lg">
           {isPending ? (
-            <Loader2 className="mr-2 h-4 w-4 animate-spin" />
+            <Loader2 className="mr-2 h-5 w-5 animate-spin" />
           ) : (
-            <Wand2 className="mr-2 h-4 w-4" />
+            <Wand2 className="mr-2 h-5 w-5" />
           )}
-          Get Suggestions
+          Générer
         </Button>
       </form>
 
       {error && (
-        <Alert variant="destructive">
-          <AlertTitle>Error</AlertTitle>
+        <Alert variant="destructive" className="bg-red-900/50 border-red-800 text-white">
+          <AlertTitle>Erreur</AlertTitle>
           <AlertDescription>{error}</AlertDescription>
         </Alert>
       )}
 
       {isPending && (
-         <div className="text-center p-4">
-            <Loader2 className="mx-auto h-8 w-8 animate-spin text-primary" />
-            <p className="mt-2 text-muted-foreground">Our AI is finding your perfect adventure...</p>
+         <div className="text-center p-8 bg-white/5 rounded-xl border border-white/10">
+            <Loader2 className="mx-auto h-10 w-10 animate-spin text-primary" />
+            <p className="mt-4 text-gray-400">Notre IA analyse vos besoins...</p>
         </div>
       )}
 
       {recommendations.length > 0 && (
-        <div className="space-y-4 text-left">
-           <h3 className="text-2xl font-headline text-primary">Our Recommendations For You</h3>
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
+        <div className="space-y-6 text-left animate-fade-in-up">
+           <h3 className="text-2xl font-headline text-white border-b border-white/10 pb-4">
+             Services Recommandés
+           </h3>
+          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
             {recommendations.map((service) => (
-              <Link href={`/services/${service.slug}`} key={service.id} className="group">
-                <div className="p-4 border rounded-lg h-full bg-background hover:border-primary transition-colors">
-                    <h4 className="font-bold text-lg text-primary group-hover:underline">{service.name}</h4>
-                    <p className="text-sm text-muted-foreground mt-1">
-                      {service.description.substring(0, 100)}...
-                    </p>
-                    <div className="flex items-center text-sm text-primary font-semibold mt-4">
-                        View Details
-                        <ArrowRight className="ml-1 h-4 w-4 transition-transform group-hover:translate-x-1" />
-                    </div>
-                </div>
-              </Link>
+              <div key={service.id} className="group p-6 border border-white/10 rounded-2xl bg-white/5 hover:border-primary/50 transition-all hover:-translate-y-1">
+                  <h4 className="font-bold text-xl text-primary mb-2">{service.name}</h4>
+                  <p className="text-sm text-gray-400 mb-6 leading-relaxed">
+                    {service.description.substring(0, 100)}...
+                  </p>
+                  <Button 
+                    onClick={() => handleBookClick(service.slug)}
+                    variant="ghost" 
+                    className="w-full text-white hover:text-primary hover:bg-white/5 justify-between group-hover:pl-4 transition-all"
+                  >
+                      Réserver
+                      <ArrowRight className="h-4 w-4" />
+                  </Button>
+              </div>
             ))}
           </div>
           {reasoning && (
-             <Alert className="mt-6 bg-primary/5 border-primary/20">
+             <Alert className="mt-6 bg-primary/10 border-primary/20 text-gray-300">
                 <Wand2 className="h-4 w-4 !text-primary" />
-                <AlertTitle className="font-headline text-primary">Why these suggestions?</AlertTitle>
-                <AlertDescription className="prose prose-sm max-w-none text-foreground/80 whitespace-pre-line">
+                <AlertTitle className="font-headline text-primary mb-2">Pourquoi ces choix ?</AlertTitle>
+                <AlertDescription className="leading-relaxed">
                    {reasoning}
                 </AlertDescription>
              </Alert>
