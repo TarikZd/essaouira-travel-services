@@ -1,0 +1,10 @@
+
+# Top-level configuration
+name = "essaouira-travel-services"
+compatibility_date = "2024-09-23"
+compatibility_flags = ["nodejs_compat"]
+pages_build_output_dir = ".vercel/output/static"
+
+# Environment variables (Optional, based on your project needs)
+# [vars]
+# OPENAI_API_KEY = "your-key"
