@@ -1,5 +1,6 @@
 /** @type {import('next').NextConfig} */
 const nextConfig = {
+  // Deployment retry trigger
 
   typescript: {
     ignoreBuildErrors: true,
