@@ -1,6 +1,7 @@
 'use client';
 
 import { useState } from 'react';
+import Image from 'next/image';
 import { services, type Service } from '@/lib/services';
 import Hero from '@/components/landing/Hero';
 import Stats from '@/components/landing/Stats';
@@ -127,9 +128,11 @@ export default function Home() {
                             <Lock className="w-4 h-4 text-primary" /> Paiement Sécurisé Avec
                         </p>
                         <div className="flex justify-center items-center opacity-90 transition-opacity hover:opacity-100">
-                             <img 
-                                src="/images/payment-methods.png" 
+                             <Image 
+                                src="/images/Paiment-Securise-Avec.png" 
                                 alt="Paiement Sécurisé : Visa, Mastercard, PayPal" 
+                                width={250}
+                                height={160}
                                 className="h-20 w-auto object-contain"
                              />
                         </div>
