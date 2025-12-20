@@ -50,7 +50,11 @@ export default function Destinations() {
 
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
           {destinations.map((dest, idx) => (
-            <Card key={`${dest.from}-${idx}`} className="group overflow-hidden bg-white/5 border-white/10 hover:border-primary/50 transition-all duration-300">
+            <Card 
+              key={`${dest.from}-${idx}`} 
+              onClick={() => document.getElementById('contact')?.scrollIntoView({ behavior: 'smooth' })}
+              className="group overflow-hidden bg-white/5 border-white/10 hover:border-primary/50 transition-all duration-300 cursor-pointer hover:-translate-y-1 hover:shadow-xl hover:shadow-primary/5"
+            >
               <div className="relative h-64 overflow-hidden">
                 <Image
                   src={dest.image}
