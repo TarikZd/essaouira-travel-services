@@ -101,6 +101,7 @@ export function ReviewFormDialog({ children }: ReviewFormDialogProps) {
               required 
               value={formData.fullName}
               onChange={handleInputChange}
+              className="bg-white text-black border-gray-200 focus:border-primary focus:ring-primary"
             />
           </div>
 
@@ -114,6 +115,7 @@ export function ReviewFormDialog({ children }: ReviewFormDialogProps) {
                   required 
                   value={formData.country}
                   onChange={handleInputChange}
+                  className="bg-white text-black border-gray-200 focus:border-primary focus:ring-primary"
                 />
              </div>
              <div className="space-y-2">
@@ -126,6 +128,7 @@ export function ReviewFormDialog({ children }: ReviewFormDialogProps) {
                   required 
                   value={formData.email}
                   onChange={handleInputChange}
+                  className="bg-white text-black border-gray-200 focus:border-primary focus:ring-primary"
                 />
              </div>
           </div>
@@ -162,9 +165,9 @@ export function ReviewFormDialog({ children }: ReviewFormDialogProps) {
               name="text" 
               placeholder="Racontez-nous votre expérience..." 
               required 
-              className="resize-none h-32"
               value={formData.text}
               onChange={handleInputChange}
+              className="resize-none h-32 bg-white text-black border-gray-200 focus:border-primary focus:ring-primary"
             />
           </div>
 

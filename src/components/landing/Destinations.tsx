@@ -1,7 +1,7 @@
 'use client';
 
 import Image from 'next/image';
-import { Clock, MapPin } from 'lucide-react';
+import { Clock, MapPin, Star } from 'lucide-react';
 import { Card, CardContent } from '@/components/ui/card';
 
 const destinations = [
@@ -10,28 +10,36 @@ const destinations = [
     to: 'Essaouira',
     time: '2h30',
     price: 'A partir de 60€',
-    image: 'https://images.unsplash.com/photo-1539020140153-e479b8c22e70?q=80&w=2070&auto=format&fit=crop'
+    image: '/images/marrakech-transfer.jpg',
+    rating: 4.9,
+    reviews: 724
   },
   {
     from: 'Agadir',
     to: 'Essaouira',
     time: '3h00',
     price: 'A partir de 80€',
-    image: 'https://images.unsplash.com/photo-1512632578888-169bbbc64f33?q=80&w=2070&auto=format&fit=crop'
+    image: '/images/agadir-transfer.jpg',
+    rating: 4.8,
+    reviews: 589
   },
   {
     from: 'Casablanca',
     to: 'Essaouira',
     time: '4h30',
     price: 'A partir de 140€',
-    image: '/images/casablanca-transfer.jpg'
+    image: '/images/casablanca-transfer.jpg',
+    rating: 5.0,
+    reviews: 345
   },
   {
     from: 'Aéroport',
     to: 'Centre Ville',
     time: '20 min',
     price: 'A partir de 15€',
-    image: 'https://images.unsplash.com/photo-1469854523086-cc02fe5d8800?q=80&w=2021&auto=format&fit=crop'
+    image: '/images/transport-aeroport-confort.jpg',
+    rating: 4.9,
+    reviews: 1215
   }
 ];
 
@@ -65,6 +73,10 @@ export default function Destinations() {
                 <div className="absolute top-4 right-4 bg-black/80 backdrop-blur text-white px-3 py-1 rounded-full text-xs font-bold flex items-center border border-white/10">
                   <Clock className="w-3 h-3 text-primary mr-1" />
                   {dest.time}
+                </div>
+                <div className="absolute top-4 left-4 bg-black/80 backdrop-blur text-white px-3 py-1 rounded-full text-xs font-bold flex items-center border border-white/10">
+                  <Star className="w-3 h-3 text-primary fill-primary mr-1" />
+                  {dest.rating}
                 </div>
                 <div className="absolute inset-0 bg-gradient-to-t from-black via-transparent to-transparent opacity-80" />
                 <div className="absolute bottom-4 left-4 right-4">

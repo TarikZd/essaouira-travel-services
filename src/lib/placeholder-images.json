@@ -3,7 +3,7 @@
     {
       "id": "hero-home",
       "description": "Une belle vue panoramique d'une plage marocaine au coucher du soleil.",
-      "imageUrl": "https://images.unsplash.com/photo-1728461339992-5c513062ba08?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3NDE5ODJ8MHwxfHNlYXJjaHw5fHxtb3JvY2NhbiUyMGJlYWNofGVufDB8fHx8MTc2MDczNjEyMHww&ixlib=rb-4.1.0&q=70&w=800",
+      "imageUrl": "/images/hero-bg.jpg",
       "imageHint": "plage marocaine"
     },
     {
@@ -15,7 +15,7 @@
     {
       "id": "card-quad",
       "description": "Une personne conduisant un quad sur des dunes de sable.",
-      "imageUrl": "https://images.unsplash.com/photo-1496521061024-90e1c1221555?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3NDE5ODJ8MHwxfHNlYXJjaHw2fHxxdWFkJTIwYmlrZXxlbnwwfHx8fDE3NjA3MzYxMjB8MA&ixlib=rb-4.1.0&q=70&w=800",
+      "imageUrl": "/images/quad-biking.jpg",
       "imageHint": "quad"
     },
     {
@@ -117,7 +117,7 @@
     {
       "id": "gallery-beaches-1",
       "description": "Chameaux marchant le long du rivage au coucher du soleil.",
-      "imageUrl": "https://images.unsplash.com/photo-1699923731541-b03e07883700?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3NDE5ODJ8MHwxfHNlYXJjaHw4fHxjYW1lbHMlMjBzdW5zZXR8ZW58MHx8fHwxNzYwNzM2MTIwfDA&ixlib=rb-4.1.0&q=70&w=800",
+      "imageUrl": "/images/camel-beach.jpg",
       "imageHint": "chameaux au coucher du soleil"
     },
     {
