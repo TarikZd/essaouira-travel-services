@@ -9,7 +9,7 @@
     {
       "id": "card-transfers",
       "description": "A modern van driving along a coastal road.",
-      "imageUrl": "https://images.unsplash.com/photo-1750715832560-a819eeacbbab?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3NDE5ODJ8MHwxfHNlYXJjaHw1fHxjb2FzdGFsJTIwcm9hZHxlbnwwfHx8fDE3NjA3MzYxMjB8MA&ixlib=rb-4.1.0&q=70&w=800",
+      "imageUrl": "/images/taxi-marrakech-essaouira-transfert.jpg",
       "imageHint": "coastal road"
     },
     {
@@ -21,25 +21,25 @@
     {
       "id": "card-souk",
       "description": "A vibrant and colorful Moroccan souk with spices and lanterns.",
-      "imageUrl": "https://images.unsplash.com/photo-1610445691765-3545736a4f43?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3NDE5ODJ8MHwxfHNlYXJjaHw5fHxtb3JvY2NhbiUyMG1hcmtldHxlbnwwfHx8fDE3NjA3MzYxMjB8MA&ixlib=rb-4.1.0&q=70&w=800",
+      "imageUrl": "/images/visite-guidee-medina-essaouira.jpg",
       "imageHint": "moroccan market"
     },
     {
       "id": "card-beaches",
       "description": "A secluded, pristine beach with dramatic rock formations.",
-      "imageUrl": "https://images.unsplash.com/photo-1559827260-dc66d52bef19?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3NDE5ODJ8MHwxfHNlYXJjaHw0fHxvY2VhbiUyMHdhdmVzfGVufDB8fHx8MTc2MDczMTkzNnww&ixlib=rb-4.1.0&q=70&w=800",
+      "imageUrl": "/images/excursion-4x4-plages-sauvages.jpg",
       "imageHint": "secluded beach"
     },
     {
       "id": "card-cooking",
       "description": "A traditional Moroccan tagine cooking over an open fire outdoors.",
-      "imageUrl": "https://images.unsplash.com/photo-1516483954662-1bee87353427?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3NDE5ODJ8MHwxfHNlYXJjaHwyfHxvdXRkb29yJTIwY29va2luZ3xlbnwwfHx8fDE3NjA3MzYxMjB8MA&ixlib=rb-4.1.0&q=70&w=800",
+      "imageUrl": "/images/cours-cuisine-berbere-essaouira.jpg",
       "imageHint": "outdoor cooking"
     },
     {
       "id": "hero-transfers",
       "description": "View from inside a comfortable vehicle looking out at the Moroccan landscape.",
-      "imageUrl": "https://images.unsplash.com/photo-1564932706725-8482823783a3?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3NDE5ODJ8MHwxfHNlYXJjaHwxfHxtb3JvY2NhbiUyMGxhbmRzY2FwZXxlbnwwfHx8fDE3NjA3MzYxMjB8MA&ixlib=rb-4.1.0&q=70&w=800",
+      "imageUrl": "/images/chauffeur-prive-mercedes-maroc.jpg",
       "imageHint": "moroccan landscape"
     },
     {
@@ -57,25 +57,25 @@
     {
       "id": "hero-beaches",
       "description": "Waves crashing on a wild, untamed Moroccan beach.",
-      "imageUrl": "https://images.unsplash.com/photo-1559827260-dc66d52bef19?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3NDE5ODJ8MHwxfHNlYXJjaHw0fHxvY2VhbiUyMHdhdmVzfGVufDB8fHx8MTc2MDczMTkzNnww&ixlib=rb-4.1.0&q=70&w=800",
+      "imageUrl": "/images/cote-atlantique-maroc-4x4.jpg",
       "imageHint": "ocean waves"
     },
     {
       "id": "hero-cooking",
       "description": "A group of people cooking together in a beautiful outdoor setting in Morocco.",
-      "imageUrl": "https://images.unsplash.com/photo-1538445336669-f93af334f834?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3NDE5ODJ8MHwxfHNlYXJjaHw2fHxvdXRkb29yJTIwa2l0Y2hlbnxlbnwwfHx8fDE3NjA3MzYxMjB8MA&ixlib=rb-4.1.0&q=70&w=800",
+      "imageUrl": "/images/cuisine-marocaine-traditionnelle.jpg",
       "imageHint": "outdoor kitchen"
     },
     {
       "id": "gallery-transfers-1",
       "description": "A smiling driver standing next to a clean van.",
-      "imageUrl": "https://images.unsplash.com/photo-1752834819887-a3f8a4a9217b?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3NDE5ODJ8MHwxfHNlYXJjaHwxMHx8ZnJpZW5kbHklMjBkcml2ZXJ8ZW58MHx8fHwxNzYwNzM2MTIwfDA&ixlib=rb-4.1.0&q=70&w=800",
+      "imageUrl": "/images/transport-aeroport-confort.jpg",
       "imageHint": "friendly driver"
     },
     {
       "id": "gallery-transfers-2",
       "description": "Spacious and clean interior of a passenger van.",
-      "imageUrl": "https://images.unsplash.com/photo-1557854135-779395816fbe?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3NDE5ODJ8MHwxfHNlYXJjaHw2fHx2YW4lMjBpbnRlcmlvcnxlbnwwfHx8fDE3NjA3MzYxMjB8MA&ixlib=rb-4.1.0&q=70&w=800",
+      "imageUrl": "/images/route-essaouira-voyage.jpg",
       "imageHint": "van interior"
     },
     {
@@ -141,13 +141,13 @@
     {
       "id": "gallery-cooking-2",
       "description": "People gathered around a table, enjoying a freshly cooked meal outdoors.",
-      "imageUrl": "https://images.unsplash.com/photo-1586718520704-f7f9db04b8c0?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3NDE5ODJ8MHwxfHNlYXJjaHwzfHxvdXRkb29yJTIwZGluaW5nfGVufDB8fHx8MTc2MDczNjEyMHww&ixlib=rb-4.1.0&q=70&w=800",
+      "imageUrl": "/images/repas-chez-habitant.jpg",
       "imageHint": "outdoor dining"
     },
     {
       "id": "gallery-cooking-3",
       "description": "A close-up of a bubbling, aromatic tagine.",
-      "imageUrl": "https://images.unsplash.com/photo-1665005499765-45bab6b1dddb?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3NDE5ODJ8MHwxfHNlYXJjaHw1fHxjb29raW5nJTIwdGFnaW5lfGVufDB8fHx8MTc2MDczNjEyMHww&ixlib=rb-4.1.0&q=70&w=800",
+      "imageUrl": "/images/preparation-tajine-maroc.jpg",
       "imageHint": "cooking tagine"
     }
   ]
