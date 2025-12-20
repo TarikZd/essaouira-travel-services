@@ -24,7 +24,7 @@ const destinations = [
     to: 'Essaouira',
     time: '4h30',
     price: 'A partir de 140€',
-    image: 'https://images.unsplash.com/photo-1534445656127-6663c9bcea09?q=80&w=2070&auto=format&fit=crop'
+    image: '/images/casablanca-transfer.png'
   },
   {
     from: 'Aéroport',

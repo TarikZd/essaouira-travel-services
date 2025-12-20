@@ -29,7 +29,6 @@ export default function Header() {
     { label: 'Accueil', href: '#hero' },
     { label: 'Destinations', href: '#destinations' },
     { label: 'Services', href: '#services' },
-    { label: 'Assistant IA', href: '#recommendations' },
     { label: 'Avis', href: '#reviews' },
     { label: 'Contact', href: '#contact' },
   ];
