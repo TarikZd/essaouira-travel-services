@@ -70,7 +70,7 @@ export function ReviewFormDialog({ children }: ReviewFormDialogProps) {
       console.error('Error submitting review:', error);
       toast({
         title: "Erreur",
-        description: "Une erreur est survenue lors de l'envoi de votre avis. Veuillez réessayer.",
+        description: error instanceof Error ? error.message : "Une erreur est survenue lors de l'envoi de votre avis.",
         variant: "destructive",
       });
     } finally {
