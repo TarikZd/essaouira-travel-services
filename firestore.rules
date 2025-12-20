@@ -75,5 +75,20 @@ service cloud.firestore {
       allow update: if true;
       allow delete: if true;
     }
+    /**
+     * @description Allows public read and write access to reviews.
+     * @path /reviews/{reviewId}
+     * @allow (get, list) All users can read reviews.
+     * @allow (create, update, delete) All users can create, update, and delete reviews.
+     * @deny none
+     * @principle Public read access, unrestricted writes (for prototyping only).
+     */
+    match /reviews/{reviewId} {
+      allow get: if true;
+      allow list: if true;
+      allow create: if true;
+      allow update: if true;
+      allow delete: if true;
+    }
   }
 }

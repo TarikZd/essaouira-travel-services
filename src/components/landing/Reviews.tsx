@@ -9,6 +9,7 @@ import { cn } from '@/lib/utils';
 import Image from 'next/image';
 import { fr } from 'date-fns/locale';
 import { format, subDays } from 'date-fns';
+import { ReviewFormDialog } from '@/components/reviews/ReviewFormDialog';
 
 // Data Arrays for Generation
 const firstNames = [
@@ -179,18 +180,19 @@ export default function Reviews() {
                        ))}
                      </div>
                    </div>
-                   <p className="text-sm text-gray-400">1 783 avis Google</p>
+                   <p className="text-sm text-gray-400">1 783 avis</p>
                 </div>
               </div>
 
               <div className="flex gap-4">
-                <Button 
-                    variant="outline"
-                    className="border-white/20 text-white hover:bg-white/10 hover:text-white rounded-full px-6"
-                    onClick={() => window.open('https://g.page/r/YOUR_GOOGLE_REVIEW_LINK', '_blank')}
-                >
-                    Écrire un avis
-                </Button>
+                <ReviewFormDialog>
+                    <Button 
+                        variant="outline"
+                        className="border-white/20 text-white hover:bg-white/10 hover:text-white rounded-full px-6"
+                    >
+                        Écrire un avis
+                    </Button>
+                </ReviewFormDialog>
                  {/* Navigation Buttons for Mobile/Desktop */}
                  <div className="flex gap-2">
                     <Button
