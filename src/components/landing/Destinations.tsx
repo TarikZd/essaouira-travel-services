@@ -24,7 +24,7 @@ const destinations = [
     to: 'Essaouira',
     time: '4h30',
     price: 'A partir de 140€',
-    image: '/images/casablanca-transfer.png'
+    image: '/images/casablanca-transfer.jpg'
   },
   {
     from: 'Aéroport',
