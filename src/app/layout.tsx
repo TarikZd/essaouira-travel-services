@@ -29,7 +29,7 @@ export const metadata: Metadata = {
     siteName: "Taxi Essaouira",
     images: [
       {
-        url: "https://images.unsplash.com/photo-1544620347-c4fd4a3d5957?q=80&w=1200&auto=format&fit=crop",
+        url: "https://essaouira-travel.services/images/taxi-marrakech-essaouira-transfert.jpg",
         width: 1200,
         height: 630,
         alt: "Taxi Marrakech Essaouira Transport",
@@ -40,7 +40,7 @@ export const metadata: Metadata = {
     card: "summary_large_image",
     title: "Taxi Marrakech Essaouira - Transport Touristique",
     description: "Réservez votre trajet privé en toute sécurité. Maroc, Essaouira, Marrakech, Agadir.",
-    images: ["https://images.unsplash.com/photo-1544620347-c4fd4a3d5957?q=80&w=1200&auto=format&fit=crop"],
+    images: ["https://essaouira-travel.services/images/taxi-marrakech-essaouira-transfert.jpg"],
   },
   robots: {
     index: true,

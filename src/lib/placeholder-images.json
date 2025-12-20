@@ -2,153 +2,153 @@
   "placeholderImages": [
     {
       "id": "hero-home",
-      "description": "A beautiful panoramic view of a Moroccan beach at sunset.",
+      "description": "Une belle vue panoramique d'une plage marocaine au coucher du soleil.",
       "imageUrl": "https://images.unsplash.com/photo-1728461339992-5c513062ba08?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3NDE5ODJ8MHwxfHNlYXJjaHw5fHxtb3JvY2NhbiUyMGJlYWNofGVufDB8fHx8MTc2MDczNjEyMHww&ixlib=rb-4.1.0&q=70&w=800",
-      "imageHint": "moroccan beach"
+      "imageHint": "plage marocaine"
     },
     {
       "id": "card-transfers",
-      "description": "A modern van driving along a coastal road.",
+      "description": "Un van moderne roulant le long d'une route côtière.",
       "imageUrl": "/images/taxi-marrakech-essaouira-transfert.jpg",
-      "imageHint": "coastal road"
+      "imageHint": "route côtière"
     },
     {
       "id": "card-quad",
-      "description": "A person riding a quad bike on sand dunes.",
+      "description": "Une personne conduisant un quad sur des dunes de sable.",
       "imageUrl": "https://images.unsplash.com/photo-1496521061024-90e1c1221555?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3NDE5ODJ8MHwxfHNlYXJjaHw2fHxxdWFkJTIwYmlrZXxlbnwwfHx8fDE3NjA3MzYxMjB8MA&ixlib=rb-4.1.0&q=70&w=800",
-      "imageHint": "quad bike"
+      "imageHint": "quad"
     },
     {
       "id": "card-souk",
-      "description": "A vibrant and colorful Moroccan souk with spices and lanterns.",
+      "description": "Un souk marocain vibrant et coloré avec des épices et des lanternes.",
       "imageUrl": "/images/visite-guidee-medina-essaouira.jpg",
-      "imageHint": "moroccan market"
+      "imageHint": "marché marocain"
     },
     {
       "id": "card-beaches",
-      "description": "A secluded, pristine beach with dramatic rock formations.",
+      "description": "Une plage isolée et immaculée avec des formations rocheuses spectaculaires.",
       "imageUrl": "/images/excursion-4x4-plages-sauvages.jpg",
-      "imageHint": "secluded beach"
+      "imageHint": "plage isolée"
     },
     {
       "id": "card-cooking",
-      "description": "A traditional Moroccan tagine cooking over an open fire outdoors.",
+      "description": "Un tajine marocain traditionnel cuisant sur un feu ouvert en plein air.",
       "imageUrl": "/images/cours-cuisine-berbere-essaouira.jpg",
-      "imageHint": "outdoor cooking"
+      "imageHint": "cuisine en plein air"
     },
     {
       "id": "hero-transfers",
-      "description": "View from inside a comfortable vehicle looking out at the Moroccan landscape.",
+      "description": "Vue depuis l'intérieur d'un véhicule confortable donnant sur le paysage marocain.",
       "imageUrl": "/images/chauffeur-prive-mercedes-maroc.jpg",
-      "imageHint": "moroccan landscape"
+      "imageHint": "paysage marocain"
     },
     {
       "id": "hero-quad",
-      "description": "A line of quad bikes ready for an adventure on a sunny beach.",
+      "description": "Une ligne de quads prêts pour une aventure sur une plage ensoleillée.",
       "imageUrl": "https://images.unsplash.com/photo-1670924758351-a372e77f6e72?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3NDE5ODJ8MHwxfHNlYXJjaHwxMHx8cXVhZCUyMGJpa2VzfGVufDB8fHx8MTc2MDczNjEyMHww&ixlib=rb-4.1.0&q=70&w=800",
-      "imageHint": "quad bikes"
+      "imageHint": "quads"
     },
     {
       "id": "hero-souk",
-      "description": "Close-up of intricate Moroccan crafts in a souk.",
+      "description": "Gros plan sur l'artisanat marocain complexe dans un souk.",
       "imageUrl": "https://images.unsplash.com/photo-1716146755954-4f197a5b6031?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3NDE5ODJ8MHwxfHNlYXJjaHwyfHxtb3JvY2NhbiUyMGNyYWZ0c3xlbnwwfHx8fDE3NjA3MzYxMjB8MA&ixlib=rb-4.1.0&q=70&w=800",
-      "imageHint": "moroccan crafts"
+      "imageHint": "artisanat marocain"
     },
     {
       "id": "hero-beaches",
-      "description": "Waves crashing on a wild, untamed Moroccan beach.",
+      "description": "Vagues s'écrasant sur une plage marocaine sauvage et indomptée.",
       "imageUrl": "/images/cote-atlantique-maroc-4x4.jpg",
-      "imageHint": "ocean waves"
+      "imageHint": "vagues de l'océan"
     },
     {
       "id": "hero-cooking",
-      "description": "A group of people cooking together in a beautiful outdoor setting in Morocco.",
+      "description": "Un groupe de personnes cuisinant ensemble dans un magnifique cadre extérieur au Maroc.",
       "imageUrl": "/images/cuisine-marocaine-traditionnelle.jpg",
-      "imageHint": "outdoor kitchen"
+      "imageHint": "cuisine extérieure"
     },
     {
       "id": "gallery-transfers-1",
-      "description": "A smiling driver standing next to a clean van.",
+      "description": "Un chauffeur souriant debout à côté d'un van propre.",
       "imageUrl": "/images/transport-aeroport-confort.jpg",
-      "imageHint": "friendly driver"
+      "imageHint": "chauffeur amical"
     },
     {
       "id": "gallery-transfers-2",
-      "description": "Spacious and clean interior of a passenger van.",
+      "description": "Intérieur spacieux et propre d'un van de passagers.",
       "imageUrl": "/images/route-essaouira-voyage.jpg",
-      "imageHint": "van interior"
+      "imageHint": "intérieur du van"
     },
     {
       "id": "gallery-quad-1",
-      "description": "A quad bike kicking up sand on a dune.",
+      "description": "Un quad soulevant du sable sur une dune.",
       "imageUrl": "https://images.unsplash.com/photo-1527261460248-b0abfd14c0da?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3NDE5ODJ8MHwxfHNlYXJjaHw5fHxzYW5kJTIwZHVuZXxlbnwwfHx8fDE3NjA3MzYxMjB8MA&ixlib=rb-4.1.0&q=70&w=800",
-      "imageHint": "sand dune"
+      "imageHint": "dune de sable"
     },
     {
       "id": "gallery-quad-2",
-      "description": "A group of people on quad bikes with the ocean in the background.",
+      "description": "Un groupe de personnes sur des quads avec l'océan en arrière-plan.",
       "imageUrl": "https://images.unsplash.com/photo-1505142468610-359e7d316be0?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3NDE5ODJ8MHwxfHNlYXJjaHw3fHxvY2VhbiUyMGJhY2tncm91bmR8ZW58MHx8fHwxNzYwNzM2MTIwfDA&ixlib=rb-4.1.0&q=70&w=800",
-      "imageHint": "ocean background"
+      "imageHint": "océan en arrière-plan"
     },
     {
       "id": "gallery-quad-3",
-      "description": "A guide explaining the route to quad bike riders.",
+      "description": "Un guide expliquant l'itinéraire aux conducteurs de quad.",
       "imageUrl": "https://images.unsplash.com/photo-1616895727759-dd84a2690433?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3NDE5ODJ8MHwxfHNlYXJjaHw2fHx0b3VyJTIwZ3VpZGV8ZW58MHx8fHwxNzYwNzM2MTIwfDA&ixlib=rb-4.1.0&q=70&w=800",
-      "imageHint": "tour guide"
+      "imageHint": "guide touristique"
     },
     {
       "id": "gallery-souk-1",
-      "description": "Colorful leather slippers (babouches) arranged at a market stall.",
+      "description": "Babouches en cuir colorées disposées sur un étal de marché.",
       "imageUrl": "https://images.unsplash.com/photo-1648117072742-ded008ed555f?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3NDE5ODJ8MHwxfHNlYXJjaHw3fHxtb3JvY2NhbiUyMHNsaXBwZXJzfGVufDB8fHx8MTc2MDczNjEyMHww&ixlib=rb-4.1.0&q=70&w=800",
-      "imageHint": "moroccan slippers"
+      "imageHint": "babouches marocaines"
     },
     {
       "id": "gallery-souk-2",
-      "description": "A merchant pouring traditional mint tea.",
+      "description": "Un marchand versant du thé à la menthe traditionnel.",
       "imageUrl": "https://images.unsplash.com/photo-1555758933-42f41c02c82f?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3NDE5ODJ8MHwxfHNlYXJjaHwxMHx8bWludCUyMHRlYXxlbnwwfHx8fDE3NjA3MzYxMjB8MA&ixlib=rb-4.1.0&q=70&w=800",
-      "imageHint": "mint tea"
+      "imageHint": "thé à la menthe"
     },
     {
       "id": "gallery-souk-3",
-      "description": "A narrow, bustling alleyway in the Essaouira medina.",
+      "description": "Une ruelle étroite et animée de la médina d'Essaouira.",
       "imageUrl": "https://images.unsplash.com/photo-1552853519-1793ff886074?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3NDE5ODJ8MHwxfHNlYXJjaHwxMHx8bWVkaW5hJTIwYWxsZXl8ZW58MHx8fHwxNzYwNzM2MTIwfDA&ixlib=rb-4.1.0&q=70&w=800",
-      "imageHint": "medina alley"
+      "imageHint": "ruelle de la médina"
     },
     {
       "id": "gallery-beaches-1",
-      "description": "Camels walking along the shoreline at sunset.",
+      "description": "Chameaux marchant le long du rivage au coucher du soleil.",
       "imageUrl": "https://images.unsplash.com/photo-1699923731541-b03e07883700?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3NDE5ODJ8MHwxfHNlYXJjaHw4fHxjYW1lbHMlMjBzdW5zZXR8ZW58MHx8fHwxNzYwNzM2MTIwfDA&ixlib=rb-4.1.0&q=70&w=800",
-      "imageHint": "camels sunset"
+      "imageHint": "chameaux au coucher du soleil"
     },
     {
       "id": "gallery-beaches-2",
-      "description": "A person surfing a wave on a remote beach.",
+      "description": "Une personne surfant sur une vague sur une plage isolée.",
       "imageUrl": "https://images.unsplash.com/photo-1657220437961-26164bc827e0?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3NDE5ODJ8MHwxfHNlYXJjaHw5fHxzdXJmaW5nJTIwd2F2ZXxlbnwwfHx8fDE3NjA3MzYxMjB8MA&ixlib=rb-4.1.0&q=70&w=800",
-      "imageHint": "surfing wave"
+      "imageHint": "surf sur vague"
     },
     {
       "id": "gallery-beaches-3",
-      "description": "Tide pools and unique rock formations on the coast.",
+      "description": "Marres résiduelles et formations rocheuses uniques sur la côte.",
       "imageUrl": "https://images.unsplash.com/photo-1643951523628-88d9f231b8fd?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3NDE5ODJ8MHwxfHNlYXJjaHwyfHx0aWRlJTIwcG9vbHN8ZW58MHx8fHwxNzYwNzM2MTIwfDA&ixlib=rb-4.1.0&q=70&w=800",
-      "imageHint": "tide pools"
+      "imageHint": "marres résiduelles"
     },
     {
       "id": "gallery-cooking-1",
-      "description": "Fresh vegetables and spices laid out on a wooden table, ready for cooking.",
+      "description": "Légumes frais et épices disposés sur une table en bois, prêts pour la cuisine.",
       "imageUrl": "https://images.unsplash.com/photo-1518843875459-f738682238a6?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3NDE5ODJ8MHwxfHNlYXJjaHw0fHxmcmVzaCUyMGluZ3JlZGllbnRzfGVufDB8fHx8MTc2MDczMzYyNHww&ixlib=rb-4.1.0&q=70&w=800",
-      "imageHint": "fresh ingredients"
+      "imageHint": "ingrédients frais"
     },
     {
       "id": "gallery-cooking-2",
-      "description": "People gathered around a table, enjoying a freshly cooked meal outdoors.",
+      "description": "Personnes rassemblées autour d'une table, dégustant un repas fraîchement cuisiné en plein air.",
       "imageUrl": "/images/repas-chez-habitant.jpg",
-      "imageHint": "outdoor dining"
+      "imageHint": "repas en plein air"
     },
     {
       "id": "gallery-cooking-3",
-      "description": "A close-up of a bubbling, aromatic tagine.",
+      "description": "Gros plan sur un tajine aromatique et bouillonnant.",
       "imageUrl": "/images/preparation-tajine-maroc.jpg",
-      "imageHint": "cooking tagine"
+      "imageHint": "cuisson tajine"
     }
   ]
 }
