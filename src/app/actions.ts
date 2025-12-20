@@ -40,8 +40,12 @@ export async function getRecommendations(
       recommendedServices: recommendedServices,
       reasoning: result.reasoning
     };
-  } catch (error) {
+  } catch (error: any) {
     console.error('Error getting recommendations:', error);
+    if (!process.env.GOOGLE_GENAI_API_KEY) {
+       console.error('GOOGLE_GENAI_API_KEY is missing');
+       return { error: 'Configuration Error: Missing AI API Key.' };
+    }
     return { error: 'Failed to get recommendations from AI.' };
   }
 }

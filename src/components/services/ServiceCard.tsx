@@ -1,5 +1,5 @@
 import Image from 'next/image';
-import { ArrowRight, Car, ChefHat, Mountain, Map, Bike } from 'lucide-react';
+import { ArrowRight, Car, ChefHat, Mountain, Map, Bike, Star } from 'lucide-react';
 import { Button } from '@/components/ui/button';
 import { Card, CardContent, CardFooter, CardHeader, CardTitle } from '@/components/ui/card';
 import type { Service } from '@/lib/services';
@@ -39,6 +39,10 @@ export default function ServiceCard({ service, onBook }: ServiceCardProps) {
               className="object-cover transition-transform duration-500 group-hover:scale-110"
               sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
             />
+            <div className="absolute top-4 left-4 z-20 bg-black/80 backdrop-blur text-white px-3 py-1 rounded-full text-xs font-bold flex items-center border border-white/10">
+              <Star className="w-3 h-3 text-primary fill-primary mr-1" />
+              {service.rating || 4.9}
+            </div>
             <div className="absolute bottom-4 left-6 z-20">
               {getIcon(service.id)}
               <CardTitle className="font-headline text-2xl text-white group-hover:text-primary transition-colors">

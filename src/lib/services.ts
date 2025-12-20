@@ -58,6 +58,8 @@ export type Service = {
     amount: number;
     unit: string;
   };
+  rating?: number;
+  reviewsCount?: number;
   difficulty?: 'Easy' | 'Moderate' | 'Challenging';
   images: {
     card: string;
@@ -80,6 +82,8 @@ export const services: Service[] = [
     aboutTitle: 'À propos de votre transfert',
     bookingTitle: 'Réservez votre transfert',
     features: ['Service vers Aéroports & Villes Majeures', 'Véhicules Privés Climatisés', 'Chauffeurs Professionnels & Ponctuels', 'Disponibilité 24/7 pour tous les vols'],
+    rating: 4.9,
+    reviewsCount: 342,
     difficulty: 'Moderate' as const,
     images: {
       card: 'card-transfers',
@@ -135,6 +139,8 @@ export const services: Service[] = [
       amount: 80,
       unit: 'par personne',
     },
+    rating: 5.0,
+    reviewsCount: 156,
     difficulty: 'Easy' as const,
     images: {
       card: 'card-cooking',
@@ -199,6 +205,8 @@ export const services: Service[] = [
       amount: 70,
       unit: 'par personne',
     },
+    rating: 4.8,
+    reviewsCount: 204,
     difficulty: 'Moderate' as const,
     images: {
       card: 'card-beaches',
@@ -254,6 +262,8 @@ export const services: Service[] = [
       amount: 25,
       unit: 'par personne',
     },
+    rating: 4.9,
+    reviewsCount: 521,
     difficulty: 'Easy' as const,
     images: {
       card: 'card-souk',
@@ -300,6 +310,8 @@ export const services: Service[] = [
       amount: 50,
       unit: 'par personne (2 heures)',
     },
+    rating: 4.7,
+    reviewsCount: 89,
     difficulty: 'Moderate' as const,
     images: {
       card: 'card-quad',
