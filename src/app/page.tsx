@@ -130,7 +130,7 @@ export default function Home() {
                              <img 
                                 src="/images/payment-methods.png" 
                                 alt="Paiement Sécurisé : Visa, Mastercard, PayPal" 
-                                className="h-12 w-auto object-contain"
+                                className="h-20 w-auto object-contain"
                              />
                         </div>
                     </div>
