@@ -6,6 +6,7 @@ import { zodResolver } from '@hookform/resolvers/zod';
 import { z } from 'zod';
 import { useTransition, useMemo, useEffect } from 'react';
 import { format } from 'date-fns';
+import { fr } from 'date-fns/locale';
 
 import { Button } from '@/components/ui/button';
 import {
@@ -290,7 +291,7 @@ export default function BookingForm({ service }: BookingFormProps) {
                               !field.value && 'text-muted-foreground'
                           )}
                           >
-                          {field.value ? format(field.value, 'PPP') : <span>Choisir une date</span>}
+                          {field.value ? format(field.value, 'PPP', { locale: fr }) : <span>Choisir une date</span>}
                           <CalendarIcon className="ml-auto h-4 w-4 opacity-50" />
                           </Button>
                       </FormControl>
@@ -301,6 +302,7 @@ export default function BookingForm({ service }: BookingFormProps) {
                           selected={field.value}
                           onSelect={field.onChange}
                           disabled={(date) => date < new Date(new Date().setDate(new Date().getDate() - 1))}
+                          locale={fr}
                           initialFocus
                       />
                       </PopoverContent>

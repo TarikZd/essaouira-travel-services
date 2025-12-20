@@ -58,7 +58,7 @@ export default function Destinations() {
               <div className="relative h-64 overflow-hidden">
                 <Image
                   src={dest.image}
-                  alt={`${dest.from} to ${dest.to}`}
+                  alt={`Transfert ${dest.from} vers ${dest.to} - Transport Touristique Maroc`}
                   fill
                   className="object-cover transition-transform duration-700 group-hover:scale-110"
                 />
