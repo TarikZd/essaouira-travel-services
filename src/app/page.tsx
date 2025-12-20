@@ -4,6 +4,7 @@ import { useState } from 'react';
 import { services, type Service } from '@/lib/services';
 import Hero from '@/components/landing/Hero';
 import Stats from '@/components/landing/Stats';
+import Reviews from '@/components/landing/Reviews';
 import Destinations from '@/components/landing/Destinations';
 import ServiceCard from '@/components/services/ServiceCard';
 import BookingForm from '@/components/services/BookingForm';
@@ -30,22 +31,7 @@ export default function Home() {
       <Stats />
 
       {/* AI Recommendation Section */}
-      <section id="recommendations" className="py-20 bg-gradient-to-b from-black to-gray-900 border-b border-white/5">
-         <div className="container mx-auto px-4 text-center">
-           <div className="inline-block p-3 rounded-full bg-primary/10 mb-6">
-             <Sparkles className="w-8 h-8 text-primary" />
-           </div>
-           <h2 className="font-headline text-3xl md:text-5xl font-bold text-white mb-6">
-             Assistant Voyage <span className="text-primary">IA</span>
-           </h2>
-           <p className="mx-auto max-w-2xl text-lg text-gray-400 mb-12">
-            Pas sûr de ce que vous cherchez ? Laissez notre assistant intelligent vous suggérer les meilleures activités pour votre séjour à Essaouira.
-           </p>
-           <div className="max-w-4xl mx-auto">
-             <RecommendationEngine onBook={handleServiceSelect} />
-           </div>
-         </div>
-       </section>
+      <Destinations />
 
       {/* Services Section */}
       <section id="services" className="py-24 bg-black">
@@ -71,29 +57,26 @@ export default function Home() {
         </div>
       </section>
 
-      <Destinations />
+      {/* AI Recommendation Section */}
+      <section id="recommendations" className="py-20 bg-gradient-to-b from-black to-gray-900 border-b border-white/5">
+         <div className="container mx-auto px-4 text-center">
+           <div className="inline-block p-3 rounded-full bg-primary/10 mb-6">
+             <Sparkles className="w-8 h-8 text-primary" />
+           </div>
+           <h2 className="font-headline text-3xl md:text-5xl font-bold text-white mb-6">
+             Assistant Voyage <span className="text-primary">IA</span>
+           </h2>
+           <p className="mx-auto max-w-2xl text-lg text-gray-400 mb-12">
+            Pas sûr de ce que vous cherchez ? Laissez notre assistant intelligent vous suggérer les meilleures activités pour votre séjour à Essaouira.
+           </p>
+           <div className="max-w-4xl mx-auto">
+             <RecommendationEngine onBook={handleServiceSelect} />
+           </div>
+         </div>
+       </section>
 
-      {/* Reviews/Social Proof Placeholder */}
-      <section id="reviews" className="py-20 bg-white/5 border-y border-white/10">
-        <div className="container mx-auto px-4 text-center">
-             <h2 className="font-headline text-3xl md:text-4xl font-bold text-white mb-12">
-              Ce que disent nos <span className="text-primary">clients</span>
-            </h2>
-            <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
-                {[1, 2, 3].map((i) => (
-                    <Card key={i} className="bg-black/40 border-white/10 p-6">
-                        <div className="flex justify-center mb-4">
-                            {[1, 2, 3, 4, 5].map((star) => (
-                                <span key={star} className="text-primary text-xl">★</span>
-                            ))}
-                        </div>
-                        <p className="text-gray-300 italic mb-4">"Service impeccable, chauffeur ponctuel et voiture très confortable. Je recommande vivement pour tous vos trajets au Maroc !"</p>
-                        <p className="text-primary font-bold">- Client Vérifié</p>
-                    </Card>
-                ))}
-            </div>
-        </div>
-      </section>
+      {/* Reviews Section */}
+      <Reviews />
 
       {/* Contact & Booking Section */}
       <section id="contact" className="py-24 bg-black relative">
