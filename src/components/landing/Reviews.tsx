@@ -10,6 +10,7 @@ import Image from 'next/image';
 import { fr } from 'date-fns/locale';
 import { format, subDays } from 'date-fns';
 import { ReviewFormDialog } from '@/components/reviews/ReviewFormDialog';
+import { getDynamicMetrics } from '@/lib/metrics';
 
 // Data Arrays for Generation
 const firstNames = [
@@ -156,7 +157,7 @@ const generateReviews = (): Review[] => {
   const reviews: Review[] = [];
   let currentId = 1;
   const today = new Date();
-  const TARGET_TOTAL = 1783;
+  const { reviews: TARGET_TOTAL } = getDynamicMetrics();
   let reviewsCount = 0;
 
   const generateData = (daysBackStart: number, daysBackEnd: number, countPerDay: number, totalLimit: number) => {
@@ -234,8 +235,11 @@ export default function Reviews() {
   const [emblaRef, emblaApi] = useEmblaCarousel({ align: 'start', loop: true });
   // State to track which reviews are translated
   const [translatedReviews, setTranslatedReviews] = React.useState<Record<number, boolean>>({});
+  const [totalReviews, setTotalReviews] = React.useState(1783);
 
   React.useEffect(() => {
+    const { reviews } = getDynamicMetrics();
+    setTotalReviews(reviews);
     setReviews(generateReviews());
   }, []);
 
@@ -290,7 +294,7 @@ export default function Reviews() {
                        ))}
                      </div>
                    </div>
-                   <p className="text-sm text-gray-400">1 783 avis</p>
+                   <p className="text-sm text-gray-400">{totalReviews.toLocaleString('fr-FR')} avis</p>
                 </div>
               </div>
 

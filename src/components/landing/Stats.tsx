@@ -76,37 +76,48 @@ const AnimatedStat = ({ value, suffix = '', className }: { value: number, suffix
   );
 };
 
-const stats = [
-  { 
-    label: 'Déplacements Réalisés', 
-    value: 7962, 
-    suffix: '+', 
-    icon: Users,
-    isAnimated: true 
-  },
-  { 
-    label: "Années d'expérience", 
-    value: 5, 
-    suffix: '', 
-    icon: Calendar,
-    isAnimated: true 
-  },
-  { 
-    label: 'Service disponible', 
-    value: '24/7', 
-    icon: Clock,
-    isAnimated: false
-  },
-  { 
-    label: 'Note Des Clients', 
-    value: 4.9, 
-    suffix: '', 
-    icon: Star,
-    isAnimated: true 
-  },
-];
+import { getDynamicMetrics } from '@/lib/metrics';
+
+// ... imports remain the same
 
 export default function Stats() {
+  const [metrics, setMetrics] = useState({ trips: 7962 });
+
+  useEffect(() => {
+     const { trips } = getDynamicMetrics();
+     setMetrics({ trips });
+  }, []);
+
+  const stats = [
+    { 
+      label: 'Déplacements Réalisés', 
+      value: metrics.trips, 
+      suffix: '+', 
+      icon: Users,
+      isAnimated: true 
+    },
+    { 
+      label: "Années d'expérience", 
+      value: 5, 
+      suffix: '', 
+      icon: Calendar,
+      isAnimated: true 
+    },
+    { 
+      label: 'Service disponible', 
+      value: '24/7', 
+      icon: Clock,
+      isAnimated: false
+    },
+    { 
+      label: 'Note Des Clients', 
+      value: 4.9, 
+      suffix: '', 
+      icon: Star,
+      isAnimated: true 
+    },
+  ];
+
   return (
     <section className="py-20 bg-card border-y border-white/5">
       <div className="container mx-auto px-4">
