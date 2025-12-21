@@ -47,7 +47,6 @@ export async function POST(req: Request) {
   const userMessage = `User Request: "${searchQuery}"\nBrowsing History: ${historyStr}`;
 
   try {
-    console.log("AI Route: Querying OpenAI (gpt-4o-mini)...");
     
     const response = await fetch('https://api.openai.com/v1/chat/completions', {
       method: 'POST',
