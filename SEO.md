@@ -68,6 +68,6 @@ When replacing images, rename your files to match these keywords before uploadin
 These settings control how links look when shared on WhatsApp, Facebook, or LinkedIn.
 
 - **OG Title:** `Taxi Marrakech Essaouira - Transport Touristique`
-- **OG Description:** "Votre chauffeur privé au Maroc. Transferts aéroports..."
+- **OG Description:** "Votre chauffeur privé au Maroc. Transferts aéroports Marrakech, Agadir, Essaouira et excursions touristiques. Réservation en ligne simple et rapide."
 - **OG Image:** `https://essaouira-travel.services/images/taxi-marrakech-essaouira-transfert.jpg`
   - _Tip:_ Ensure this generic image is high quality and represents the brand well (e.g., a branded car with a view).
