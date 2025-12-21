@@ -2,7 +2,7 @@
 
 import * as React from 'react';
 import useEmblaCarousel from 'embla-carousel-react';
-import { Star, ChevronLeft, ChevronRight, User } from 'lucide-react';
+import { Star, ChevronLeft, ChevronRight, Check } from 'lucide-react';
 import { Card, CardContent } from '@/components/ui/card';
 import { Button } from '@/components/ui/button';
 import { cn } from '@/lib/utils';
@@ -28,22 +28,106 @@ const lastNames = [
   'Green', 'Adams', 'Nelson', 'Baker', 'Hall', 'Rivera', 'Campbell', 'Mitchell', 'Carter', 'Roberts'
 ];
 
-const europeanCountries = [
-  'France', 'Allemagne', 'Royaume-Uni', 'Italie', 'Espagne', 'Pays-Bas', 'Belgique', 'Suisse', 'Suède', 'Portugal',
-  'Autriche', 'Danemark', 'Norvège', 'Irlande', 'Finlande', 'Pologne', 'République Tchèque', 'Grèce', 'Hongrie', 'Roumanie'
-];
+interface ReviewTemplate {
+    textFr: string;
+    textOriginal: string;
+}
 
-const reviewTemplates = [
-  "Service excellent ! Le chauffeur était ponctuel et très aimable.",
-  "Trajet très confortable de Marrakech à Essaouira. Je recommande.",
-  "Une expérience parfaite, le véhicule était propre et climatisé.",
-  "Chauffeur très professionnel, conduite prudente et agréable.",
-  "Super service, merci pour tout ! À la prochaine.",
-  "Ponctualité irréprochable et un service client au top.",
-  "Le meilleur moyen de voyager entre les villes au Maroc.",
-  "Très bon rapport qualité-prix. Je suis très satisfait.",
-  "Chauffeur sympathique qui nous a donné de bons conseils.",
-  "Voyage sans stress, exactement ce dont nous avions besoin."
+interface CountryData {
+    name: string;
+    code: string;
+    templates: ReviewTemplate[];
+}
+
+// Helper to create templates easily
+const t = (original: string, french: string) => ({ textOriginal: original, textFr: french });
+
+const countryData: CountryData[] = [
+  { 
+      name: 'France', code: 'FR', 
+      templates: [
+          t("Service excellent ! Le chauffeur était ponctuel.", "Service excellent ! Le chauffeur était ponctuel."),
+          t("Trajet très confortable de Marrakech à Essaouira.", "Trajet très confortable de Marrakech à Essaouira."),
+          t("Une expérience parfaite, le véhicule était propre.", "Une expérience parfaite, le véhicule était propre."),
+          t("Chauffeur très professionnel et agréable.", "Chauffeur très professionnel et agréable."),
+          t("Super service, merci pour tout !", "Super service, merci pour tout !")
+      ]
+  },
+  { 
+      name: 'Allemagne', code: 'DE', 
+      templates: [
+          t("Ausgezeichneter Service! Der Fahrer war sehr pünktlich.", "Service excellent ! Le chauffeur était très ponctuel."),
+          t("Sehr angenehme Fahrt von Marrakesch nach Essaouira.", "Trajet très agréable de Marrakech à Essaouira."),
+          t("Perfekte Erfahrung, das Auto war sauber und klimatisiert.", "Expérience parfaite, la voiture était propre et climatisée."),
+          t("Sehr professioneller Fahrer, sichere Fahrweise.", "Chauffeur très professionnel, conduite sûre."),
+          t("Toller Service, danke für alles!", "Super service, merci pour tout !")
+      ]
+  },
+  { 
+      name: 'Royaume-Uni', code: 'GB', 
+      templates: [
+          t("Excellent service! The driver was punctual and friendly.", "Service excellent ! Le chauffeur était ponctuel et amical."),
+          t("Very comfortable trip from Marrakech to Essaouira.", "Trajet très confortable de Marrakech à Essaouira."),
+          t("A perfect experience, the vehicle was clean and AC was good.", "Une expérience parfaite, le véhicule était propre et la clim bonne."),
+          t("Very professional driver, felt very safe.", "Chauffeur très professionnel, je me suis senti très en sécurité."),
+          t("Great service, thanks for everything!", "Super service, merci pour tout !")
+      ]
+  },
+  { 
+      name: 'Italie', code: 'IT', 
+      templates: [
+          t("Servizio eccellente! L'autista è stato puntuale.", "Service excellent ! Le chauffeur a été ponctuel."),
+          t("Viaggio molto confortevole da Marrakech a Essaouira.", "Voyage très confortable de Marrakech à Essaouira."),
+          t("Esperienza perfetta, veicolo pulito.", "Expérience parfaite, véhicule propre."),
+          t("Autista molto professionale, guida sicura.", "Chauffeur très professionnel, conduite sûre."),
+          t("Ottimo servizio, grazie di tutto!", "Excellent service, merci pour tout !")
+      ]
+  },
+  { 
+      name: 'Espagne', code: 'ES', 
+      templates: [
+          t("¡Excelente servicio! El conductor fue puntual.", "Excellent service ! Le conducteur était ponctuel."),
+          t("Viaje muy cómodo de Marrakech a Essaouira.", "Voyage très confortable de Marrakech à Essaouira."),
+          t("Una experiencia perfecta, el coche estaba limpio.", "Une expérience parfaite, la voiture était propre."),
+          t("Conductor muy profesional, conducción suave.", "Conducteur très professionnel, conduite douce."),
+          t("¡Gran servicio, gracias por todo!", "Grand service, merci pour tout !")
+      ]
+  },
+  { 
+      name: 'Pays-Bas', code: 'NL', 
+      templates: [
+          t("Uitstekende service! De chauffeur was op tijd.", "Service excellent ! Le chauffeur était à l'heure."),
+          t("Zeer comfortabele reis van Marrakech naar Essaouira.", "Voyage très confortable de Marrakech à Essaouira."),
+          t("Perfecte ervaring, schone auto.", "Expérience parfaite, voiture propre."),
+          t("Zeer professionele chauffeur.", "Chauffeur très professionnel."),
+          t("Geweldige service, bedankt!", "Super service, merci !")
+      ]
+  },
+  { 
+      name: 'Belgique', code: 'BE', 
+      templates: [
+          t("Service excellent ! (Service uitstekend!)", "Service excellent !"), 
+          t("Trajet impeccable.", "Trajet impeccable."),
+          t("Chauffeur très sympa.", "Chauffeur très sympa."),
+          t("A recommander vivement.", "A recommander vivement.")
+      ]
+  },
+    { 
+      name: 'Suisse', code: 'CH', 
+      templates: [
+          t("Service excellent / Ausgezeichneter Service.", "Service excellent."),
+          t("Fahrt war super. / Le trajet était super.", "Le trajet était super."),
+          t("Sichere Fahrt. / Conduite sûre.", "Conduite sûre.")
+      ]
+  },
+  { 
+      name: 'Portugal', code: 'PT', 
+      templates: [
+           t("Serviço excelente! O motorista foi pontual.", "Service excellent ! Le chauffeur était ponctuel."),
+           t("Viagem muito confortável.", "Voyage très confortable."),
+           t("Muito obrigado pelo serviço.", "Merci beaucoup pour le service.")
+      ]
+  }
 ];
 
 const colors = [
@@ -56,9 +140,11 @@ interface Review {
   id: number;
   author: string;
   country: string;
+  countryCode: string;
   date: string; // Formatted date string
   rating: number;
-  text: string;
+  text: string; // French translation
+  originalText: string; // Original Language
   initial: string;
   color: string;
   source: string;
@@ -70,79 +156,84 @@ const generateReviews = (): Review[] => {
   const reviews: Review[] = [];
   let currentId = 1;
   const today = new Date();
-  
-  // Strategy: 
-  // 1. Generate for the last 90 days (3 months) with 3-5 reviews per day.
-  // 2. Generate the rest to reach 1783 roughly spread over the previous time.
-
   const TARGET_TOTAL = 1783;
   let reviewsCount = 0;
 
-  // Last 3 months (90 days)
-  for (let i = 0; i < 90; i++) {
-    const reviewsToday = Math.floor(Math.random() * 3) + 3; // 3 to 5 reviews
-    const dayDate = subDays(today, i);
-
-    for (let j = 0; j < reviewsToday; j++) {
-      if (reviewsCount >= TARGET_TOTAL) break;
-      
-      const firstName = firstNames[Math.floor(Math.random() * firstNames.length)];
-      const lastName = lastNames[Math.floor(Math.random() * lastNames.length)];
-      
-      reviews.push({
-        id: currentId++,
-        author: `${firstName} ${lastName}`,
-        country: europeanCountries[Math.floor(Math.random() * europeanCountries.length)],
-        date: format(dayDate, 'd MMMM yyyy', { locale: fr }), 
-        rating: 5, // Keeping high rating consistent
-        text: reviewTemplates[Math.floor(Math.random() * reviewTemplates.length)],
-        initial: firstName[0],
-        color: colors[Math.floor(Math.random() * colors.length)],
-        source: 'google',
-        rawDate: dayDate
-      });
-      reviewsCount++;
-    }
-  }
-
-  // Fill the remaining reviews
-  const remainingNeeded = TARGET_TOTAL - reviewsCount;
-  // Spread remaining reviews over the last 2 years (approx 730 days) starting from 91 days ago
-  if (remainingNeeded > 0) {
-      for (let k = 0; k < remainingNeeded; k++) {
-           const daysBack = 91 + Math.floor(Math.random() * 600);
-           const dayDate = subDays(today, daysBack);
-           const firstName = firstNames[Math.floor(Math.random() * firstNames.length)];
-           const lastName = lastNames[Math.floor(Math.random() * lastNames.length)];
+  const generateData = (daysBackStart: number, daysBackEnd: number, countPerDay: number, totalLimit: number) => {
+       for (let i = daysBackStart; i < daysBackEnd; i++) {
+        const reviewsToday = countPerDay === -1 ? 1 : Math.floor(Math.random() * 3) + 3;
+        const dayDate = subDays(today, i);
+    
+        for (let j = 0; j < reviewsToday; j++) {
+            if (reviewsCount >= totalLimit) break;
+            
+            const firstName = firstNames[Math.floor(Math.random() * firstNames.length)];
+            const lastName = lastNames[Math.floor(Math.random() * lastNames.length)];
+            const country = countryData[Math.floor(Math.random() * countryData.length)];
+            
+            // Pick a random template for this country
+            const template = country.templates[Math.floor(Math.random() * country.templates.length)];
 
             reviews.push({
                 id: currentId++,
                 author: `${firstName} ${lastName}`,
-                country: europeanCountries[Math.floor(Math.random() * europeanCountries.length)],
+                country: country.name,
+                countryCode: country.code,
                 date: format(dayDate, 'd MMMM yyyy', { locale: fr }), 
-                rating: 5,
-                text: reviewTemplates[Math.floor(Math.random() * reviewTemplates.length)],
+                rating: 5, 
+                text: template.textFr, 
+                originalText: template.textOriginal,
                 initial: firstName[0],
                 color: colors[Math.floor(Math.random() * colors.length)],
                 source: 'google',
                 rawDate: dayDate
             });
+            reviewsCount++;
+        }
       }
   }
 
-  return reviews; // Already 'roughly' sorted by latest because of the generation order, but we can conform better if strict sorting is needed.
+  // Last 90 days
+  generateData(0, 90, 3, TARGET_TOTAL);
+
+  // Remaining history
+  const remainingNeeded = TARGET_TOTAL - reviewsCount;
+  if (remainingNeeded > 0) {
+      // Loop simply to fill up
+      for(let k=0; k< remainingNeeded; k++) {
+         const daysBack = 91 + Math.floor(Math.random() * 600);
+         const dayDate = subDays(today, daysBack);
+         const firstName = firstNames[Math.floor(Math.random() * firstNames.length)];
+         const lastName = lastNames[Math.floor(Math.random() * lastNames.length)];
+         const country = countryData[Math.floor(Math.random() * countryData.length)];
+         const template = country.templates[Math.floor(Math.random() * country.templates.length)];
+
+         reviews.push({
+                id: currentId++,
+                author: `${firstName} ${lastName}`,
+                country: country.name,
+                countryCode: country.code,
+                date: format(dayDate, 'd MMMM yyyy', { locale: fr }), 
+                rating: 5, 
+                text: template.textFr,
+                originalText: template.textOriginal,
+                initial: firstName[0],
+                color: colors[Math.floor(Math.random() * colors.length)],
+                source: 'google',
+                rawDate: dayDate
+         });
+         reviewsCount++;
+      }
+  }
+
+  return reviews; 
 };
-
-// Generate data once
-// ... (imports remain same)
-// ... (arrays remain same, lines 1-66)
-
-// Move generateReviews code inside or keep outside but call inside effect.
-// Keeping it outside is fine.
 
 export default function Reviews() {
   const [reviews, setReviews] = React.useState<Review[]>([]);
   const [emblaRef, emblaApi] = useEmblaCarousel({ align: 'start', loop: true });
+  // State to track which reviews are translated
+  const [translatedReviews, setTranslatedReviews] = React.useState<Record<number, boolean>>({});
 
   React.useEffect(() => {
     setReviews(generateReviews());
@@ -156,8 +247,15 @@ export default function Reviews() {
     if (emblaApi) emblaApi.scrollNext();
   }, [emblaApi]);
 
+  const toggleTranslation = (id: number) => {
+    setTranslatedReviews(prev => ({
+        ...prev,
+        [id]: !prev[id]
+    }));
+  };
+
   if (reviews.length === 0) {
-      return null; // Or a skeleton loader
+      return null; 
   }
 
   return (
@@ -250,32 +348,39 @@ export default function Reviews() {
                                    </div>
                                </div>
                            </div>
-                           {review.source === 'google' && (
-                               <div className="w-6 h-6 relative flex items-center justify-center">
-                                  {/* Small Google Icon to keep the source authenticity look */}
-                                  <span className="text-blue-500 font-bold text-lg">G</span>
-                               </div>
-                           )}
+                           {/* Flag Icon Replacement */}
+                            <div className="w-8 h-6 relative shadow-sm rounded overflow-hidden">
+                               <img
+                                   src={`http://purecatamphetamine.github.io/country-flag-icons/3x2/${review.countryCode}.svg`}
+                                   alt={`${review.country} flag`}
+                                   className="object-cover w-full h-full"
+                               />
+                           </div>
                         </div>
                         
                         <div className="flex mb-3">
                             {[...Array(review.rating)].map((_, i) => (
                                 <Star key={i} className="w-4 h-4 fill-yellow-400 text-yellow-400" />
                             ))}
-                            {review.source === 'google' && (
-                                <span className="ml-2 w-4 h-4 bg-blue-500 rounded-full flex items-center justify-center">
-                                    <svg className="w-2.5 h-2.5 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth="4" d="M5 13l4 4L19 7"></path></svg>
-                                </span>
-                            )}
+                            <span className="ml-2 w-4 h-4 bg-blue-500 rounded-full flex items-center justify-center">
+                                    <Check className="w-2.5 h-2.5 text-white" />
+                            </span>
                         </div>
 
-                        <p className="text-gray-300 text-sm leading-relaxed mb-4 flex-grow">
-                             {review.text.length > 150 ? `${review.text.substring(0, 150)}...` : review.text}
+                        <p className="text-gray-300 text-sm leading-relaxed mb-4 flex-grow italic">
+                             "{translatedReviews[review.id] ? review.text : review.originalText}"
                         </p>
 
-                        <button className="text-left text-sm text-gray-500 font-medium hover:text-white transition-colors">
-                            Lire la suite
-                        </button>
+                        <div className="flex justify-between items-center mt-auto">
+                            {(review.countryCode !== 'FR' && review.countryCode !== 'BE') && (
+                                <button 
+                                    onClick={() => toggleTranslation(review.id)}
+                                    className="text-xs text-primary hover:text-primary/80 font-medium flex items-center transition-colors"
+                                >
+                                    {translatedReviews[review.id] ? 'Voir l\'original' : 'Traduire'}
+                                </button>
+                            )}
+                        </div>
                       </CardContent>
                     </Card>
                   </div>
