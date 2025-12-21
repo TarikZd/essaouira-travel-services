@@ -93,7 +93,7 @@ export default function Stats() {
       start: 3651,
       suffix: '+', 
       icon: Users,
-      isAnimated: true 
+      isAnimated: false 
     },
     { 
       label: "Années d'expérience", 
@@ -132,7 +132,7 @@ export default function Stats() {
                 {stat.isAnimated && typeof stat.value === 'number' ? (
                   <AnimatedStat value={stat.value} start={(stat as any).start} suffix={stat.suffix} />
                 ) : (
-                  <span>{stat.value}</span>
+                  <span>{stat.value}{stat.suffix}</span>
                 )}
               </div>
               <div className="text-sm md:text-base text-gray-400 font-medium uppercase tracking-wider">
