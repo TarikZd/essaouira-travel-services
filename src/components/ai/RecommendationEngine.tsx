@@ -7,7 +7,7 @@ import { Button } from '@/components/ui/button';
 import { Input } from '@/components/ui/input';
 import { Alert, AlertDescription, AlertTitle } from '@/components/ui/alert';
 import { Loader2, Wand2, ArrowRight } from 'lucide-react';
-import { getRecommendations } from '@/app/actions';
+
 import { Service, services } from '@/lib/services';
 import Link from 'next/link';
 
@@ -31,12 +31,23 @@ export default function RecommendationEngine({ onBook }: RecommendationEnginePro
     setReasoning('');
 
     startTransition(async () => {
-      const result = await getRecommendations(searchQuery, browsingHistory);
-      if ('error' in result) {
-        setError(result.error);
-      } else {
-        setRecommendations(result.recommendedServices);
-        setReasoning(result.reasoning);
+      try {
+        const response = await fetch('/api/ai', {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify({ searchQuery, browsingHistory }),
+        });
+        
+        const result = await response.json();
+
+        if (!response.ok) {
+           setError(result.error || 'Something went wrong');
+        } else {
+           setRecommendations(result.recommendedServices);
+           setReasoning(result.reasoning);
+        }
+      } catch (err) {
+         setError('Failed to connect to the server.');
       }
     });
   };
