@@ -40,8 +40,10 @@ export async function POST(req: Request) {
     Return ONLY a JSON object with this exact structure:
     {
       "recommendedServices": ["exact_service_name_1", "exact_service_name_2"],
-      "reasoning": "brief explanation"
+      "reasoning": "brief explanation in French"
     }
+    
+    IMPORTANT: The 'reasoning' MUST be in French.
   `;
 
   const userMessage = `User Request: "${searchQuery}"\nBrowsing History: ${historyStr}`;
