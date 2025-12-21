@@ -1,7 +1,7 @@
 import { differenceInDays } from 'date-fns';
 
 // Anchored on Dec 21, 2024
-const ANCHOR_DATE = new Date('2024-12-21');
+const ANCHOR_DATE = new Date('2025-12-21');
 const ANCHOR_TRIPS = 7438;
 const ANCHOR_REVIEWS = 1783;
 
