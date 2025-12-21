@@ -351,7 +351,7 @@ export default function Reviews() {
                            {/* Flag Icon Replacement */}
                             <div className="w-8 h-6 relative shadow-sm rounded overflow-hidden">
                                <img
-                                   src={`http://purecatamphetamine.github.io/country-flag-icons/3x2/${review.countryCode}.svg`}
+                                   src={`https://purecatamphetamine.github.io/country-flag-icons/3x2/${review.countryCode}.svg`}
                                    alt={`${review.country} flag`}
                                    className="object-cover w-full h-full"
                                />
