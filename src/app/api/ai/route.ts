@@ -49,26 +49,43 @@ export async function POST(req: Request) {
   `;
 
   try {
-    // Attempt with standard model alias
-    const url = `https://generativelanguage.googleapis.com/v1beta/models/gemini-1.5-flash:generateContent?key=${GOOGLE_API_KEY}`;
-    
-    console.log("AI Route: Fetching Google API...");
+    const models = ['gemini-1.5-flash', 'gemini-1.5-flash-latest', 'gemini-pro'];
+    let data = null;
+    let lastError = null;
 
-    const response = await fetch(url, {
-      method: 'POST',
-      headers: { 'Content-Type': 'application/json' },
-      body: JSON.stringify({
-        contents: [{ parts: [{ text: prompt }] }]
-      })
-    });
+    for (const model of models) {
+        try {
+            console.log(`AI Route: Attempting model ${model}...`);
+            const url = `https://generativelanguage.googleapis.com/v1beta/models/${model}:generateContent?key=${GOOGLE_API_KEY}`;
+            
+            const response = await fetch(url, {
+                method: 'POST',
+                headers: { 'Content-Type': 'application/json' },
+                body: JSON.stringify({
+                    contents: [{ parts: [{ text: prompt }] }]
+                })
+            });
 
-    if (!response.ok) {
-        const errorText = await response.text();
-        console.error("AI Route: Google API Error:", response.status, errorText);
-        return NextResponse.json({ error: `Google API Error (${response.status}): ${errorText.substring(0, 200)}` }, { status: 500 });
+            if (response.ok) {
+                data = await response.json();
+                console.log(`AI Route: Success with model ${model}`);
+                break; 
+            } else {
+                 const errorText = await response.text();
+                 console.warn(`AI Route: Model ${model} failed:`, response.status, errorText);
+                 lastError = `Model ${model} Error (${response.status}): ${errorText.substring(0, 150)}...`;
+            }
+        } catch (e: any) {
+            console.warn(`AI Route: Model ${model} network error:`, e.message);
+            lastError = `Model ${model} Network: ${e.message}`;
+        }
     }
 
-    const data = await response.json();
+    if (!data) {
+       console.error("AI Route: All models failed.");
+       return NextResponse.json({ error: `AI Error: All models failed. Last: ${lastError}` }, { status: 500 });
+    }
+
     const generatedText = data.candidates?.[0]?.content?.parts?.[0]?.text;
 
     if (!generatedText) {
