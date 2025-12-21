@@ -234,7 +234,7 @@ export default function Reviews() {
               <div className="flex -ml-4 touch-pan-y">
                 {reviews.map((review) => (
                   <div className="flex-[0_0_100%] md:flex-[0_0_50%] pl-4 min-w-0" key={review.id}>
-                    <Card className="h-full bg-white border-0 shadow-lg hover:shadow-xl transition-shadow duration-300">
+                    <Card className="h-full bg-[#0b0f19] border border-white/10 shadow-lg hover:shadow-xl transition-all duration-300 hover:border-primary/50">
                       <CardContent className="p-6 flex flex-col h-full">
                         <div className="flex items-start justify-between mb-4">
                            <div className="flex items-center gap-3">
@@ -242,8 +242,8 @@ export default function Reviews() {
                                    {review.initial}
                                </div>
                                <div>
-                                   <h4 className="font-bold text-gray-900 text-sm">{review.author}</h4>
-                                   <div className="flex items-center gap-2 text-xs text-gray-500">
+                                   <h4 className="font-bold text-white text-sm">{review.author}</h4>
+                                   <div className="flex items-center gap-2 text-xs text-gray-400">
                                       <span className="font-medium text-primary">{review.country}</span>
                                       <span>•</span>
                                       <span>{review.date}</span>
@@ -269,11 +269,11 @@ export default function Reviews() {
                             )}
                         </div>
 
-                        <p className="text-gray-600 text-sm leading-relaxed mb-4 flex-grow">
+                        <p className="text-gray-300 text-sm leading-relaxed mb-4 flex-grow">
                              {review.text.length > 150 ? `${review.text.substring(0, 150)}...` : review.text}
                         </p>
 
-                        <button className="text-left text-sm text-gray-400 font-medium hover:text-gray-600 transition-colors">
+                        <button className="text-left text-sm text-gray-500 font-medium hover:text-white transition-colors">
                             Lire la suite
                         </button>
                       </CardContent>
