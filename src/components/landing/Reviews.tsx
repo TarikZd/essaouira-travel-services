@@ -134,10 +134,19 @@ const generateReviews = (): Review[] => {
 };
 
 // Generate data once
-const reviews = generateReviews();
+// ... (imports remain same)
+// ... (arrays remain same, lines 1-66)
+
+// Move generateReviews code inside or keep outside but call inside effect.
+// Keeping it outside is fine.
 
 export default function Reviews() {
+  const [reviews, setReviews] = React.useState<Review[]>([]);
   const [emblaRef, emblaApi] = useEmblaCarousel({ align: 'start', loop: true });
+
+  React.useEffect(() => {
+    setReviews(generateReviews());
+  }, []);
 
   const scrollPrev = React.useCallback(() => {
     if (emblaApi) emblaApi.scrollPrev();
@@ -147,11 +156,12 @@ export default function Reviews() {
     if (emblaApi) emblaApi.scrollNext();
   }, [emblaApi]);
 
-  return (
-    <section id="reviews" className="py-24 bg-white/5 border-y border-white/10 overflow-hidden">
-      <div className="container mx-auto px-4">
-        <div className="flex flex-col lg:flex-row gap-12 items-center">
-          
+  if (reviews.length === 0) {
+      return null; // Or a skeleton loader
+  }
+
+
+
           {/* Summary Column */}
           <div className="lg:w-1/3 text-center lg:text-left space-y-6">
             <h2 className="font-headline text-3xl md:text-5xl font-bold text-white leading-tight">
