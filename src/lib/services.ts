@@ -346,7 +346,64 @@ export const services: Service[] = [
 *Demande Spéciale:* ${data.specialRequests || 'Aucune'}
 `,
   },
+  {
+    id: 6,
+    name: 'Pêche en Bord de Mer',
+    slug: 'shore-fishing-essaouira',
+    description: 'Découvrez la pêche traditionnelle en surfcasting sur les plages sauvages d\'Essaouira. Accompagné d\'un pêcheur local expérimenté, vous apprendrez à lire l\'océan et à maîtriser les techniques de lancer depuis le rivage. Une expérience paisible et authentique, les pieds dans le sable, idéale pour se reconnecter avec la nature.',
+    aboutTitle: 'À propos de la pêche',
+    bookingTitle: 'Réservez votre session de pêche',
+    features: ['Matériel de Pêche Fourni', 'Pêcheur local Expérimenté', 'Rafraîchissements Inclus', 'Cadre Sauvage & Paisible'],
+    pricing: {
+      amount: 40,
+      unit: 'par personne',
+    },
+    rating: 4.8,
+    reviewsCount: 42,
+    difficulty: 'Easy' as const,
+    images: {
+      card: 'card-fishing',
+      hero: 'hero-fishing',
+      gallery: ['gallery-fishing-1', 'gallery-fishing-2', 'gallery-fishing-3'],
+    },
+    bookingForm: {
+      fields: getFieldsForService([
+        {
+          name: 'pickupLocation',
+          label: 'Lieu de prise en charge',
+          type: 'text',
+          required: true,
+          placeholder: 'ex: votre hôtel ou Riad',
+          validation: z.string().min(1, 'Le lieu est requis'),
+        },
+        {
+          name: 'packageType',
+          label: 'Durée de la session',
+          type: 'select',
+          required: true,
+          options: ['Demi-journée (Matin)', 'Demi-journée (Après-midi)', 'Journée Complète'],
+          validation: z.string().min(1, 'Veuillez choisir une durée.'),
+        },
+      ]),
+    },
+    whatsappNumber: '212628438838',
+    whatsappMessage: (data: Record<string, any>) => `
+*Nouvelle Demande Pêche* 🎣
+
+*Service:* Pêche en Bord de Mer (Surfcasting)
+*Nom:* ${data.fullName}
+*Email:* ${data.email}
+*Date:* ${data.date}
+*Heure:* ${data.time}
+*Tél:* ${data.phone}
+*Départ:* ${data.pickupLocation}
+*Adultes:* ${data.adults}
+*Enfants:* ${data.children || 0}
+*Durée:* ${data.packageType}
+*Demande Spéciale:* ${data.specialRequests || 'Aucune'}
+`,
+  },
 ].sort((a, b) => {
-    const order = [1, 5, 4, 3, 2];
+    const order = [1, 5, 4, 6, 3, 2];
     return order.indexOf(a.id) - order.indexOf(b.id);
 });

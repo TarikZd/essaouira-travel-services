@@ -149,6 +149,36 @@
       "description": "Gros plan sur un tajine aromatique et bouillonnant.",
       "imageUrl": "/images/preparation-tajine-maroc.jpg",
       "imageHint": "cuisson tajine"
+    },
+    {
+      "id": "card-fishing",
+      "description": "Pêcheur en bord de mer au coucher du soleil (Surfcasting).",
+      "imageUrl": "https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?q=80&w=800&auto=format&fit=crop",
+      "imageHint": "pêche plage"
+    },
+    {
+      "id": "hero-fishing",
+      "description": "Vue panoramique d'une plage avec des cannes à pêche plantées dans le sable.",
+      "imageUrl": "https://images.unsplash.com/photo-1544551763-46a013bb70d5?q=80&w=800&auto=format&fit=crop",
+      "imageHint": "cannes à pêche plage"
+    },
+    {
+      "id": "gallery-fishing-1",
+      "description": "Gros plan sur le matériel de pêche et une prise fraîche.",
+      "imageUrl": "https://images.unsplash.com/photo-1541604938670-348704207ba5?q=80&w=800&auto=format&fit=crop",
+      "imageHint": "matériel pêche"
+    },
+    {
+      "id": "gallery-fishing-2",
+      "description": "Guide local montrant une technique de lancer.",
+      "imageUrl": "https://images.unsplash.com/photo-1520627992797-285223e71027?q=80&w=800&auto=format&fit=crop",
+      "imageHint": "technique pêche"
+    },
+    {
+      "id": "gallery-fishing-3",
+      "description": "Moment de détente face à l'océan Atlantique.",
+      "imageUrl": "https://images.unsplash.com/photo-1498654200943-1088dd4438ae?q=80&w=800&auto=format&fit=crop",
+      "imageHint": "détente océan"
     }
   ]
 }

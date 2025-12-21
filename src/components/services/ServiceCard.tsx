@@ -1,5 +1,5 @@
 import Image from 'next/image';
-import { ArrowRight, Car, ChefHat, Mountain, Map, Bike, Star } from 'lucide-react';
+import { ArrowRight, Car, ChefHat, Mountain, Map, Bike, Star, Anchor } from 'lucide-react';
 import { Button } from '@/components/ui/button';
 import { Card, CardContent, CardFooter, CardHeader, CardTitle } from '@/components/ui/card';
 import type { Service } from '@/lib/services';
@@ -22,6 +22,7 @@ export default function ServiceCard({ service, onBook }: ServiceCardProps) {
       case 4: return <Mountain className="h-10 w-10 text-primary mb-4" />;
       case 3: return <Map className="h-10 w-10 text-primary mb-4" />;
       case 2: return <Bike className="h-10 w-10 text-primary mb-4" />;
+      case 6: return <Anchor className="h-10 w-10 text-primary mb-4" />;
       default: return <Car className="h-10 w-10 text-primary mb-4" />;
     }
   };
