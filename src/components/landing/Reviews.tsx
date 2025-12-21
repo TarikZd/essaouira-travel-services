@@ -332,7 +332,7 @@ export default function Reviews() {
               <div className="flex -ml-4 touch-pan-y">
                 {reviews.map((review) => (
                   <div className="flex-[0_0_100%] md:flex-[0_0_50%] pl-4 min-w-0" key={review.id}>
-                    <Card className="h-full bg-gradient-to-br from-[#1c2333] to-[#0b0f19] border border-white/10 shadow-lg hover:shadow-xl transition-all duration-300 hover:border-primary/50">
+                    <Card className="h-full bg-gradient-to-br from-[#1c2333]/70 to-[#0b0f19]/80 backdrop-blur-md border border-white/10 shadow-lg hover:shadow-xl transition-all duration-300 hover:border-primary/50">
                       <CardContent className="p-6 flex flex-col h-full">
                         <div className="flex items-start justify-between mb-4">
                            <div className="flex items-center gap-3">
