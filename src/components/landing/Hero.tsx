@@ -11,7 +11,7 @@ export default function Hero() {
   };
 
   const openWhatsApp = () => {
-    window.open('https://wa.me/212628438838', '_blank');
+    window.open('https://wa.me/212690606068', '_blank');
   };
 
   return (

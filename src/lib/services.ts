@@ -110,7 +110,7 @@ export const services: Service[] = [
         },
       ]),
     },
-    whatsappNumber: '212628438838',
+    whatsappNumber: '212690606068',
     whatsappMessage: (data: Record<string, any>) => `
 *Nouvelle Demande de Transfert* 🚗
 
@@ -175,7 +175,7 @@ export const services: Service[] = [
         },
       ]),
     },
-    whatsappNumber: '212628438838',
+    whatsappNumber: '212690606068',
     whatsappMessage: (data: Record<string, any>) => `
 *Nouvelle Demande Cours de Cuisine* 🍲
 
@@ -225,7 +225,7 @@ export const services: Service[] = [
         },
       ]),
     },
-    whatsappNumber: '212628438838',
+    whatsappNumber: '212690606068',
     whatsappMessage: (data: Record<string, any>) => `
 *Nouvelle Demande Plages Sauvages* 🏖️
 
@@ -273,7 +273,7 @@ export const services: Service[] = [
         },
       ]),
     },
-    whatsappNumber: '212628438838',
+    whatsappNumber: '212690606068',
     whatsappMessage: (data: Record<string, any>) => `
 *Nouvelle Demande Visite Souk* 🛍️
 
@@ -329,7 +329,7 @@ export const services: Service[] = [
         },
       ]),
     },
-    whatsappNumber: '212628438838',
+    whatsappNumber: '212690606068',
     whatsappMessage: (data: Record<string, any>) => `
 *Nouvelle Demande Quad* 🏍️
 
@@ -386,7 +386,7 @@ export const services: Service[] = [
         },
       ]),
     },
-    whatsappNumber: '212628438838',
+    whatsappNumber: '212690606068',
     whatsappMessage: (data: Record<string, any>) => `
 *Nouvelle Demande Pêche* 🎣
 

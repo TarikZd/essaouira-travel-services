@@ -15,7 +15,7 @@ const socialLinks = [
   },
   {
     name: 'WhatsApp',
-    url: 'https://wa.me/212628438838',
+    url: 'https://wa.me/212690606068',
     icon: <MessageCircle className="h-5 w-5" />,
   },
 ];
@@ -63,11 +63,11 @@ export default function Footer() {
               </li>
               <li className="flex items-center">
                 <Phone className="h-5 w-5 mr-3 text-primary shrink-0" />
-                <a href="tel:+212628438838" className="hover:text-white transition-colors">+212 628 438 838</a>
+                <a href="tel:+212690606068" className="hover:text-white transition-colors">+212 690 606 068</a>
               </li>
               <li className="flex items-center">
                 <Mail className="h-5 w-5 mr-3 text-primary shrink-0" />
-                <a href="mailto:contact@taxi-essaouira.com" className="hover:text-white transition-colors">contact@taxi-essaouira.com</a>
+                <a href="mailto:adiltaxipro@gmail.com" className="hover:text-white transition-colors">adiltaxipro@gmail.com</a>
               </li>
             </ul>
           </div>
