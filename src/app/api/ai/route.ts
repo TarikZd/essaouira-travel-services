@@ -95,6 +95,6 @@ export async function POST(req: Request) {
 
   } catch (error: any) {
     console.error('Error in AI route:', error);
-    return NextResponse.json({ error: 'Failed to get recommendations from AI.' }, { status: 500 });
+    return NextResponse.json({ error: `AI Connection Failed: ${error.message}` }, { status: 500 });
   }
 }
