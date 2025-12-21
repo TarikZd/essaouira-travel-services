@@ -5,8 +5,8 @@ import { Users, Calendar, Clock, Star } from 'lucide-react';
 import { cn } from '@/lib/utils';
 
 // Hook for counting animation
-const useCounter = (end: number, duration: number = 2000) => {
-  const [count, setCount] = useState(0);
+const useCounter = (end: number, duration: number = 2000, start: number = 0) => {
+  const [count, setCount] = useState(start);
   const countRef = useRef<HTMLDivElement>(null);
   const [isVisible, setIsVisible] = useState(false);
 
@@ -41,7 +41,8 @@ const useCounter = (end: number, duration: number = 2000) => {
       // Ease out quart
       const ease = 1 - Math.pow(1 - percentage, 4);
       
-      setCount(Math.min(end, Math.floor(end * ease)));
+      const currentCount = Math.floor(start + (end - start) * ease);
+      setCount(currentCount);
 
       if (progress < duration) {
         animationFrameId = requestAnimationFrame(animate);
@@ -53,19 +54,16 @@ const useCounter = (end: number, duration: number = 2000) => {
     animationFrameId = requestAnimationFrame(animate);
 
     return () => cancelAnimationFrame(animationFrameId);
-  }, [end, duration, isVisible]);
+  }, [end, duration, start, isVisible]);
 
   return { count, countRef };
 };
 
-const AnimatedStat = ({ value, suffix = '', className }: { value: number, suffix?: string, className?: string }) => {
+const AnimatedStat = ({ value, start = 0, suffix = '', className }: { value: number, start?: number, suffix?: string, className?: string }) => {
   // Check if it's a float (like 4.9)
   const isFloat = value % 1 !== 0;
-  // Multiply by 10 for float animation handling if needed, or just animate the integer part?
-  // Use a specialized approach for floats if needed, but for 4.9 simple approach might look jumpy.
-  // Let's stick to simple counter and format at the end.
   
-  const { count, countRef } = useCounter(isFloat ? value * 10 : value, 2000);
+  const { count, countRef } = useCounter(isFloat ? value * 10 : value, 2000, isFloat ? 0 : start);
   
   const displayValue = isFloat ? (count / 10).toFixed(1) : count;
 
@@ -81,7 +79,7 @@ import { getDynamicMetrics } from '@/lib/metrics';
 // ... imports remain the same
 
 export default function Stats() {
-  const [metrics, setMetrics] = useState({ trips: 7962 });
+  const [metrics, setMetrics] = useState({ trips: 7438 });
 
   useEffect(() => {
      const { trips } = getDynamicMetrics();
@@ -92,6 +90,7 @@ export default function Stats() {
     { 
       label: 'Déplacements Réalisés', 
       value: metrics.trips, 
+      start: 3651,
       suffix: '+', 
       icon: Users,
       isAnimated: true 
@@ -99,6 +98,7 @@ export default function Stats() {
     { 
       label: "Années d'expérience", 
       value: 5, 
+      start: 0,
       suffix: '', 
       icon: Calendar,
       isAnimated: true 
@@ -112,6 +112,7 @@ export default function Stats() {
     { 
       label: 'Note Des Clients', 
       value: 4.9, 
+      start: 0,
       suffix: '', 
       icon: Star,
       isAnimated: true 
@@ -129,7 +130,7 @@ export default function Stats() {
               </div>
               <div className="text-4xl md:text-5xl font-bold text-white mb-2 tracking-tight group-hover:text-primary transition-colors">
                 {stat.isAnimated && typeof stat.value === 'number' ? (
-                  <AnimatedStat value={stat.value} suffix={stat.suffix} />
+                  <AnimatedStat value={stat.value} start={(stat as any).start} suffix={stat.suffix} />
                 ) : (
                   <span>{stat.value}</span>
                 )}
