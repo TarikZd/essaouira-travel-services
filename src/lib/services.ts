@@ -223,14 +223,6 @@ export const services: Service[] = [
           placeholder: 'ex: votre hôtel ou Riad',
           validation: z.string().min(1, 'Le lieu est requis'),
         },
-        {
-          name: 'lunchPreference',
-          label: 'Préférence Déjeuner',
-          type: 'select',
-          required: true,
-          options: ['Mechoui', 'Barbecue', 'Tajine Viande', 'Tajine Poulet', 'Couscous', 'Poisson Frais (si dispo)', 'Végétarien'],
-          validation: z.string().min(1, 'Veuillez choisir un déjeuner.'),
-        }
       ]),
     },
     whatsappNumber: '212628438838',
@@ -246,7 +238,6 @@ export const services: Service[] = [
 *Départ:* ${data.pickupLocation}
 *Adultes:* ${data.adults}
 *Enfants:* ${data.children || 0}
-*Déjeuner:* ${data.lunchPreference}
 *Demande Spéciale:* ${data.specialRequests || 'Aucune'}
 `,
   },

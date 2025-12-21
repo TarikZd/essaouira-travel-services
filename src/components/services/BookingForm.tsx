@@ -317,7 +317,7 @@ export default function BookingForm({ service }: BookingFormProps) {
                       <FormItem>
                           <FormLabelWithRequired required={timeField.required}>{timeField.label}</FormLabelWithRequired>
                           <FormControl>
-                          <Input type="time" {...timeFieldProps} className="bg-white/5 border-white/20 text-white placeholder:text-gray-500" />
+                          <Input type="time" {...timeFieldProps} className="bg-white/5 border-white/20 text-white placeholder:text-gray-500 [color-scheme:dark]" />
                           </FormControl>
                           <FormMessage />
                       </FormItem>
