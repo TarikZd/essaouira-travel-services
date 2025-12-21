@@ -5,7 +5,7 @@ import {
 } from '@/ai/flows/personalized-service-recommendations';
 import { services } from '@/lib/services';
 
-export const runtime = 'nodejs'; // Ensure we use Node.js runtime for Genkit
+export const runtime = 'edge'; // Ensure we use Edge runtime for Cloudflare
 export const dynamic = 'force-dynamic'; // Prevent static caching
 
 export async function POST(req: Request) {
