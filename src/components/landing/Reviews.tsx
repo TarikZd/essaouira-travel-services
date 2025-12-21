@@ -160,8 +160,10 @@ export default function Reviews() {
       return null; // Or a skeleton loader
   }
 
-
-
+  return (
+    <section id="reviews" className="py-24 bg-white/5 border-y border-white/10 overflow-hidden">
+      <div className="container mx-auto px-4">
+        <div className="flex flex-col lg:flex-row gap-12 items-center">
           {/* Summary Column */}
           <div className="lg:w-1/3 text-center lg:text-left space-y-6">
             <h2 className="font-headline text-3xl md:text-5xl font-bold text-white leading-tight">
