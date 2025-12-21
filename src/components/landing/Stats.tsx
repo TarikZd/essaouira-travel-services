@@ -101,7 +101,7 @@ export default function Stats() {
       start: 0,
       suffix: '', 
       icon: Calendar,
-      isAnimated: true 
+      isAnimated: false 
     },
     { 
       label: 'Service disponible', 
@@ -115,7 +115,7 @@ export default function Stats() {
       start: 0,
       suffix: '', 
       icon: Star,
-      isAnimated: true 
+      isAnimated: false 
     },
   ];
 
