@@ -1,6 +1,13 @@
-
 import { z } from 'zod';
 import type { ZodType } from 'zod';
+import { format } from 'date-fns';
+import { fr } from 'date-fns/locale';
+
+const formatDate = (date: any) => {
+  if (!date) return '';
+  if (typeof date === 'string') return date;
+  return format(date, 'dd MMMM yyyy', { locale: fr });
+};
 
 export type FormField = {
   name: string;
@@ -112,12 +119,12 @@ export const services: Service[] = [
     },
     whatsappNumber: '212690606068',
     whatsappMessage: (data: Record<string, any>) => `
-*Nouvelle Demande de Transfert* 🚗
+*Nouvelle Demande de Transfert*
 
 *Service:* Transferts Privés
-*Nom:* ${data.fullName}
+*Nom:* ${data.fullName.toUpperCase()}
 *Email:* ${data.email}
-*Date:* ${data.date}
+*Date:* ${formatDate(data.date)}
 *Heure:* ${data.time}
 *Tél:* ${data.phone}
 *Départ:* ${data.pickupLocation}
@@ -177,12 +184,12 @@ export const services: Service[] = [
     },
     whatsappNumber: '212690606068',
     whatsappMessage: (data: Record<string, any>) => `
-*Nouvelle Demande Cours de Cuisine* 🍲
+*Nouvelle Demande Cours de Cuisine*
 
 *Service:* Cours de Cuisine Berbère
-*Nom:* ${data.fullName}
+*Nom:* ${data.fullName.toUpperCase()}
 *Email:* ${data.email}
-*Date:* ${data.date}
+*Date:* ${formatDate(data.date)}
 *Heure:* ${data.time}
 *Tél:* ${data.phone}
 *Départ:* ${data.pickupLocation}
@@ -227,12 +234,12 @@ export const services: Service[] = [
     },
     whatsappNumber: '212690606068',
     whatsappMessage: (data: Record<string, any>) => `
-*Nouvelle Demande Plages Sauvages* 🏖️
+*Nouvelle Demande Plages Sauvages*
 
 *Service:* Plages Sauvages 4x4
-*Nom:* ${data.fullName}
+*Nom:* ${data.fullName.toUpperCase()}
 *Email:* ${data.email}
-*Date:* ${data.date}
+*Date:* ${formatDate(data.date)}
 *Heure:* ${data.time}
 *Tél:* ${data.phone}
 *Départ:* ${data.pickupLocation}
@@ -275,12 +282,12 @@ export const services: Service[] = [
     },
     whatsappNumber: '212690606068',
     whatsappMessage: (data: Record<string, any>) => `
-*Nouvelle Demande Visite Souk* 🛍️
+*Nouvelle Demande Visite Souk*
 
 *Service:* Visite Guidée des Souks
-*Nom:* ${data.fullName}
+*Nom:* ${data.fullName.toUpperCase()}
 *Email:* ${data.email}
-*Date:* ${data.date}
+*Date:* ${formatDate(data.date)}
 *Heure:* ${data.time}
 *Tél:* ${data.phone}
 *Lieu:* ${data.pickupLocation}
@@ -331,12 +338,12 @@ export const services: Service[] = [
     },
     whatsappNumber: '212690606068',
     whatsappMessage: (data: Record<string, any>) => `
-*Nouvelle Demande Quad* 🏍️
+*Nouvelle Demande Quad*
 
 *Service:* Aventure Quad Côtière
-*Nom:* ${data.fullName}
+*Nom:* ${data.fullName.toUpperCase()}
 *Email:* ${data.email}
-*Date:* ${data.date}
+*Date:* ${formatDate(data.date)}
 *Heure:* ${data.time}
 *Tél:* ${data.phone}
 *Départ:* ${data.pickupLocation}
@@ -388,12 +395,12 @@ export const services: Service[] = [
     },
     whatsappNumber: '212690606068',
     whatsappMessage: (data: Record<string, any>) => `
-*Nouvelle Demande Pêche* 🎣
+*Nouvelle Demande Pêche*
 
 *Service:* Pêche en Bord de Mer (Surfcasting)
-*Nom:* ${data.fullName}
+*Nom:* ${data.fullName.toUpperCase()}
 *Email:* ${data.email}
-*Date:* ${data.date}
+*Date:* ${formatDate(data.date)}
 *Heure:* ${data.time}
 *Tél:* ${data.phone}
 *Départ:* ${data.pickupLocation}
