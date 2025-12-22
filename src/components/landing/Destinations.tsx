@@ -10,7 +10,7 @@ const destinations = [
     to: 'Essaouira',
     time: '2h30',
     price: 'A partir de 60€',
-    image: 'https://res.cloudinary.com/doy1q2tfm/image/upload/v1766382491/chauffeur-prive-mercedes-maroc_lhcxf5.jpg',
+    image: 'https://res.cloudinary.com/doy1q2tfm/image/upload/v1766384357/marrakech-transfer_ldfscm.jpg',
     rating: 4.9,
     reviews: 724
   },
