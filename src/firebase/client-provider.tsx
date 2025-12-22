@@ -30,12 +30,17 @@ export function FirebaseClientProvider({ children }: FirebaseClientProviderProps
   // No, `FirebaseProvider` provides the context. 
   
   if (!firebaseServices) {
-    // Return children directly (unwrapped) or Wrapped with partial context?
-    // If we return children directly, `useAuth` hook calls deeper down might throw "must be used within Provider".
-    // So we MUST render the Provider.
+    // Provide Mock Context for SSR/Static Generation
+    // This allows components using useFirestore() to render without crashing on the server.
     return (
-        <React.Fragment>{children}</React.Fragment>
-    )    
+      <FirebaseProvider
+        firebaseApp={{} as any}
+        auth={{} as any}
+        firestore={{} as any}
+      >
+        {children}
+      </FirebaseProvider>
+    );    
   }
 
   return (

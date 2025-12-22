@@ -6,6 +6,7 @@ import { PlaceHolderImages } from '@/lib/placeholder-images';
 import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';
 import { CheckCircle, Zap, TrendingUp } from 'lucide-react';
 import BookingForm from '@/components/services/BookingForm';
+// import BookingForm from '@/components/services/BookingForm';
 import type { Metadata } from 'next';
 
 type Props = {
