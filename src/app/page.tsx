@@ -38,7 +38,10 @@ export default function Home() {
     const service = services.find(s => s.slug === slug);
     if (service) {
       setSelectedService(service);
-      document.getElementById('contact')?.scrollIntoView({ behavior: 'smooth' });
+      // Small timeout to allow state update before scrolling
+      setTimeout(() => {
+        document.getElementById('booking-form')?.scrollIntoView({ behavior: 'smooth', block: 'start' });
+      }, 100);
     }
   };
 
@@ -131,7 +134,7 @@ export default function Home() {
                     </div>
                 </div>
 
-                <div className="bg-gray-900/50 backdrop-blur-sm p-8 rounded-3xl border border-white/10 shadow-2xl">
+                <div id="booking-form" className="bg-gray-900/50 backdrop-blur-sm p-8 rounded-3xl border border-white/10 shadow-2xl">
                     <div className="mb-6 pb-6 border-b border-white/10">
                         <p className="text-sm text-gray-400 uppercase tracking-widest mb-2">Service Sélectionné</p>
                         <h3 className="text-2xl font-bold text-primary flex items-center">
