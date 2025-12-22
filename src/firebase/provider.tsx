@@ -69,8 +69,8 @@ export const FirebaseProvider: React.FC<FirebaseProviderProps> = ({
 
   // Effect to subscribe to Firebase auth state changes
   useEffect(() => {
-    if (!auth) { // If no Auth service instance, cannot determine user state
-      setUserAuthState({ user: null, isUserLoading: false, userError: new Error("Auth service not provided.") });
+    if (!auth || !auth.app) { // If no Authand valid service instance, cannot determine user state. Mock object has no .app
+      setUserAuthState({ user: null, isUserLoading: false, userError: new Error("Auth service not provided or is mock.") });
       return;
     }
 
