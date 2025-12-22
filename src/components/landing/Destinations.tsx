@@ -60,7 +60,7 @@ export default function Destinations() {
           {destinations.map((dest, idx) => (
             <Card 
               key={`${dest.from}-${idx}`} 
-              onClick={() => document.getElementById('contact')?.scrollIntoView({ behavior: 'smooth' })}
+              onClick={() => document.getElementById('booking-form')?.scrollIntoView({ behavior: 'smooth' })}
               className="group overflow-hidden bg-white/5 border-white/10 hover:border-primary/50 transition-all duration-300 cursor-pointer hover:-translate-y-1 hover:shadow-xl hover:shadow-primary/5"
             >
               <div className="relative h-64 overflow-hidden">

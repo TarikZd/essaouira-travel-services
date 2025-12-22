@@ -8,7 +8,7 @@ import { CldImage } from 'next-cloudinary';
 export default function Hero() {
 
   const scrollToContact = () => {
-    document.getElementById('contact')?.scrollIntoView({ behavior: 'smooth' });
+    document.getElementById('booking-form')?.scrollIntoView({ behavior: 'smooth' });
   };
 
   const openWhatsApp = () => {

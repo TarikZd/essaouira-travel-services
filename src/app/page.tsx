@@ -134,7 +134,7 @@ export default function Home() {
                     </div>
                 </div>
 
-                <div id="booking-form" className="bg-gray-900/50 backdrop-blur-sm p-8 rounded-3xl border border-white/10 shadow-2xl">
+                <div id="booking-form" className="bg-gray-900/50 backdrop-blur-sm p-8 rounded-3xl border border-white/10 shadow-2xl scroll-mt-32">
                     <div className="mb-6 pb-6 border-b border-white/10">
                         <p className="text-sm text-gray-400 uppercase tracking-widest mb-2">Service Sélectionné</p>
                         <h3 className="text-2xl font-bold text-primary flex items-center">

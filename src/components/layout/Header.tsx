@@ -77,7 +77,7 @@ export default function Header() {
           ))}
           <Button 
             className="bg-primary text-black hover:bg-yellow-500 font-bold px-6 rounded-full"
-            onClick={() => document.getElementById('contact')?.scrollIntoView({ behavior: 'smooth' })}
+            onClick={() => document.getElementById('booking-form')?.scrollIntoView({ behavior: 'smooth' })}
           >
             RÉSERVER
           </Button>
