@@ -7,6 +7,7 @@ import Header from "@/components/layout/Header";
 import Footer from "@/components/layout/Footer";
 import JsonLd from "@/components/seo/JsonLd";
 import { FirebaseClientProvider } from "@/firebase/client-provider";
+import { GoogleAnalytics } from "@next/third-parties/google";
 
 const inter = Inter({ 
   subsets: ["latin"],
@@ -92,6 +93,7 @@ export default function RootLayout({
           <JsonLd />
           <Toaster />
         </FirebaseClientProvider>
+        <GoogleAnalytics gaId="G-BV8084R6GZ" />
       </body>
     </html>
   );
