@@ -63,19 +63,19 @@
     {
       "id": "hero-cooking",
       "description": "Un groupe de personnes cuisinant ensemble dans un magnifique cadre extérieur au Maroc.",
-      "imageUrl": "/images/cuisine-marocaine-traditionnelle.jpg",
+      "imageUrl": "https://res.cloudinary.com/doy1q2tfm/image/upload/v1766386707/cuisine-marocaine-traditionnelle_dyitjs.jpg",
       "imageHint": "cuisine extérieure"
     },
     {
       "id": "gallery-transfers-1",
       "description": "Un chauffeur souriant debout à côté d'un van propre.",
-      "imageUrl": "/images/transport-aeroport-confort.jpg",
+      "imageUrl": "https://res.cloudinary.com/doy1q2tfm/image/upload/v1766386709/transport-aeroport-confort_kqh0y5.jpg",
       "imageHint": "chauffeur amical"
     },
     {
       "id": "gallery-transfers-2",
       "description": "Intérieur spacieux et propre d'un van de passagers.",
-      "imageUrl": "/images/route-essaouira-voyage.jpg",
+      "imageUrl": "https://res.cloudinary.com/doy1q2tfm/image/upload/v1766382767/route-essaouira-voyage_vgo4vf.jpg",
       "imageHint": "intérieur du van"
     },
     {
@@ -117,7 +117,7 @@
     {
       "id": "gallery-beaches-1",
       "description": "Chameaux marchant le long du rivage au coucher du soleil.",
-      "imageUrl": "/images/camel-beach.jpg",
+      "imageUrl": "https://res.cloudinary.com/doy1q2tfm/image/upload/v1766386707/camel-beach_aageko.jpg",
       "imageHint": "chameaux au coucher du soleil"
     },
     {
@@ -141,43 +141,43 @@
     {
       "id": "gallery-cooking-2",
       "description": "Personnes rassemblées autour d'une table, dégustant un repas fraîchement cuisiné en plein air.",
-      "imageUrl": "/images/repas-chez-habitant.jpg",
+      "imageUrl": "https://res.cloudinary.com/doy1q2tfm/image/upload/v1766386708/repas-chez-habitant_vhqako.jpg",
       "imageHint": "repas en plein air"
     },
     {
       "id": "gallery-cooking-3",
       "description": "Gros plan sur un tajine aromatique et bouillonnant.",
-      "imageUrl": "/images/preparation-tajine-maroc.jpg",
+      "imageUrl": "https://res.cloudinary.com/doy1q2tfm/image/upload/v1766386708/preparation-tajine-maroc_sxgjxi.jpg",
       "imageHint": "cuisson tajine"
     },
     {
       "id": "card-fishing",
       "description": "Pêcheur en bord de mer au coucher du soleil (Surfcasting).",
-      "imageUrl": "/images/gallery-fishing-2.jpg",
+      "imageUrl": "https://res.cloudinary.com/doy1q2tfm/image/upload/v1766386708/gallery-fishing-2_shtphc.jpg",
       "imageHint": "pêche plage"
     },
     {
       "id": "hero-fishing",
       "description": "Vue panoramique d'une plage avec des cannes à pêche plantées dans le sable.",
-      "imageUrl": "/images/gallery-fishing-3.jpg",
+      "imageUrl": "https://res.cloudinary.com/doy1q2tfm/image/upload/v1766386708/gallery-fishing-3_vdpmi1.jpg",
       "imageHint": "cannes à pêche plage"
     },
     {
       "id": "gallery-fishing-1",
       "description": "Gros plan sur le matériel de pêche et une prise fraîche.",
-      "imageUrl": "/images/gallery-fishing-1.jpg",
+      "imageUrl": "https://res.cloudinary.com/doy1q2tfm/image/upload/v1766386708/gallery-fishing-1_jm3ck9.jpg",
       "imageHint": "matériel pêche"
     },
     {
       "id": "gallery-fishing-2",
       "description": "Guide local montrant une technique de lancer.",
-      "imageUrl": "/images/gallery-fishing-2.jpg",
+      "imageUrl": "https://res.cloudinary.com/doy1q2tfm/image/upload/v1766386708/gallery-fishing-2_shtphc.jpg",
       "imageHint": "technique pêche"
     },
     {
       "id": "gallery-fishing-3",
       "description": "Moment de détente face à l'océan Atlantique.",
-      "imageUrl": "/images/gallery-fishing-3.jpg",
+      "imageUrl": "https://res.cloudinary.com/doy1q2tfm/image/upload/v1766386708/gallery-fishing-3_vdpmi1.jpg",
       "imageHint": "détente océan"
     }
   ]

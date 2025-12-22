@@ -3,7 +3,7 @@ export default function JsonLd() {
     "@context": "https://schema.org",
     "@type": "LocalBusiness",
     "name": "Taxi Marrakech Essaouira",
-    "image": "https://essaouira-travel.services/images/taxi-marrakech-essaouira-transfert.jpg",
+    "image": "https://res.cloudinary.com/doy1q2tfm/image/upload/v1766384357/taxi-marrakech-essaouira-transfert_anisai.jpg",
     "telephone": "+212 628 438 838",
     "url": "https://essaouira-travel.services",
     "address": {
