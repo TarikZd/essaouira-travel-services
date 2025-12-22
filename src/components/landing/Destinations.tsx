@@ -19,7 +19,7 @@ const destinations = [
     to: 'Essaouira',
     time: '3h00',
     price: 'A partir de 80€',
-    image: 'https://res.cloudinary.com/doy1q2tfm/image/upload/v1766383049/cote-atlantique-maroc-4x4_zk5dbp.jpg',
+    image: 'https://res.cloudinary.com/doy1q2tfm/image/upload/v1766386707/agadir-transfer_g5qmde.jpg',
     rating: 4.8,
     reviews: 589
   },
@@ -28,7 +28,7 @@ const destinations = [
     to: 'Essaouira',
     time: '4h30',
     price: 'A partir de 140€',
-    image: 'https://res.cloudinary.com/doy1q2tfm/image/upload/v1766382767/route-essaouira-voyage_vgo4vf.jpg',
+    image: 'https://res.cloudinary.com/doy1q2tfm/image/upload/v1766386707/casablanca-transfer_bmqnmf.jpg',
     rating: 5.0,
     reviews: 345
   },
@@ -37,7 +37,7 @@ const destinations = [
     to: 'Centre Ville',
     time: '20 min',
     price: 'A partir de 15€',
-    image: 'https://res.cloudinary.com/doy1q2tfm/image/upload/v1766382491/chauffeur-prive-mercedes-maroc_lhcxf5.jpg',
+    image: 'https://res.cloudinary.com/doy1q2tfm/image/upload/v1766386709/transport-aeroport-confort_kqh0y5.jpg',
     rating: 4.9,
     reviews: 1215
   }

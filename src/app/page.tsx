@@ -4,6 +4,7 @@ export const dynamic = 'force-dynamic';
 
 import { useState } from 'react';
 import Image from 'next/image';
+import { CldImage } from 'next-cloudinary';
 import { services, type Service } from '@/lib/services';
 import Hero from '@/components/landing/Hero';
 import Stats from '@/components/landing/Stats';
@@ -130,11 +131,11 @@ export default function Home() {
                             <Lock className="w-4 h-4 text-primary" /> Paiement Sécurisé Avec
                         </p>
                         <div className="flex justify-center items-center opacity-90 transition-opacity hover:opacity-100">
-                             <Image 
-                                src="/images/Paiment-Securise-Avec.png" 
+                             <CldImage 
+                                src="https://res.cloudinary.com/doy1q2tfm/image/upload/v1766386708/Paiment-Securise-Avec_fc8loh.png" 
                                 alt="Paiement Sécurisé : Visa, Mastercard, PayPal" 
                                 width={250}
-                                height={160}
+                                height={80}
                                 className="h-20 w-auto object-contain"
                              />
                         </div>

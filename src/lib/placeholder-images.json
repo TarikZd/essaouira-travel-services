@@ -33,7 +33,7 @@
     {
       "id": "card-cooking",
       "description": "Un tajine marocain traditionnel cuisant sur un feu ouvert en plein air.",
-      "imageUrl": "/images/cours-cuisine-berbere-essaouira.jpg",
+      "imageUrl": "https://res.cloudinary.com/doy1q2tfm/image/upload/v1766386707/cours-cuisine-berbere-essaouira_olajqj.jpg",
       "imageHint": "cuisine en plein air"
     },
     {

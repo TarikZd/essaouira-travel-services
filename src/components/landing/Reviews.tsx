@@ -7,6 +7,7 @@ import { Card, CardContent } from '@/components/ui/card';
 import { Button } from '@/components/ui/button';
 import { cn } from '@/lib/utils';
 import Image from 'next/image';
+import { CldImage } from 'next-cloudinary';
 import { fr } from 'date-fns/locale';
 import { format, subDays } from 'date-fns';
 import { ReviewFormDialog } from '@/components/reviews/ReviewFormDialog';
@@ -277,12 +278,13 @@ export default function Reviews() {
               <div className="flex items-center space-x-4 bg-white/5 p-4 rounded-xl border border-white/10 backdrop-blur-sm">
                 <div className="w-16 h-16 bg-white/10 rounded-lg flex items-center justify-center overflow-hidden relative">
                    {/* Brand Icon replacing "G" */}
-                   <Image 
-                     src="/images/brand-icon.png" 
-                     alt="Taxi Essaouira Icon" 
-                     fill
-                     className="object-cover"
-                   />
+                   <CldImage 
+              src="https://res.cloudinary.com/doy1q2tfm/image/upload/v1766386707/brand-icon_v517gx.png"
+              alt="Essaouira Travel Services" 
+              width={60} 
+              height={60} 
+              className="mr-3"
+            />
                 </div>
                 <div>
                    <h3 className="text-white font-bold text-lg">Taxi Essaouira</h3>
