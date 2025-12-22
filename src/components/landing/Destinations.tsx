@@ -1,6 +1,6 @@
 'use client';
 
-import Image from 'next/image';
+import { CldImage } from 'next-cloudinary';
 import { Clock, MapPin, Star } from 'lucide-react';
 import { Card, CardContent } from '@/components/ui/card';
 
@@ -10,7 +10,7 @@ const destinations = [
     to: 'Essaouira',
     time: '2h30',
     price: 'A partir de 60€',
-    image: '/images/marrakech-transfer.jpg',
+    image: 'https://res.cloudinary.com/doy1q2tfm/image/upload/v1766382491/chauffeur-prive-mercedes-maroc_lhcxf5.jpg',
     rating: 4.9,
     reviews: 724
   },
@@ -19,7 +19,7 @@ const destinations = [
     to: 'Essaouira',
     time: '3h00',
     price: 'A partir de 80€',
-    image: '/images/agadir-transfer.jpg',
+    image: 'https://res.cloudinary.com/doy1q2tfm/image/upload/v1766383049/cote-atlantique-maroc-4x4_zk5dbp.jpg',
     rating: 4.8,
     reviews: 589
   },
@@ -28,7 +28,7 @@ const destinations = [
     to: 'Essaouira',
     time: '4h30',
     price: 'A partir de 140€',
-    image: '/images/casablanca-transfer.jpg',
+    image: 'https://res.cloudinary.com/doy1q2tfm/image/upload/v1766382767/route-essaouira-voyage_vgo4vf.jpg',
     rating: 5.0,
     reviews: 345
   },
@@ -37,7 +37,7 @@ const destinations = [
     to: 'Centre Ville',
     time: '20 min',
     price: 'A partir de 15€',
-    image: '/images/transport-aeroport-confort.jpg',
+    image: 'https://res.cloudinary.com/doy1q2tfm/image/upload/v1766382491/chauffeur-prive-mercedes-maroc_lhcxf5.jpg',
     rating: 4.9,
     reviews: 1215
   }
@@ -64,7 +64,7 @@ export default function Destinations() {
               className="group overflow-hidden bg-white/5 border-white/10 hover:border-primary/50 transition-all duration-300 cursor-pointer hover:-translate-y-1 hover:shadow-xl hover:shadow-primary/5"
             >
               <div className="relative h-64 overflow-hidden">
-                <Image
+                <CldImage
                   src={dest.image}
                   alt={`Transfert ${dest.from} vers ${dest.to} - Transport Touristique Maroc`}
                   fill

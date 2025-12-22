@@ -3,6 +3,7 @@
 import { Button } from '@/components/ui/button';
 import { ArrowRight, MessageCircle } from 'lucide-react';
 import Image from 'next/image';
+import { CldImage } from 'next-cloudinary';
 
 export default function Hero() {
 
@@ -18,8 +19,8 @@ export default function Hero() {
     <section id="hero" className="relative h-screen min-h-[600px] w-full overflow-hidden flex items-center justify-center">
       {/* Background and Overlay */}
       <div className="absolute inset-0 z-0">
-        <Image
-          src="/images/chauffeur-prive-mercedes-maroc.jpg"
+        <CldImage
+          src="https://res.cloudinary.com/doy1q2tfm/image/upload/v1766382491/chauffeur-prive-mercedes-maroc_lhcxf5.jpg"
           alt="Taxi Marrakech Essaouira Transport"
           fill
           priority

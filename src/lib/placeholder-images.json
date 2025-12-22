@@ -3,13 +3,13 @@
     {
       "id": "hero-home",
       "description": "Une belle vue panoramique d'une plage marocaine au coucher du soleil.",
-      "imageUrl": "/images/hero-bg.jpg",
+      "imageUrl": "https://res.cloudinary.com/doy1q2tfm/image/upload/v1766382768/hero-bg_wgbndh.jpg",
       "imageHint": "plage marocaine"
     },
     {
       "id": "card-transfers",
       "description": "Un van moderne roulant le long d'une route côtière.",
-      "imageUrl": "/images/taxi-marrakech-essaouira-transfert.jpg",
+      "imageUrl": "https://res.cloudinary.com/doy1q2tfm/image/upload/v1766382767/route-essaouira-voyage_vgo4vf.jpg",
       "imageHint": "route côtière"
     },
     {
@@ -21,13 +21,13 @@
     {
       "id": "card-souk",
       "description": "Un souk marocain vibrant et coloré avec des épices et des lanternes.",
-      "imageUrl": "/images/visite-guidee-medina-essaouira.jpg",
+      "imageUrl": "https://res.cloudinary.com/doy1q2tfm/image/upload/v1766382768/visite-guidee-medina-essaouira_nyatf8.jpg",
       "imageHint": "marché marocain"
     },
     {
       "id": "card-beaches",
       "description": "Une plage isolée et immaculée avec des formations rocheuses spectaculaires.",
-      "imageUrl": "/images/excursion-4x4-plages-sauvages.jpg",
+      "imageUrl": "https://res.cloudinary.com/doy1q2tfm/image/upload/v1766382767/excursion-4x4-plages-sauvages_rkitaq.jpg",
       "imageHint": "plage isolée"
     },
     {
@@ -39,7 +39,7 @@
     {
       "id": "hero-transfers",
       "description": "Vue depuis l'intérieur d'un véhicule confortable donnant sur le paysage marocain.",
-      "imageUrl": "/images/chauffeur-prive-mercedes-maroc.jpg",
+      "imageUrl": "https://res.cloudinary.com/doy1q2tfm/image/upload/v1766382491/chauffeur-prive-mercedes-maroc_lhcxf5.jpg",
       "imageHint": "paysage marocain"
     },
     {
@@ -57,7 +57,7 @@
     {
       "id": "hero-beaches",
       "description": "Vagues s'écrasant sur une plage marocaine sauvage et indomptée.",
-      "imageUrl": "/images/cote-atlantique-maroc-4x4.jpg",
+      "imageUrl": "https://res.cloudinary.com/doy1q2tfm/image/upload/v1766383049/cote-atlantique-maroc-4x4_zk5dbp.jpg",
       "imageHint": "vagues de l'océan"
     },
     {
