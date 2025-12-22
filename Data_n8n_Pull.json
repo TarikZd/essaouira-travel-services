@@ -1,0 +1,101 @@
+{
+  "name": "Firestore to Google Sheets Sync",
+  "nodes": [
+    {
+      "parameters": {
+        "rule": {
+          "interval": [
+            {
+              "field": "hours"
+            }
+          ]
+        }
+      },
+      "name": "Schedule Trigger",
+      "type": "n8n-nodes-base.scheduleTrigger",
+      "typeVersion": 1,
+      "position": [
+        250,
+        300
+      ],
+      "id": "schedule-trigger"
+    },
+    {
+      "parameters": {
+        "operation": "getAll",
+        "collection": "bookings",
+        "returnAll": true,
+        "options": {}
+      },
+      "name": "Firestore",
+      "type": "n8n-nodes-base.firestore",
+      "typeVersion": 1,
+      "position": [
+        450,
+        300
+      ],
+      "id": "firestore-node",
+      "credentials": {
+        "firebaseCredentialApi": {
+          "id": "YOUR_FIREBASE_CREDENTIAL_ID",
+          "name": "Firebase account"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "operation": "append",
+        "sheetId": {
+          "__rl": true,
+          "value": "YOUR_GOOGLE_SHEET_ID",
+          "mode": "id"
+        },
+        "range": "A:Z",
+        "options": {
+          "valueInputOption": "USER_ENTERED"
+        }
+      },
+      "name": "Google Sheets",
+      "type": "n8n-nodes-base.googleSheets",
+      "typeVersion": 4,
+      "position": [
+        650,
+        300
+      ],
+      "id": "google-sheets-node",
+      "credentials": {
+        "googleSheetsOAuth2Api": {
+          "id": "YOUR_GOOGLE_SHEETS_CREDENTIAL_ID",
+          "name": "Google Sheets account"
+        }
+      }
+    }
+  ],
+  "connections": {
+    "Schedule Trigger": {
+      "main": [
+        [
+          {
+            "node": "Firestore",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Firestore": {
+      "main": [
+        [
+          {
+            "node": "Google Sheets",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    }
+  },
+  "settings": {},
+  "staticData": null,
+  "pinData": {}
+}
