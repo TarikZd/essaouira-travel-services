@@ -67,7 +67,16 @@ export default function Footer() {
               </li>
               <li className="flex items-center">
                 <Mail className="h-5 w-5 mr-3 text-primary shrink-0" />
-                <a href="mailto:adiltaxipro@gmail.com" className="hover:text-white transition-colors">adiltaxipro@gmail.com</a>
+                <a 
+                  href="#"
+                  onClick={(e) => {
+                    e.preventDefault();
+                    window.location.href = 'mailto:adiltaxipro' + '@' + 'gmail.com';
+                  }}
+                  className="hover:text-white transition-colors"
+                >
+                  adiltaxipro<span>@</span>gmail.com
+                </a>
               </li>
             </ul>
           </div>
@@ -91,15 +100,16 @@ export default function Footer() {
         </div>
 
         {/* SEO & Credits */}
-        <div className="mt-16 pt-8 border-t border-white/10 text-xs text-center md:text-left">
-          <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
-            <p>&copy; {currentYear} Essaouira Travel Services. Tous droits réservés.</p>
-            <p className="text-gray-600 md:text-right">
-              Taxi Marrakech Essaouira • Transfert Aéroport • Excursion Essaouira • Taxi Agadir Essaouira
-            </p>
+        <div className="border-t border-white/10 pt-8 flex flex-col md:flex-row justify-between items-center text-xs md:text-sm">
+          <p className="text-gray-400 md:text-left mb-4 md:mb-0">
+            &copy; {new Date().getFullYear()} Essaouira Travel Services. Tous droits réservés.
+          </p>
+          <p className="text-gray-400 md:text-right">
+            Taxi Marrakech Essaouira • Transfert Aéroport • Excursion Essaouira • Taxi Agadir
+          </p>
           </div>
         </div>
-      </div>
+
     </footer>
   );
 }

@@ -24,6 +24,8 @@ export default function Hero() {
           alt="Taxi Marrakech Essaouira Transport"
           fill
           priority
+          format="auto"
+          quality="auto:eco"
           className="object-cover"
         />
         <div className="absolute inset-0 bg-black/50" />
@@ -31,7 +33,7 @@ export default function Hero() {
 
       {/* Content */}
       <div className="relative z-10 container mx-auto px-4 text-center">
-        <div className="animate-fade-in-up space-y-6">
+        <div className="space-y-6">
           <h1 className="text-5xl md:text-7xl font-bold font-headline text-white tracking-tight">
             Taxi Transport <br />
             <span className="text-primary">Touristique</span>

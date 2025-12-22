@@ -1,78 +1,11 @@
 'use client';
 
-import { useEffect, useState, useRef } from 'react';
+import { useEffect, useState } from 'react';
 import { Users, Calendar, Clock, Star } from 'lucide-react';
 import { cn } from '@/lib/utils';
 
-// Hook for counting animation
-const useCounter = (end: number, duration: number = 2000, start: number = 0) => {
-  const [count, setCount] = useState(start);
-  const countRef = useRef<HTMLDivElement>(null);
-  const [isVisible, setIsVisible] = useState(false);
-
-  useEffect(() => {
-    const observer = new IntersectionObserver(
-      (entries) => {
-        if (entries[0].isIntersecting) {
-          setIsVisible(true);
-        }
-      },
-      { threshold: 0.5 }
-    );
-
-    if (countRef.current) {
-      observer.observe(countRef.current);
-    }
-
-    return () => observer.disconnect();
-  }, []);
-
-  useEffect(() => {
-    if (!isVisible) return;
-
-    let startTime: number | null = null;
-    let animationFrameId: number;
-
-    const animate = (timestamp: number) => {
-      if (!startTime) startTime = timestamp;
-      const progress = timestamp - startTime;
-      const percentage = Math.min(progress / duration, 1);
-      
-      // Ease out quart
-      const ease = 1 - Math.pow(1 - percentage, 4);
-      
-      const currentCount = Math.floor(start + (end - start) * ease);
-      setCount(currentCount);
-
-      if (progress < duration) {
-        animationFrameId = requestAnimationFrame(animate);
-      } else {
-        setCount(end); // Ensure exact final value
-      }
-    };
-
-    animationFrameId = requestAnimationFrame(animate);
-
-    return () => cancelAnimationFrame(animationFrameId);
-  }, [end, duration, start, isVisible]);
-
-  return { count, countRef };
-};
-
-const AnimatedStat = ({ value, start = 0, suffix = '', className }: { value: number, start?: number, suffix?: string, className?: string }) => {
-  // Check if it's a float (like 4.9)
-  const isFloat = value % 1 !== 0;
-  
-  const { count, countRef } = useCounter(isFloat ? value * 10 : value, 2000, isFloat ? 0 : start);
-  
-  const displayValue = isFloat ? (count / 10).toFixed(1) : count;
-
-  return (
-    <span ref={countRef} className={className}>
-      {displayValue}{suffix}
-    </span>
-  );
-};
+// Hook removed: useCounter (unused)
+// Component removed: AnimatedStat (unused)
 
 import { getDynamicMetrics } from '@/lib/metrics';
 
@@ -128,13 +61,9 @@ export default function Stats() {
               <div className="mb-4 w-12 h-12 rounded-full bg-primary/10 flex items-center justify-center group-hover:bg-primary transition-colors duration-300">
                 <stat.icon className="w-6 h-6 text-primary group-hover:text-black transition-colors duration-300" />
               </div>
-              <div className="text-4xl md:text-5xl font-bold text-white mb-2 tracking-tight group-hover:text-primary transition-colors">
-                {stat.isAnimated && typeof stat.value === 'number' ? (
-                  <AnimatedStat value={stat.value} start={(stat as any).start} suffix={stat.suffix} />
-                ) : (
+                <div className="text-4xl md:text-5xl font-bold text-white mb-2 tracking-tight group-hover:text-primary transition-colors">
                   <span>{stat.value}{stat.suffix}</span>
-                )}
-              </div>
+                </div>
               <div className="text-sm md:text-base text-gray-400 font-medium uppercase tracking-wider">
                 {stat.label}
               </div>

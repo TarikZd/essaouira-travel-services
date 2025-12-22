@@ -68,6 +68,9 @@ export default function Destinations() {
                   src={dest.image}
                   alt={`Transfert ${dest.from} vers ${dest.to} - Transport Touristique Maroc`}
                   fill
+                  format="auto"
+                  quality="auto:eco"
+                  sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 25vw"
                   className="object-cover transition-transform duration-700 group-hover:scale-110"
                 />
                 <div className="absolute top-4 right-4 bg-black/80 backdrop-blur text-white px-3 py-1 rounded-full text-xs font-bold flex items-center border border-white/10">

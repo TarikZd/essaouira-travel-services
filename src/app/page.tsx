@@ -8,11 +8,25 @@ import { CldImage } from 'next-cloudinary';
 import { services, type Service } from '@/lib/services';
 import Hero from '@/components/landing/Hero';
 import Stats from '@/components/landing/Stats';
-import Reviews from '@/components/landing/Reviews';
+// import Reviews from '@/components/landing/Reviews';
 import Destinations from '@/components/landing/Destinations';
 import ServiceCard from '@/components/services/ServiceCard';
-import BookingForm from '@/components/services/BookingForm';
-import RecommendationEngine from '@/components/ai/RecommendationEngine';
+// import BookingForm from '@/components/services/BookingForm';
+
+const Reviews = nextDynamic(() => import('@/components/landing/Reviews'), {
+    loading: () => <div className="h-96 bg-white/5 animate-pulse rounded-xl" />
+});
+
+const BookingForm = nextDynamic(() => import('@/components/services/BookingForm'), {
+    loading: () => <div className="h-[600px] bg-white/5 animate-pulse rounded-xl" />
+});
+import nextDynamic from 'next/dynamic';
+
+const RecommendationEngine = nextDynamic(() => import('@/components/ai/RecommendationEngine'), {
+  loading: () => <div className="h-64 bg-white/5 animate-pulse rounded-xl" />,
+  ssr: false // No need for SEO indexation of dynamic interactive component
+});
+// import RecommendationEngine from '@/components/ai/RecommendationEngine';
 import { Card, CardContent } from '@/components/ui/card';
 import { cn } from '@/lib/utils';
 import { Car, Sparkles, MapPin, Lock } from 'lucide-react';
@@ -101,8 +115,8 @@ export default function Home() {
                                 <Car className="w-6 h-6 text-primary" />
                             </div>
                             <div>
-                                <h4 className="font-bold">Service 24/7</h4>
-                                <p className="text-gray-500">Disponible jour et nuit</p>
+                                <h3 className="font-bold">Service 24/7</h3>
+                                <p className="text-gray-400">Disponible jour et nuit</p>
                             </div>
                         </div>
                          <div className="flex items-center space-x-4 text-white">
@@ -110,8 +124,8 @@ export default function Home() {
                                 <MapPin className="w-6 h-6 text-primary" />
                             </div>
                             <div>
-                                <h4 className="font-bold">Couverture Nationale</h4>
-                                <p className="text-gray-500">Marrakech, Essaouira, Agadir, etc.</p>
+                                <h3 className="font-bold">Couverture Nationale</h3>
+                                <p className="text-gray-400">Marrakech, Essaouira, Agadir, etc.</p>
                             </div>
                         </div>
                     </div>

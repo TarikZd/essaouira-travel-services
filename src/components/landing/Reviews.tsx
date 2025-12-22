@@ -239,9 +239,11 @@ export default function Reviews() {
   const [totalReviews, setTotalReviews] = React.useState(1783);
 
   React.useEffect(() => {
-    const { reviews } = getDynamicMetrics();
-    setTotalReviews(reviews);
-    setReviews(generateReviews());
+    const { reviews: totalCount } = getDynamicMetrics();
+    setTotalReviews(totalCount);
+    // Optimization: Only render the first 15 reviews to avoid massive DOM reflow (900ms+ lag)
+    const allReviews = generateReviews();
+    setReviews(allReviews.slice(0, 15));
   }, []);
 
   const scrollPrev = React.useCallback(() => {
@@ -316,6 +318,7 @@ export default function Reviews() {
                         size="icon"
                         className="rounded-full border border-white/20 text-white hover:bg-white/10"
                         onClick={scrollPrev}
+                        aria-label="Avis précédent"
                     >
                         <ChevronLeft className="w-5 h-5" />
                     </Button>
@@ -324,6 +327,7 @@ export default function Reviews() {
                         size="icon"
                         className="rounded-full border border-white/20 text-white hover:bg-white/10"
                         onClick={scrollNext}
+                        aria-label="Avis suivant"
                     >
                         <ChevronRight className="w-5 h-5" />
                     </Button>

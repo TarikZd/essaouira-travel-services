@@ -39,6 +39,8 @@ export default function ServiceCard({ service, onBook }: ServiceCardProps) {
                 src={cardImage.imageUrl}
                 alt={cardImage.description}
                 fill
+                format="auto"
+                quality="auto:eco"
                 className="object-cover transition-transform duration-500 group-hover:scale-110"
                 sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
               />
@@ -70,7 +72,7 @@ export default function ServiceCard({ service, onBook }: ServiceCardProps) {
         </p>
         <ul className="mt-4 space-y-2">
             {service.features.slice(0, 2).map((feature, i) => (
-                <li key={i} className="flex items-center text-sm text-gray-500">
+                <li key={i} className="flex items-center text-sm text-gray-300">
                     <span className="w-1.5 h-1.5 rounded-full bg-primary mr-2" />
                     {feature}
                 </li>

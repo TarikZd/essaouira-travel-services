@@ -210,7 +210,7 @@ export default function BookingForm({ service }: BookingFormProps) {
                             <FormItem className="w-1/3">
                                 <Select onValueChange={field.onChange} defaultValue={field.value} value={field.value}>
                                 <FormControl>
-                                    <SelectTrigger className="bg-white/5 border-white/20 text-white">
+                                    <SelectTrigger className="bg-white/5 border-white/20 text-white" aria-label="Indicatif pays">
                                     <SelectValue placeholder="Code" />
                                     </SelectTrigger>
                                 </FormControl>
