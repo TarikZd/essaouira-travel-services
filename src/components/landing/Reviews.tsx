@@ -10,8 +10,8 @@ import Image from 'next/image';
 import { CldImage } from 'next-cloudinary';
 import { fr } from 'date-fns/locale';
 import { format, subDays } from 'date-fns';
-import { ReviewFormDialog } from '@/components/reviews/ReviewFormDialog';
 import { getDynamicMetrics } from '@/lib/metrics';
+import { ReviewFormDialog } from './ReviewFormDialog';
 
 // Data Arrays for Generation
 const firstNames = [
@@ -278,14 +278,13 @@ export default function Reviews() {
             
             <div className="flex flex-col items-center lg:items-start space-y-4">
               <div className="flex items-center space-x-4 bg-white/5 p-4 rounded-xl border border-white/10 backdrop-blur-sm">
-                <div className="w-16 h-16 bg-white/10 rounded-lg flex items-center justify-center overflow-hidden relative">
+                <div className="w-16 h-16 bg-white/10 rounded-lg flex items-center justify-center overflow-hidden relative mr-2">
                    {/* Brand Icon replacing "G" */}
                    <CldImage 
               src="https://res.cloudinary.com/doy1q2tfm/image/upload/v1766386707/brand-icon_v517gx.png"
               alt="Essaouira Travel Services" 
               width={60} 
               height={60} 
-              className="mr-3"
             />
                 </div>
                 <div>
@@ -302,16 +301,9 @@ export default function Reviews() {
                 </div>
               </div>
 
-              <div className="flex gap-4">
-                <ReviewFormDialog>
-                    <Button 
-                        variant="outline"
-                        className="border-white/20 text-white hover:bg-white/10 hover:text-white rounded-full px-6"
-                    >
-                        Écrire un avis
-                    </Button>
-                </ReviewFormDialog>
-                 {/* Navigation Buttons for Mobile/Desktop */}
+              <div className="flex gap-4 items-center">
+                 <ReviewFormDialog />
+{/* Navigation Buttons for Mobile/Desktop */}
                  <div className="flex gap-2">
                     <Button
                         variant="ghost"

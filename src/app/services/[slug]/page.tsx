@@ -1,140 +1,221 @@
 
 import { notFound } from 'next/navigation';
+import { supabase } from '@/lib/supabase';
+import { Metadata } from 'next';
 import Image from 'next/image';
-import { services, Service } from '@/lib/services';
+import CldImage from '@/components/ui/cld-image';
 import { PlaceHolderImages } from '@/lib/placeholder-images';
-import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';
-import { CheckCircle, Zap, TrendingUp } from 'lucide-react';
 import BookingForm from '@/components/services/BookingForm';
-// import BookingForm from '@/components/services/BookingForm';
-import type { Metadata } from 'next';
+import { Car, Check, Shield, Star } from 'lucide-react';
+import { Button } from '@/components/ui/button';
+import { services as staticServices } from '@/lib/services';
 
-type Props = {
-  params: { slug: string };
-};
+export const revalidate = 3600; // Revalidate every hour
 
-export async function generateMetadata({ params }: Props): Promise<Metadata> {
-  const service = services.find((s) => s.slug === params.slug);
+async function getService(slug: string) {
+  const { data, error } = await supabase
+    .from('services')
+    .select('*')
+    .eq('slug', slug)
+    .single();
 
-  if (!service) {
-    return {
-      title: 'Service Not Found',
-    };
+  if (error || !data) {
+    return null;
   }
+  return data;
+}
+
+export async function generateMetadata({ params }: { params: Promise<{ slug: string }> }): Promise<Metadata> {
+  const { slug } = await params;
+  const service = await getService(slug);
+  if (!service) return { title: 'Service Not Found' };
 
   return {
     title: `${service.name} | Essaouira Travel Services`,
-    description: service.description.substring(0, 160),
+    description: service.description || 'Réservez votre service de transport.',
   };
 }
 
-export function generateStaticParams() {
-  return services.map((service) => ({
-    slug: service.slug,
-  }));
-}
+export default async function ServicePage({ params }: { params: Promise<{ slug: string }> }) {
+  const { slug } = await params;
+  const service = await getService(slug);
 
-const getService = (slug: string): Service | undefined => {
-  return services.find((s) => s.slug === slug);
-};
-
-export default async function ServicePage({ params }: { params: { slug: string } }) {
-  const serviceData = getService(params.slug);
-
-  if (!serviceData) {
+  if (!service) {
     notFound();
   }
 
-  // Create a serializable version of the service object
-  const { whatsappMessage, ...serializableServiceData } = serviceData as any;
-  const service = {
-    ...serializableServiceData,
-    bookingForm: {
-      ...serializableServiceData.bookingForm,
-      fields: serializableServiceData.bookingForm.fields.map(({ validation, ...field }: any) => field),
-    },
+  // Helper for images (reusing logic from ServiceCard)
+  const heroImage = PlaceHolderImages.find((img) => img.id === service.image_hero) || PlaceHolderImages[0];
+
+  // Mock Service object for compatibility with BookingForm
+  // STRATEGY: Merge Dynamic DB Content (Title, Price) with Static Config (Form Fields)
+  
+  // 1. Find the matching static config by slug (or fallback by ID if slugs changed, but slug is safest)
+  const staticConfig = staticServices.find(s => s.slug === slug) || staticServices[0];
+
+  const serviceForForm: any = {
+      id: service.id, // ID from DB
+      slug: service.slug,
+      name: service.name, // Name from DB
+      whatsappNumber: service.whatsapp_number || staticConfig.whatsappNumber,
+      whatsappMessage: staticConfig.whatsappMessage, // Function logic must come from static file
+      
+      // CRITICAL: Inject the static form configuration so fields render
+      bookingForm: {
+        ...staticConfig.bookingForm,
+        fields: staticConfig.bookingForm.fields.map(field => {
+            // eslint-disable-next-line @typescript-eslint/no-unused-vars
+            const { validation, ...rest } = field;
+            return rest;
+        })
+      }, 
+      bookingTitle: staticConfig.bookingTitle
   };
 
-  const heroImage = PlaceHolderImages.find((img) => img.id === service.images.hero);
-  const galleryImages = service.images.gallery.map((id: string) =>
-    PlaceHolderImages.find((img) => img.id === id)
-  );
-
-  const icons = [<CheckCircle key="1" />, <Zap key="2" />, <TrendingUp key="3" />, <CheckCircle key="4" />];
 
   return (
-    <div>
+    <div className="min-h-screen bg-black text-white">
       {/* Hero Section */}
-      <section className="relative h-[50vh] w-full text-white">
-        {heroImage && (
-          <Image
-            src={heroImage.imageUrl}
-            alt={heroImage.description}
-            fill
-            className="object-cover"
-            priority
-            data-ai-hint={heroImage.imageHint}
-          />
+      <div className="relative h-[60vh] w-full overflow-hidden">
+        <div className="absolute inset-0 bg-black/60 z-10" />
+        {heroImage.imageUrl.includes('cloudinary') ? (
+            <CldImage
+                src={heroImage.imageUrl}
+                alt={service.name}
+                fill
+                className="object-cover"
+            />
+        ) : (
+             <Image
+                src={heroImage.imageUrl}
+                alt={service.name}
+                fill
+                className="object-cover"
+             />
         )}
-        <div className="absolute inset-0 bg-black/50" />
-        <div className="relative z-10 flex h-full flex-col items-center justify-center text-center">
-          <h1 className="font-headline text-5xl font-bold md:text-7xl">
-            {service.name}
-          </h1>
+        
+        <div className="absolute inset-0 z-20 flex items-center justify-center">
+            <div className="text-center px-4">
+                <div className="inline-flex items-center gap-2 bg-primary/20 text-primary px-4 py-1.5 rounded-full mb-6 backdrop-blur-sm border border-primary/20">
+                    <Star className="w-4 h-4 fill-primary" />
+                    <span className="text-sm font-semibold">Service Premium 5 Étoiles</span>
+                </div>
+                <h1 className="font-headline text-4xl md:text-7xl font-bold mb-6 text-white leading-tight">
+                    {service.name}
+                </h1>
+                <p className="text-xl text-gray-200 max-w-2xl mx-auto">
+                    {service.description}
+                </p>
+            </div>
         </div>
-      </section>
+      </div>
 
-      <div className="container mx-auto py-16 md:py-24">
+      <div className="container mx-auto px-4 py-16">
         <div className="grid grid-cols-1 lg:grid-cols-3 gap-12">
-          {/* Main Content */}
-          <div className="lg:col-span-2 space-y-12">
-             {/* Description and Features */}
-            <section>
-              <h2 className="font-headline text-4xl text-primary">{service.aboutTitle}</h2>
-              <p className="mt-4 text-lg text-black">{service.description}</p>
-              <div className="mt-8 grid grid-cols-1 sm:grid-cols-2 gap-6">
-                {service.features.map((feature: string, index: number) => (
-                  <div key={index} className="flex items-center gap-3">
-                    <div className="text-primary">{icons[index % icons.length]}</div>
-                    <span className="font-medium">{feature}</span>
-                  </div>
-                ))}
-              </div>
-            </section>
-             {/* Image Gallery */}
-            <section>
-              <h2 className="font-headline text-4xl text-primary">Gallery</h2>
-               <div className="mt-6 grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4">
-                 {galleryImages.map((img: any, index: number) =>
-                   img ? (
-                     <div key={index} className="relative aspect-w-4 aspect-h-3 overflow-hidden rounded-lg shadow-md">
-                       <Image
-                         src={img.imageUrl}
-                         alt={img.description}
-                         fill
-                         className="object-cover transition-transform duration-300 hover:scale-105"
-                         data-ai-hint={img.imageHint}
-                       />
-                     </div>
-                   ) : null
-                 )}
-               </div>
-            </section>
-          </div>
-          
-          {/* Booking Form Card */}
-          <aside className="lg:col-span-1">
-             <Card className="sticky top-24 shadow-xl">
-               <CardHeader>
-                 <CardTitle className="font-headline text-3xl text-primary">
-                    {service.bookingTitle}
-                 </CardTitle>
-               </CardHeader>
-               <CardContent>
-                 <BookingForm service={service as Service} />
-               </CardContent>
-             </Card>
-          </aside>
+            
+            {/* Main Content */}
+            <div className="lg:col-span-2 space-y-12">
+                
+                {/* Features Grid */}
+                <div className="grid grid-cols-2 gap-4">
+                    {service.features?.map((feature: string, i: number) => (
+                        <div key={i} className="flex items-center gap-3 bg-white/5 p-4 rounded-xl border border-white/10">
+                            <div className="w-8 h-8 rounded-full bg-primary/20 flex items-center justify-center shrink-0">
+                                <Check className="w-4 h-4 text-primary" />
+                            </div>
+                            <span className="font-medium text-gray-200">{feature}</span>
+                        </div>
+                    ))}
+                </div>
+
+                {/* Long Description (The SEO Content) */}
+                <div className="prose prose-invert max-w-none">
+                    <h2 className="text-3xl font-bold mb-6 text-white font-headline">
+                        Pourquoi choisir ce service ?
+                    </h2>
+                    <div className="text-gray-300 leading-relaxed space-y-4">
+                        {/* If long_description is empty, fallback to description */}
+                        {service.long_description ? (
+                            <div dangerouslySetInnerHTML={{ __html: service.long_description }} /> // Secure this later if user input
+                        ) : (
+                            <p>{service.description}</p>
+                        )}
+                        <p>
+                            Profitez d'un confort exceptionnel et d'une sécurité totale. Nos chauffeurs expérimentés 
+                            connaissent parfaitement les routes du Maroc. Que vous voyagiez de Marrakech à Essaouira 
+                            ou vers l'aéroport, nous garantissons ponctualité et service VIP.
+                        </p>
+                    </div>
+                </div>
+
+                {/* Trust Badges */}
+                <div className="bg-gradient-to-r from-gray-900 to-black p-8 rounded-2xl border border-white/10">
+                    <h3 className="text-xl font-bold mb-6 flex items-center gap-2">
+                        <Shield className="w-6 h-6 text-primary" />
+                        Garanties Essaouira Travel
+                    </h3>
+                    <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
+                        <div>
+                            <h4 className="font-bold text-white mb-2">Prix Fixe</h4>
+                            <p className="text-sm text-gray-400">Aucune surprise, tout est inclus (carburant, péage, assurance).</p>
+                        </div>
+                        <div>
+                             <h4 className="font-bold text-white mb-2">Annulation Gratuite</h4>
+                            <p className="text-sm text-gray-400">Annulez jusqu'à 24h avant sans frais.</p>
+                        </div>
+                        <div>
+                             <h4 className="font-bold text-white mb-2">Support 24/7</h4>
+                            <p className="text-sm text-gray-400">Une équipe disponible sur WhatsApp à tout moment.</p>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+
+             {/* Sidebar Booking */}
+             <div className="lg:col-span-1">
+                <div className="sticky top-24">
+                    <div className="bg-white/5 backdrop-blur-md border border-white/10 rounded-2xl p-6 shadow-2xl">
+                        <div className="mb-6 pb-6 border-b border-white/10">
+                            <p className="text-sm text-gray-400 uppercase tracking-widest mb-1">À partir de</p>
+                            <div className="flex items-baseline gap-2">
+                                <span className="text-4xl font-bold text-primary">
+                                    {service.price_amount ? `${service.price_amount}€` : 'Sur Devis'}
+                                </span>
+                                {service.price_unit && (
+                                    <span className="text-gray-400">/ {service.price_unit}</span>
+                                )}
+                            </div>
+                        </div>
+                        
+                        {/* We will need to adapt the BookingForm to work with this data structure */}
+                        <div className="bg-blue-900/10 p-4 rounded-lg border border-blue-500/20 mb-6">
+                            <p className="text-sm text-blue-200 text-center">
+                                Remplissez le formulaire ci-dessous pour réserver.
+                            </p>
+                        </div>
+                        
+                        {/* Use a sanitized version of service for the client component to avoid serialization errors with functions */}
+                  <BookingForm service={{
+                    ...serviceForForm,
+                    whatsappMessage: undefined, // Remove function
+                    bookingForm: {
+                        ...serviceForForm.bookingForm,
+                        fields: serviceForForm.bookingForm.fields.map(f => {
+                             // eslint-disable-next-line @typescript-eslint/no-unused-vars
+                            const { validation, ...rest } = f;
+                            return rest;
+                        })
+                    }
+                  }} />
+                        
+                        <p className="text-xs text-center text-gray-500 mt-4">
+                            Paiement sécurisé sur place ou par lien bancaire.
+                        </p>
+                    </div>
+                </div>
+            </div>
+
         </div>
       </div>
     </div>

@@ -6,7 +6,6 @@ import { Toaster } from "@/components/ui/toaster";
 import Header from "@/components/layout/Header";
 import Footer from "@/components/layout/Footer";
 import JsonLd from "@/components/seo/JsonLd";
-import { FirebaseClientProvider } from "@/firebase/client-provider";
 import { GoogleAnalytics } from "@next/third-parties/google";
 
 const inter = Inter({ 
@@ -84,7 +83,6 @@ export default function RootLayout({
         )}
         suppressHydrationWarning={true}
       >
-        <FirebaseClientProvider>
           <div className="relative flex min-h-screen flex-col">
             <Header />
             <main className="flex-1">{children}</main>
@@ -92,7 +90,6 @@ export default function RootLayout({
           </div>
           <JsonLd />
           <Toaster />
-        </FirebaseClientProvider>
         <GoogleAnalytics gaId="G-BV8084R6GZ" />
       </body>
     </html>

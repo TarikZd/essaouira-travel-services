@@ -33,8 +33,7 @@ import { useToast } from '@/hooks/use-toast';
 import { cn } from '@/lib/utils';
 import { services, type Service, FormField as ServiceFormField } from '@/lib/services';
 import { countryCodes } from '@/lib/country-codes';
-import { saveBooking } from '@/firebase/firestore/bookings';
-import { useFirestore } from '@/firebase';
+import { supabase } from '@/lib/supabase';
 
 type BookingFormProps = {
   service: Service;
@@ -43,8 +42,8 @@ type BookingFormProps = {
 const routes: Record<string, string[]> = {
     "Essaouira": ["Marrakech", "Aéroport Marrakech", "Agadir", "Agafay", "Taghazout", "Imsouane", "El Jadida", "Oualidia", "Imlil", "Ouirgane", "Taroudant", "Aéroport Agadir", "Aéroport Essaouira"],
     "Aéroport Essaouira": ["Marrakech", "Aéroport Marrakech", "Agadir", "Agafay", "Taghazout", "Imsouane", "El Jadida", "Oualidia", "Imlil", "Ouirgane", "Taroudant", "Aéroport Agadir", "Essaouira"],
-    "Marrakech": ["Essaouira", "Aéroport Essaouira", "Agadir", "Agafay", "Taghazout", "Imsouane", "El Jadida", "Oualidia", "Imlil", "Ouirgane", "Taroudant", "Aéroport Agadir", "Agadir"],
-    "Aéroport Marrakech": ["Essaouira", "Aéroport Essaouira", "Agadir", "Agafay", "Taghazout", "Imsouane", "El Jadida", "Oualidia", "Imlil", "Ouirgane", "Taroudant", "Aéroport Agadir", "Agadir"],
+    "Marrakech": ["Essaouira", "Aéroport Essaouira", "Agadir", "Agafay", "Taghazout", "Imsouane", "El Jadida", "Oualidia", "Imlil", "Ouirgane", "Taroudant", "Aéroport Agadir"],
+    "Aéroport Marrakech": ["Essaouira", "Aéroport Essaouira", "Agadir", "Agafay", "Taghazout", "Imsouane", "El Jadida", "Oualidia", "Imlil", "Ouirgane", "Taroudant", "Aéroport Agadir"],
     "Agadir": ["Essaouira", "Aéroport Essaouira", "Marrakech", "Aéroport Marrakech", "Agafay", "Taghazout", "Imsouane", "El Jadida", "Oualidia", "Imlil", "Ouirgane", "Taroudant", "Aéroport Agadir"],
     "Aéroport Agadir": ["Essaouira", "Aéroport Essaouira", "Marrakech", "Aéroport Marrakech", "Agafay", "Taghazout", "Imsouane", "El Jadida", "Oualidia", "Imlil", "Ouirgane", "Taroudant", "Agadir"],
     "Agafay": ["Essaouira", "Aéroport Essaouira", "Marrakech", "Aéroport Marrakech", "Agadir", "Aéroport Agadir"],
@@ -68,12 +67,12 @@ export default function BookingForm({ service }: BookingFormProps) {
   // ... (previous hook logic remains same until return) ...
   const [isPending, startTransition] = useTransition();
   const { toast } = useToast();
-  const firestore = useFirestore();
+  
 
   const fullService = services.find(s => s.id === service.id);
 
   const dynamicSchema = useMemo(() => {
-    const serviceWithFields = services.find(s => s.id === service.id);
+    const serviceWithFields = services.find(s => s.slug === service.slug);
     if (!serviceWithFields) {
         return z.object({});
     }
@@ -94,13 +93,13 @@ export default function BookingForm({ service }: BookingFormProps) {
   const isTransfer = service.slug === 'airport-transfers';
 
   const defaultFormValues: Partial<FormValues> = useMemo(() => {
-    const serviceWithFields = services.find(s => s.id === service.id);
+    const serviceWithFields = services.find(s => s.slug === service.slug);
     if (!serviceWithFields) return {};
 
     const defaults: Partial<FormValues> = {};
     serviceWithFields.bookingForm.fields.forEach(field => {
         if (field.name === 'countryCode') {
-            (defaults as any)[field.name] = '+212';
+            (defaults as any)[field.name] = '+212__MA';
         } else if (field.type === 'number') {
             (defaults as any)[field.name] = field.name === 'adults' ? 1 : 0;
         } else if (field.type !== 'date') {
@@ -157,12 +156,23 @@ export default function BookingForm({ service }: BookingFormProps) {
         date: (data as any).date ? format((data as any).date, 'yyyy-MM-dd') : '',
         serviceName: service.name,
         serviceId: service.slug,
-        phone: `${(data as any).countryCode || ''}${(data as any).phone || ''}`,
+        phone: `${((data as any).countryCode || '').split('__')[0]}${(data as any).phone || ''}`,
         createdAt: new Date().toISOString(),
       };
       
       try {
-        await saveBooking(firestore, submissionData);
+                const { error } = await supabase.from('leads').insert({
+          service_id: service.id, // Assuming service object has numeric ID, check logic if string needed or mixed
+          service_name: service.name,
+          customer_name: (data as any).fullName,
+          customer_email: (data as any).email,
+          customer_phone: submissionData.phone,
+          travel_date: submissionData.date,
+          details: submissionData,
+          status: 'new'
+        });
+
+        if (error) throw error;
         toast({
           title: 'Demande envoyée !',
           description: "Nous avons bien reçu votre demande et allons vous rediriger vers WhatsApp pour confirmation.",
@@ -216,7 +226,7 @@ export default function BookingForm({ service }: BookingFormProps) {
                                 </FormControl>
                                 <SelectContent>
                                 {countryCodes.map((country, index) => (
-                                <SelectItem key={index} value={country.dial_code}>
+                                <SelectItem key={`${country.dial_code}__${country.code}`} value={`${country.dial_code}__${country.code}`}>
                                   {country.code} ({country.dial_code})
                                 </SelectItem>
                                 ))}
