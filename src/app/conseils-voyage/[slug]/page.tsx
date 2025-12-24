@@ -2,10 +2,9 @@
 import { notFound } from 'next/navigation';
 import { supabase } from '@/lib/supabase';
 import { Metadata } from 'next';
-import ReactMarkdown from 'react-markdown';
-import remarkGfm from 'remark-gfm';
-import Image from 'next/image';
 import Link from 'next/link';
+import Image from 'next/image';
+import { MarkdownRenderer } from '@/components/ui/markdown-renderer';
 import { ArrowLeft, Calendar, User } from 'lucide-react';
 import { Button } from '@/components/ui/button';
 
@@ -90,28 +89,7 @@ export default async function ArticlePage({ params }: { params: Promise<{ slug: 
       {/* Content */}
       <div className="container mx-auto px-4 max-w-4xl py-12">
         <div className="prose prose-lg prose-invert mx-auto">
-             <ReactMarkdown 
-                remarkPlugins={[remarkGfm]}
-                components={{
-                    // Custom renderer for images to make them responsive
-                    img: (props) => (
-                        <div className="relative w-full h-96 my-8 rounded-xl overflow-hidden">
-                            <Image 
-                                src={props.src || ''} 
-                                alt={props.alt || ''} 
-                                fill
-                                className="object-cover"
-                            />
-                        </div>
-                    ),
-                    // Add CTA style for links
-                    a: (props) => (
-                        <a {...props} className="text-primary hover:text-white font-bold underline decoration-primary/50 hover:decoration-white transition-all"/>
-                    )
-                }}
-             >
-                {article.content || ''}
-            </ReactMarkdown>
+             <MarkdownRenderer content={article.content} />
         </div>
 
         {/* Dynamic CTA at bottom */}
