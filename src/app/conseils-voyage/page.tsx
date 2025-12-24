@@ -55,21 +55,24 @@ export default async function KnowledgeHub() {
             articles.map((article) => (
               <Card key={article.id} className="bg-white/5 border-white/10 overflow-hidden hover:border-primary/50 transition-all hover:-translate-y-1">
                 {article.cover_image && (
-                  <div className="relative h-48 w-full">
+                  <Link href={`/conseils-voyage/${article.slug}`} className="block relative h-48 w-full group-hover:opacity-90 transition-opacity">
                      {/* Replace with Next/Image once you have real URLs */}
-                    <img 
+                    <Image 
                       src={article.cover_image} 
                       alt={article.title} 
+                      fill
                       className="object-cover w-full h-full"
                     />
-                  </div>
+                  </Link>
                 )}
                 <CardHeader>
                   <div className="text-xs font-bold text-primary uppercase tracking-widest mb-2">
                     {article.category}
                   </div>
                   <CardTitle className="text-white text-xl line-clamp-2">
-                    {article.title}
+                    <Link href={`/conseils-voyage/${article.slug}`} className="hover:text-primary transition-colors">
+                        {article.title}
+                    </Link>
                   </CardTitle>
                 </CardHeader>
                 <CardContent>

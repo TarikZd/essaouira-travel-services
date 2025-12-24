@@ -1,4 +1,5 @@
 import Image from 'next/image';
+import Link from 'next/link';
 import { CldImage } from 'next-cloudinary';
 import { ArrowRight, Car, ChefHat, Mountain, Map, Bike, Star, Anchor } from 'lucide-react';
 import { Button } from '@/components/ui/button';
@@ -32,7 +33,7 @@ export default function ServiceCard({ service, onBook }: ServiceCardProps) {
     <Card className="group flex h-full flex-col overflow-hidden bg-white/5 border-white/10 hover:border-primary/50 transition-all duration-300 hover:-translate-y-2 hover:shadow-2xl hover:shadow-primary/10">
       <CardHeader className="relative h-56 w-full p-0 overflow-hidden">
         {cardImage && (
-          <>
+          <Link href={`/services/${service.slug}`} className="block h-full w-full">
             <div className="absolute inset-0 bg-gradient-to-t from-black/80 to-transparent z-10" />
             {cardImage.imageUrl.includes('cloudinary') ? (
               <CldImage
@@ -63,7 +64,7 @@ export default function ServiceCard({ service, onBook }: ServiceCardProps) {
                 {service.name}
               </CardTitle>
             </div>
-          </>
+          </Link>
         )}
       </CardHeader>
       <CardContent className="flex-grow p-6">
@@ -80,12 +81,13 @@ export default function ServiceCard({ service, onBook }: ServiceCardProps) {
         </ul>
       </CardContent>
       <CardFooter className="p-6 pt-0">
-        <Button 
-            onClick={() => onBook?.(service.slug)}
-            className="w-full bg-primary text-black hover:bg-yellow-500 font-bold group-hover:scale-[1.02] transition-transform"
-        >
-          Réserver ce service <ArrowRight className="ml-2 h-4 w-4" />
-        </Button>
+        <Link href={`/services/${service.slug}`} className="w-full">
+            <Button 
+                className="w-full bg-primary text-black hover:bg-yellow-500 font-bold group-hover:scale-[1.02] transition-transform"
+            >
+              Plus de détails <ArrowRight className="ml-2 h-4 w-4" />
+            </Button>
+        </Link>
       </CardFooter>
     </Card>
   );
