@@ -10,6 +10,7 @@ import { ArrowLeft, Calendar, User } from 'lucide-react';
 import { Button } from '@/components/ui/button';
 
 export const revalidate = 3600;
+export const runtime = 'edge';
 
 async function getArticle(slug: string) {
   const { data, error } = await supabase
@@ -25,8 +26,9 @@ async function getArticle(slug: string) {
   return data;
 }
 
-export async function generateMetadata({ params }: { params: { slug: string } }): Promise<Metadata> {
-  const article = await getArticle(params.slug);
+export async function generateMetadata({ params }: { params: Promise<{ slug: string }> }): Promise<Metadata> {
+  const { slug } = await params;
+  const article = await getArticle(slug);
   if (!article) return { title: 'Article introuvable' };
 
   return {
@@ -35,8 +37,9 @@ export async function generateMetadata({ params }: { params: { slug: string } })
   };
 }
 
-export default async function ArticlePage({ params }: { params: { slug: string } }) {
-  const article = await getArticle(params.slug);
+export default async function ArticlePage({ params }: { params: Promise<{ slug: string }> }) {
+  const { slug } = await params;
+  const article = await getArticle(slug);
 
   if (!article) {
     notFound();
@@ -48,11 +51,14 @@ export default async function ArticlePage({ params }: { params: { slug: string }
       <div className="relative h-[50vh] w-full bg-gray-900 overflow-hidden">
         {article.cover_image && (
              // Replace with Next/Image using a valid loader or domain config
-            <img 
+            <Image 
                 src={article.cover_image} 
                 alt={article.title} 
+                fill
                 className="absolute inset-0 w-full h-full object-cover opacity-60"
+                priority
             />
+
         )}
         <div className="absolute inset-0 bg-gradient-to-t from-black to-transparent" />
         
@@ -90,7 +96,12 @@ export default async function ArticlePage({ params }: { params: { slug: string }
                     // Custom renderer for images to make them responsive
                     img: (props) => (
                         <div className="relative w-full h-96 my-8 rounded-xl overflow-hidden">
-                            <img {...props} className="object-cover w-full h-full" alt={props.alt || ''} />
+                            <Image 
+                                src={props.src || ''} 
+                                alt={props.alt || ''} 
+                                fill
+                                className="object-cover"
+                            />
                         </div>
                     ),
                     // Add CTA style for links

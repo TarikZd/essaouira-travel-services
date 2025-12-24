@@ -11,6 +11,7 @@ import { Button } from '@/components/ui/button';
 import { services as staticServices } from '@/lib/services';
 
 export const revalidate = 3600; // Revalidate every hour
+export const runtime = 'edge';
 
 async function getService(slug: string) {
   const { data, error } = await supabase
@@ -63,8 +64,7 @@ export default async function ServicePage({ params }: { params: Promise<{ slug: 
       // CRITICAL: Inject the static form configuration so fields render
       bookingForm: {
         ...staticConfig.bookingForm,
-        fields: staticConfig.bookingForm.fields.map(field => {
-            // eslint-disable-next-line @typescript-eslint/no-unused-vars
+        fields: staticConfig.bookingForm.fields.map((field: any) => {
             const { validation, ...rest } = field;
             return rest;
         })
@@ -201,8 +201,7 @@ export default async function ServicePage({ params }: { params: Promise<{ slug: 
                     whatsappMessage: undefined, // Remove function
                     bookingForm: {
                         ...serviceForForm.bookingForm,
-                        fields: serviceForForm.bookingForm.fields.map(f => {
-                             // eslint-disable-next-line @typescript-eslint/no-unused-vars
+                        fields: serviceForForm.bookingForm.fields.map((f: any) => {
                             const { validation, ...rest } = f;
                             return rest;
                         })
