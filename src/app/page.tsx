@@ -11,6 +11,7 @@ import Stats from '@/components/landing/Stats';
 // import Reviews from '@/components/landing/Reviews';
 import Destinations from '@/components/landing/Destinations';
 import ServiceCard from '@/components/services/ServiceCard';
+import LatestArticles from '@/components/landing/LatestArticles';
 // import BookingForm from '@/components/services/BookingForm';
 
 const Reviews = nextDynamic(() => import('@/components/landing/Reviews'), {
@@ -77,6 +78,9 @@ export default function Home() {
           </div>
         </div>
       </section>
+
+      {/* Latest Articles Section */}
+      <LatestArticles />
 
       {/* AI Recommendation Section */}
       <section id="recommendations" className="py-20 bg-gradient-to-b from-black to-gray-900 border-b border-white/5">
@@ -148,12 +152,13 @@ export default function Home() {
                             <Lock className="w-4 h-4 text-primary" /> Paiement Sécurisé Avec
                         </p>
                         <div className="flex justify-center items-center opacity-90 transition-opacity hover:opacity-100">
-                             <CldImage 
+                             <Image 
                                 src="https://res.cloudinary.com/doy1q2tfm/image/upload/v1766386708/Paiment-Securise-Avec_fc8loh.png" 
                                 alt="Paiement Sécurisé : Visa, Mastercard, PayPal" 
                                 width={250}
                                 height={80}
                                 className="h-20 w-auto object-contain"
+                                unoptimized
                              />
                         </div>
                     </div>

@@ -38,7 +38,7 @@ export default function ServiceCard({ service, onBook }: ServiceCardProps) {
             {cardImage.imageUrl.includes('cloudinary') ? (
               <CldImage
                 src={cardImage.imageUrl}
-                alt={cardImage.description}
+                alt={`${service.name} - Transport Privé Maroc`}
                 fill
                 format="auto"
                 quality="auto:eco"
@@ -48,7 +48,7 @@ export default function ServiceCard({ service, onBook }: ServiceCardProps) {
             ) : (
               <Image
                 src={cardImage.imageUrl}
-                alt={cardImage.description}
+                alt={`${service.name} - Transport Privé Maroc`}
                 fill
                 className="object-cover transition-transform duration-500 group-hover:scale-110"
                 sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"

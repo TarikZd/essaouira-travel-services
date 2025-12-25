@@ -35,21 +35,28 @@ export default function Header() {
   }, []);
 
   const navLinks = [
-    { label: 'Accueil', href: '#hero' },
-    { label: 'Destinations', href: '#destinations' },
-    { label: 'Services', href: '#services' },
-    { label: 'Avis', href: '#reviews' },
-    { label: 'Contact', href: '#contact' },
+    { label: 'Accueil', href: '/#hero' },
+    { label: 'Destinations', href: '/#destinations' },
+    { label: 'Services', href: '/#services' },
+    { label: 'Avis', href: '/#reviews' },
+    { label: 'Conseils', href: '/conseils-voyage' },
+    { label: 'Contact', href: '/#contact' },
   ];
 
-  const scrollToSection = (e: React.MouseEvent<HTMLAnchorElement>, href: string) => {
-    e.preventDefault();
-    const targetId = href.replace('#', '');
-    const elem = document.getElementById(targetId);
-    elem?.scrollIntoView({ behavior: 'smooth' });
+  const handleNavClick = (e: React.MouseEvent<HTMLAnchorElement>, href: string) => {
+    if (href.startsWith('/#')) {
+        // If we are on the homepage, scroll. If not, let Next.js navigate to /#id
+        if (window.location.pathname === '/') {
+            e.preventDefault();
+            const targetId = href.replace('/#', '');
+            const elem = document.getElementById(targetId);
+            elem?.scrollIntoView({ behavior: 'smooth' });
+        }
+        // Else: do nothing, let standard navigation happen
+    }
     setIsOpen(false);
   };
-
+ 
   return (
     <header className={cn(
       "fixed top-0 z-50 w-full transition-all duration-300",
@@ -66,14 +73,14 @@ export default function Header() {
         {/* Desktop Navigation */}
         <nav className="hidden items-center space-x-8 text-sm font-semibold md:flex">
           {navLinks.map((link) => (
-            <a
+            <Link
               key={link.label}
               href={link.href}
-              onClick={(e) => scrollToSection(e, link.href)}
+              onClick={(e) => handleNavClick(e, link.href)}
               className="transition-colors text-white/80 hover:text-primary uppercase tracking-widest text-[11px]"
             >
               {link.label}
-            </a>
+            </Link>
           ))}
           <Button 
             className="bg-primary text-black hover:bg-yellow-500 font-bold px-6 rounded-full"
@@ -101,14 +108,14 @@ export default function Header() {
               </SheetHeader>
               <div className="mt-12 flex flex-col space-y-6">
                 {navLinks.map((link) => (
-                  <a
+                  <Link
                     key={link.label}
                     href={link.href}
-                    onClick={(e) => scrollToSection(e, link.href)}
+                    onClick={(e) => handleNavClick(e, link.href)}
                     className="text-2xl font-bold transition-colors hover:text-primary"
                   >
                     {link.label}
-                  </a>
+                  </Link>
                 ))}
               </div>
             </SheetContent>

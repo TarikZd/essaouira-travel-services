@@ -35,12 +35,12 @@ export default function Hero() {
       <div className="relative z-10 container mx-auto px-4 text-center">
         <div className="space-y-6">
           <h1 className="text-5xl md:text-7xl font-bold font-headline text-white tracking-tight">
-            Taxi Transport <br />
-            <span className="text-primary">Touristique</span>
+            Taxi Marrakech Essaouira <br />
+            <span className="text-primary">& Transport Touristique</span>
           </h1>
           
           <p className="text-xl md:text-2xl text-gray-200 max-w-2xl mx-auto font-light">
-            Transferts rapides, confortables et sécurisés entre Marrakech, Essaouira et Agadir.
+            Votre chauffeur privé pour le trajet Marrakech Essaouira, Agadir et Casablanca. Service VTC confort à prix fixe.
           </p>
 
           <div className="flex flex-col sm:flex-row items-center justify-center gap-4 mt-8">

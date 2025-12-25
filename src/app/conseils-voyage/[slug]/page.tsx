@@ -31,8 +31,21 @@ export async function generateMetadata({ params }: { params: Promise<{ slug: str
   if (!article) return { title: 'Article introuvable' };
 
   return {
-    title: article.seo_title || `${article.title} | Conseils Voyage`,
+    title: article.seo_title || article.title, // Layout provides template
     description: article.seo_description || article.excerpt || '',
+    openGraph: {
+      title: article.seo_title || article.title,
+      description: article.seo_description || article.excerpt || '',
+      type: 'article',
+      images: article.cover_image ? [
+        {
+          url: article.cover_image,
+          width: 1200,
+          height: 630,
+          alt: article.title,
+        },
+      ] : [],
+    },
   };
 }
 
@@ -44,8 +57,35 @@ export default async function ArticlePage({ params }: { params: Promise<{ slug: 
     notFound();
   }
 
+  const jsonLd = {
+    '@context': 'https://schema.org',
+    '@type': 'BlogPosting',
+    headline: article.seo_title || article.title,
+    image: article.cover_image ? [article.cover_image] : [],
+    datePublished: article.created_at,
+    dateModified: article.updated_at || article.created_at,
+    author: {
+        '@type': 'Organization',
+        name: 'Essaouira Travel Services',
+        url: 'https://essaouira-travel.services'
+    },
+    publisher: {
+        '@type': 'Organization',
+        name: 'Essaouira Travel Services',
+        logo: {
+            '@type': 'ImageObject',
+            url: 'https://essaouira-travel.services/logo.png' // Ensure this exists or use a valid URL
+        }
+    },
+    description: article.seo_description || article.excerpt
+  };
+
   return (
     <article className="min-h-screen bg-black text-white pb-24">
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }}
+      />
       {/* Hero Header */}
       <div className="relative h-[50vh] w-full bg-gray-900 overflow-hidden">
         {article.cover_image && (
