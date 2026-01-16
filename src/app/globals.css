@@ -4,26 +4,35 @@
 
 @layer base {
   :root {
-    --background: 0 0% 0%; /* Pure Black */
-    --foreground: 0 0% 100%; /* White */
-    --card: 0 0% 3%; /* Very Dark Gray */
-    --card-foreground: 0 0% 100%;
-    --popover: 0 0% 3%;
-    --popover-foreground: 0 0% 100%;
-    --primary: 47 95% 55%; /* Taxi Yellow #FACC15 equivalent */
-    --primary-foreground: 0 0% 0%;
-    --secondary: 0 0% 9%;
-    --secondary-foreground: 0 0% 100%;
-    --muted: 0 0% 15%;
-    --muted-foreground: 0 0% 65%;
-    --accent: 47 95% 55%;
-    --accent-foreground: 0 0% 0%;
+    --background: 220 15% 3%; /* Deep Ocean Black */
+    --foreground: 210 20% 98%; /* Soft White */
+
+    --card: 220 15% 5%; /* Rich Dark Gray */
+    --card-foreground: 210 20% 98%;
+
+    --popover: 220 15% 5%;
+    --popover-foreground: 210 20% 98%;
+
+    --primary: 185 85% 35%; /* Ocean Teal (Trust) */
+    --primary-foreground: 210 20% 98%;
+
+    --secondary: 220 10% 12%;
+    --secondary-foreground: 210 20% 98%;
+
+    --muted: 220 10% 15%;
+    --muted-foreground: 215 15% 70%;
+
+    --accent: 35 85% 55%; /* Warm Sand (Action/Vibrancy) */
+    --accent-foreground: 220 15% 3%;
+
     --destructive: 0 84.2% 60.2%;
     --destructive-foreground: 0 0% 98%;
-    --border: 0 0% 20%;
-    --input: 0 0% 12%;
-    --ring: 47 95% 55%;
-    --radius: 1rem;
+
+    --border: 220 10% 18%;
+    --input: 220 10% 18%;
+
+    --ring: 185 85% 35%;
+    --radius: 0.75rem; /* Slightly tighter radius for modern feel */
   }
 }
 

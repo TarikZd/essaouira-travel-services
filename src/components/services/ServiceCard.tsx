@@ -31,36 +31,42 @@ export default function ServiceCard({ service, onBook }: ServiceCardProps) {
 
   return (
     <Card className="group flex h-full flex-col overflow-hidden bg-white/5 border-white/10 hover:border-primary/50 transition-all duration-300 hover:-translate-y-2 hover:shadow-2xl hover:shadow-primary/10">
-      <CardHeader className="relative h-56 w-full p-0 overflow-hidden">
+      <CardHeader className="relative h-64 w-full p-0 overflow-hidden">
         {cardImage && (
-          <Link href={`/services/${service.slug}`} className="block h-full w-full">
-            <div className="absolute inset-0 bg-gradient-to-t from-black/80 to-transparent z-10" />
+          <Link href={`/services/${service.slug}`} className="block h-full w-full group-hover:scale-105 transition-transform duration-700">
+            <div className="absolute inset-0 bg-gradient-to-t from-black/90 via-black/20 to-transparent z-10" />
+            
+            {/* Price Badge */}
+            <div className="absolute top-4 right-4 z-20 bg-accent text-accent-foreground px-4 py-1.5 rounded-full text-sm font-bold shadow-lg">
+              {service.pricing?.amount ? `from ${service.pricing.amount}€` : 'On Request'}
+            </div>
+
             {cardImage.imageUrl.includes('cloudinary') ? (
               <CldImage
                 src={cardImage.imageUrl}
-                alt={`${service.name} - Transport Privé Maroc`}
+                alt={`${service.name} - Essaouira Concierge`}
                 fill
                 format="auto"
                 quality="auto:eco"
-                className="object-cover transition-transform duration-500 group-hover:scale-110"
+                className="object-cover"
                 sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
               />
             ) : (
               <Image
                 src={cardImage.imageUrl}
-                alt={`${service.name} - Transport Privé Maroc`}
+                alt={`${service.name} - Essaouira Concierge`}
                 fill
-                className="object-cover transition-transform duration-500 group-hover:scale-110"
+                className="object-cover"
                 sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
               />
             )}
-            <div className="absolute top-4 left-4 z-20 bg-black/80 backdrop-blur text-white px-3 py-1 rounded-full text-xs font-bold flex items-center border border-white/10">
-              <Star className="w-3 h-3 text-primary fill-primary mr-1" />
-              {service.rating || 4.9}
-            </div>
-            <div className="absolute bottom-4 left-6 z-20">
-              {getIcon(service.id)}
-              <CardTitle className="font-headline text-2xl text-white group-hover:text-primary transition-colors">
+            
+            <div className="absolute bottom-4 left-5 z-20">
+              <div className="flex items-center gap-2 mb-2">
+                 {getIcon(service.id)}
+                 <span className="text-primary text-xs font-bold tracking-widest uppercase bg-primary/10 px-2 py-0.5 rounded border border-primary/20">Premium Service</span>
+              </div>
+              <CardTitle className="font-headline text-2xl text-white group-hover:text-primary transition-colors leading-tight">
                 {service.name}
               </CardTitle>
             </div>

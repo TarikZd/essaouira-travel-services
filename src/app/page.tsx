@@ -4,14 +4,12 @@ export const dynamic = 'force-dynamic';
 
 import { useState } from 'react';
 import Image from 'next/image';
-import { CldImage } from 'next-cloudinary';
 import { services, type Service } from '@/lib/services';
 import Hero from '@/components/landing/Hero';
 import Stats from '@/components/landing/Stats';
 // import Reviews from '@/components/landing/Reviews';
 import Destinations from '@/components/landing/Destinations';
 import ServiceCard from '@/components/services/ServiceCard';
-import LatestArticles from '@/components/landing/LatestArticles';
 // import BookingForm from '@/components/services/BookingForm';
 
 const Reviews = nextDynamic(() => import('@/components/landing/Reviews'), {
@@ -23,14 +21,7 @@ const BookingForm = nextDynamic(() => import('@/components/services/BookingForm'
 });
 import nextDynamic from 'next/dynamic';
 
-const RecommendationEngine = nextDynamic(() => import('@/components/ai/RecommendationEngine'), {
-  loading: () => <div className="h-64 bg-white/5 animate-pulse rounded-xl" />,
-  ssr: false // No need for SEO indexation of dynamic interactive component
-});
-// import RecommendationEngine from '@/components/ai/RecommendationEngine';
-import { Card, CardContent } from '@/components/ui/card';
-import { cn } from '@/lib/utils';
-import { Car, Sparkles, MapPin, Lock } from 'lucide-react';
+import { Car, MapPin, Lock } from 'lucide-react';
 
 export default function Home() {
   const [selectedService, setSelectedService] = useState<Service>(services[0]);
@@ -60,10 +51,10 @@ export default function Home() {
         <div className="container mx-auto px-4">
           <div className="text-center mb-16">
             <h2 className="font-headline text-3xl md:text-5xl font-bold text-white mb-4">
-              Nos <span className="text-primary">Services</span>
+              Our <span className="text-primary">Services</span>
             </h2>
             <p className="text-gray-400 max-w-2xl mx-auto">
-              Des transferts privés aux excursions exclusives, nous offrons une gamme complète de services pour rendre votre voyage inoubliable.
+              From private transfers to exclusive excursions, we offer a complete range of services to make your trip unforgettable.
             </p>
           </div>
           
@@ -79,27 +70,6 @@ export default function Home() {
         </div>
       </section>
 
-      {/* Latest Articles Section */}
-      <LatestArticles />
-
-      {/* AI Recommendation Section */}
-      <section id="recommendations" className="py-20 bg-gradient-to-b from-black to-gray-900 border-b border-white/5">
-         <div className="container mx-auto px-4 text-center">
-           <div className="inline-block p-3 rounded-full bg-primary/10 mb-6">
-             <Sparkles className="w-8 h-8 text-primary" />
-           </div>
-           <h2 className="font-headline text-3xl md:text-5xl font-bold text-white mb-6">
-             Assistant Voyage <span className="text-primary">IA</span>
-           </h2>
-           <p className="mx-auto max-w-2xl text-lg text-gray-400 mb-12">
-            Pas sûr de ce que vous cherchez ? Laissez notre assistant intelligent vous suggérer les meilleures activités pour votre séjour à Essaouira.
-           </p>
-           <div className="max-w-4xl mx-auto">
-             <RecommendationEngine onBook={handleServiceSelect} />
-           </div>
-         </div>
-       </section>
-
       {/* Reviews Section */}
       <Reviews />
 
@@ -109,11 +79,11 @@ export default function Home() {
             <div className="grid grid-cols-1 lg:grid-cols-2 gap-16">
                 <div>
                     <h2 className="font-headline text-4xl md:text-5xl font-bold text-white mb-6">
-                        Contact & <br/><span className="text-primary">Réservation</span>
+                        Contact & <br/><span className="text-primary">Booking</span>
                     </h2>
                     <p className="text-gray-400 text-lg mb-8 leading-relaxed">
-                        Remplissez le formulaire pour obtenir un devis gratuit ou réserver directement votre trajet. 
-                        Une fois envoyé, nous vous contacterons immédiatement sur <strong>WhatsApp</strong> pour confirmer les détails.
+                        Fill the form to get a quote or book your ride directly. 
+                        Once sent, we will contact you immediately on <strong>WhatsApp</strong> to confirm details.
                     </p>
                     
                     <div className="space-y-6">
@@ -122,8 +92,8 @@ export default function Home() {
                                 <Car className="w-6 h-6 text-primary" />
                             </div>
                             <div>
-                                <h3 className="font-bold">Service 24/7</h3>
-                                <p className="text-gray-400">Disponible jour et nuit</p>
+                                <h3 className="font-bold">24/7 Service</h3>
+                                <p className="text-gray-400">Available day and night</p>
                             </div>
                         </div>
                          <div className="flex items-center space-x-4 text-white">
@@ -131,7 +101,7 @@ export default function Home() {
                                 <MapPin className="w-6 h-6 text-primary" />
                             </div>
                             <div>
-                                <h3 className="font-bold">Couverture Nationale</h3>
+                                <h3 className="font-bold">National Coverage</h3>
                                 <p className="text-gray-400">Marrakech, Essaouira, Agadir, etc.</p>
                             </div>
                         </div>
@@ -140,7 +110,7 @@ export default function Home() {
 
                 <div id="booking-form" className="bg-gray-900/50 backdrop-blur-sm p-8 rounded-3xl border border-white/10 shadow-2xl scroll-mt-32">
                     <div className="mb-6 pb-6 border-b border-white/10">
-                        <p className="text-sm text-gray-400 uppercase tracking-widest mb-2">Service Sélectionné</p>
+                        <p className="text-sm text-gray-400 uppercase tracking-widest mb-2">Selected Service</p>
                         <h3 className="text-2xl font-bold text-primary flex items-center">
                             {selectedService.name}
                         </h3>
@@ -149,12 +119,12 @@ export default function Home() {
 
                     <div className="mt-8 pt-6 border-t border-white/10 text-center">
                         <p className="text-sm text-gray-400 mb-4 flex items-center justify-center gap-2 font-medium">
-                            <Lock className="w-4 h-4 text-primary" /> Paiement Sécurisé Avec
+                            <Lock className="w-4 h-4 text-primary" /> Secured Payment
                         </p>
                         <div className="flex justify-center items-center opacity-90 transition-opacity hover:opacity-100">
                              <Image 
                                 src="https://res.cloudinary.com/doy1q2tfm/image/upload/v1766386708/Paiment-Securise-Avec_fc8loh.png" 
-                                alt="Paiement Sécurisé : Visa, Mastercard, PayPal" 
+                                alt="Secured Payment: Visa, Mastercard, PayPal" 
                                 width={250}
                                 height={80}
                                 className="h-20 w-auto object-contain"

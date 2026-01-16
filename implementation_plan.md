@@ -1,37 +1,51 @@
-# Implementation Plan - SEO Autopilot with Supabase & n8n
+# Implementation Plan - High-Conversion Ad Funnel (Simple & Fast)
 
-This plan outlines the steps to transform the Essaouira Travel Services website into a dynamic, SEO-optimized platform powered by Supabase and n8n.
+This plan focuses on building a **Lean, High-Speed Landing Page System** designed for **Paid Traffic (Google/Meta Ads)**. The goal is maximum conversion with minimum complexity.
 
-## Phase 1: Infrastructure Setup (Supabase)
+## Phase 1: The "Thin" Core (Cloudflare & Supabase)
 
-- [ ] **Install Dependencies**: Install `@supabase/supabase-js`.
-- [ ] **Environment Configuration**: Add `NEXT_PUBLIC_SUPABASE_URL` and `NEXT_PUBLIC_SUPABASE_ANON_KEY` to `.env`.
-- [ ] **Database Schema**: Create SQL migration script for:
-  - `services`: To store service details (pricing, features, etc).
-  - `articles`: To store SEO content/guides.
-  - `leads`: To store booking inquiries.
-- [ ] **Client Setup**: Create `src/lib/supabase.ts` for the client instance.
-- [ ] **Seed Data**: migrate existing static `services.ts` data into the Supabase `services` table.
+**Goal:** A lightning-fast, crash-proof infrastructure that loads instantly for ad clicks (Better Ad Quality Score).
 
-## Phase 2: Page Architecture (Next.js)
+- [ ] **Weight Loss Audit**:
+  - **Remove** `sharp` and unused libs to stay under Cloudflare 3MiB limit.
+  - Setup **Cloudinary** for auto-optimized images.
+- [ ] **Simple Backend (Supabase)**:
+  - `leads` table: To capture every booking intent immediately.
+  - `services` table: To manage pricing/details for the Landing Pages without deploying code.
+  - **No User Auth**: Guest checkout only. Simple is better.
 
-- [ ] **Service Page Template (`/services/[slug]`)**:
-  - Create dynamic route `src/app/services/[slug]/page.tsx`.
-  - Implement fetching logic from Supabase `services` table.
-  - Design the layout (Hero, Features, Pricing, Booking Form integration).
-- [ ] **Knowledge Hub (`/conseils-voyage`)**:
-  - Create index page `src/app/conseils-voyage/page.tsx` (Grid of articles).
-  - Create article page `src/app/conseils-voyage/[slug]/page.tsx`.
-  - Implement "Markdown Renderer" for article content.
-- [ ] **Booking Integration**:
-  - Update `BookingForm` component to submit to Supabase `leads` table instead of just console/email.
+## Phase 2: The "Ad Landing Page" Template
 
-## Phase 3: Automation Preparation (n8n Guidelines)
+**Goal:** A single, reusable page structure optimized for converting cold traffic.
 
-- [ ] **API Access**: Ensure RLS (Row Level Security) policies allow n8n (via service role or API) to write to `articles` and `services`.
-- [ ] **Documentation**: Create a brief guide on the expected JSON structure for n8n to push to `articles`.
+- [ ] **Create `MasterLandingPage` Component**:
+  - **Hero**: High-impact Video/Image + Direct "Get Price" form.
+  - **Trust Bar**: "Verified", "5-Star" badges immediately visible.
+  - **Streamlined Body**: Why Us -> Fleet/Experience Photos -> Reviews -> Final CTA.
+  - **Sticky Mobile Button**: Always visible "Book Now".
+- [ ] **Variations**:
+  - `/transfer-essaouira` (Targeting: "Taxi Marrakech Essaouira").
+  - `/cooking-class` (Targeting: "Things to do in Essaouira").
 
-## Phase 4: Clean Up
+## Phase 3: Frictionless Payment (PayPal)
 
-- [ ] Remove old static data files once migration is verified.
-- [ ] Verify SEO metadata generation for dynamic pages.
+**Goal:** Capture the money without scaring the user.
+
+- [ ] **Smart Deposit**:
+  - Implement a simple "Pay 10% Deposit" option via **PayPal Smart Buttons**.
+  - Logic: "Reserve for just €5 now, pay the rest later." High conversion for ad traffic.
+- [ ] **Technical**:
+  - Client-side PayPal integration (lazy loaded) to keep page speed high.
+
+## Phase 4: Conversion Tracking (Crucial for Ads)
+
+**Goal:** Feed Google/Meta algorithms with data to lower CPC.
+
+- [ ] **Server-Side Tracking**:
+  - When a booking hits Supabase, use a **Webhook** (or n8n) to send a "Purchase" event back to Meta CAPI/Google Ads API.
+  - This ensures 100% accurate tracking (bypassing ad blockers).
+
+## Phase 5: Launch Ready
+
+- [ ] **Speed Test**: Ensure LCP (Largest Contentful Paint) is < 2.5s.
+- [ ] **Form Test**: Verify leads are saved even if the user drops off at payment.

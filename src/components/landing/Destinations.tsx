@@ -10,7 +10,7 @@ const destinations = [
     from: 'Marrakech',
     to: 'Essaouira',
     time: '2h30',
-    price: 'A partir de 60€',
+    price: 'From 60€',
     image: 'https://res.cloudinary.com/doy1q2tfm/image/upload/v1766384357/marrakech-transfer_ldfscm.jpg',
     rating: 4.9,
     reviews: 724
@@ -19,7 +19,7 @@ const destinations = [
     from: 'Agadir',
     to: 'Essaouira',
     time: '3h00',
-    price: 'A partir de 80€',
+    price: 'From 80€',
     image: 'https://res.cloudinary.com/doy1q2tfm/image/upload/v1766386707/agadir-transfer_g5qmde.jpg',
     rating: 4.8,
     reviews: 589
@@ -28,16 +28,16 @@ const destinations = [
     from: 'Casablanca',
     to: 'Essaouira',
     time: '4h30',
-    price: 'A partir de 140€',
+    price: 'From 140€',
     image: 'https://res.cloudinary.com/doy1q2tfm/image/upload/v1766386707/casablanca-transfer_bmqnmf.jpg',
     rating: 5.0,
     reviews: 345
   },
   {
-    from: 'Aéroport',
-    to: 'Centre Ville',
+    from: 'Airport',
+    to: 'City Center',
     time: '20 min',
-    price: 'A partir de 15€',
+    price: 'From 15€',
     image: 'https://res.cloudinary.com/doy1q2tfm/image/upload/v1766386709/transport-aeroport-confort_kqh0y5.jpg',
     rating: 4.9,
     reviews: 1215
@@ -50,10 +50,10 @@ export default function Destinations() {
       <div className="container mx-auto px-4">
         <div className="text-center mb-16">
           <h2 className="text-3xl md:text-5xl font-bold font-headline text-white mb-4">
-            Destinations <span className="text-primary">Populaires</span>
+            Popular <span className="text-primary">Destinations</span>
           </h2>
           <p className="text-gray-400 max-w-2xl mx-auto">
-            Découvrez nos trajets les plus demandés avec des temps de parcours optimisés et un confort absolu.
+            Discover our most requested routes with optimized travel times and absolute comfort.
           </p>
         </div>
 
@@ -70,7 +70,7 @@ export default function Destinations() {
                 <div className="relative h-64 overflow-hidden">
                     <CldImage
                     src={dest.image}
-                    alt={`Transfert ${dest.from} vers ${dest.to} - Transport Touristique Maroc`}
+                    alt={`Transfer ${dest.from} to ${dest.to} - Morocco Transport`}
                     fill
                     format="auto"
                     quality="auto:eco"
@@ -89,7 +89,7 @@ export default function Destinations() {
                     <div className="absolute bottom-4 left-4 right-4">
                     <div className="flex items-center text-primary text-sm font-semibold mb-1">
                         <MapPin className="w-4 h-4 mr-1" />
-                        Trajet Direct
+                        Direct Route
                     </div>
                     <h3 className="text-xl font-bold text-white leading-tight">
                         {dest.from} <span className="text-gray-400">↔</span> {dest.to}

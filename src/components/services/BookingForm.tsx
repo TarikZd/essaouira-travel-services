@@ -4,9 +4,10 @@
 import { useForm, useWatch } from 'react-hook-form';
 import { zodResolver } from '@hookform/resolvers/zod';
 import { z } from 'zod';
-import { useTransition, useMemo, useEffect } from 'react';
+import dynamic from 'next/dynamic';
+import { useTransition, useMemo, useEffect, useState } from 'react';
 import { format } from 'date-fns';
-import { fr } from 'date-fns/locale';
+import { enUS } from 'date-fns/locale';
 
 import { Button } from '@/components/ui/button';
 import {
@@ -174,8 +175,8 @@ export default function BookingForm({ service }: BookingFormProps) {
 
         if (error) throw error;
         toast({
-          title: 'Demande envoyée !',
-          description: "Nous avons bien reçu votre demande et allons vous rediriger vers WhatsApp pour confirmation.",
+          title: 'Request Sent!',
+          description: "We have received your request and will redirect you to WhatsApp for confirmation.",
         });
         handleWhatsAppRedirect(data);
         form.reset();
@@ -183,8 +184,8 @@ export default function BookingForm({ service }: BookingFormProps) {
         console.error("Error saving booking:", error);
         toast({
           variant: 'destructive',
-          title: 'Oups ! Une erreur est survenue.',
-          description: error instanceof Error ? error.message : 'Il y a eu un problème avec votre demande.',
+          title: 'Oops! Something went wrong.',
+          description: error instanceof Error ? error.message : 'There was an issue with your request.',
         });
       }
     });
@@ -211,7 +212,7 @@ export default function BookingForm({ service }: BookingFormProps) {
             if (!countryCodeField) return <></>;
             return (
                     <div className="md:col-span-2" key="phone-group">
-                    <FormLabelWithRequired required={fieldConfig.required}>Téléphone</FormLabelWithRequired>
+                    <FormLabelWithRequired required={fieldConfig.required}>Phone Number</FormLabelWithRequired>
                     <div className="flex gap-2 mt-2">
                         <FormField
                             control={form.control}
@@ -220,7 +221,7 @@ export default function BookingForm({ service }: BookingFormProps) {
                             <FormItem className="w-1/3">
                                 <Select onValueChange={field.onChange} defaultValue={field.value} value={field.value}>
                                 <FormControl>
-                                    <SelectTrigger className="bg-white/5 border-white/20 text-white" aria-label="Indicatif pays">
+                                    <SelectTrigger className="bg-white/5 border-white/20 text-white" aria-label="Country Code">
                                     <SelectValue placeholder="Code" />
                                     </SelectTrigger>
                                 </FormControl>
@@ -301,7 +302,7 @@ export default function BookingForm({ service }: BookingFormProps) {
                               !field.value && 'text-muted-foreground'
                           )}
                           >
-                          {field.value ? format(field.value, 'PPP', { locale: fr }) : <span>Choisir une date</span>}
+                          {field.value ? format(field.value, 'PPP', { locale: enUS }) : <span>Pick a date</span>}
                           <CalendarIcon className="ml-auto h-4 w-4 opacity-50" />
                           </Button>
                       </FormControl>
@@ -312,7 +313,7 @@ export default function BookingForm({ service }: BookingFormProps) {
                           selected={field.value}
                           onSelect={field.onChange}
                           disabled={(date) => date < new Date(new Date().setDate(new Date().getDate() - 1))}
-                          locale={fr}
+                          locale={enUS}
                           initialFocus
                       />
                       </PopoverContent>
@@ -346,7 +347,7 @@ export default function BookingForm({ service }: BookingFormProps) {
                   <Select onValueChange={field.onChange} defaultValue={field.value} value={field.value}>
                     <FormControl>
                       <SelectTrigger className="bg-white/5 border-white/20 text-white">
-                        <SelectValue placeholder={fieldConfig.placeholder || 'Sélectionner une option'} />
+                        <SelectValue placeholder={fieldConfig.placeholder || 'Select an option'} />
                       </SelectTrigger>
                     </FormControl>
                     <SelectContent>
@@ -378,26 +379,153 @@ export default function BookingForm({ service }: BookingFormProps) {
     );
   }
 
+  // ... inside component ...
+  const [paymentMethod, setPaymentMethod] = useState<'cash' | 'paypal'>('cash');
+  
+  // Calculate potential price
+  const formAdults = useWatch({ control: form.control, name: 'adults' }) || 1;
+  const totalPrice = service.pricing?.amount ? service.pricing.amount * formAdults : 0;
+  const depositAmount = Math.ceil(totalPrice * 0.2); // 20% Deposit
+
+  // PayPal Import (Lazy)
+  const PayPalButtons = useMemo(() => dynamic(() => import('@paypal/react-paypal-js').then(mod => mod.PayPalButtons), { ssr: false, loading: () => <Loader2 className="animate-spin" /> }), []);
+  const PayPalScriptProvider = useMemo(() => dynamic(() => import('@paypal/react-paypal-js').then(mod => mod.PayPalScriptProvider), { ssr: false }), []);
+
+  function handleBookingSave(data: FormValues, paymentDetails?: any) {
+    startTransition(async () => {
+      const submissionData = {
+        ...data,
+        date: (data as any).date ? format((data as any).date, 'yyyy-MM-dd') : '',
+        serviceName: service.name,
+        serviceId: service.slug,
+        phone: `${((data as any).countryCode || '').split('__')[0]}${(data as any).phone || ''}`,
+        createdAt: new Date().toISOString(),
+        paymentStatus: paymentDetails ? 'paid_deposit' : 'pay_on_arrival',
+        paymentDetails: paymentDetails || null,
+      };
+      
+      try {
+        const { error } = await supabase.from('leads').insert({
+          service_id: service.id,
+          service_name: service.name,
+          customer_name: (data as any).fullName,
+          customer_email: (data as any).email,
+          customer_phone: submissionData.phone,
+          travel_date: submissionData.date,
+          details: submissionData,
+          status: paymentDetails ? 'confirmed' : 'new'
+        });
+
+        if (error) throw error;
+        toast({
+          title: paymentDetails ? 'Réservation Confirmée !' : 'Demande envoyée !',
+          description: paymentDetails ? "Votre acompte est reçu. Bon voyage !" : "Redirection vers WhatsApp pour validation...",
+        });
+        
+        handleWhatsAppRedirect(data);
+        form.reset();
+      } catch (error) {
+        console.error("Error saving booking:", error);
+        toast({
+          variant: 'destructive',
+          title: 'Erreur',
+          description: 'Veuillez réessayer ou nous contacter sur WhatsApp.',
+        });
+      }
+    });
+  }
+
   return (
     <Form {...form}>
-      <form onSubmit={form.handleSubmit(onSubmit)} className="space-y-6">
+      <form onSubmit={form.handleSubmit((data) => handleBookingSave(data))} className="space-y-6">
         <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
           {service.bookingForm.fields.map(renderField)}
         </div>
 
-        <Button type="submit" disabled={isPending} className="w-full bg-primary text-black hover:bg-yellow-500 font-bold py-6 text-lg rounded-xl transition-all hover:scale-[1.02] shadow-lg shadow-primary/20">
-          {isPending ? (
-            <>
-              <Loader2 className="mr-2 h-4 w-4 animate-spin" />
-              Confirmation...
-            </>
-          ) : ( 
-            <span className="flex items-center">
-              {service.bookingTitle || 'Confirmer la Réservation'}
-              <Send className="ml-2 h-5 w-5" />
-            </span>
-           )}
-        </Button>
+        {/* Pricing Summary (If applicable) */}
+        {service.pricing && (
+            <div className="bg-white/5 p-4 rounded-xl border border-white/10 space-y-2">
+                <div className="flex justify-between text-gray-300">
+                    <span>Price per person</span>
+                    <span>{service.pricing.amount}€</span>
+                </div>
+                <div className="flex justify-between text-xl font-bold text-white border-t border-white/10 pt-2 mt-2">
+                    <span>Estimated Total</span>
+                    <span className="text-primary">{totalPrice}€</span>
+                </div>
+                <div className="flex justify-between text-sm text-accent">
+                    <span>Deposit required (20%)</span>
+                    <span>{depositAmount}€</span>
+                </div>
+            </div>
+        )}
+
+        {/* Payment Selection */}
+        {service.pricing && (
+            <div className="grid grid-cols-2 gap-4">
+                <Button 
+                    type="button"
+                    variant={paymentMethod === 'paypal' ? 'default' : 'outline'}
+                    className={cn("h-auto py-4 flex flex-col items-center gap-2", paymentMethod === 'paypal' ? "border-primary bg-primary/10 text-primary" : "bg-transparent border-white/20 text-gray-400")}
+                    onClick={() => setPaymentMethod('paypal')}
+                >
+                    <span className="font-bold">Pay Deposit</span>
+                    <span className="text-xs opacity-80">Secured by PayPal</span>
+                </Button>
+                <Button 
+                    type="button"
+                    variant={paymentMethod === 'cash' ? 'default' : 'outline'}
+                    className={cn("h-auto py-4 flex flex-col items-center gap-2", paymentMethod === 'cash' ? "border-primary bg-primary/10 text-primary" : "bg-transparent border-white/20 text-gray-400")}
+                    onClick={() => setPaymentMethod('cash')}
+                >
+                    <span className="font-bold">Pay Later</span>
+                    <span className="text-xs opacity-80">Cash / Card</span>
+                </Button>
+            </div>
+        )}
+
+        {paymentMethod === 'paypal' && service.pricing ? (
+             <div className="p-4 bg-white rounded-xl">
+                 <PayPalScriptProvider options={{ clientId: process.env.NEXT_PUBLIC_PAYPAL_CLIENT_ID || "test", currency: "EUR" }}>
+                    <PayPalButtons 
+                        style={{ layout: "vertical", shape: "rect" }}
+                        createOrder={(data, actions) => {
+                            return actions.order.create({
+                                intent: "CAPTURE",
+                                purchase_units: [{
+                                    amount: { value: depositAmount.toString(), currency_code: "EUR" },
+                                    description: `Deposit for ${service.name}`
+                                }]
+                            });
+                        }}
+                        onApprove={async (data, actions) => {
+                            const details = await actions.order?.capture();
+                            const formData = form.getValues();
+                            const isValid = await form.trigger();
+                            if (isValid) {
+                                handleBookingSave(formData, details);
+                            } else {
+                                toast({ title: "Incomplete Form", description: "Please fill all fields before paying.", variant: "destructive" });
+                            }
+                        }}
+                    />
+                 </PayPalScriptProvider>
+             </div>
+        ) : (
+            <Button type="submit" disabled={isPending} className="w-full bg-primary text-black hover:bg-yellow-500 font-bold py-6 text-lg rounded-xl transition-all hover:scale-[1.02] shadow-lg shadow-primary/20">
+            {isPending ? (
+                <>
+                <Loader2 className="mr-2 h-4 w-4 animate-spin" />
+                Confirming...
+                </>
+            ) : ( 
+                <span className="flex items-center">
+                {service.bookingTitle || 'Confirm Booking'}
+                <Send className="ml-2 h-5 w-5" />
+                </span>
+            )}
+            </Button>
+        )}
       </form>
     </Form>
   );

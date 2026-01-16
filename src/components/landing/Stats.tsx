@@ -21,7 +21,7 @@ export default function Stats() {
 
   const stats = [
     { 
-      label: 'Déplacements Réalisés', 
+      label: 'Successful Trips', 
       value: metrics.trips, 
       start: 3651,
       suffix: '+', 
@@ -29,7 +29,7 @@ export default function Stats() {
       isAnimated: false 
     },
     { 
-      label: "Années d'expérience", 
+      label: "Years of Experience", 
       value: 5, 
       start: 0,
       suffix: '', 
@@ -37,13 +37,13 @@ export default function Stats() {
       isAnimated: false 
     },
     { 
-      label: 'Service disponible', 
+      label: 'Service Available', 
       value: '24/7', 
       icon: Clock,
       isAnimated: false
     },
     { 
-      label: 'Note Des Clients', 
+      label: 'Client Rating', 
       value: 4.9, 
       start: 0,
       suffix: '', 

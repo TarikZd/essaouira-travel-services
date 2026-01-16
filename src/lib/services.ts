@@ -1,12 +1,12 @@
 import { z } from 'zod';
 import type { ZodType } from 'zod';
 import { format } from 'date-fns';
-import { fr } from 'date-fns/locale';
+import { enUS } from 'date-fns/locale';
 
 const formatDate = (date: any) => {
   if (!date) return '';
   if (typeof date === 'string') return date;
-  return format(date, 'dd MMMM yyyy', { locale: fr });
+  return format(date, 'dd MMMM yyyy', { locale: enUS });
 };
 
 export type FormField = {
@@ -20,15 +20,15 @@ export type FormField = {
 };
 
 const commonFields: FormField[] = [
-    { name: 'fullName', label: 'Nom Complet', type: 'text', required: true, placeholder: 'Jean Dupont', validation: z.string().min(2, { message: 'Le nom doit contenir au moins 2 caractères.' }) },
-    { name: 'email', label: 'Email', type: 'email', required: true, placeholder: 'jean.dupont@example.com', validation: z.string().email({ message: 'Veuillez entrer une adresse email valide.' }) },
-    { name: 'countryCode', label: 'Code Pays', type: 'select', required: true, validation: z.string().min(1, 'Le code pays est requis.') },
-    { name: 'phone', label: 'Téléphone', type: 'tel', required: true, placeholder: '06 00 00 00 00', validation: z.string().min(5, { message: 'Numéro de téléphone invalide.' })},
-    { name: 'date', label: 'Date', type: 'date', required: true, validation: z.date({ required_error: 'La date est requise.' }) },
-    { name: 'time', label: 'Heure', type: 'time', required: true, validation: z.string().min(1, "L'heure est requise.") },
-    { name: 'adults', label: 'Adultes', type: 'number', required: true, validation: z.coerce.number().min(1, 'Au moins 1 adulte requis.') },
-    { name: 'children', label: 'Enfants (-12 ans)', type: 'number', required: false, validation: z.coerce.number().min(0, "Ne peut pas être négatif.").optional() },
-    { name: 'specialRequests', label: 'Demandes Spéciales', type: 'textarea', required: false, placeholder: 'Siège bébé, bagages supplémentaires...', validation: z.string().optional() }
+    { name: 'fullName', label: 'Full Name', type: 'text', required: true, placeholder: 'John Doe', validation: z.string().min(2, { message: 'Name must be at least 2 characters.' }) },
+    { name: 'email', label: 'Email', type: 'email', required: true, placeholder: 'john.doe@example.com', validation: z.string().email({ message: 'Please enter a valid email address.' }) },
+    { name: 'countryCode', label: 'Country Code', type: 'select', required: true, validation: z.string().min(1, 'Country code is required.') },
+    { name: 'phone', label: 'Phone', type: 'tel', required: true, placeholder: '06 00 00 00 00', validation: z.string().min(5, { message: 'Invalid phone number.' })},
+    { name: 'date', label: 'Date', type: 'date', required: true, validation: z.date({ required_error: 'Date is required.' }) },
+    { name: 'time', label: 'Time', type: 'time', required: true, validation: z.string().min(1, "Time is required.") },
+    { name: 'adults', label: 'Adults', type: 'number', required: true, validation: z.coerce.number().min(1, 'At least 1 adult required.') },
+    { name: 'children', label: 'Children (Under 12)', type: 'number', required: false, validation: z.coerce.number().min(0, "Cannot be negative.").optional() },
+    { name: 'specialRequests', label: 'Special Requests', type: 'textarea', required: false, placeholder: 'Baby seat, extra luggage...', validation: z.string().optional() }
 ];
 
 const getFieldsForService = (specificFields: FormField[]): FormField[] => {
@@ -83,12 +83,12 @@ export type Service = {
 export const services: Service[] = [
   {
     id: 1,
-    name: 'Transferts Privés',
+    name: 'Private Airport Transfers',
     slug: 'airport-transfers',
-    description: 'Voyagez en toute confiance et confort avec notre service de transfert privé à Essaouira. Nous assurons une liaison fluide entre Marrakech, Agadir, les aéroports et les villes côtières. Nos chauffeurs professionnels et véhicules modernes vous garantissent un trajet sans stress vers votre destination.',
-    aboutTitle: 'À propos de votre transfert',
-    bookingTitle: 'Réservez votre transfert',
-    features: ['Service vers Aéroports & Villes Majeures', 'Véhicules Privés Climatisés', 'Chauffeurs Professionnels & Ponctuels', 'Disponibilité 24/7 pour tous les vols'],
+    description: 'Travel with confidence and comfort with our private transfer service in Essaouira. We ensure a seamless connection between Marrakech, Agadir, airports, and coastal towns. Our professional drivers and modern vehicles guarantee a stress-free journey to your destination.',
+    aboutTitle: 'About your transfer',
+    bookingTitle: 'Book your transfer',
+    features: ['Service to Airports & Major Cities', 'Air-Conditioned Private Vehicles', 'Professional & Punctual Drivers', 'Available 24/7 for all flights'],
     rating: 4.9,
     reviewsCount: 342,
     difficulty: 'Moderate' as const,
@@ -101,50 +101,50 @@ export const services: Service[] = [
       fields: getFieldsForService([
         {
           name: 'pickupLocation',
-          label: 'Lieu de prise en charge',
+          label: 'Pickup Location',
           type: 'select',
           required: true,
-          options: ['Essaouira', 'Aéroport Essaouira', 'Marrakech', 'Aéroport Marrakech', 'Agadir', 'Aéroport Agadir', 'Agafay', 'Taghazout', 'Imsouane', 'El Jadida', 'Oualidia', 'Imlil', 'Ouirgane', 'Taroudant'],
-          validation: z.string().min(1, 'Le lieu de départ est requis'),
+          options: ['Essaouira', 'Essaouira Airport', 'Marrakech', 'Marrakech Airport', 'Agadir', 'Agadir Airport', 'Agafay', 'Taghazout', 'Imsouane', 'El Jadida', 'Oualidia', 'Imlil', 'Ouirgane', 'Taroudant'],
+          validation: z.string().min(1, 'Pickup location is required'),
         },
         {
             name: 'dropoffLocation',
-            label: 'Lieu de dépose',
+            label: 'Drop-off Location',
             type: 'select',
             required: true,
             options: [],
-            validation: z.string().min(1, "Le lieu d'arrivée est requis"),
+            validation: z.string().min(1, "Drop-off location is required"),
         },
       ]),
     },
     whatsappNumber: '212690606068',
     whatsappMessage: (data: Record<string, any>) => `
-*Nouvelle Demande de Transfert*
+*New Transfer Request*
 
-*Service:* Transferts Privés
-*Nom:* ${data.fullName.toUpperCase()}
+*Service:* Private Airport Transfers
+*Name:* ${data.fullName.toUpperCase()}
 *Email:* ${data.email}
 *Date:* ${formatDate(data.date)}
-*Heure:* ${data.time}
-*Tél:* ${data.phone}
-*Départ:* ${data.pickupLocation}
-*Arrivée:* ${data.dropoffLocation}
-*Adultes:* ${data.adults}
-*Enfants:* ${data.children || 0}
-*Demande Spéciale:* ${data.specialRequests || 'Aucune'}
+*Time:* ${data.time}
+*Tel:* ${data.phone}
+*Pickup:* ${data.pickupLocation}
+*Dropoff:* ${data.dropoffLocation}
+*Adults:* ${data.adults}
+*Children:* ${data.children || 0}
+*Special Request:* ${data.specialRequests || 'None'}
 `,
   },
   {
     id: 5,
-    name: 'Cours de Cuisine Berbère',
+    name: 'Berber Cooking Class',
     slug: 'outdoor-cooking-adventure',
-    description: 'Plongez dans la culture berbère authentique avec un cours de cuisine pratique dans la campagne d\'Essaouira. Votre journée commence par une visite guidée du souk local pour choisir des ingrédients frais. Ensuite, apprenez les secrets ancestraux pour préparer un tajine ou un couscous parfait dans une cuisine traditionnelle en plein air.',
-    aboutTitle: 'À propos du cours de cuisine',
-    bookingTitle: 'Réservez votre aventure culinaire',
-    features: ['Expérience Authentique Berbère', 'Visite Guidée du Souk', 'Cuisine Traditionnelle Marocaine', 'Déjeuner dans la Campagne'],
+    description: 'Immerse yourself in authentic Berber culture with a hands-on cooking class in the Essaouira countryside. Your day begins with a guided tour of the local souk to pick fresh ingredients. Then, learn ancestral secrets to prepare a perfect tagine or couscous in a traditional outdoor kitchen.',
+    aboutTitle: 'About the cooking class',
+    bookingTitle: 'Book your culinary adventure',
+    features: ['Authentic Berber Experience', 'Guided Souk Tour', 'Traditional Moroccan Cooking', 'Lunch in the Countryside'],
     pricing: {
       amount: 80,
-      unit: 'par personne',
+      unit: 'per person',
     },
     rating: 5.0,
     reviewsCount: 156,
@@ -158,59 +158,59 @@ export const services: Service[] = [
       fields: getFieldsForService([
         {
           name: 'pickupLocation',
-          label: 'Lieu de prise en charge',
+          label: 'Pickup Location',
           type: 'text',
           required: true,
-          placeholder: 'ex: votre hôtel ou Riad',
-          validation: z.string().min(1, 'Le lieu est requis'),
+          placeholder: 'e.g., your hotel or Riad',
+          validation: z.string().min(1, 'Location is required'),
         },
         {
           name: 'dishPreference',
-          label: 'Plat Préféré',
+          label: 'Preferred Dish',
           type: 'select',
           required: true,
-          options: ['Mechoui', 'Barbecue', 'Tajine Viande', 'Tajine Poulet', 'Couscous', 'Poisson Frais (si dispo)', 'Végétarien'],
-          validation: z.string().min(1, 'Veuillez choisir un plat.'),
+          options: ['Mechoui', 'Barbecue', 'Meat Tagine', 'Chicken Tagine', 'Couscous', 'Fresh Fish (if available)', 'Vegetarian'],
+          validation: z.string().min(1, 'Please select a dish.'),
         },
         {
           name: 'dietaryRestrictions',
-          label: 'Restrictions Alimentaires',
+          label: 'Dietary Restrictions',
           type: 'text',
           required: false,
-          placeholder: 'ex: végétarien, sans gluten',
+          placeholder: 'e.g., vegetarian, gluten-free',
           validation: z.string().optional(),
         },
       ]),
     },
     whatsappNumber: '212690606068',
     whatsappMessage: (data: Record<string, any>) => `
-*Nouvelle Demande Cours de Cuisine*
+*New Cooking Class Request*
 
-*Service:* Cours de Cuisine Berbère
-*Nom:* ${data.fullName.toUpperCase()}
+*Service:* Berber Cooking Class
+*Name:* ${data.fullName.toUpperCase()}
 *Email:* ${data.email}
 *Date:* ${formatDate(data.date)}
-*Heure:* ${data.time}
-*Tél:* ${data.phone}
-*Départ:* ${data.pickupLocation}
-*Adultes:* ${data.adults}
-*Enfants:* ${data.children || 0}
-*Plat:* ${data.dishPreference}
-*Régime:* ${data.dietaryRestrictions || 'Aucun'}
-*Demande Spéciale:* ${data.specialRequests || 'Aucune'}
+*Time:* ${data.time}
+*Tel:* ${data.phone}
+*Pickup:* ${data.pickupLocation}
+*Adults:* ${data.adults}
+*Children:* ${data.children || 0}
+*Dish:* ${data.dishPreference}
+*Diet:* ${data.dietaryRestrictions || 'None'}
+*Special Request:* ${data.specialRequests || 'None'}
 `,
   },
   {
     id: 4,
-    name: 'Plages Sauvages 4x4',
+    name: 'Wild Beaches 4x4 Tour',
     slug: 'wild-beaches-excursion',
-    description: 'Sortez des sentiers battus pour découvrir le littoral sauvage et intact au sud d\'Essaouira. Nos 4x4 confortables vous emmènent vers des plages secrètes, des falaises spectaculaires et des villages de pêcheurs cachés. Cette aventure d\'une demi-journée inclut un délicieux déjeuner traditionnel chez l\'habitant.',
-    aboutTitle: 'À propos du tour 4x4',
-    bookingTitle: 'Réservez votre tour 4x4',
-    features: ['Exploration de Plages Cachées', 'Transport en 4x4 Confortable', 'Paysages Côtiers Spectaculaires', 'Déjeuner Authentique Inclus'],
+    description: 'Go off the beaten path to discover the wild and untouched coastline south of Essaouira. Our comfortable 4x4 vehicles take you to secret beaches, spectacular cliffs, and hidden fishing villages. This half-day adventure includes a delicious traditional lunch with a local family.',
+    aboutTitle: 'About the 4x4 tour',
+    bookingTitle: 'Book your 4x4 tour',
+    features: ['Hidden Beach Exploration', 'Comfortable 4x4 Transport', 'Spectacular Coastal Scenery', 'Authentic Lunch Included'],
     pricing: {
       amount: 70,
-      unit: 'par personne',
+      unit: 'per person',
     },
     rating: 4.8,
     reviewsCount: 204,
@@ -224,41 +224,41 @@ export const services: Service[] = [
       fields: getFieldsForService([
         {
           name: 'pickupLocation',
-          label: 'Lieu de prise en charge',
+          label: 'Pickup Location',
           type: 'text',
           required: true,
-          placeholder: 'ex: votre hôtel ou Riad',
-          validation: z.string().min(1, 'Le lieu est requis'),
+          placeholder: 'e.g., your hotel or Riad',
+          validation: z.string().min(1, 'Location is required'),
         },
       ]),
     },
     whatsappNumber: '212690606068',
     whatsappMessage: (data: Record<string, any>) => `
-*Nouvelle Demande Plages Sauvages*
+*New 4x4 Tour Request*
 
-*Service:* Plages Sauvages 4x4
-*Nom:* ${data.fullName.toUpperCase()}
+*Service:* Wild Beaches 4x4 Tour
+*Name:* ${data.fullName.toUpperCase()}
 *Email:* ${data.email}
 *Date:* ${formatDate(data.date)}
-*Heure:* ${data.time}
-*Tél:* ${data.phone}
-*Départ:* ${data.pickupLocation}
-*Adultes:* ${data.adults}
-*Enfants:* ${data.children || 0}
-*Demande Spéciale:* ${data.specialRequests || 'Aucune'}
+*Time:* ${data.time}
+*Tel:* ${data.phone}
+*Pickup:* ${data.pickupLocation}
+*Adults:* ${data.adults}
+*Children:* ${data.children || 0}
+*Special Request:* ${data.specialRequests || 'None'}
 `,
   },
   {
     id: 3,
-    name: 'Visite Guidée des Souks',
+    name: 'Guided Souk & Medina Tour',
     slug: 'essaouira-souk-tour',
-    description: 'Entrez dans l\'histoire vivante d\'Essaouira avec une visite guidée à pied à travers sa médina enchanteresse. Laissez notre expert local vous guider dans les ruelles labyrinthiques vers les souks vibrants, les remparts historiques et les ateliers d\'artisans cachés. Découvrez les histoires, les vues et les saveurs qui rendent cette ville magique.',
-    aboutTitle: 'À propos de la visite',
-    bookingTitle: 'Réservez votre visite guidée',
-    features: ['Guide Local Expert', 'Visite des Remparts & du Port', 'Exploration des Souks & Artisans', 'Thé à la Menthe Inclus'],
+    description: 'Step into the living history of Essaouira with a guided walking tour through its enchanting medina. Let our local expert guide you through labyrinthine alleys to vibrant souks, historic ramparts, and hidden artisan workshops. Discover the stories, sights, and flavors that make this city magical.',
+    aboutTitle: 'About the tour',
+    bookingTitle: 'Book your guided tour',
+    features: ['Expert Local Guide', 'Ramparts & Port Visit', 'Souk & Artisan Exploration', 'Mint Tea Included'],
     pricing: {
       amount: 25,
-      unit: 'par personne',
+      unit: 'per person',
     },
     rating: 4.9,
     reviewsCount: 521,
@@ -272,41 +272,41 @@ export const services: Service[] = [
       fields: getFieldsForService([
         {
           name: 'pickupLocation',
-          label: 'Point de Rencontre',
+          label: 'Meeting Point',
           type: 'text',
           required: true,
-          placeholder: 'ex: Bab Sbaa (porte principale)',
-          validation: z.string().min(1, 'Le point de rencontre est requis'),
+          placeholder: 'e.g., Bab Sbaa (main gate)',
+          validation: z.string().min(1, 'Meeting point is required'),
         },
       ]),
     },
     whatsappNumber: '212690606068',
     whatsappMessage: (data: Record<string, any>) => `
-*Nouvelle Demande Visite Souk*
+*New Souk Tour Request*
 
-*Service:* Visite Guidée des Souks
-*Nom:* ${data.fullName.toUpperCase()}
+*Service:* Guided Souk Tour
+*Name:* ${data.fullName.toUpperCase()}
 *Email:* ${data.email}
 *Date:* ${formatDate(data.date)}
-*Heure:* ${data.time}
-*Tél:* ${data.phone}
-*Lieu:* ${data.pickupLocation}
-*Adultes:* ${data.adults}
-*Enfants:* ${data.children || 0}
-*Demande Spéciale:* ${data.specialRequests || 'Aucune'}
+*Time:* ${data.time}
+*Tel:* ${data.phone}
+*Pickup:* ${data.pickupLocation}
+*Adults:* ${data.adults}
+*Children:* ${data.children || 0}
+*Special Request:* ${data.specialRequests || 'None'}
 `,
   },
   {
     id: 2,
-    name: 'Aventure Quad Côtière',
+    name: 'Coastal Quad Adventure',
     slug: 'quad-biking-adventure',
-    description: 'Libérez votre côté aventurier avec une excursion en quad palpitante le long du littoral spectaculaire d\'Essaouira. Traversez de vastes dunes de sable, longez des plages balayées par le vent et naviguez à travers des forêts d\'arganiers. Nos guides experts assurent une expérience sûre et inoubliable pour tous les niveaux.',
-    aboutTitle: 'À propos du Quad à Essaouira',
-    bookingTitle: 'Réservez votre aventure Quad',
-    features: ['Dunes, Plages & Forêts', 'Quads Modernes & Entretenus', 'Briefing Sécurité & Équipement', 'Guides Professionnels'],
+    description: 'Unleash your adventurous side with a thrilling quad bike excursion along Essaouira’s spectacular coastline. Ride across vast sand dunes, along wind-swept beaches, and navigate through argan forests. Our expert guides ensure a safe and unforgettable experience for all skill levels.',
+    aboutTitle: 'About Essaouira Quad Biking',
+    bookingTitle: 'Book your Quad adventure',
+    features: ['Dunes, Beaches & Forests', 'Modern & Maintained Quads', 'Safety Briefing & Gear', 'Professional Guides'],
     pricing: {
       amount: 50,
-      unit: 'par personne (2 heures)',
+      unit: 'per person (2 hours)',
     },
     rating: 4.7,
     reviewsCount: 89,
@@ -320,50 +320,50 @@ export const services: Service[] = [
       fields: getFieldsForService([
         {
           name: 'pickupLocation',
-          label: 'Lieu de prise en charge',
+          label: 'Pickup Location',
           type: 'text',
           required: true,
-          placeholder: 'ex: votre hôtel ou Riad',
-          validation: z.string().min(1, 'Le lieu est requis'),
+          placeholder: 'e.g., your hotel or Riad',
+          validation: z.string().min(1, 'Location is required'),
         },
         {
           name: 'packageType',
-          label: 'Durée du Tour',
+          label: 'Tour Duration',
           type: 'select',
           required: true,
-          options: ['Balade Découverte 2h', 'Demi-journée Aventure', 'Expédition Dunes Journée'],
-          validation: z.string().min(1, 'Veuillez choisir une durée.'),
+          options: ['2-Hour Discovery Ride', 'Half-Day Adventure', 'Full-Day Dune Expedition'],
+          validation: z.string().min(1, 'Please select a duration.'),
         },
       ]),
     },
     whatsappNumber: '212690606068',
     whatsappMessage: (data: Record<string, any>) => `
-*Nouvelle Demande Quad*
+*New Quad Request*
 
-*Service:* Aventure Quad Côtière
-*Nom:* ${data.fullName.toUpperCase()}
+*Service:* Coastal Quad Adventure
+*Name:* ${data.fullName.toUpperCase()}
 *Email:* ${data.email}
 *Date:* ${formatDate(data.date)}
-*Heure:* ${data.time}
-*Tél:* ${data.phone}
-*Départ:* ${data.pickupLocation}
-*Adultes:* ${data.adults}
-*Enfants:* ${data.children || 0}
-*Durée:* ${data.packageType}
-*Demande Spéciale:* ${data.specialRequests || 'Aucune'}
+*Time:* ${data.time}
+*Tel:* ${data.phone}
+*Pickup:* ${data.pickupLocation}
+*Adults:* ${data.adults}
+*Children:* ${data.children || 0}
+*Duration:* ${data.packageType}
+*Special Request:* ${data.specialRequests || 'None'}
 `,
   },
   {
     id: 6,
-    name: 'Pêche en Bord de Mer',
+    name: 'Shore Fishing Experience',
     slug: 'shore-fishing-essaouira',
-    description: 'Découvrez la pêche traditionnelle en surfcasting sur les plages sauvages d\'Essaouira. Accompagné d\'un pêcheur local expérimenté, vous apprendrez à lire l\'océan et à maîtriser les techniques de lancer depuis le rivage. Une expérience paisible et authentique, les pieds dans le sable, idéale pour se reconnecter avec la nature.',
-    aboutTitle: 'À propos de la pêche',
-    bookingTitle: 'Réservez votre session de pêche',
-    features: ['Matériel de Pêche Fourni', 'Pêcheur local Expérimenté', 'Rafraîchissements Inclus', 'Cadre Sauvage & Paisible'],
+    description: 'Discover traditional surfcasting fishing on the wild beaches of Essaouira. Accompanied by an experienced local fisherman, you will learn to read the ocean and master casting techniques from the shore. A peaceful and authentic experience, feet in the sand, ideal for reconnecting with nature.',
+    aboutTitle: 'About the fishing session',
+    bookingTitle: 'Book your fishing session',
+    features: ['Fishing Gear Provided', 'Experienced Local Fisherman', 'Refreshments Included', 'Wild & Peaceful Setting'],
     pricing: {
       amount: 40,
-      unit: 'par personne',
+      unit: 'per person',
     },
     rating: 4.8,
     reviewsCount: 42,
@@ -377,37 +377,37 @@ export const services: Service[] = [
       fields: getFieldsForService([
         {
           name: 'pickupLocation',
-          label: 'Lieu de prise en charge',
+          label: 'Pickup Location',
           type: 'text',
           required: true,
-          placeholder: 'ex: votre hôtel ou Riad',
-          validation: z.string().min(1, 'Le lieu est requis'),
+          placeholder: 'e.g., your hotel or Riad',
+          validation: z.string().min(1, 'Location is required'),
         },
         {
           name: 'packageType',
-          label: 'Durée de la session',
+          label: 'Session Duration',
           type: 'select',
           required: true,
-          options: ['Demi-journée (Matin)', 'Demi-journée (Après-midi)', 'Journée Complète'],
-          validation: z.string().min(1, 'Veuillez choisir une durée.'),
+          options: ['Half Day (Morning)', 'Half Day (Afternoon)', 'Full Day'],
+          validation: z.string().min(1, 'Please select a duration.'),
         },
       ]),
     },
     whatsappNumber: '212690606068',
     whatsappMessage: (data: Record<string, any>) => `
-*Nouvelle Demande Pêche*
+*New Fishing Request*
 
-*Service:* Pêche en Bord de Mer (Surfcasting)
-*Nom:* ${data.fullName.toUpperCase()}
+*Service:* Shore Fishing (Surfcasting)
+*Name:* ${data.fullName.toUpperCase()}
 *Email:* ${data.email}
 *Date:* ${formatDate(data.date)}
-*Heure:* ${data.time}
-*Tél:* ${data.phone}
-*Départ:* ${data.pickupLocation}
-*Adultes:* ${data.adults}
-*Enfants:* ${data.children || 0}
-*Durée:* ${data.packageType}
-*Demande Spéciale:* ${data.specialRequests || 'Aucune'}
+*Time:* ${data.time}
+*Tel:* ${data.phone}
+*Pickup:* ${data.pickupLocation}
+*Adults:* ${data.adults}
+*Children:* ${data.children || 0}
+*Duration:* ${data.packageType}
+*Special Request:* ${data.specialRequests || 'None'}
 `,
   },
 ].sort((a, b) => {

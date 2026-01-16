@@ -31,7 +31,7 @@ const lastNames = [
 ];
 
 interface ReviewTemplate {
-    textFr: string;
+    textEn: string;
     textOriginal: string;
 }
 
@@ -41,93 +41,93 @@ interface CountryData {
     templates: ReviewTemplate[];
 }
 
-// Helper to create templates easily
-const t = (original: string, french: string) => ({ textOriginal: original, textFr: french });
+// Helper: original text, English translation
+const t = (original: string, english: string) => ({ textOriginal: original, textEn: english });
 
 const countryData: CountryData[] = [
   { 
       name: 'France', code: 'FR', 
       templates: [
-          t("Service excellent ! Le chauffeur était ponctuel.", "Service excellent ! Le chauffeur était ponctuel."),
-          t("Trajet très confortable de Marrakech à Essaouira.", "Trajet très confortable de Marrakech à Essaouira."),
-          t("Une expérience parfaite, le véhicule était propre.", "Une expérience parfaite, le véhicule était propre."),
-          t("Chauffeur très professionnel et agréable.", "Chauffeur très professionnel et agréable."),
-          t("Super service, merci pour tout !", "Super service, merci pour tout !")
+          t("Service excellent ! Le chauffeur était ponctuel.", "Excellent service! The driver was punctual."),
+          t("Trajet très confortable de Marrakech à Essaouira.", "Very comfortable trip from Marrakech to Essaouira."),
+          t("Une expérience parfaite, le véhicule était propre.", "Perfect experience, the vehicle was clean."),
+          t("Chauffeur très professionnel et agréable.", "Very professional and pleasant driver."),
+          t("Super service, merci pour tout !", "Great service, thanks for everything!")
       ]
   },
   { 
-      name: 'Allemagne', code: 'DE', 
+      name: 'Germany', code: 'DE', 
       templates: [
-          t("Ausgezeichneter Service! Der Fahrer war sehr pünktlich.", "Service excellent ! Le chauffeur était très ponctuel."),
-          t("Sehr angenehme Fahrt von Marrakesch nach Essaouira.", "Trajet très agréable de Marrakech à Essaouira."),
-          t("Perfekte Erfahrung, das Auto war sauber und klimatisiert.", "Expérience parfaite, la voiture était propre et climatisée."),
-          t("Sehr professioneller Fahrer, sichere Fahrweise.", "Chauffeur très professionnel, conduite sûre."),
-          t("Toller Service, danke für alles!", "Super service, merci pour tout !")
+          t("Ausgezeichneter Service! Der Fahrer war sehr pünktlich.", "Excellent service! The driver was very punctual."),
+          t("Sehr angenehme Fahrt von Marrakesch nach Essaouira.", "Very pleasant ride from Marrakech to Essaouira."),
+          t("Perfekte Erfahrung, das Auto war sauber und klimatisiert.", "Perfect experience, car was clean and AC good."),
+          t("Sehr professioneller Fahrer, sichere Fahrweise.", "Very professional driver, safe driving."),
+          t("Toller Service, danke für alles!", "Great service, thanks for everything!")
       ]
   },
   { 
-      name: 'Royaume-Uni', code: 'GB', 
+      name: 'UK', code: 'GB', 
       templates: [
-          t("Excellent service! The driver was punctual and friendly.", "Service excellent ! Le chauffeur était ponctuel et amical."),
-          t("Very comfortable trip from Marrakech to Essaouira.", "Trajet très confortable de Marrakech à Essaouira."),
-          t("A perfect experience, the vehicle was clean and AC was good.", "Une expérience parfaite, le véhicule était propre et la clim bonne."),
-          t("Very professional driver, felt very safe.", "Chauffeur très professionnel, je me suis senti très en sécurité."),
-          t("Great service, thanks for everything!", "Super service, merci pour tout !")
+          t("Excellent service! The driver was punctual and friendly.", "Excellent service! The driver was punctual and friendly."),
+          t("Very comfortable trip from Marrakech to Essaouira.", "Very comfortable trip from Marrakech to Essaouira."),
+          t("A perfect experience, the vehicle was clean and AC was good.", "A perfect experience, the vehicle was clean and AC was good."),
+          t("Very professional driver, felt very safe.", "Very professional driver, felt very safe."),
+          t("Great service, thanks for everything!", "Great service, thanks for everything!")
       ]
   },
   { 
-      name: 'Italie', code: 'IT', 
+      name: 'Italy', code: 'IT', 
       templates: [
-          t("Servizio eccellente! L'autista è stato puntuale.", "Service excellent ! Le chauffeur a été ponctuel."),
-          t("Viaggio molto confortevole da Marrakech a Essaouira.", "Voyage très confortable de Marrakech à Essaouira."),
-          t("Esperienza perfetta, veicolo pulito.", "Expérience parfaite, véhicule propre."),
-          t("Autista molto professionale, guida sicura.", "Chauffeur très professionnel, conduite sûre."),
-          t("Ottimo servizio, grazie di tutto!", "Excellent service, merci pour tout !")
+          t("Servizio eccellente! L'autista è stato puntuale.", "Excellent service! The driver was punctual."),
+          t("Viaggio molto confortevole da Marrakech a Essaouira.", "Very comfortable trip from Marrakech to Essaouira."),
+          t("Esperienza perfetta, veicolo pulito.", "Perfect experience, clean vehicle."),
+          t("Autista molto professionale, guida sicura.", "Very professional driver, safe driving."),
+          t("Ottimo servizio, grazie di tutto!", "Excellent service, thanks for everything!")
       ]
   },
   { 
-      name: 'Espagne', code: 'ES', 
+      name: 'Spain', code: 'ES', 
       templates: [
-          t("¡Excelente servicio! El conductor fue puntual.", "Excellent service ! Le conducteur était ponctuel."),
-          t("Viaje muy cómodo de Marrakech a Essaouira.", "Voyage très confortable de Marrakech à Essaouira."),
-          t("Una experiencia perfecta, el coche estaba limpio.", "Une expérience parfaite, la voiture était propre."),
-          t("Conductor muy profesional, conducción suave.", "Conducteur très professionnel, conduite douce."),
-          t("¡Gran servicio, gracias por todo!", "Grand service, merci pour tout !")
+          t("¡Excelente servicio! El conductor fue puntual.", "Excellent service! The driver was punctual."),
+          t("Viaje muy cómodo de Marrakech a Essaouira.", "Very comfortable trip from Marrakech to Essaouira."),
+          t("Una experiencia perfecta, el coche estaba limpio.", "Perfect experience, the car was clean."),
+          t("Conductor muy profesional, conducción suave.", "Very professional driver, smooth driving."),
+          t("¡Gran servicio, gracias por todo!", "Great service, thanks for everything!")
       ]
   },
   { 
-      name: 'Pays-Bas', code: 'NL', 
+      name: 'Netherlands', code: 'NL', 
       templates: [
-          t("Uitstekende service! De chauffeur was op tijd.", "Service excellent ! Le chauffeur était à l'heure."),
-          t("Zeer comfortabele reis van Marrakech naar Essaouira.", "Voyage très confortable de Marrakech à Essaouira."),
-          t("Perfecte ervaring, schone auto.", "Expérience parfaite, voiture propre."),
-          t("Zeer professionele chauffeur.", "Chauffeur très professionnel."),
-          t("Geweldige service, bedankt!", "Super service, merci !")
+          t("Uitstekende service! De chauffeur was op tijd.", "Excellent service! The driver was on time."),
+          t("Zeer comfortabele reis van Marrakech naar Essaouira.", "Very comfortable journey from Marrakech to Essaouira."),
+          t("Perfecte ervaring, schone auto.", "Perfect experience, clean car."),
+          t("Zeer professionele chauffeur.", "Very professional driver."),
+          t("Geweldige service, bedankt!", "Great service, thanks!")
       ]
   },
   { 
-      name: 'Belgique', code: 'BE', 
+      name: 'Belgium', code: 'BE', 
       templates: [
-          t("Service excellent ! (Service uitstekend!)", "Service excellent !"), 
-          t("Trajet impeccable.", "Trajet impeccable."),
-          t("Chauffeur très sympa.", "Chauffeur très sympa."),
-          t("A recommander vivement.", "A recommander vivement.")
+          t("Service excellent ! (Service uitstekend!)", "Excellent Service!"), 
+          t("Trajet impeccable.", "Impeccable journey."),
+          t("Chauffeur très sympa.", "Very nice driver."),
+          t("A recommander vivement.", "Highly recommended.")
       ]
   },
     { 
-      name: 'Suisse', code: 'CH', 
+      name: 'Switzerland', code: 'CH', 
       templates: [
-          t("Service excellent / Ausgezeichneter Service.", "Service excellent."),
-          t("Fahrt war super. / Le trajet était super.", "Le trajet était super."),
-          t("Sichere Fahrt. / Conduite sûre.", "Conduite sûre.")
+          t("Service excellent / Ausgezeichneter Service.", "Excellent service."),
+          t("Fahrt war super. / Le trajet était super.", "The trip was super."),
+          t("Sichere Fahrt. / Conduite sûre.", "Safe driving.")
       ]
   },
   { 
       name: 'Portugal', code: 'PT', 
       templates: [
-           t("Serviço excelente! O motorista foi pontual.", "Service excellent ! Le chauffeur était ponctuel."),
-           t("Viagem muito confortável.", "Voyage très confortable."),
-           t("Muito obrigado pelo serviço.", "Merci beaucoup pour le service.")
+            t("Serviço excelente! O motorista foi pontual.", "Excellent service! The driver was punctual."),
+            t("Viagem muito confortável.", "Very comfortable trip."),
+            t("Muito obrigado pelo serviço.", "Thank you very much for the service.")
       ]
   }
 ];
@@ -145,7 +145,7 @@ interface Review {
   countryCode: string;
   date: string; // Formatted date string
   rating: number;
-  text: string; // French translation
+  text: string; // English translation
   originalText: string; // Original Language
   initial: string;
   color: string;
@@ -181,9 +181,9 @@ const generateReviews = (): Review[] => {
                 author: `${firstName} ${lastName}`,
                 country: country.name,
                 countryCode: country.code,
-                date: format(dayDate, 'd MMMM yyyy', { locale: fr }), 
+                date: format(dayDate, 'd MMMM yyyy'), 
                 rating: 5, 
-                text: template.textFr, 
+                text: template.textEn, 
                 originalText: template.textOriginal,
                 initial: firstName[0],
                 color: colors[Math.floor(Math.random() * colors.length)],
@@ -215,9 +215,9 @@ const generateReviews = (): Review[] => {
                 author: `${firstName} ${lastName}`,
                 country: country.name,
                 countryCode: country.code,
-                date: format(dayDate, 'd MMMM yyyy', { locale: fr }), 
+                date: format(dayDate, 'd MMMM yyyy'), 
                 rating: 5, 
-                text: template.textFr,
+                text: template.textEn,
                 originalText: template.textOriginal,
                 initial: firstName[0],
                 color: colors[Math.floor(Math.random() * colors.length)],
@@ -272,8 +272,8 @@ export default function Reviews() {
           {/* Summary Column */}
           <div className="lg:w-1/3 text-center lg:text-left space-y-6">
             <h2 className="font-headline text-3xl md:text-5xl font-bold text-white leading-tight">
-              Ce que disent <br/>
-              <span className="text-primary">nos clients</span>
+              What our <br/>
+              <span className="text-primary">Clients Say</span>
             </h2>
             
             <div className="flex flex-col items-center lg:items-start space-y-4">
@@ -288,7 +288,7 @@ export default function Reviews() {
             />
                 </div>
                 <div>
-                   <h3 className="text-white font-bold text-lg">Taxi Essaouira</h3>
+                   <h3 className="text-white font-bold text-lg">Essaouira Travel</h3>
                    <div className="flex items-center space-x-1">
                      <span className="text-orange-400 font-bold text-lg">4.9</span>
                      <div className="flex">
@@ -297,7 +297,7 @@ export default function Reviews() {
                        ))}
                      </div>
                    </div>
-                   <p className="text-sm text-gray-400">{totalReviews.toLocaleString('fr-FR')} avis</p>
+                   <p className="text-sm text-gray-400">{totalReviews.toLocaleString('en-US')} reviews</p>
                 </div>
               </div>
 
@@ -310,7 +310,7 @@ export default function Reviews() {
                         size="icon"
                         className="rounded-full border border-white/20 text-white hover:bg-white/10"
                         onClick={scrollPrev}
-                        aria-label="Avis précédent"
+                        aria-label="Previous review"
                     >
                         <ChevronLeft className="w-5 h-5" />
                     </Button>
@@ -319,7 +319,7 @@ export default function Reviews() {
                         size="icon"
                         className="rounded-full border border-white/20 text-white hover:bg-white/10"
                         onClick={scrollNext}
-                        aria-label="Avis suivant"
+                        aria-label="Next review"
                     >
                         <ChevronRight className="w-5 h-5" />
                     </Button>
@@ -375,12 +375,12 @@ export default function Reviews() {
                         </p>
 
                         <div className="flex justify-between items-center mt-auto">
-                            {(review.countryCode !== 'FR' && review.countryCode !== 'BE') && (
+                            {(review.countryCode !== 'GB' && review.countryCode !== 'US') && (
                                 <button 
                                     onClick={() => toggleTranslation(review.id)}
                                     className="text-xs text-primary hover:text-primary/80 font-medium flex items-center transition-colors"
                                 >
-                                    {translatedReviews[review.id] ? 'Voir l\'original' : 'Traduire'}
+                                    {translatedReviews[review.id] ? 'See original' : 'Translate'}
                                 </button>
                             )}
                         </div>

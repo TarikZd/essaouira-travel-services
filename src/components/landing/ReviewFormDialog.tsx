@@ -29,9 +29,9 @@ import { useToast } from '@/hooks/use-toast';
 import { supabase } from '@/lib/supabase';
 
 const formSchema = z.object({
-  author_name: z.string().min(2, 'Le nom doit contenir au moins 2 caractères'),
-  rating: z.number().min(1, 'La note doit être au moins de 1').max(5),
-  review_text: z.string().min(10, 'Votre avis doit contenir au moins 10 caractères'),
+  author_name: z.string().min(2, 'Name must be at least 2 characters'),
+  rating: z.number().min(1, 'Rating must be at least 1').max(5),
+  review_text: z.string().min(10, 'Review must be at least 10 characters'),
 });
 
 export function ReviewFormDialog() {
@@ -65,8 +65,8 @@ export function ReviewFormDialog() {
       if (error) throw error;
 
       toast({
-        title: 'Avis envoyé !',
-        description: 'Merci pour votre retour. Il sera publié après modération.',
+        title: 'Review Sent!',
+        description: 'Thanks for your feedback. It will be published after moderation.',
       });
       setOpen(false);
       form.reset();
@@ -74,8 +74,8 @@ export function ReviewFormDialog() {
       console.error('Error submitting review:', error);
       toast({
         variant: 'destructive',
-        title: 'Erreur',
-        description: "Impossible d'envoyer votre avis. Veuillez réessayer.",
+        title: 'Error',
+        description: "Could not submit your review. Please try again.",
       });
     } finally {
       setIsSubmitting(false);
@@ -86,14 +86,14 @@ export function ReviewFormDialog() {
     <Dialog open={open} onOpenChange={setOpen}>
       <DialogTrigger asChild>
         <Button variant="outline" className="border-primary/20 hover:bg-primary/10 text-primary">
-          Écrire un avis
+          Write a review
         </Button>
       </DialogTrigger>
       <DialogContent className="sm:max-w-[425px] bg-[#0b0f19] border-white/10 text-white">
         <DialogHeader>
-          <DialogTitle>Partagez votre expérience</DialogTitle>
+          <DialogTitle>Share your experience</DialogTitle>
           <DialogDescription className="text-gray-400">
-            Votre avis nous aide à nous améliorer et aide les futurs voyageurs.
+            Your feedback helps us improve and helps future travelers.
           </DialogDescription>
         </DialogHeader>
         <Form {...form}>
@@ -103,7 +103,7 @@ export function ReviewFormDialog() {
               name="rating"
               render={({ field }) => (
                 <FormItem>
-                  <FormLabel>Note globale</FormLabel>
+                  <FormLabel>Overall Rating</FormLabel>
                   <FormControl>
                     <div className="flex gap-1">
                       {[1, 2, 3, 4, 5].map((star) => (
@@ -128,9 +128,9 @@ export function ReviewFormDialog() {
               name="author_name"
               render={({ field }) => (
                 <FormItem>
-                  <FormLabel>Votre Nom</FormLabel>
+                  <FormLabel>Your Name</FormLabel>
                   <FormControl>
-                    <Input placeholder="Jean Dupont" {...field} className="bg-white/5 border-white/10 text-white" />
+                    <Input placeholder="John Doe" {...field} className="bg-white/5 border-white/10 text-white" />
                   </FormControl>
                   <FormMessage />
                 </FormItem>
@@ -141,10 +141,10 @@ export function ReviewFormDialog() {
               name="review_text"
               render={({ field }) => (
                 <FormItem>
-                  <FormLabel>Votre Avis</FormLabel>
+                  <FormLabel>Your Review</FormLabel>
                   <FormControl>
                     <Textarea
-                      placeholder="Racontez-nous votre trajet..."
+                      placeholder="Tell us about your trip..."
                       className="resize-none bg-white/5 border-white/10 text-white min-h-[100px]"
                       {...field}
                     />
@@ -157,11 +157,11 @@ export function ReviewFormDialog() {
               {isSubmitting ? (
                 <>
                   <Loader2 className="mr-2 h-4 w-4 animate-spin" />
-                  Envoi...
+                  Sending...
                 </>
               ) : (
                 <>
-                  Envoyer mon avis
+                  Submit Review
                   <Send className="ml-2 h-4 w-4" />
                 </>
               )}
