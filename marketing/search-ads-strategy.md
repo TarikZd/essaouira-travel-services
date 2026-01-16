@@ -39,7 +39,7 @@
 
 ---
 
-## Campaign 2: Berber Cooking Class (Experience/Niche)
+## Campaign 2: Moroccan Cooking Class (Experience/Niche)
 
 **Goal:** Sell the "Authentic Culture" dream.
 **Bid Strategy:** Maximize Clicks (qualified traffic).
@@ -50,13 +50,13 @@
 
 - "cooking class essaouira"
 - "moroccan cooking workshop"
-- "berber cooking experience"
+- "moroccan cooking experience"
 - "tagine cooking class essaouira"
 - "food tour essaouira"
 
 **Ad Copy:**
 
-- **Headline 1:** Authentic Berber Cooking Class
+- **Headline 1:** Authentic Moroccan Cooking Class
 - **Headline 2:** Shop the Souk & Cook
 - **Headline 3:** Best Food Experience in Essaouira
 - **Description 1:** Visit the market, pick fresh ingredients, and cook a traditional Tagine in the countryside.

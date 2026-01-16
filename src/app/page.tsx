@@ -6,22 +6,14 @@ import { useState } from 'react';
 import Image from 'next/image';
 import { services, type Service } from '@/lib/services';
 import Hero from '@/components/landing/Hero';
-import Stats from '@/components/landing/Stats';
-// import Reviews from '@/components/landing/Reviews';
 import Destinations from '@/components/landing/Destinations';
 import ServiceCard from '@/components/services/ServiceCard';
-// import BookingForm from '@/components/services/BookingForm';
-
-const Reviews = nextDynamic(() => import('@/components/landing/Reviews'), {
-    loading: () => <div className="h-96 bg-white/5 animate-pulse rounded-xl" />
-});
+import nextDynamic from 'next/dynamic';
+import { Car, MapPin, Lock } from 'lucide-react';
 
 const BookingForm = nextDynamic(() => import('@/components/services/BookingForm'), {
     loading: () => <div className="h-[600px] bg-white/5 animate-pulse rounded-xl" />
 });
-import nextDynamic from 'next/dynamic';
-
-import { Car, MapPin, Lock } from 'lucide-react';
 
 export default function Home() {
   const [selectedService, setSelectedService] = useState<Service>(services[0]);
@@ -30,7 +22,6 @@ export default function Home() {
     const service = services.find(s => s.slug === slug);
     if (service) {
       setSelectedService(service);
-      // Small timeout to allow state update before scrolling
       setTimeout(() => {
         document.getElementById('booking-form')?.scrollIntoView({ behavior: 'smooth', block: 'start' });
       }, 100);
@@ -38,12 +29,9 @@ export default function Home() {
   };
 
   return (
-    <div className="flex flex-col bg-black min-h-screen">
+    <div className="flex flex-col bg-background min-h-screen">
       <Hero />
       
-      <Stats />
-
-      {/* AI Recommendation Section */}
       <Destinations />
 
       {/* Services Section */}
@@ -54,7 +42,7 @@ export default function Home() {
               Our <span className="text-primary">Services</span>
             </h2>
             <p className="text-muted-foreground max-w-2xl mx-auto">
-              From private transfers to exclusive excursions, we offer a complete range of services to make your trip unforgettable.
+              From culinary adventures to coastal excursions, we create unforgettable Moroccan experiences.
             </p>
           </div>
           
@@ -69,9 +57,6 @@ export default function Home() {
           </div>
         </div>
       </section>
-
-      {/* Reviews Section */}
-      <Reviews />
 
       {/* Contact & Booking Section */}
       <section id="contact" className="py-24 bg-background relative">

@@ -136,12 +136,12 @@ export const services: Service[] = [
   },
   {
     id: 5,
-    name: 'Berber Cooking Class',
+    name: 'Moroccan Cooking Class',
     slug: 'outdoor-cooking-adventure',
-    description: 'Immerse yourself in authentic Berber culture with a hands-on cooking class in the Essaouira countryside. Your day begins with a guided tour of the local souk to pick fresh ingredients. Then, learn ancestral secrets to prepare a perfect tagine or couscous in a traditional outdoor kitchen.',
+    description: 'Immerse yourself in authentic Moroccan culture with a hands-on cooking class in the Essaouira countryside. Your day begins with a guided tour of the local souk to pick fresh ingredients. Then, learn ancestral secrets to prepare a perfect tagine or couscous in a traditional outdoor kitchen.',
     aboutTitle: 'About the cooking class',
     bookingTitle: 'Book your culinary adventure',
-    features: ['Authentic Berber Experience', 'Guided Souk Tour', 'Traditional Moroccan Cooking', 'Lunch in the Countryside'],
+    features: ['Authentic Moroccan Experience', 'Guided Souk Tour', 'Traditional Moroccan Cooking', 'Lunch in the Countryside'],
     pricing: {
       amount: 80,
       unit: 'per person',
@@ -186,7 +186,7 @@ export const services: Service[] = [
     whatsappMessage: (data: Record<string, any>) => `
 *New Cooking Class Request*
 
-*Service:* Berber Cooking Class
+*Service:* Moroccan Cooking Class
 *Name:* ${data.fullName.toUpperCase()}
 *Email:* ${data.email}
 *Date:* ${formatDate(data.date)}
@@ -202,12 +202,12 @@ export const services: Service[] = [
   },
   {
     id: 4,
-    name: 'Wild Beaches 4x4 Tour',
+    name: 'Wild Beaches Hiking Tour',
     slug: 'wild-beaches-excursion',
-    description: 'Go off the beaten path to discover the wild and untouched coastline south of Essaouira. Our comfortable 4x4 vehicles take you to secret beaches, spectacular cliffs, and hidden fishing villages. This half-day adventure includes a delicious traditional lunch with a local family.',
-    aboutTitle: 'About the 4x4 tour',
-    bookingTitle: 'Book your 4x4 tour',
-    features: ['Hidden Beach Exploration', 'Comfortable 4x4 Transport', 'Spectacular Coastal Scenery', 'Authentic Lunch Included'],
+    description: 'Go off the beaten path to discover the wild and untouched coastline south of Essaouira. Our guided hiking trails take you to secret beaches, spectacular cliffs, and hidden fishing villages. This half-day adventure includes a delicious traditional lunch with a local family.',
+    aboutTitle: 'About the Hiking tour',
+    bookingTitle: 'Book your Hiking tour',
+    features: ['Hidden Beach Exploration', 'Scenic Coastal Trails', 'Spectacular Coastal Scenery', 'Authentic Lunch Included'],
     pricing: {
       amount: 70,
       unit: 'per person',
@@ -234,9 +234,9 @@ export const services: Service[] = [
     },
     whatsappNumber: '212690606068',
     whatsappMessage: (data: Record<string, any>) => `
-*New 4x4 Tour Request*
+*New Hiking Tour Request*
 
-*Service:* Wild Beaches 4x4 Tour
+*Service:* Wild Beaches Hiking Tour
 *Name:* ${data.fullName.toUpperCase()}
 *Email:* ${data.email}
 *Date:* ${formatDate(data.date)}
@@ -411,6 +411,6 @@ export const services: Service[] = [
 `,
   },
 ].sort((a, b) => {
-    const order = [1, 5, 4, 6, 3, 2];
+    const order = [5, 1, 4, 6, 3, 2];
     return order.indexOf(a.id) - order.indexOf(b.id);
 });
