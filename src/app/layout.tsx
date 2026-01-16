@@ -23,22 +23,22 @@ const outfit = Outfit({
 export const metadata: Metadata = {
   metadataBase: new URL('https://essaouira-travel.services'),
   title: {
-    default: "Taxi Marrakech Essaouira - Transport Touristique & Transfert Aéroport",
+    default: "Taxi Marrakech Essaouira - Private Transfers & Airport Taxi",
     template: "%s | Taxi Essaouira"
   },
   description:
-    "Réservez votre taxi privé entre Marrakech, Essaouira et Agadir. Service de transport touristique confortable, climatisé et disponible 24/7. Transferts aéroport et excursions.",
+    "Book your private taxi between Marrakech, Essaouira and Agadir. Comfortable, air-conditioned tourist transport service available 24/7. Airport transfers and excursions.",
   keywords:
-    "Taxi Marrakech Essaouira, transport Essaouira, Taxi Essaouira aeroport, transport Marrakech Essaouira, voyage pas cher, transport Taxi pas cher, cab Marrakech Essaouira, transport Taxi Essaouira maroc, Taxi agadir Essaouira, Taxi Marrakech to essaouira, Taxi excursion Marrakech Essaouira, holiday taxis, Taxi from Marrakech to Essaouira, prix taxi, réservation taxi, tarif taxi, Riad, Taxi aeroport Marrakech, Taxi Marrakech casablanca, Taxi Essaouira casablanca",
+    "Taxi Marrakech Essaouira, Essaouira transport, Taxi Essaouira airport, Marrakech Essaouira transport, cheap travel, cheap taxi transport, cab Marrakech Essaouira, Taxi Essaouira Morocco, Taxi Agadir Essaouira, Taxi Marrakech to essaouira, Taxi excursion Marrakech Essaouira, holiday taxis, Taxi from Marrakech to Essaouira, taxi price, taxi booking, taxi fare, Riad, Taxi airport Marrakech, Taxi Marrakech casablanca, Taxi Essaouira casablanca",
   authors: [{ name: "Essaouira Travel Services" }],
   creator: "Essaouira Travel Services",
   publisher: "Essaouira Travel Services",
   openGraph: {
     type: "website",
-    locale: "fr_FR",
+    locale: "en_US",
     url: "https://essaouira-travel.services",
-    title: "Taxi Marrakech Essaouira - Transport Touristique & Transfert Aéroport",
-    description: "Votre chauffeur privé au Maroc. Transferts aéroports Marrakech, Agadir, Essaouira et excursions touristiques. Réservation en ligne simple et rapide.",
+    title: "Taxi Marrakech Essaouira - Private Transfers & Airport Taxi",
+    description: "Your private driver in Morocco. Airport transfers Marrakech, Agadir, Essaouira and tourist excursions. Simple and fast online booking.",
     siteName: "Taxi Essaouira",
     images: [
       {
@@ -51,8 +51,8 @@ export const metadata: Metadata = {
   },
   twitter: {
     card: "summary_large_image",
-    title: "Taxi Marrakech Essaouira - Transport Touristique",
-    description: "Réservez votre trajet privé en toute sécurité. Maroc, Essaouira, Marrakech, Agadir.",
+    title: "Taxi Marrakech Essaouira - Tourist Transport",
+    description: "Book your private trip safely. Morocco, Essaouira, Marrakech, Agadir.",
     images: ["https://res.cloudinary.com/doy1q2tfm/image/upload/v1766384357/taxi-marrakech-essaouira-transfert_anisai.jpg"],
   },
   robots: {
@@ -74,7 +74,7 @@ export default function RootLayout({
   children: React.ReactNode;
 }>) {
   return (
-    <html lang="fr" suppressHydrationWarning>
+    <html lang="en" suppressHydrationWarning>
       <body
         className={cn(
           "min-h-screen bg-background font-body antialiased",

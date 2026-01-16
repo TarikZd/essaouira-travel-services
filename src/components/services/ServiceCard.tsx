@@ -30,7 +30,7 @@ export default function ServiceCard({ service, onBook }: ServiceCardProps) {
   };
 
   return (
-    <Card className="group flex h-full flex-col overflow-hidden bg-white/5 border-white/10 hover:border-primary/50 transition-all duration-300 hover:-translate-y-2 hover:shadow-2xl hover:shadow-primary/10">
+    <Card className="group flex h-full flex-col overflow-hidden bg-card border-border shadow-md hover:border-primary/50 transition-all duration-300 hover:-translate-y-2 hover:shadow-2xl hover:shadow-primary/10">
       <CardHeader className="relative h-64 w-full p-0 overflow-hidden">
         {cardImage && (
           <Link href={`/services/${service.slug}`} className="block h-full w-full group-hover:scale-105 transition-transform duration-700">
@@ -74,12 +74,12 @@ export default function ServiceCard({ service, onBook }: ServiceCardProps) {
         )}
       </CardHeader>
       <CardContent className="flex-grow p-6">
-        <p className="text-gray-400 leading-relaxed">
+        <p className="text-muted-foreground leading-relaxed">
           {shortDescription}
         </p>
         <ul className="mt-4 space-y-2">
             {service.features.slice(0, 2).map((feature, i) => (
-                <li key={i} className="flex items-center text-sm text-gray-300">
+                <li key={i} className="flex items-center text-sm text-muted-foreground">
                     <span className="w-1.5 h-1.5 rounded-full bg-primary mr-2" />
                     {feature}
                 </li>
@@ -89,7 +89,7 @@ export default function ServiceCard({ service, onBook }: ServiceCardProps) {
       <CardFooter className="p-6 pt-0">
         <Link href={`/services/${service.slug}`} className="w-full">
             <Button 
-                className="w-full bg-primary text-black hover:bg-yellow-500 font-bold group-hover:scale-[1.02] transition-transform"
+                className="w-full bg-primary text-primary-foreground hover:bg-yellow-500 font-bold group-hover:scale-[1.02] transition-transform"
             >
               Plus de détails <ArrowRight className="ml-2 h-4 w-4" />
             </Button>

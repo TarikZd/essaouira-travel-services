@@ -37,8 +37,8 @@ export default function Footer() {
               </span>
             </div>
             <p className="text-sm leading-relaxed">
-              Votre partenaire de confiance pour tous vos déplacements au Maroc. 
-              Service professionnel, ponctuel et confortable 24/7.
+              Your trusted partner for all your trips in Morocco. 
+              Professional, punctual, and comfortable service 24/7.
             </p>
           </div>
 
@@ -46,10 +46,10 @@ export default function Footer() {
           <div>
             <h3 className="text-white font-bold mb-6 font-headline">Navigation</h3>
             <ul className="space-y-3">
-              <li><a href="#hero" className="hover:text-primary transition-colors">Accueil</a></li>
-              <li><a href="#services" className="hover:text-primary transition-colors">Nos Services</a></li>
+              <li><a href="#hero" className="hover:text-primary transition-colors">Home</a></li>
+              <li><a href="#services" className="hover:text-primary transition-colors">Our Services</a></li>
               <li><a href="#destinations" className="hover:text-primary transition-colors">Destinations</a></li>
-              <li><a href="#contact" className="hover:text-primary transition-colors">Réservation</a></li>
+              <li><a href="#contact" className="hover:text-primary transition-colors">Booking</a></li>
             </ul>
           </div>
 
@@ -59,7 +59,7 @@ export default function Footer() {
             <ul className="space-y-4">
               <li className="flex items-start">
                 <MapPin className="h-5 w-5 mt-1 mr-3 text-primary shrink-0" />
-                <span>Essaouira, Maroc</span>
+                <span>Essaouira, Morocco</span>
               </li>
               <li className="flex items-center">
                 <Phone className="h-5 w-5 mr-3 text-primary shrink-0" />
@@ -83,7 +83,7 @@ export default function Footer() {
 
           {/* Legal / Social */}
           <div>
-            <h3 className="text-white font-bold mb-6 font-headline">Suivez-nous</h3>
+            <h3 className="text-white font-bold mb-6 font-headline">Follow Us</h3>
             <div className="flex space-x-4 mb-6">
               {socialLinks.map((social) => (
                 <a
@@ -102,10 +102,10 @@ export default function Footer() {
         {/* SEO & Credits */}
         <div className="border-t border-white/10 pt-8 flex flex-col md:flex-row justify-between items-center text-xs md:text-sm">
           <p className="text-gray-400 md:text-left mb-4 md:mb-0">
-            &copy; {new Date().getFullYear()} Essaouira Travel Services. Tous droits réservés.
+            &copy; {new Date().getFullYear()} Essaouira Travel Services. All rights reserved.
           </p>
           <p className="text-gray-400 md:text-right">
-            Taxi Marrakech Essaouira • Transfert Aéroport • Excursion Essaouira • Taxi Agadir
+            Marrakech Essaouira Taxi • Airport Transfer • Essaouira Excursions • Agadir Taxi
           </p>
           </div>
         </div>

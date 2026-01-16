@@ -58,7 +58,7 @@ const routes: Record<string, string[]> = {
 };
 
 const FormLabelWithRequired: React.FC<{ children: React.ReactNode; required?: boolean }> = ({ children, required }) => (
-    <FormLabel className="text-white">
+    <FormLabel className="text-foreground">
       {children}
       {required && <span className="text-primary ml-1">*</span>}
     </FormLabel>
@@ -221,7 +221,7 @@ export default function BookingForm({ service }: BookingFormProps) {
                             <FormItem className="w-1/3">
                                 <Select onValueChange={field.onChange} defaultValue={field.value} value={field.value}>
                                 <FormControl>
-                                    <SelectTrigger className="bg-white/5 border-white/20 text-white" aria-label="Country Code">
+                                    <SelectTrigger className="bg-background border-input text-foreground" aria-label="Country Code">
                                     <SelectValue placeholder="Code" />
                                     </SelectTrigger>
                                 </FormControl>
@@ -243,7 +243,7 @@ export default function BookingForm({ service }: BookingFormProps) {
                             render={({ field }) => (
                             <FormItem className="w-2/3">
                                 <FormControl>
-                                <Input type="tel" placeholder="555 123-4567" {...field} className="bg-white/5 border-white/20 text-white placeholder:text-gray-500" />
+                                <Input type="tel" placeholder="555 123-4567" {...field} className="bg-background border-input text-foreground placeholder:text-muted-foreground" />
                                 </FormControl>
                                 <FormMessage />
                             </FormItem>
@@ -262,7 +262,7 @@ export default function BookingForm({ service }: BookingFormProps) {
                 <FormItem>
                   <FormLabelWithRequired required={fieldConfig.required}>{fieldConfig.label}</FormLabelWithRequired>
                   <FormControl>
-                    <Input type="number" min="1" {...field} onChange={(e) => field.onChange(parseInt(e.target.value, 10))} className="bg-white/5 border-white/20 text-white placeholder:text-gray-500" />
+                    <Input type="number" min="1" {...field} onChange={(e) => field.onChange(parseInt(e.target.value, 10))} className="bg-background border-input text-foreground placeholder:text-muted-foreground" />
                   </FormControl>
                   <FormMessage />
                 </FormItem>
@@ -274,7 +274,7 @@ export default function BookingForm({ service }: BookingFormProps) {
                     <FormItem>
                         <FormLabelWithRequired required={childrenField.required}>{childrenField.label}</FormLabelWithRequired>
                         <FormControl>
-                        <Input type="number" min="0" {...childrenFieldProps} onChange={(e) => childrenFieldProps.onChange(parseInt(e.target.value, 10))} className="bg-white/5 border-white/20 text-white placeholder:text-gray-500" />
+                        <Input type="number" min="0" {...childrenFieldProps} onChange={(e) => childrenFieldProps.onChange(parseInt(e.target.value, 10))} className="bg-background border-input text-foreground placeholder:text-muted-foreground" />
                         </FormControl>
                         <FormMessage />
                     </FormItem>
@@ -298,7 +298,7 @@ export default function BookingForm({ service }: BookingFormProps) {
                           <Button
                           variant={'outline'}
                           className={cn(
-                              'w-full pl-3 text-left font-normal bg-white/5 border-white/20 text-white hover:bg-white/10 hover:text-white',
+                              'w-full pl-3 text-left font-normal bg-background border-input text-foreground hover:bg-accent hover:text-accent-foreground',
                               !field.value && 'text-muted-foreground'
                           )}
                           >
@@ -328,7 +328,7 @@ export default function BookingForm({ service }: BookingFormProps) {
                       <FormItem>
                           <FormLabelWithRequired required={timeField.required}>{timeField.label}</FormLabelWithRequired>
                           <FormControl>
-                          <Input type="time" {...timeFieldProps} className="bg-white/5 border-white/20 text-white placeholder:text-gray-500 [color-scheme:dark]" />
+                          <Input type="time" {...timeFieldProps} className="bg-background border-input text-foreground placeholder:text-muted-foreground" />
                           </FormControl>
                           <FormMessage />
                       </FormItem>
@@ -346,7 +346,7 @@ export default function BookingForm({ service }: BookingFormProps) {
                 {fieldConfig.type === 'select' ? (
                   <Select onValueChange={field.onChange} defaultValue={field.value} value={field.value}>
                     <FormControl>
-                      <SelectTrigger className="bg-white/5 border-white/20 text-white">
+                      <SelectTrigger className="bg-background border-input text-foreground">
                         <SelectValue placeholder={fieldConfig.placeholder || 'Select an option'} />
                       </SelectTrigger>
                     </FormControl>
@@ -364,11 +364,11 @@ export default function BookingForm({ service }: BookingFormProps) {
                   </Select>
                 ) : fieldConfig.type === 'textarea' ? (
                   <FormControl>
-                    <Textarea placeholder={fieldConfig.placeholder} {...field} className="bg-white/5 border-white/20 text-white placeholder:text-gray-500 min-h-[100px]" />
+                    <Textarea placeholder={fieldConfig.placeholder} {...field} className="bg-background border-input text-foreground placeholder:text-muted-foreground min-h-[100px]" />
                   </FormControl>
                 ) : (
                   <FormControl>
-                    <Input type={fieldConfig.type} placeholder={fieldConfig.placeholder} {...field} className="bg-white/5 border-white/20 text-white placeholder:text-gray-500" />
+                    <Input type={fieldConfig.type} placeholder={fieldConfig.placeholder} {...field} className="bg-background border-input text-foreground placeholder:text-muted-foreground" />
                   </FormControl>
                 )}
               <FormMessage />
@@ -444,12 +444,12 @@ export default function BookingForm({ service }: BookingFormProps) {
 
         {/* Pricing Summary (If applicable) */}
         {service.pricing && (
-            <div className="bg-white/5 p-4 rounded-xl border border-white/10 space-y-2">
-                <div className="flex justify-between text-gray-300">
+            <div className="bg-muted p-4 rounded-xl border border-border space-y-2">
+                <div className="flex justify-between text-muted-foreground">
                     <span>Price per person</span>
                     <span>{service.pricing.amount}€</span>
                 </div>
-                <div className="flex justify-between text-xl font-bold text-white border-t border-white/10 pt-2 mt-2">
+                <div className="flex justify-between text-xl font-bold text-foreground border-t border-border pt-2 mt-2">
                     <span>Estimated Total</span>
                     <span className="text-primary">{totalPrice}€</span>
                 </div>
@@ -466,7 +466,7 @@ export default function BookingForm({ service }: BookingFormProps) {
                 <Button 
                     type="button"
                     variant={paymentMethod === 'paypal' ? 'default' : 'outline'}
-                    className={cn("h-auto py-4 flex flex-col items-center gap-2", paymentMethod === 'paypal' ? "border-primary bg-primary/10 text-primary" : "bg-transparent border-white/20 text-gray-400")}
+                    className={cn("h-auto py-4 flex flex-col items-center gap-2", paymentMethod === 'paypal' ? "border-primary bg-primary/10 text-primary" : "bg-transparent border-input text-muted-foreground")}
                     onClick={() => setPaymentMethod('paypal')}
                 >
                     <span className="font-bold">Pay Deposit</span>
@@ -475,7 +475,7 @@ export default function BookingForm({ service }: BookingFormProps) {
                 <Button 
                     type="button"
                     variant={paymentMethod === 'cash' ? 'default' : 'outline'}
-                    className={cn("h-auto py-4 flex flex-col items-center gap-2", paymentMethod === 'cash' ? "border-primary bg-primary/10 text-primary" : "bg-transparent border-white/20 text-gray-400")}
+                    className={cn("h-auto py-4 flex flex-col items-center gap-2", paymentMethod === 'cash' ? "border-primary bg-primary/10 text-primary" : "bg-transparent border-input text-muted-foreground")}
                     onClick={() => setPaymentMethod('cash')}
                 >
                     <span className="font-bold">Pay Later</span>
@@ -485,7 +485,7 @@ export default function BookingForm({ service }: BookingFormProps) {
         )}
 
         {paymentMethod === 'paypal' && service.pricing ? (
-             <div className="p-4 bg-white rounded-xl">
+             <div className="p-4 bg-white rounded-xl border border-input">
                  <PayPalScriptProvider options={{ clientId: process.env.NEXT_PUBLIC_PAYPAL_CLIENT_ID || "test", currency: "EUR" }}>
                     <PayPalButtons 
                         style={{ layout: "vertical", shape: "rect" }}
@@ -512,7 +512,7 @@ export default function BookingForm({ service }: BookingFormProps) {
                  </PayPalScriptProvider>
              </div>
         ) : (
-            <Button type="submit" disabled={isPending} className="w-full bg-primary text-black hover:bg-yellow-500 font-bold py-6 text-lg rounded-xl transition-all hover:scale-[1.02] shadow-lg shadow-primary/20">
+            <Button type="submit" disabled={isPending} className="w-full bg-primary text-primary-foreground hover:bg-primary/90 font-bold py-6 text-lg rounded-xl transition-all hover:scale-[1.02] shadow-lg shadow-primary/20">
             {isPending ? (
                 <>
                 <Loader2 className="mr-2 h-4 w-4 animate-spin" />

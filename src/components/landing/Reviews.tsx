@@ -266,19 +266,19 @@ export default function Reviews() {
   }
 
   return (
-    <section id="reviews" className="py-24 bg-white/5 border-y border-white/10 overflow-hidden">
+    <section id="reviews" className="py-24 bg-secondary border-y border-border overflow-hidden">
       <div className="container mx-auto px-4">
         <div className="flex flex-col lg:flex-row gap-12 items-center">
           {/* Summary Column */}
           <div className="lg:w-1/3 text-center lg:text-left space-y-6">
-            <h2 className="font-headline text-3xl md:text-5xl font-bold text-white leading-tight">
+            <h2 className="font-headline text-3xl md:text-5xl font-bold text-foreground leading-tight">
               What our <br/>
               <span className="text-primary">Clients Say</span>
             </h2>
             
             <div className="flex flex-col items-center lg:items-start space-y-4">
-              <div className="flex items-center space-x-4 bg-white/5 p-4 rounded-xl border border-white/10 backdrop-blur-sm">
-                <div className="w-16 h-16 bg-white/10 rounded-lg flex items-center justify-center overflow-hidden relative mr-2">
+              <div className="flex items-center space-x-4 bg-card p-4 rounded-xl border border-border shadow-sm">
+                <div className="w-16 h-16 bg-muted rounded-lg flex items-center justify-center overflow-hidden relative mr-2">
                    {/* Brand Icon replacing "G" */}
                    <CldImage 
               src="https://res.cloudinary.com/doy1q2tfm/image/upload/v1766386707/brand-icon_v517gx.png"
@@ -288,7 +288,7 @@ export default function Reviews() {
             />
                 </div>
                 <div>
-                   <h3 className="text-white font-bold text-lg">Essaouira Travel</h3>
+                   <h3 className="text-foreground font-bold text-lg">Essaouira Travel</h3>
                    <div className="flex items-center space-x-1">
                      <span className="text-orange-400 font-bold text-lg">4.9</span>
                      <div className="flex">
@@ -297,7 +297,7 @@ export default function Reviews() {
                        ))}
                      </div>
                    </div>
-                   <p className="text-sm text-gray-400">{totalReviews.toLocaleString('en-US')} reviews</p>
+                   <p className="text-sm text-muted-foreground">{totalReviews.toLocaleString('en-US')} reviews</p>
                 </div>
               </div>
 
@@ -308,7 +308,7 @@ export default function Reviews() {
                     <Button
                         variant="ghost"
                         size="icon"
-                        className="rounded-full border border-white/20 text-white hover:bg-white/10"
+                        className="rounded-full border border-border text-foreground hover:bg-muted"
                         onClick={scrollPrev}
                         aria-label="Previous review"
                     >
@@ -317,7 +317,7 @@ export default function Reviews() {
                     <Button
                         variant="ghost"
                         size="icon"
-                        className="rounded-full border border-white/20 text-white hover:bg-white/10"
+                        className="rounded-full border border-border text-foreground hover:bg-muted"
                         onClick={scrollNext}
                         aria-label="Next review"
                     >
@@ -334,7 +334,7 @@ export default function Reviews() {
               <div className="flex -ml-4 touch-pan-y">
                 {reviews.map((review) => (
                   <div className="flex-[0_0_100%] md:flex-[0_0_50%] pl-4 min-w-0" key={review.id}>
-                    <Card className="h-full bg-gradient-to-br from-[#1c2333]/70 to-[#0b0f19]/80 backdrop-blur-md border border-white/10 shadow-lg hover:shadow-xl transition-all duration-300 hover:border-primary/50">
+                    <Card className="h-full bg-card border border-border shadow-lg hover:shadow-xl transition-all duration-300 hover:border-primary/50">
                       <CardContent className="p-6 flex flex-col h-full">
                         <div className="flex items-start justify-between mb-4">
                            <div className="flex items-center gap-3">
@@ -342,8 +342,8 @@ export default function Reviews() {
                                    {review.initial}
                                </div>
                                <div>
-                                   <h4 className="font-bold text-white text-sm">{review.author}</h4>
-                                   <div className="flex items-center gap-2 text-xs text-gray-400">
+                                   <h4 className="font-bold text-foreground text-sm">{review.author}</h4>
+                                   <div className="flex items-center gap-2 text-xs text-muted-foreground">
                                       <span className="font-medium text-primary">{review.country}</span>
                                       <span>•</span>
                                       <span>{review.date}</span>
@@ -370,7 +370,7 @@ export default function Reviews() {
                             </span>
                         </div>
 
-                        <p className="text-gray-300 text-sm leading-relaxed mb-4 flex-grow italic">
+                        <p className="text-muted-foreground text-sm leading-relaxed mb-4 flex-grow italic">
                              "{translatedReviews[review.id] ? review.text : review.originalText}"
                         </p>
 

@@ -53,18 +53,18 @@ export default function Stats() {
   ];
 
   return (
-    <section className="py-20 bg-card border-y border-white/5">
+    <section className="py-20 bg-secondary border-y border-border">
       <div className="container mx-auto px-4">
         <div className="grid grid-cols-2 md:grid-cols-4 gap-8 md:gap-12">
           {stats.map((stat, idx) => (
             <div key={`${stat.label}-${idx}`} className="flex flex-col items-center text-center group">
               <div className="mb-4 w-12 h-12 rounded-full bg-primary/10 flex items-center justify-center group-hover:bg-primary transition-colors duration-300">
-                <stat.icon className="w-6 h-6 text-primary group-hover:text-black transition-colors duration-300" />
+                <stat.icon className="w-6 h-6 text-primary group-hover:text-primary-foreground transition-colors duration-300" />
               </div>
-                <div className="text-4xl md:text-5xl font-bold text-white mb-2 tracking-tight group-hover:text-primary transition-colors">
+                <div className="text-4xl md:text-5xl font-bold text-foreground mb-2 tracking-tight group-hover:text-primary transition-colors">
                   <span>{stat.value}{stat.suffix}</span>
                 </div>
-              <div className="text-sm md:text-base text-gray-400 font-medium uppercase tracking-wider">
+              <div className="text-sm md:text-base text-muted-foreground font-medium uppercase tracking-wider">
                 {stat.label}
               </div>
             </div>

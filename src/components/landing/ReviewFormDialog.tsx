@@ -89,10 +89,10 @@ export function ReviewFormDialog() {
           Write a review
         </Button>
       </DialogTrigger>
-      <DialogContent className="sm:max-w-[425px] bg-[#0b0f19] border-white/10 text-white">
+      <DialogContent className="sm:max-w-[425px] bg-background border-border text-foreground">
         <DialogHeader>
           <DialogTitle>Share your experience</DialogTitle>
-          <DialogDescription className="text-gray-400">
+          <DialogDescription className="text-muted-foreground">
             Your feedback helps us improve and helps future travelers.
           </DialogDescription>
         </DialogHeader>
@@ -112,7 +112,7 @@ export function ReviewFormDialog() {
                           className={`w-8 h-8 cursor-pointer transition-colors ${
                             star <= field.value
                               ? 'fill-yellow-400 text-yellow-400'
-                              : 'text-gray-600'
+                              : 'text-muted-foreground'
                           }`}
                           onClick={() => field.onChange(star)}
                         />
@@ -130,7 +130,7 @@ export function ReviewFormDialog() {
                 <FormItem>
                   <FormLabel>Your Name</FormLabel>
                   <FormControl>
-                    <Input placeholder="John Doe" {...field} className="bg-white/5 border-white/10 text-white" />
+                    <Input placeholder="John Doe" {...field} className="bg-background border-input text-foreground" />
                   </FormControl>
                   <FormMessage />
                 </FormItem>
@@ -145,7 +145,7 @@ export function ReviewFormDialog() {
                   <FormControl>
                     <Textarea
                       placeholder="Tell us about your trip..."
-                      className="resize-none bg-white/5 border-white/10 text-white min-h-[100px]"
+                      className="resize-none bg-background border-input text-foreground min-h-[100px]"
                       {...field}
                     />
                   </FormControl>
@@ -153,7 +153,7 @@ export function ReviewFormDialog() {
                 </FormItem>
               )}
             />
-            <Button type="submit" disabled={isSubmitting} className="w-full bg-primary text-black hover:bg-primary/90">
+            <Button type="submit" disabled={isSubmitting} className="w-full bg-primary text-primary-foreground hover:bg-primary/90">
               {isSubmitting ? (
                 <>
                   <Loader2 className="mr-2 h-4 w-4 animate-spin" />

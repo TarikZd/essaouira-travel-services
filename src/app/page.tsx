@@ -47,13 +47,13 @@ export default function Home() {
       <Destinations />
 
       {/* Services Section */}
-      <section id="services" className="py-24 bg-black">
+      <section id="services" className="py-24 bg-background">
         <div className="container mx-auto px-4">
           <div className="text-center mb-16">
-            <h2 className="font-headline text-3xl md:text-5xl font-bold text-white mb-4">
+            <h2 className="font-headline text-3xl md:text-5xl font-bold text-foreground mb-4">
               Our <span className="text-primary">Services</span>
             </h2>
-            <p className="text-gray-400 max-w-2xl mx-auto">
+            <p className="text-muted-foreground max-w-2xl mx-auto">
               From private transfers to exclusive excursions, we offer a complete range of services to make your trip unforgettable.
             </p>
           </div>
@@ -74,51 +74,51 @@ export default function Home() {
       <Reviews />
 
       {/* Contact & Booking Section */}
-      <section id="contact" className="py-24 bg-black relative">
+      <section id="contact" className="py-24 bg-background relative">
         <div className="container mx-auto px-4">
             <div className="grid grid-cols-1 lg:grid-cols-2 gap-16">
                 <div>
-                    <h2 className="font-headline text-4xl md:text-5xl font-bold text-white mb-6">
+                    <h2 className="font-headline text-4xl md:text-5xl font-bold text-foreground mb-6">
                         Contact & <br/><span className="text-primary">Booking</span>
                     </h2>
-                    <p className="text-gray-400 text-lg mb-8 leading-relaxed">
+                    <p className="text-muted-foreground text-lg mb-8 leading-relaxed">
                         Fill the form to get a quote or book your ride directly. 
                         Once sent, we will contact you immediately on <strong>WhatsApp</strong> to confirm details.
                     </p>
                     
                     <div className="space-y-6">
-                        <div className="flex items-center space-x-4 text-white">
-                            <div className="w-12 h-12 rounded-full bg-white/10 flex items-center justify-center">
+                        <div className="flex items-center space-x-4 text-foreground">
+                            <div className="w-12 h-12 rounded-full bg-primary/10 flex items-center justify-center">
                                 <Car className="w-6 h-6 text-primary" />
                             </div>
                             <div>
                                 <h3 className="font-bold">24/7 Service</h3>
-                                <p className="text-gray-400">Available day and night</p>
+                                <p className="text-muted-foreground">Available day and night</p>
                             </div>
                         </div>
-                         <div className="flex items-center space-x-4 text-white">
-                            <div className="w-12 h-12 rounded-full bg-white/10 flex items-center justify-center">
+                         <div className="flex items-center space-x-4 text-foreground">
+                            <div className="w-12 h-12 rounded-full bg-primary/10 flex items-center justify-center">
                                 <MapPin className="w-6 h-6 text-primary" />
                             </div>
                             <div>
                                 <h3 className="font-bold">National Coverage</h3>
-                                <p className="text-gray-400">Marrakech, Essaouira, Agadir, etc.</p>
+                                <p className="text-muted-foreground">Marrakech, Essaouira, Agadir, etc.</p>
                             </div>
                         </div>
                     </div>
                 </div>
 
-                <div id="booking-form" className="bg-gray-900/50 backdrop-blur-sm p-8 rounded-3xl border border-white/10 shadow-2xl scroll-mt-32">
-                    <div className="mb-6 pb-6 border-b border-white/10">
-                        <p className="text-sm text-gray-400 uppercase tracking-widest mb-2">Selected Service</p>
+                <div id="booking-form" className="bg-card backdrop-blur-sm p-8 rounded-3xl border border-border shadow-md scroll-mt-32">
+                    <div className="mb-6 pb-6 border-b border-border">
+                        <p className="text-sm text-muted-foreground uppercase tracking-widest mb-2">Selected Service</p>
                         <h3 className="text-2xl font-bold text-primary flex items-center">
                             {selectedService.name}
                         </h3>
                     </div>
                     <BookingForm service={selectedService} />
 
-                    <div className="mt-8 pt-6 border-t border-white/10 text-center">
-                        <p className="text-sm text-gray-400 mb-4 flex items-center justify-center gap-2 font-medium">
+                    <div className="mt-8 pt-6 border-t border-border text-center">
+                        <p className="text-sm text-muted-foreground mb-4 flex items-center justify-center gap-2 font-medium">
                             <Lock className="w-4 h-4 text-primary" /> Secured Payment
                         </p>
                         <div className="flex justify-center items-center opacity-90 transition-opacity hover:opacity-100">

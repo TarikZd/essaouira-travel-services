@@ -46,13 +46,13 @@ const destinations = [
 
 export default function Destinations() {
   return (
-    <section id="destinations" className="py-24 bg-black">
+    <section id="destinations" className="py-24 bg-background">
       <div className="container mx-auto px-4">
         <div className="text-center mb-16">
-          <h2 className="text-3xl md:text-5xl font-bold font-headline text-white mb-4">
+          <h2 className="text-3xl md:text-5xl font-bold font-headline text-foreground mb-4">
             Popular <span className="text-primary">Destinations</span>
           </h2>
-          <p className="text-gray-400 max-w-2xl mx-auto">
+          <p className="text-muted-foreground max-w-2xl mx-auto">
             Discover our most requested routes with optimized travel times and absolute comfort.
           </p>
         </div>
