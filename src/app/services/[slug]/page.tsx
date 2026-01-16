@@ -112,7 +112,7 @@ export default async function ServicePage({ params }: { params: Promise<{ slug: 
     },
     brand: {
         '@type': 'Brand',
-        name: 'Essaouira Travel Services'
+        name: 'Essaouira Adventures'
     }
   };
 
@@ -128,7 +128,7 @@ export default async function ServicePage({ params }: { params: Promise<{ slug: 
         {heroImage.imageUrl.includes('cloudinary') ? (
             <CldImage
                 src={heroImage.imageUrl}
-                alt={`${service.name} - Transport Privé & Transfert Maroc`}
+                alt={`${service.name} - Essaouira Adventures`}
                 fill
                 priority
                 className="object-cover"
@@ -136,7 +136,7 @@ export default async function ServicePage({ params }: { params: Promise<{ slug: 
         ) : (
              <Image
                 src={heroImage.imageUrl}
-                alt={`${service.name} - Transport Privé & Transfert Maroc`}
+                alt={`${service.name} - Essaouira Adventures`}
                 fill
                 priority
                 className="object-cover"

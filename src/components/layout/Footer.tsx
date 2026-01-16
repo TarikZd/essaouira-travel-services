@@ -1,21 +1,21 @@
 'use client';
 
-import { Facebook, Instagram, Phone, Mail, MapPin, Car, MessageCircle } from 'lucide-react';
+import { Facebook, Instagram, Phone, Mail, MapPin, Compass, MessageCircle } from 'lucide-react';
 
 const socialLinks = [
   {
     name: 'Facebook',
-    url: '#',
+    url: 'https://www.facebook.com/profile.php?id=61586080544562',
     icon: <Facebook className="h-5 w-5" />,
   },
   {
     name: 'Instagram',
-    url: '#',
+    url: 'https://www.instagram.com/essaouira_adventure/',
     icon: <Instagram className="h-5 w-5" />,
   },
   {
     name: 'WhatsApp',
-    url: 'https://wa.me/212690606068',
+    url: 'https://wa.me/212628438838',
     icon: <MessageCircle className="h-5 w-5" />,
   },
 ];
@@ -31,9 +31,9 @@ export default function Footer() {
           {/* Brand Column */}
           <div className="space-y-4">
             <div className="flex items-center space-x-2">
-              <Car className="h-8 w-8 text-primary" />
+              <Compass className="h-8 w-8 text-primary" />
               <span className="text-xl font-bold font-headline text-white">
-                TAXI <span className="text-primary">ESSAOUIRA</span>
+                ESSAOUIRA <span className="text-primary">ADVENTURES</span>
               </span>
             </div>
             <p className="text-sm leading-relaxed">
@@ -63,7 +63,7 @@ export default function Footer() {
               </li>
               <li className="flex items-center">
                 <Phone className="h-5 w-5 mr-3 text-primary shrink-0" />
-                <a href="tel:+212690606068" className="hover:text-white transition-colors">+212 690 606 068</a>
+                <a href="tel:+212628438838" className="hover:text-white transition-colors">+212 628 438 838</a>
               </li>
               <li className="flex items-center">
                 <Mail className="h-5 w-5 mr-3 text-primary shrink-0" />
@@ -71,11 +71,11 @@ export default function Footer() {
                   href="#"
                   onClick={(e) => {
                     e.preventDefault();
-                    window.location.href = 'mailto:adiltaxipro' + '@' + 'gmail.com';
+                    window.location.href = 'mailto:moorishutility' + '@' + 'gmail.com';
                   }}
                   className="hover:text-white transition-colors"
                 >
-                  adiltaxipro<span>@</span>gmail.com
+                  moorishutility<span>@</span>gmail.com
                 </a>
               </li>
             </ul>
@@ -102,10 +102,10 @@ export default function Footer() {
         {/* SEO & Credits */}
         <div className="border-t border-white/10 pt-8 flex flex-col md:flex-row justify-between items-center text-xs md:text-sm">
           <p className="text-gray-400 md:text-left mb-4 md:mb-0">
-            &copy; {new Date().getFullYear()} Essaouira Travel Services. All rights reserved.
+            &copy; {new Date().getFullYear()} Essaouira Adventures. All rights reserved.
           </p>
           <p className="text-gray-400 md:text-right">
-            Marrakech Essaouira Taxi • Airport Transfer • Essaouira Excursions • Agadir Taxi
+            Marrakech Essaouira Adventures • Airport Transfer • Essaouira Excursions • Agadir Taxi
           </p>
           </div>
         </div>

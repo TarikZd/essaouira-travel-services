@@ -1,7 +1,7 @@
 'use client';
 
 import Link from 'next/link';
-import { Menu, Car, X } from 'lucide-react';
+import { Menu, Compass, X } from 'lucide-react';
 import { Button } from '@/components/ui/button';
 import { useState, useEffect } from 'react';
 import {
@@ -63,9 +63,9 @@ export default function Header() {
     )}>
       <div className="container mx-auto px-4 md:px-8 flex items-center justify-between">
         <Link href="/" className="flex items-center space-x-2">
-          <Car className="h-8 w-8 text-primary" />
+          <Compass className="h-8 w-8 text-primary" />
           <span className={cn("font-bold text-xl font-headline tracking-tighter", scrolled ? "text-foreground" : "text-white")}>
-            TAXI <span className="text-primary">ESSAOUIRA</span>
+            ESSAOUIRA <span className="text-primary">ADVENTURES</span>
           </span>
         </Link>
 
@@ -104,8 +104,8 @@ export default function Header() {
             <SheetContent side="right" className="bg-background border-border text-foreground">
               <SheetHeader>
                 <SheetTitle className="flex items-center space-x-2 text-foreground">
-                  <Car className="h-8 w-8 text-primary" />
-                  <span className="font-bold font-headline tracking-tighter">TAXI ESSAOUIRA</span>
+                  <Compass className="h-8 w-8 text-primary" />
+                  <span className="font-bold font-headline tracking-tighter">ESSAOUIRA ADVENTURES</span>
                 </SheetTitle>
               </SheetHeader>
               <div className="mt-12 flex flex-col space-y-6">

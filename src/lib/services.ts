@@ -117,7 +117,7 @@ export const services: Service[] = [
         },
       ]),
     },
-    whatsappNumber: '212690606068',
+    whatsappNumber: '212628438838',
     whatsappMessage: (data: Record<string, any>) => `
 *New Transfer Request*
 
@@ -182,7 +182,7 @@ export const services: Service[] = [
         },
       ]),
     },
-    whatsappNumber: '212690606068',
+    whatsappNumber: '212628438838',
     whatsappMessage: (data: Record<string, any>) => `
 *New Cooking Class Request*
 
@@ -232,7 +232,7 @@ export const services: Service[] = [
         },
       ]),
     },
-    whatsappNumber: '212690606068',
+    whatsappNumber: '212628438838',
     whatsappMessage: (data: Record<string, any>) => `
 *New Hiking Tour Request*
 
@@ -280,7 +280,7 @@ export const services: Service[] = [
         },
       ]),
     },
-    whatsappNumber: '212690606068',
+    whatsappNumber: '212628438838',
     whatsappMessage: (data: Record<string, any>) => `
 *New Souk Tour Request*
 
@@ -336,7 +336,7 @@ export const services: Service[] = [
         },
       ]),
     },
-    whatsappNumber: '212690606068',
+    whatsappNumber: '212628438838',
     whatsappMessage: (data: Record<string, any>) => `
 *New Quad Request*
 
@@ -393,7 +393,7 @@ export const services: Service[] = [
         },
       ]),
     },
-    whatsappNumber: '212690606068',
+    whatsappNumber: '212628438838',
     whatsappMessage: (data: Record<string, any>) => `
 *New Fishing Request*
 

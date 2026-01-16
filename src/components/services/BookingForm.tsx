@@ -418,8 +418,8 @@ export default function BookingForm({ service }: BookingFormProps) {
 
         if (error) throw error;
         toast({
-          title: paymentDetails ? 'Réservation Confirmée !' : 'Demande envoyée !',
-          description: paymentDetails ? "Votre acompte est reçu. Bon voyage !" : "Redirection vers WhatsApp pour validation...",
+          title: paymentDetails ? 'Booking Confirmed!' : 'Request Sent!',
+          description: paymentDetails ? "Your deposit is received. Have a great trip!" : "Redirecting to WhatsApp for confirmation...",
         });
         
         handleWhatsAppRedirect(data);
@@ -428,8 +428,8 @@ export default function BookingForm({ service }: BookingFormProps) {
         console.error("Error saving booking:", error);
         toast({
           variant: 'destructive',
-          title: 'Erreur',
-          description: 'Veuillez réessayer ou nous contacter sur WhatsApp.',
+          title: 'Error',
+          description: 'Please try again or contact us on WhatsApp.',
         });
       }
     });
