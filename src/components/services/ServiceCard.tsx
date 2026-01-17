@@ -91,7 +91,7 @@ export default function ServiceCard({ service, onBook }: ServiceCardProps) {
             <Button 
                 className="w-full bg-primary text-primary-foreground hover:bg-yellow-500 font-bold group-hover:scale-[1.02] transition-transform"
             >
-              Plus de détails <ArrowRight className="ml-2 h-4 w-4" />
+              View Adventure <ArrowRight className="ml-2 h-4 w-4" />
             </Button>
         </Link>
       </CardFooter>

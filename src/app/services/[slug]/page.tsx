@@ -40,17 +40,17 @@ export async function generateMetadata({ params }: { params: Promise<{ slug: str
   const heroImage = PlaceHolderImages.find((img) => img.id === service.image_hero) || PlaceHolderImages[0];
 
   return {
-    title: service.name, // Layout provides template: "%s | Taxi Essaouira"
-    description: service.description || 'Réservez votre service de transport.',
+    title: service.name, // Layout provides template: "%s | Essaouira Adventures"
+    description: service.description || 'Book your adventure with us.',
     openGraph: {
       title: service.name,
-      description: service.description || 'Réservez votre service de transport.',
+      description: service.description || 'Book your adventure with us.',
       images: [
         {
           url: heroImage.imageUrl,
           width: 1200,
           height: 630,
-          alt: `${service.name} - Transport Privé & Transfert`,
+          alt: `${service.name} - Essaouira Adventures`,
         },
       ],
     },
@@ -117,14 +117,14 @@ export default async function ServicePage({ params }: { params: Promise<{ slug: 
   };
 
   return (
-    <div className="min-h-screen bg-black text-white">
+    <div className="min-h-screen bg-background text-foreground">
       <script
         type="application/ld+json"
         dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }}
       />
       {/* Hero Section */}
       <div className="relative h-[60vh] w-full overflow-hidden">
-        <div className="absolute inset-0 bg-black/60 z-10" />
+        <div className="absolute inset-0 bg-black/40 z-10" />
         {heroImage.imageUrl.includes('cloudinary') ? (
             <CldImage
                 src={heroImage.imageUrl}
@@ -144,15 +144,15 @@ export default async function ServicePage({ params }: { params: Promise<{ slug: 
         )}
         
         <div className="absolute inset-0 z-20 flex items-center justify-center">
-            <div className="text-center px-4">
-                <div className="inline-flex items-center gap-2 bg-primary/20 text-primary px-4 py-1.5 rounded-full mb-6 backdrop-blur-sm border border-primary/20">
-                    <Star className="w-4 h-4 fill-primary" />
-                    <span className="text-sm font-semibold">Service Premium 5 Étoiles</span>
+            <div className="text-center px-4 animate-in fade-in zoom-in duration-700">
+                <div className="inline-flex items-center gap-2 bg-white/20 text-white px-4 py-1.5 rounded-full mb-6 backdrop-blur-sm border border-white/20">
+                    <Star className="w-4 h-4 fill-primary text-primary" />
+                    <span className="text-sm font-semibold">Premium Experience</span>
                 </div>
-                <h1 className="font-headline text-4xl md:text-7xl font-bold mb-6 text-white leading-tight">
+                <h1 className="font-headline text-4xl md:text-7xl font-bold mb-6 text-white leading-tight shadow-xl">
                     {service.name}
                 </h1>
-                <p className="text-xl text-gray-200 max-w-2xl mx-auto">
+                <p className="text-xl text-white/90 max-w-2xl mx-auto font-medium drop-shadow-md">
                     {service.description}
                 </p>
             </div>
@@ -168,53 +168,51 @@ export default async function ServicePage({ params }: { params: Promise<{ slug: 
                 {/* Features Grid */}
                 <div className="grid grid-cols-2 gap-4">
                     {service.features?.map((feature: string, i: number) => (
-                        <div key={i} className="flex items-center gap-3 bg-white/5 p-4 rounded-xl border border-white/10">
-                            <div className="w-8 h-8 rounded-full bg-primary/20 flex items-center justify-center shrink-0">
+                        <div key={i} className="flex items-center gap-3 bg-card p-4 rounded-xl border border-border shadow-sm">
+                            <div className="w-8 h-8 rounded-full bg-primary/10 flex items-center justify-center shrink-0">
                                 <Check className="w-4 h-4 text-primary" />
                             </div>
-                            <span className="font-medium text-gray-200">{feature}</span>
+                            <span className="font-medium text-foreground">{feature}</span>
                         </div>
                     ))}
                 </div>
 
-                {/* Long Description (The SEO Content) */}
-                <div className="prose prose-invert max-w-none">
-                    <h2 className="text-3xl font-bold mb-6 text-white font-headline">
-                        Pourquoi choisir ce service ?
+                {/* Long Description */}
+                <div className="prose prose-lg max-w-none text-muted-foreground">
+                    <h2 className="text-3xl font-bold mb-6 text-foreground font-headline">
+                        Why Choose This Adventure?
                     </h2>
-                    <div className="text-gray-300 leading-relaxed space-y-4">
-                        {/* If long_description is empty, fallback to description */}
+                    <div className="space-y-4">
                         {service.long_description ? (
-                            <div dangerouslySetInnerHTML={{ __html: service.long_description }} /> // Secure this later if user input
+                            <div dangerouslySetInnerHTML={{ __html: service.long_description }} /> 
                         ) : (
                             <p>{service.description}</p>
                         )}
                         <p>
-                            Profitez d'un confort exceptionnel et d'une sécurité totale. Nos chauffeurs expérimentés 
-                            connaissent parfaitement les routes du Maroc. Que vous voyagiez de Marrakech à Essaouira 
-                            ou vers l'aéroport, nous garantissons ponctualité et service VIP.
+                            Enjoy exceptional comfort and total safety. Our experienced team knows the region perfectly. 
+                            Whether you're looking for thrill or relaxation, we guarantee a VIP experience.
                         </p>
                     </div>
                 </div>
 
                 {/* Trust Badges */}
-                <div className="bg-gradient-to-r from-gray-900 to-black p-8 rounded-2xl border border-white/10">
-                    <h3 className="text-xl font-bold mb-6 flex items-center gap-2">
+                <div className="bg-primary/5 p-8 rounded-2xl border border-primary/10">
+                    <h3 className="text-xl font-bold mb-6 flex items-center gap-2 text-foreground">
                         <Shield className="w-6 h-6 text-primary" />
-                        Garanties Essaouira Travel
+                        Essaouira Adventures Guarantees
                     </h3>
                     <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
                         <div>
-                            <h4 className="font-bold text-white mb-2">Prix Fixe</h4>
-                            <p className="text-sm text-gray-400">Aucune surprise, tout est inclus (carburant, péage, assurance).</p>
+                            <h4 className="font-bold text-foreground mb-2">Fair Pricing</h4>
+                            <p className="text-sm text-muted-foreground">No hidden fees. Best value guaranteed.</p>
                         </div>
                         <div>
-                             <h4 className="font-bold text-white mb-2">Annulation Gratuite</h4>
-                            <p className="text-sm text-gray-400">Annulez jusqu'à 24h avant sans frais.</p>
+                             <h4 className="font-bold text-foreground mb-2">Free Cancellation</h4>
+                            <p className="text-sm text-muted-foreground">Cancel up to 24h before without fees.</p>
                         </div>
                         <div>
-                             <h4 className="font-bold text-white mb-2">Support 24/7</h4>
-                            <p className="text-sm text-gray-400">Une équipe disponible sur WhatsApp à tout moment.</p>
+                             <h4 className="font-bold text-foreground mb-2">24/7 Support</h4>
+                            <p className="text-sm text-muted-foreground">Available on WhatsApp anytime.</p>
                         </div>
                     </div>
                 </div>
@@ -224,47 +222,46 @@ export default async function ServicePage({ params }: { params: Promise<{ slug: 
              {/* Sidebar Booking */}
              <div className="lg:col-span-1">
                 <div className="sticky top-24">
-                    <div className="bg-white/5 backdrop-blur-md border border-white/10 rounded-2xl p-6 shadow-2xl">
-                        <div className="mb-6 pb-6 border-b border-white/10">
-                            <p className="text-sm text-gray-400 uppercase tracking-widest mb-1">À partir de</p>
+                    <div className="bg-card border border-border rounded-2xl p-6 shadow-xl">
+                        <div className="mb-6 pb-6 border-b border-border">
+                            <p className="text-sm text-muted-foreground uppercase tracking-widest mb-1">Starting From</p>
                             <div className="flex items-baseline gap-2">
                                 <span className="text-4xl font-bold text-primary">
-                                    {service.price_amount ? `${service.price_amount}€` : 'Sur Devis'}
+                                    {service.price_amount ? `${service.price_amount}€` : 'On Request'}
                                 </span>
                                 {service.price_unit && (
-                                    <span className="text-gray-400">/ {service.price_unit}</span>
+                                    <span className="text-muted-foreground">/ {service.price_unit}</span>
                                 )}
                             </div>
                         </div>
                         
-                        {/* We will need to adapt the BookingForm to work with this data structure */}
-                        <div className="bg-blue-900/10 p-4 rounded-lg border border-blue-500/20 mb-6">
-                            <p className="text-sm text-blue-200 text-center">
-                                Remplissez le formulaire ci-dessous pour réserver.
+                         <div className="bg-primary/5 p-4 rounded-lg border border-primary/10 mb-6">
+                            <p className="text-sm text-primary text-center font-medium">
+                                Fill the form below to book your spot.
                             </p>
                         </div>
                         
-                        {/* Use a sanitized version of service for the client component to avoid serialization errors with functions */}
-                  <BookingForm service={{
-                    ...serviceForForm,
-                    whatsappMessage: undefined, // Remove function
-                    bookingForm: {
-                        ...serviceForForm.bookingForm,
-                        fields: serviceForForm.bookingForm.fields.map((f: any) => {
-                            const { validation, ...rest } = f;
-                            return rest;
-                        })
-                    }
-                  }} />
+                        {/* BookingForm */}
+                        <BookingForm service={{
+                            ...serviceForForm,
+                            whatsappMessage: undefined,
+                            bookingForm: {
+                                ...serviceForForm.bookingForm,
+                                fields: serviceForForm.bookingForm.fields.map((f: any) => {
+                                    const { validation, ...rest } = f;
+                                    return rest;
+                                })
+                            }
+                        }} />
                         
-                        <div className="mt-6 pt-6 border-t border-white/10 text-center">
-                            <p className="text-sm text-gray-400 mb-4 flex items-center justify-center gap-2 font-medium">
-                                <Shield className="w-4 h-4 text-primary" /> Paiement Sécurisé Avec
+                        <div className="mt-6 pt-6 border-t border-border text-center">
+                            <p className="text-sm text-muted-foreground mb-4 flex items-center justify-center gap-2 font-medium">
+                                <Shield className="w-4 h-4 text-primary" /> Secure Payment
                             </p>
                             <div className="flex justify-center items-center opacity-90 transition-opacity hover:opacity-100">
                                 <Image 
                                     src="https://res.cloudinary.com/doy1q2tfm/image/upload/v1766386708/Paiment-Securise-Avec_fc8loh.png" 
-                                    alt="Paiement Sécurisé : Visa, Mastercard, PayPal" 
+                                    alt="Secure Payment: Visa, Mastercard, PayPal" 
                                     width={250}
                                     height={80}
                                     className="h-16 w-auto object-contain"
@@ -277,8 +274,8 @@ export default async function ServicePage({ params }: { params: Promise<{ slug: 
             </div>
 
         </div>
-         {/* Reviews Section at bottom of page */}
-         <div className="mt-24 pt-12 border-t border-white/5">
+         {/* Reviews Section */}
+         <div className="mt-24 pt-12 border-t border-border/40">
             <Reviews />
         </div>
       </div>

@@ -6,7 +6,6 @@ import { useState } from 'react';
 import Image from 'next/image';
 import { services, type Service } from '@/lib/services';
 import Hero from '@/components/landing/Hero';
-import Destinations from '@/components/landing/Destinations';
 import ServiceCard from '@/components/services/ServiceCard';
 import nextDynamic from 'next/dynamic';
 import { Car, MapPin, Lock } from 'lucide-react';
@@ -32,14 +31,12 @@ export default function Home() {
     <div className="flex flex-col bg-background min-h-screen">
       <Hero />
       
-      <Destinations />
-
       {/* Services Section */}
       <section id="services" className="py-24 bg-background">
         <div className="container mx-auto px-4">
           <div className="text-center mb-16">
             <h2 className="font-headline text-3xl md:text-5xl font-bold text-foreground mb-4">
-              Our <span className="text-primary">Services</span>
+              Our <span className="text-primary">Adventures</span>
             </h2>
             <p className="text-muted-foreground max-w-2xl mx-auto">
               From culinary adventures to coastal excursions, we create unforgettable Moroccan experiences.
@@ -124,5 +121,3 @@ export default function Home() {
     </div>
   );
 }
-
-    

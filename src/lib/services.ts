@@ -411,6 +411,6 @@ export const services: Service[] = [
 `,
   },
 ].sort((a, b) => {
-    const order = [5, 1, 4, 6, 3, 2];
+    const order = [5, 6, 4, 1, 3, 2];
     return order.indexOf(a.id) - order.indexOf(b.id);
 });

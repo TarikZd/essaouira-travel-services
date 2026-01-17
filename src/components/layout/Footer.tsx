@@ -47,8 +47,7 @@ export default function Footer() {
             <h3 className="text-white font-bold mb-6 font-headline">Navigation</h3>
             <ul className="space-y-3">
               <li><a href="#hero" className="hover:text-primary transition-colors">Home</a></li>
-              <li><a href="#services" className="hover:text-primary transition-colors">Our Services</a></li>
-              <li><a href="#destinations" className="hover:text-primary transition-colors">Destinations</a></li>
+              <li><a href="#services" className="hover:text-primary transition-colors">Our Adventures</a></li>
               <li><a href="#contact" className="hover:text-primary transition-colors">Booking</a></li>
             </ul>
           </div>
