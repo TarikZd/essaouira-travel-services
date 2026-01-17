@@ -36,12 +36,12 @@ export default function Footer() {
 
   return (
     <footer className="bg-black border-t border-white/10 text-gray-400">
-      <div className="container mx-auto py-16 px-4">
+      <div className="container mx-auto py-16 px-4 text-center md:text-left">
         <div className="grid grid-cols-1 md:grid-cols-4 gap-12">
           
           {/* Brand Column */}
           <div className="space-y-4">
-            <div className="flex items-center space-x-2">
+            <div className="flex items-center justify-center md:justify-start space-x-2">
               <Compass className="h-8 w-8 text-primary" />
               <span className="text-xl font-bold font-headline text-white">
                 ESSAOUIRA <span className="text-primary">ADVENTURES</span>
@@ -70,15 +70,15 @@ export default function Footer() {
           <div>
             <h3 className="text-white font-bold mb-6 font-headline">Contact</h3>
             <ul className="space-y-4">
-              <li className="flex items-start">
+              <li className="flex items-start justify-center md:justify-start">
                 <MapPin className="h-5 w-5 mt-1 mr-3 text-primary shrink-0" />
                 <span>Essaouira, Morocco</span>
               </li>
-              <li className="flex items-center">
+              <li className="flex items-center justify-center md:justify-start">
                 <Phone className="h-5 w-5 mr-3 text-primary shrink-0" />
                 <a href="tel:+212628438838" className="hover:text-white transition-colors">+212 628 438 838</a>
               </li>
-              <li className="flex items-center">
+              <li className="flex items-center justify-center md:justify-start">
                 <Mail className="h-5 w-5 mr-3 text-primary shrink-0" />
                 <a 
                   href="#"
@@ -97,7 +97,7 @@ export default function Footer() {
           {/* Legal / Social */}
           <div>
             <h3 className="text-white font-bold mb-6 font-headline">Follow Us</h3>
-            <div className="flex space-x-4 mb-6">
+            <div className="flex justify-center md:justify-start space-x-4 mb-6">
               {socialLinks.map((social) => (
                 <a
                   key={social.name}
@@ -113,7 +113,7 @@ export default function Footer() {
         </div>
 
         {/* SEO & Credits */}
-        <div className="border-t border-white/10 pt-8 flex flex-col md:flex-row justify-between items-center text-xs md:text-sm">
+        <div className="border-t border-white/10 pt-8 flex flex-col md:flex-row justify-between items-center text-xs md:text-sm text-center md:text-left gap-4">
           <p className="text-gray-400 md:text-left mb-4 md:mb-0">
             &copy; {new Date().getFullYear()} Essaouira Adventures. All rights reserved.
           </p>

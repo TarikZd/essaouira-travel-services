@@ -55,16 +55,16 @@ export default function Home() {
       <section id="contact" className="py-24 bg-background relative">
         <div className="container mx-auto px-4">
             <div className="grid grid-cols-1 lg:grid-cols-2 gap-16 items-center">
-                <div>
+                <div className="text-center lg:text-left">
                     <h2 className="font-headline text-4xl md:text-5xl font-bold text-foreground mb-6">
                         Start Your <br/><span className="text-primary">Adventure</span>
                     </h2>
-                    <p className="text-muted-foreground text-lg mb-8 leading-relaxed">
+                    <p className="text-muted-foreground text-lg mb-8 leading-relaxed mx-auto lg:mx-0 max-w-lg">
                         Ready to explore Essaouira? Contact us to plan your perfect trip. 
                         We reply immediately on WhatsApp to confirm availability and details.
                     </p>
                     
-                    <div className="space-y-8">
+                    <div className="space-y-8 inline-block text-left">
                         <div className="flex items-start space-x-4 text-foreground">
                             <div className="w-12 h-12 rounded-full bg-primary/10 flex items-center justify-center shrink-0">
                                 <Compass className="w-6 h-6 text-primary" />

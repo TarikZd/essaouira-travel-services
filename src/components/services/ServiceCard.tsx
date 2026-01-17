@@ -74,7 +74,7 @@ export default function ServiceCard({ service, onBook }: ServiceCardProps) {
                      </div>
                  </div>
               </div>
-              <CardTitle className="font-headline text-2xl text-white group-hover:text-primary transition-colors leading-tight drop-shadow-md">
+              <CardTitle className="font-headline text-2xl text-white block leading-tight drop-shadow-md">
                 {service.name}
               </CardTitle>
             </div>
@@ -83,7 +83,11 @@ export default function ServiceCard({ service, onBook }: ServiceCardProps) {
       </CardHeader>
       <CardContent className="flex-grow p-6">
         <p className="text-muted-foreground leading-relaxed">
-          {shortDescription}
+          {shortDescription.split(/(\*\*.*?\*\*)/g).map((part, i) => 
+              part.startsWith('**') && part.endsWith('**') ? 
+              <strong key={i} className="font-semibold text-foreground/90">{part.slice(2, -2)}</strong> : 
+              part
+          )}
         </p>
         <ul className="mt-4 space-y-2">
             {service.features.slice(0, 2).map((feature, i) => (
