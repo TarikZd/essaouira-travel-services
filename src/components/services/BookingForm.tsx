@@ -139,6 +139,42 @@ export default function BookingForm({ service }: BookingFormProps) {
     return routes[pickupLocationValue] || [];
   }, [pickupLocationValue, service.slug, service.bookingForm.fields]);
 
+  const [unavailableDates, setUnavailableDates] = useState<Date[]>([]);
+
+  useEffect(() => {
+      const fetchAvailability = async () => {
+          // Fetch manually blocked dates
+          const { data: blocked } = await supabase
+              .from('blocked_dates')
+              .select('blocked_date')
+              .eq('service_slug', service.slug);
+          
+          let dates = (blocked || []).map(b => new Date(b.blocked_date));
+
+          // Calculate capacity if restricted
+          if (service.maxParticipants) {
+               const { data: bookings } = await supabase
+                  .from('bookings')
+                  .select('activity_date, participants')
+                  .eq('service_id', service.slug)
+                  .in('status', ['confirmed', 'pending_payment']);
+               
+               const load: Record<string, number> = {};
+               bookings?.forEach((b: any) => {
+                   load[b.activity_date] = (load[b.activity_date] || 0) + b.participants;
+               });
+
+               Object.entries(load).forEach(([date, count]) => {
+                   if (count >= (service.maxParticipants || 4)) {
+                       dates.push(new Date(date));
+                   }
+               });
+          }
+          setUnavailableDates(dates);
+      };
+      fetchAvailability();
+  }, [service.slug, service.maxParticipants]);
+
   useEffect(() => {
     if (isTransfer) {
       form.setValue('dropoffLocation' as any, '');
@@ -334,7 +370,11 @@ export default function BookingForm({ service }: BookingFormProps) {
                           mode="single"
                           selected={field.value}
                           onSelect={field.onChange}
-                          disabled={(date) => date < new Date(new Date().setDate(new Date().getDate() - 1))}
+                          disabled={(date) => {
+                              const isPast = date < new Date(new Date().setHours(0, 0, 0, 0));
+                              const isUnavailable = unavailableDates.some(d => d.toDateString() === date.toDateString());
+                              return isPast || isUnavailable;
+                          }}
                           locale={enUS}
                           initialFocus
                       />
@@ -558,11 +598,54 @@ export default function BookingForm({ service }: BookingFormProps) {
     });
   }
 
+  const showVisualCalendar = !!service.maxParticipants;
+
   return (
+    <div className="space-y-8">
+      {showVisualCalendar && (
+        <div className="bg-card border border-border rounded-xl p-6 shadow-sm">
+            <h3 className="font-headline text-xl font-bold mb-4 flex items-center gap-2">
+                <CalendarIcon className="w-5 h-5 text-primary" />
+                Select a Date
+            </h3>
+            <div className="flex justify-center bg-muted/30 rounded-lg p-4">
+                <Calendar
+                    mode="single"
+                    selected={form.watch('date')}
+                    onSelect={(date) => date && form.setValue('date', date)}
+                    disabled={(date) => {
+                        const isPast = date < new Date(new Date().setHours(0, 0, 0, 0));
+                        const isUnavailable = unavailableDates.some(d => d.toDateString() === date.toDateString());
+                        return isPast || isUnavailable;
+                    }}
+                    locale={enUS}
+                    className="rounded-md border bg-white"
+                />
+            </div>
+            <div className="mt-4 flex gap-4 text-sm justify-center">
+                <div className="flex items-center gap-2">
+                    <div className="w-3 h-3 rounded-full bg-white border border-gray-200"></div>
+                    <span>Available</span>
+                </div>
+                 <div className="flex items-center gap-2">
+                    <div className="w-3 h-3 rounded-full bg-muted text-muted-foreground opacity-50 relative before:absolute before:w-full before:h-[1px] before:bg-current before:rotate-45"></div>
+                    <span>Full / Closed</span>
+                </div>
+                 <div className="flex items-center gap-2">
+                    <div className="w-3 h-3 rounded-full bg-primary text-primary-foreground"></div>
+                    <span>Selected</span>
+                </div>
+            </div>
+        </div>
+      )}
+
     <Form {...form}>
       <form onSubmit={form.handleSubmit((data) => handleBookingSave(data))} className="space-y-6">
         <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
-          {service.bookingForm.fields.map(renderField)}
+          {service.bookingForm.fields.map(field => {
+             if (showVisualCalendar && field.name === 'date') return null; // Hide default date picker if visual one exists
+             return renderField(field);
+          })}
         </div>
 
         {/* Pricing Summary (If applicable) */}
@@ -651,5 +734,6 @@ export default function BookingForm({ service }: BookingFormProps) {
         )}
       </form>
     </Form>
+    </div>
   );
 }

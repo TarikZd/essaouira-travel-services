@@ -68,6 +68,7 @@ export type Service = {
   rating?: number;
   reviewsCount?: number;
   difficulty?: 'Easy' | 'Moderate' | 'Challenging';
+  maxParticipants?: number;
   images: {
     card: string;
     hero: string;
@@ -93,6 +94,7 @@ export const services: Service[] = [
       amount: 54,
       unit: 'per person',
     },
+    maxParticipants: 4,
     rating: 5.0,
     reviewsCount: 85,
     difficulty: 'Easy' as const,
@@ -116,7 +118,7 @@ export const services: Service[] = [
           label: 'Number of People',
           type: 'number',
           required: true,
-          validation: z.coerce.number().min(1, 'At least 1 person.'),
+          validation: z.coerce.number().min(1, 'At least 1 person.').max(4, 'Max 4 people per class.'),
         },
       ]).filter(f => !['time', 'adults', 'children'].includes(f.name)),
     },
@@ -146,6 +148,7 @@ export const services: Service[] = [
       amount: 45,
       unit: 'per person',
     },
+    maxParticipants: 4,
     rating: 5.0,
     reviewsCount: 156,
     difficulty: 'Easy' as const,
@@ -170,7 +173,7 @@ export const services: Service[] = [
           label: 'Number of People',
           type: 'number',
           required: true,
-          validation: z.coerce.number().min(1, 'At least 1 person.'),
+          validation: z.coerce.number().min(1, 'At least 1 person.').max(4, 'Max 4 people per class.'),
         },
       ]).filter(f => !['time', 'adults', 'children'].includes(f.name)),
     },

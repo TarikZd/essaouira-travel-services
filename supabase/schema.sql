@@ -53,7 +53,6 @@ create table public.payments (
 -- 2. REVIEWS SYSTEM
 -- ==========================================
 
--- Reviews Table
 create table public.reviews (
     id uuid primary key default uuid_generate_v4(),
     author_name text not null,
@@ -64,13 +63,27 @@ create table public.reviews (
 );
 
 -- ==========================================
--- 3. SECURITY (RLS)
+-- 3. CALENDAR & AVAILABILITY
+-- ==========================================
+
+create table public.blocked_dates (
+    id uuid primary key default uuid_generate_v4(),
+    service_slug text not null,
+    blocked_date date not null,
+    reason text,
+    created_at timestamp with time zone default timezone('utc'::text, now()) not null
+);
+create unique index blocked_dates_unique on public.blocked_dates (service_slug, blocked_date);
+
+-- ==========================================
+-- 4. SECURITY (RLS)
 -- ==========================================
 
 alter table public.customers enable row level security;
 alter table public.bookings enable row level security;
 alter table public.payments enable row level security;
 alter table public.reviews enable row level security;
+alter table public.blocked_dates enable row level security;
 
 -- Policies
 create policy "Enable insert for everyone" on public.customers for insert with check (true);
@@ -86,8 +99,11 @@ create policy "Enable read for everyone" on public.payments for select using (tr
 create policy "Anyone can insert reviews" on public.reviews for insert with check (true);
 create policy "Public can read approved reviews" on public.reviews for select using (status = 'approved');
 
+create policy "Everyone can read blocked dates" on public.blocked_dates for select using (true);
+-- Note: Insert/Update on blocked_dates requires Admin role (Service Role Key)
+
 -- ==========================================
--- 4. UTILITIES
+-- 5. UTILITIES
 -- ==========================================
 
 create or replace function public.handle_updated_at()
