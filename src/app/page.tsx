@@ -8,6 +8,7 @@ import Hero from '@/components/landing/Hero';
 import ServiceCard from '@/components/services/ServiceCard';
 import SimpleContactForm from '@/components/landing/SimpleContactForm';
 import Reviews from '@/components/landing/Reviews';
+import BookingLookup from '@/components/booking/BookingLookup';
 import { Compass, CreditCard } from 'lucide-react';
 
 export default function Home() {
@@ -90,6 +91,21 @@ export default function Home() {
                     <SimpleContactForm />
                 </div>
             </div>
+        </div>
+      </section>
+
+      {/* Booking Lookup Section */}
+      <section id="booking-status" className="py-24 bg-muted/30">
+        <div className="container mx-auto px-4">
+          <div className="text-center mb-12">
+            <h2 className="font-headline text-3xl md:text-5xl font-bold text-foreground mb-4">
+              Manage Your <span className="text-primary">Booking</span>
+            </h2>
+            <p className="text-muted-foreground max-w-2xl mx-auto">
+              Check your booking status or request a cancellation using your booking reference.
+            </p>
+          </div>
+          <BookingLookup />
         </div>
       </section>
 

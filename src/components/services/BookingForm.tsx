@@ -36,6 +36,7 @@ import { cn } from '@/lib/utils';
 import { services, type Service, FormField as ServiceFormField } from '@/lib/services';
 import { countryCodes } from '@/lib/country-codes';
 import { supabase } from '@/lib/supabase';
+import { generateBookingReference } from '@/lib/booking-reference';
 
 type BookingFormProps = {
   service: Service;
@@ -484,6 +485,18 @@ export default function BookingForm({ service }: BookingFormProps) {
              return;
            }
 
+           // Generate and update reference number
+           const referenceNumber = generateBookingReference(booking.id);
+           const { error: updateError } = await supabase
+               .from('bookings')
+               .update({ reference_number: referenceNumber })
+               .eq('id', booking.id);
+
+           if (updateError) {
+             console.error('Failed to update reference number:', updateError);
+             // Non-critical error, continue with booking
+           }
+
            // 3. Payment Handling
           if (paymentDetails) {
                const { error: payError } = await supabase
@@ -505,7 +518,9 @@ export default function BookingForm({ service }: BookingFormProps) {
 
           toast({
             title: paymentDetails ? 'Booking Confirmed!' : 'Request Sent!',
-            description: paymentDetails ? "Thank you! You will receive a confirmation from PayPal shortly." : "We have received your request and will contact you shortly.",
+            description: paymentDetails 
+              ? `Thank you! Your booking reference is ${referenceNumber}. You will receive a confirmation from PayPal shortly.` 
+              : `We have received your request (Ref: ${referenceNumber}) and will contact you shortly.`,
           });
           
           form.reset();

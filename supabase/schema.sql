@@ -20,6 +20,7 @@ create unique index customers_email_idx on public.customers (email);
 -- Bookings Table
 create table public.bookings (
   id uuid primary key default uuid_generate_v4(),
+  reference_number text unique,
   customer_id uuid references public.customers(id) not null,
   service_id text not null, 
   service_name text not null, 
@@ -103,7 +104,21 @@ create policy "Everyone can read blocked dates" on public.blocked_dates for sele
 -- Note: Insert/Update on blocked_dates requires Admin role (Service Role Key)
 
 -- ==========================================
--- 5. UTILITIES
+-- 5. PERFORMANCE INDEXES
+-- ==========================================
+
+-- Booking query optimization
+create index if not exists idx_bookings_service_date on public.bookings(service_id, activity_date);
+create index if not exists idx_bookings_customer on public.bookings(customer_id);
+create index if not exists idx_bookings_status on public.bookings(status) where status in ('pending_payment', 'confirmed');
+create index if not exists idx_bookings_reference on public.bookings(reference_number) where reference_number is not null;
+
+-- Payment lookup optimization
+create index if not exists idx_payments_booking on public.payments(booking_id);
+create index if not exists idx_payments_transaction on public.payments(transaction_id) where transaction_id is not null;
+
+-- ==========================================
+-- 6. UTILITIES
 -- ==========================================
 
 create or replace function public.handle_updated_at()

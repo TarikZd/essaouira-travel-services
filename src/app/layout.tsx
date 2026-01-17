@@ -7,6 +7,8 @@ import Header from "@/components/layout/Header";
 import Footer from "@/components/layout/Footer";
 import JsonLd from "@/components/seo/JsonLd";
 import { GoogleAnalytics } from "@next/third-parties/google";
+import { ErrorBoundary } from "@/components/ErrorBoundary";
+import ErrorPage from "@/components/ErrorPage";
 
 const inter = Inter({ 
   subsets: ["latin"],
@@ -88,11 +90,13 @@ export default function RootLayout({
         )}
         suppressHydrationWarning={true}
       >
-          <div className="relative flex min-h-screen flex-col">
-            <Header />
-            <main className="flex-1">{children}</main>
-            <Footer />
-          </div>
+          <ErrorBoundary fallback={<ErrorPage />}>
+            <div className="relative flex min-h-screen flex-col">
+              <Header />
+              <main className="flex-1">{children}</main>
+              <Footer />
+            </div>
+          </ErrorBoundary>
           <JsonLd />
           <Toaster />
         <GoogleAnalytics gaId="G-BV8084R6GZ" />

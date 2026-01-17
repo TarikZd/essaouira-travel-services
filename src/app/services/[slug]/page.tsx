@@ -10,6 +10,8 @@ import { Car, Check, Shield, Star } from 'lucide-react';
 import { Button } from '@/components/ui/button';
 import { services as staticServices } from '@/lib/services';
 import dynamic from 'next/dynamic';
+import { ErrorBoundary } from '@/components/ErrorBoundary';
+import ErrorPage from '@/components/ErrorPage';
 
 const Reviews = dynamic(() => import('@/components/landing/Reviews'), {
     loading: () => <div className="h-96 bg-white/5 animate-pulse rounded-xl" />
@@ -244,18 +246,27 @@ export default async function ServicePage({ params }: { params: Promise<{ slug: 
                             </p>
                         </div>
                         
-                        {/* BookingForm */}
-                        <BookingForm service={{
-                            ...serviceForForm,
-                            whatsappMessage: undefined,
-                            bookingForm: {
-                                ...serviceForForm.bookingForm,
-                                fields: serviceForForm.bookingForm.fields.map((f: any) => {
-                                    const { validation, ...rest } = f;
-                                    return rest;
-                                })
+                        {/* BookingForm with Error Boundary */}
+                        <ErrorBoundary 
+                            fallback={
+                                <ErrorPage 
+                                    title="Booking Form Error"
+                                    description="We're having trouble loading the booking form. Please try refreshing the page or contact us directly."
+                                />
                             }
-                        }} />
+                        >
+                            <BookingForm service={{
+                                ...serviceForForm,
+                                whatsappMessage: undefined,
+                                bookingForm: {
+                                    ...serviceForForm.bookingForm,
+                                    fields: serviceForForm.bookingForm.fields.map((f: any) => {
+                                        const { validation, ...rest } = f;
+                                        return rest;
+                                    })
+                                }
+                            }} />
+                        </ErrorBoundary>
                         
                         <div className="mt-6 pt-6 border-t border-border text-center">
                             <p className="text-sm text-muted-foreground mb-4 flex items-center justify-center gap-2 font-medium">
