@@ -82,55 +82,46 @@ export type Service = {
 
 export const services: Service[] = [
   {
-    id: 1,
-    name: 'Private Airport Transfers',
-    slug: 'airport-transfers',
-    description: 'Travel with confidence and comfort with our private transfer service in Essaouira. We ensure a seamless connection between Marrakech, Agadir, airports, and coastal towns. Our professional drivers and modern vehicles guarantee a stress-free journey to your destination.',
-    aboutTitle: 'About your transfer',
-    bookingTitle: 'Book your transfer',
-    features: ['Service to Airports & Major Cities', 'Air-Conditioned Private Vehicles', 'Professional & Punctual Drivers', 'Available 24/7 for all flights'],
-    rating: 4.9,
-    reviewsCount: 342,
-    difficulty: 'Moderate' as const,
+    id: 7,
+    name: 'Moroccan Petit Four Class',
+    slug: 'moroccan-petit-four-class',
+    description: 'Master the art of traditional Moroccan pastry making. Learn to create delicate Gazelle Horns, Ghriba, and other sweet treats with our expert pastry chefs. A perfect sweet experience to take home.',
+    aboutTitle: 'About the pastry class',
+    bookingTitle: 'Book your pastry class',
+    features: ['Traditional Pastry Techniques', 'Take Home Your Creations', 'Tea Ceremony', 'All Ingredients Provided'],
+    pricing: {
+      amount: 40,
+      unit: 'per person',
+    },
+    rating: 5.0,
+    reviewsCount: 85,
+    difficulty: 'Easy' as const,
     images: {
-      card: 'card-transfers',
-      hero: 'hero-transfers',
-      gallery: ['gallery-transfers-1', 'gallery-transfers-2'],
+      card: 'card-cooking',
+      hero: 'hero-cooking',
+      gallery: ['gallery-cooking-1', 'gallery-cooking-2', 'gallery-cooking-3'],
     },
     bookingForm: {
       fields: getFieldsForService([
         {
-          name: 'pickupLocation',
-          label: 'Pickup Location',
-          type: 'select',
+          name: 'participants',
+          label: 'Number of People',
+          type: 'number',
           required: true,
-          options: ['Essaouira', 'Essaouira Airport', 'Marrakech', 'Marrakech Airport', 'Agadir', 'Agadir Airport', 'Agafay', 'Taghazout', 'Imsouane', 'El Jadida', 'Oualidia', 'Imlil', 'Ouirgane', 'Taroudant'],
-          validation: z.string().min(1, 'Pickup location is required'),
+          validation: z.coerce.number().min(1, 'At least 1 person.'),
         },
-        {
-            name: 'dropoffLocation',
-            label: 'Drop-off Location',
-            type: 'select',
-            required: true,
-            options: [],
-            validation: z.string().min(1, "Drop-off location is required"),
-        },
-      ]),
+      ]).filter(f => !['time', 'adults', 'children'].includes(f.name)),
     },
     whatsappNumber: '212628438838',
     whatsappMessage: (data: Record<string, any>) => `
-*New Transfer Request*
+*New Petit Four Class Request*
 
-*Service:* Private Airport Transfers
+*Service:* Moroccan Petit Four Class
 *Name:* ${data.fullName.toUpperCase()}
 *Email:* ${data.email}
 *Date:* ${formatDate(data.date)}
-*Time:* ${data.time}
 *Tel:* ${data.phone}
-*Pickup:* ${data.pickupLocation}
-*Dropoff:* ${data.dropoffLocation}
-*Adults:* ${data.adults}
-*Children:* ${data.children || 0}
+*People:* ${data.participants}
 *Special Request:* ${data.specialRequests || 'None'}
 `,
   },
@@ -161,8 +152,16 @@ export const services: Service[] = [
           label: 'Preferred Dish',
           type: 'select',
           required: true,
-          options: ['Mechoui', 'Barbecue', 'Meat Tagine', 'Chicken Tagine', 'Couscous', 'Fresh Fish (if available)', 'Vegetarian'],
+          options: ['Tagine', 'Couscous', 'Pastilla', 'Moroccan Petit Four'],
           validation: z.string().min(1, 'Please select a dish.'),
+        },
+
+        {
+          name: 'participants',
+          label: 'Number of People',
+          type: 'number',
+          required: true,
+          validation: z.coerce.number().min(1, 'At least 1 person.'),
         },
       ]).filter(f => !['time', 'adults', 'children'].includes(f.name)),
     },
@@ -175,6 +174,7 @@ export const services: Service[] = [
 *Email:* ${data.email}
 *Date:* ${formatDate(data.date)}
 *Tel:* ${data.phone}
+*People:* ${data.participants}
 *Dish:* ${data.dishPreference}
 *Special Request:* ${data.specialRequests || 'None'}
 `,
@@ -200,7 +200,15 @@ export const services: Service[] = [
       gallery: ['gallery-beaches-1', 'gallery-beaches-2', 'gallery-beaches-3'],
     },
     bookingForm: {
-      fields: getFieldsForService([]).filter(f => !['time', 'adults', 'children'].includes(f.name)),
+      fields: getFieldsForService([
+        {
+          name: 'participants',
+          label: 'Number of People',
+          type: 'number',
+          required: true,
+          validation: z.coerce.number().min(1, 'At least 1 person.'),
+        },
+      ]).filter(f => !['time', 'adults', 'children'].includes(f.name)),
     },
     whatsappNumber: '212628438838',
     whatsappMessage: (data: Record<string, any>) => `
@@ -211,6 +219,7 @@ export const services: Service[] = [
 *Email:* ${data.email}
 *Date:* ${formatDate(data.date)}
 *Tel:* ${data.phone}
+*People:* ${data.participants}
 *Special Request:* ${data.specialRequests || 'None'}
 `,
   },
@@ -235,7 +244,15 @@ export const services: Service[] = [
       gallery: ['gallery-souk-1', 'gallery-souk-2', 'gallery-souk-3'],
     },
     bookingForm: {
-      fields: getFieldsForService([]).filter(f => !['time', 'adults', 'children'].includes(f.name)),
+      fields: getFieldsForService([
+        {
+          name: 'participants',
+          label: 'Number of People',
+          type: 'number',
+          required: true,
+          validation: z.coerce.number().min(1, 'At least 1 person.'),
+        },
+      ]).filter(f => !['time', 'adults', 'children'].includes(f.name)),
     },
     whatsappNumber: '212628438838',
     whatsappMessage: (data: Record<string, any>) => `
@@ -246,6 +263,7 @@ export const services: Service[] = [
 *Email:* ${data.email}
 *Date:* ${formatDate(data.date)}
 *Tel:* ${data.phone}
+*People:* ${data.participants}
 *Special Request:* ${data.specialRequests || 'None'}
 `,
   },
@@ -279,6 +297,13 @@ export const services: Service[] = [
           options: ['2-Hour Discovery Ride', 'Half-Day Adventure', 'Full-Day Dune Expedition'],
           validation: z.string().min(1, 'Please select a duration.'),
         },
+        {
+          name: 'participants',
+          label: 'Number of People',
+          type: 'number',
+          required: true,
+          validation: z.coerce.number().min(1, 'At least 1 person.'),
+        },
       ]).filter(f => !['time', 'adults', 'children'].includes(f.name)),
     },
     whatsappNumber: '212628438838',
@@ -291,6 +316,7 @@ export const services: Service[] = [
 *Date:* ${formatDate(data.date)}
 *Tel:* ${data.phone}
 *Duration:* ${data.packageType}
+*People:* ${data.participants}
 *Special Request:* ${data.specialRequests || 'None'}
 `,
   },
@@ -321,8 +347,15 @@ export const services: Service[] = [
           label: 'Session Duration',
           type: 'select',
           required: true,
-          options: ['Half Day (Morning)', 'Half Day (Afternoon)', 'Full Day'],
+          options: ['Half Day (Morning)', 'Half Day (Afternoon)'],
           validation: z.string().min(1, 'Please select a duration.'),
+        },
+        {
+          name: 'participants',
+          label: 'Number of People',
+          type: 'number',
+          required: true,
+          validation: z.coerce.number().min(1, 'At least 1 person.'),
         },
       ]).filter(f => !['time', 'adults', 'children'].includes(f.name)),
     },
@@ -336,10 +369,11 @@ export const services: Service[] = [
 *Date:* ${formatDate(data.date)}
 *Tel:* ${data.phone}
 *Duration:* ${data.packageType}
+*People:* ${data.participants}
 *Special Request:* ${data.specialRequests || 'None'}
 `,
   },
 ].sort((a, b) => {
-    const order = [5, 6, 4, 1, 3, 2];
+    const order = [5, 7, 6, 4, 3, 2];
     return order.indexOf(a.id) - order.indexOf(b.id);
 });

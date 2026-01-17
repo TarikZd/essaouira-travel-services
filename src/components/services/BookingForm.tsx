@@ -109,7 +109,7 @@ export default function BookingForm({ service }: BookingFormProps) {
         if (field.name === 'countryCode') {
             (defaults as any)[field.name] = '+1__US';
         } else if (field.type === 'number') {
-            (defaults as any)[field.name] = field.name === 'adults' ? 1 : 0;
+            (defaults as any)[field.name] = ['adults', 'participants'].includes(field.name) ? 1 : 0;
         } else if (field.type !== 'date') {
             (defaults as any)[field.name] = '';
         }
