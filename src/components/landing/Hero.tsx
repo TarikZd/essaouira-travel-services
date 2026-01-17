@@ -45,8 +45,8 @@ export default function Hero() {
           </h1>
           
           <p className="text-xl md:text-2xl text-gray-200 max-w-2xl mx-auto font-light leading-relaxed">
-            Your Private Chauffeur & Personal Concierge. <br/>
-            <span className="text-white font-medium">Airport Transfers • Cooking Classes • Adventures</span>
+            Your Authentic Moroccan Experience. <br/>
+            <span className="text-white font-medium">Pastry Classes • Cooking Classes • Adventures</span>
           </p>
 
           <div className="flex flex-col sm:flex-row items-center justify-center gap-4 mt-8">

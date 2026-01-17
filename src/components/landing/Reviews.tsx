@@ -234,7 +234,7 @@ export default function Reviews() {
   if (reviews.length === 0) return null;
 
   return (
-    <section id="reviews" className="py-24 bg-secondary border-y border-border overflow-hidden">
+    <section id="reviews" className="py-12 md:py-24 bg-secondary border-y border-border overflow-hidden">
       <div className="container mx-auto px-4">
         <div className="flex flex-col lg:flex-row gap-12 items-center">
           {/* Summary Column */}
@@ -268,7 +268,7 @@ export default function Reviews() {
                 </div>
               </div>
 
-              <div className="flex gap-4 items-center">
+              <div className="flex gap-4 items-center justify-center lg:justify-start w-full flex-wrap">
                  <ReviewFormDialog />
                  <div className="flex gap-2">
                     <Button variant="ghost" size="icon" className="rounded-full border border-border text-foreground hover:bg-muted" onClick={scrollPrev}>

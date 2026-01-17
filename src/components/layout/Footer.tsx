@@ -118,7 +118,7 @@ export default function Footer() {
             &copy; {new Date().getFullYear()} Essaouira Adventures. All rights reserved.
           </p>
           <p className="text-gray-400 md:text-right">
-            Marrakech Essaouira Adventures • Airport Transfer • Essaouira Excursions • Agadir Taxi
+            Marrakech Essaouira Adventures • Moroccan Cooking Class • Essaouira Excursions • Quad Biking
           </p>
           </div>
         </div>
