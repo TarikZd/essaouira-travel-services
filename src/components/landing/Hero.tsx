@@ -32,7 +32,7 @@ export default function Hero() {
       </div>
 
       {/* Content */}
-      <div className="relative z-10 container mx-auto px-4 text-center mt-12">
+      <div className="relative z-10 container mx-auto px-4 text-center mt-32">
         <div className="space-y-8 animate-in fade-in zoom-in duration-700">
           <div className="inline-flex items-center gap-2 bg-white/10 backdrop-blur-md px-4 py-2 rounded-full border border-white/20 text-white mb-4">
             <span className="flex gap-1 text-accent">★★★★★</span>

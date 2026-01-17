@@ -138,7 +138,7 @@ export default async function ServicePage({ params }: { params: Promise<{ slug: 
              />
         )}
         
-        <div className="absolute inset-0 z-20 flex items-center justify-center">
+        <div className="absolute inset-0 z-20 flex items-center justify-center pt-20">
             <div className="text-center px-4 animate-in fade-in zoom-in duration-700">
                 <div className="inline-flex items-center gap-2 bg-white/20 text-white px-4 py-1.5 rounded-full mb-6 backdrop-blur-sm border border-white/20">
                     <Star className="w-4 h-4 fill-primary text-primary" />

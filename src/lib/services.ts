@@ -108,7 +108,7 @@ export const services: Service[] = [
           label: 'Preferred Pastry',
           type: 'select',
           required: true,
-          options: ['Mix / Assortment', 'Ghriba', 'Kaab el Ghazal', 'Fekkas', 'Briouates'],
+          options: ['Ghriba', 'Kaab el Ghazal', 'Fekkas', 'Briouates'],
           validation: z.string().min(1, 'Please select a preference.'),
         },
         {
