@@ -30,7 +30,7 @@ create table public.bookings (
   currency text default 'EUR',
   total_price numeric(10,2) not null, 
   deposit_amount numeric(10,2) not null, 
-  status text not null default 'pending_payment' check (status in ('pending_payment', 'confirmed', 'cancelled', 'completed', 'refunded')),
+  status text not null default 'pending_payment' check (status in ('pending_payment', 'confirmed', 'cancelled', 'completed', 'refunded', 'cancellation_requested')),
   payment_status text not null default 'unpaid' check (payment_status in ('unpaid', 'deposit_paid', 'fully_paid', 'refunded')),
   details jsonb default '{}'::jsonb, 
   created_at timestamp with time zone default timezone('utc'::text, now()) not null,
@@ -100,8 +100,10 @@ create policy "Enable read for everyone" on public.payments for select using (tr
 create policy "Anyone can insert reviews" on public.reviews for insert with check (true);
 create policy "Public can read approved reviews" on public.reviews for select using (status = 'approved');
 
-create policy "Everyone can read blocked dates" on public.blocked_dates for select using (true);
--- Note: Insert/Update on blocked_dates requires Admin role (Service Role Key)
+create policy "Public read blocked dates" on public.blocked_dates for select using (true);
+create policy "Admin insert blocked dates" on public.blocked_dates for insert with check (auth.jwt()->>'role' = 'service_role');
+create policy "Admin update blocked dates" on public.blocked_dates for update using (auth.jwt()->>'role' = 'service_role');
+create policy "Admin delete blocked dates" on public.blocked_dates for delete using (auth.jwt()->>'role' = 'service_role');
 
 -- ==========================================
 -- 5. PERFORMANCE INDEXES
@@ -122,7 +124,10 @@ create index if not exists idx_payments_transaction on public.payments(transacti
 -- ==========================================
 
 create or replace function public.handle_updated_at()
-returns trigger as $$
+returns trigger
+security definer
+set search_path = ''
+as $$
 begin
   new.updated_at = now();
   return new;

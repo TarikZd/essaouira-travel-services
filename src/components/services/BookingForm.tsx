@@ -110,6 +110,25 @@ export default function BookingForm({ service }: BookingFormProps) {
 
   useEffect(() => {
       const fetchAvailability = async () => {
+          const CACHE_KEY = `calendar_availability_${service.slug}`;
+          const CACHE_DURATION = 5 * 60 * 1000; // 5 minutes
+
+          // 1. Try to load from cache
+          try {
+              const cached = localStorage.getItem(CACHE_KEY);
+              if (cached) {
+                  const { data, timestamp } = JSON.parse(cached);
+                  if (Date.now() - timestamp < CACHE_DURATION) {
+                      setUnavailableDates(data.unavailable || []);
+                      setCapacityMap(data.capacity || {});
+                      return;
+                  }
+              }
+          } catch (e) {
+              console.warn('Failed to parse calendar cache', e);
+          }
+
+          // 2. Fetch fresh data
           // Fetch manually blocked dates
           const { data: blocked } = await supabase
               .from('blocked_dates')
@@ -141,8 +160,19 @@ export default function BookingForm({ service }: BookingFormProps) {
                    }
                });
           }
+          
           setCapacityMap(newCapacityMap);
           setUnavailableDates(dates);
+
+          // 3. Save to cache
+          try {
+              localStorage.setItem(CACHE_KEY, JSON.stringify({
+                  data: { unavailable: dates, capacity: newCapacityMap },
+                  timestamp: Date.now()
+              }));
+          } catch (e) {
+              // Ignore storage quotas
+          }
       };
       fetchAvailability();
   }, [service.slug, service.maxParticipants]);

@@ -32,15 +32,51 @@
 
 ---
 
-## 🔒 HIGH Priority - Database Security
+## � URGENT - Bug Fixes
+
+### Task 1.1: Fix "Booking Status" Database Constraint
+
+**Priority**: CRITICAL 🔴
+**Estimated Time**: 15 minutes
+**Status**: ✅ COMPLETED (2026-01-17)
+
+**Issue**: The code assumes a status `cancellation_requested` (in `src/app/api/bookings/cancel/route.ts`), but the Database Schema `CHECK` constraint (in `supabase/schema.sql`) only allows: `'pending_payment', 'confirmed', 'cancelled', 'completed', 'refunded'`. This causes cancellation requests to **FAIL**.
+
+**Fix**:
+Update the `bookings` table check constraint to include `cancellation_requested`.
+
+```sql
+ALTER TABLE bookings DROP CONSTRAINT bookings_status_check;
+ALTER TABLE bookings ADD CONSTRAINT bookings_status_check
+  CHECK (status IN ('pending_payment', 'confirmed', 'cancelled', 'completed', 'refunded', 'cancellation_requested'));
+```
+
+---
+
+## ✅ Database & Data Flow Verification (2026-01-17)
+
+I have verified the code implementation for data persistence:
+
+| Table Name      | Status in Code   | Notes                                                                                             |
+| :-------------- | :--------------- | :------------------------------------------------------------------------------------------------ |
+| `customers`     | ✅ **Active**    | Used in `BookingForm.tsx`. Properly saves new customers or links existing ones.                   |
+| `bookings`      | ✅ **Active**    | Used in `BookingForm.tsx`. Saves booking details. **(See Bug Task 1.1)**                          |
+| `payments`      | ✅ **Active**    | Used in `BookingForm.tsx`. Captures PayPal transaction data reliably.                             |
+| `reviews`       | ⏳ **Pending**   | Not implemented yet (Part of Task 10).                                                            |
+| `blocked_dates` | ⚠️ **Read-Only** | Code reads from this table (`BookingForm.tsx`), but no admin interface exists to write to it yet. |
+
+---
+
+## �🔒 HIGH Priority - Database Security
 
 ### Task 2: Implement Proper RLS Policies
 
 **Priority**: HIGH 🟠  
 **Estimated Time**: 2 hours  
-**Status**: ⬜ To Do
+**Status**: ✅ COMPLETED (2026-01-17)
 
-**Current Issue**: All tables have permissive "Enable for everyone" policies.
+**Current Issue**: All tables have permissive "Enable for everyone" policies (showing as "RLS Policy Always True" in Security Advisor).
+**Additional Warning**: Function `handle_updated_at` needs a fixed search_path to prevent hijacking.
 
 **Implementation Plan**:
 
@@ -63,6 +99,19 @@ CREATE POLICY "Admin insert blocked dates" ON blocked_dates
 **Files to Update**:
 
 - `supabase/schema.sql`
+
+### Task 2.1: Setup Service Role Client
+
+**Priority**: HIGH 🟠
+**Estimated Time**: 20 minutes
+**Status**: ✅ COMPLETED (2026-01-17)
+
+**Description**:
+Create a server-side Supabase client (`supabaseAdmin`) using the Service Role Key. This is required to bypass RLS for admin operations like blocking dates or moderating reviews.
+
+**Files Created**:
+
+- `src/lib/supabase-admin.ts`
 
 ---
 
@@ -294,7 +343,7 @@ Send automated transactional emails for key booking events.
 
 **Priority**: LOW 🟢  
 **Estimated Time**: 1 hour  
-**Status**: ⬜ To Do
+**Status**: ✅ COMPLETED (2026-01-17)
 
 **Current Issue**: Calendar availability is fetched on every component mount.
 
