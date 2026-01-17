@@ -19,13 +19,13 @@ export default function ServiceCard({ service, onBook }: ServiceCardProps) {
 
   const getIcon = (id: number) => {
     switch (id) {
-      case 1: return <Car className="h-10 w-10 text-primary mb-4" />;
-      case 5: return <ChefHat className="h-10 w-10 text-primary mb-4" />;
-      case 4: return <Mountain className="h-10 w-10 text-primary mb-4" />;
-      case 3: return <Map className="h-10 w-10 text-primary mb-4" />;
-      case 2: return <Bike className="h-10 w-10 text-primary mb-4" />;
-      case 6: return <Anchor className="h-10 w-10 text-primary mb-4" />;
-      default: return <Car className="h-10 w-10 text-primary mb-4" />;
+      case 1: return <Car className="h-6 w-6 text-white" />;
+      case 5: return <ChefHat className="h-6 w-6 text-white" />;
+      case 4: return <Mountain className="h-6 w-6 text-white" />;
+      case 3: return <Map className="h-6 w-6 text-white" />;
+      case 2: return <Bike className="h-6 w-6 text-white" />;
+      case 6: return <Anchor className="h-6 w-6 text-white" />;
+      default: return <Car className="h-6 w-6 text-white" />;
     }
   };
 
@@ -61,12 +61,20 @@ export default function ServiceCard({ service, onBook }: ServiceCardProps) {
               />
             )}
             
-            <div className="absolute bottom-4 left-5 z-20">
-              <div className="flex items-center gap-2 mb-2">
-                 {getIcon(service.id)}
-                 <span className="text-primary text-xs font-bold tracking-widest uppercase bg-primary/10 px-2 py-0.5 rounded border border-primary/20">Premium Service</span>
+            <div className="absolute bottom-4 left-5 z-20 w-full pr-10">
+              <div className="flex items-center gap-3 mb-2">
+                 <div className="p-2 bg-white/10 backdrop-blur-md rounded-lg border border-white/20">
+                    {getIcon(service.id)}
+                 </div>
+                 <div className="flex flex-col items-start gap-1">
+                     <span className="text-accent text-[10px] font-bold tracking-widest uppercase bg-accent/10 px-2 py-0.5 rounded border border-accent/20 backdrop-blur-sm">Premium</span>
+                     <div className="flex items-center gap-1 text-white/90 text-xs font-medium">
+                        <Star className="w-3 h-3 fill-yellow-400 text-yellow-400" />
+                        <span>4.9 (120+)</span>
+                     </div>
+                 </div>
               </div>
-              <CardTitle className="font-headline text-2xl text-white group-hover:text-primary transition-colors leading-tight">
+              <CardTitle className="font-headline text-2xl text-white group-hover:text-primary transition-colors leading-tight drop-shadow-md">
                 {service.name}
               </CardTitle>
             </div>

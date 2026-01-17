@@ -7,6 +7,7 @@ import { services, type Service } from '@/lib/services';
 import Hero from '@/components/landing/Hero';
 import ServiceCard from '@/components/services/ServiceCard';
 import SimpleContactForm from '@/components/landing/SimpleContactForm';
+import Reviews from '@/components/landing/Reviews';
 import { Compass, CreditCard } from 'lucide-react';
 
 export default function Home() {
@@ -91,6 +92,8 @@ export default function Home() {
             </div>
         </div>
       </section>
+
+      <Reviews />
     </div>
   );
 }
