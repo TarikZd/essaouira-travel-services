@@ -3,16 +3,11 @@
 export const dynamic = 'force-dynamic';
 
 import { useState } from 'react';
-import Image from 'next/image';
 import { services, type Service } from '@/lib/services';
 import Hero from '@/components/landing/Hero';
 import ServiceCard from '@/components/services/ServiceCard';
-import nextDynamic from 'next/dynamic';
-import { Car, MapPin, Lock } from 'lucide-react';
-
-const BookingForm = nextDynamic(() => import('@/components/services/BookingForm'), {
-    loading: () => <div className="h-[600px] bg-white/5 animate-pulse rounded-xl" />
-});
+import SimpleContactForm from '@/components/landing/SimpleContactForm';
+import { Compass, CreditCard } from 'lucide-react';
 
 export default function Home() {
   const [selectedService, setSelectedService] = useState<Service>(services[0]);
@@ -58,62 +53,40 @@ export default function Home() {
       {/* Contact & Booking Section */}
       <section id="contact" className="py-24 bg-background relative">
         <div className="container mx-auto px-4">
-            <div className="grid grid-cols-1 lg:grid-cols-2 gap-16">
+            <div className="grid grid-cols-1 lg:grid-cols-2 gap-16 items-center">
                 <div>
                     <h2 className="font-headline text-4xl md:text-5xl font-bold text-foreground mb-6">
-                        Contact & <br/><span className="text-primary">Booking</span>
+                        Start Your <br/><span className="text-primary">Adventure</span>
                     </h2>
                     <p className="text-muted-foreground text-lg mb-8 leading-relaxed">
-                        Fill the form to get a quote or book your ride directly. 
-                        Once sent, we will contact you immediately on <strong>WhatsApp</strong> to confirm details.
+                        Ready to explore Essaouira? Contact us to plan your perfect trip. 
+                        We reply immediately on WhatsApp to confirm availability and details.
                     </p>
                     
-                    <div className="space-y-6">
-                        <div className="flex items-center space-x-4 text-foreground">
-                            <div className="w-12 h-12 rounded-full bg-primary/10 flex items-center justify-center">
-                                <Car className="w-6 h-6 text-primary" />
+                    <div className="space-y-8">
+                        <div className="flex items-start space-x-4 text-foreground">
+                            <div className="w-12 h-12 rounded-full bg-primary/10 flex items-center justify-center shrink-0">
+                                <Compass className="w-6 h-6 text-primary" />
                             </div>
                             <div>
-                                <h3 className="font-bold">24/7 Service</h3>
-                                <p className="text-muted-foreground">Available day and night</p>
+                                <h3 className="font-bold text-xl mb-1">Authentic Adventures</h3>
+                                <p className="text-muted-foreground">From immersive Cooking Classes to scenic Hiking and Fishing trips.</p>
                             </div>
                         </div>
-                         <div className="flex items-center space-x-4 text-foreground">
-                            <div className="w-12 h-12 rounded-full bg-primary/10 flex items-center justify-center">
-                                <MapPin className="w-6 h-6 text-primary" />
+                         <div className="flex items-start space-x-4 text-foreground">
+                            <div className="w-12 h-12 rounded-full bg-primary/10 flex items-center justify-center shrink-0">
+                                <CreditCard className="w-6 h-6 text-primary" />
                             </div>
                             <div>
-                                <h3 className="font-bold">National Coverage</h3>
-                                <p className="text-muted-foreground">Marrakech, Essaouira, Agadir, etc.</p>
+                                <h3 className="font-bold text-xl mb-1">Easy Deposit Booking</h3>
+                                <p className="text-muted-foreground">Secure your spot with a small deposit. Pay the rest on arrival.</p>
                             </div>
                         </div>
                     </div>
                 </div>
 
-                <div id="booking-form" className="bg-card backdrop-blur-sm p-8 rounded-3xl border border-border shadow-md scroll-mt-32">
-                    <div className="mb-6 pb-6 border-b border-border">
-                        <p className="text-sm text-muted-foreground uppercase tracking-widest mb-2">Selected Service</p>
-                        <h3 className="text-2xl font-bold text-primary flex items-center">
-                            {selectedService.name}
-                        </h3>
-                    </div>
-                    <BookingForm service={selectedService} />
-
-                    <div className="mt-8 pt-6 border-t border-border text-center">
-                        <p className="text-sm text-muted-foreground mb-4 flex items-center justify-center gap-2 font-medium">
-                            <Lock className="w-4 h-4 text-primary" /> Secured Payment
-                        </p>
-                        <div className="flex justify-center items-center opacity-90 transition-opacity hover:opacity-100">
-                             <Image 
-                                src="https://res.cloudinary.com/doy1q2tfm/image/upload/v1766386708/Paiment-Securise-Avec_fc8loh.png" 
-                                alt="Secured Payment: Visa, Mastercard, PayPal" 
-                                width={250}
-                                height={80}
-                                className="h-20 w-auto object-contain"
-                                unoptimized
-                             />
-                        </div>
-                    </div>
+                <div id="booking-form" className="scroll-mt-32">
+                    <SimpleContactForm />
                 </div>
             </div>
         </div>
