@@ -107,7 +107,7 @@ export default function BookingForm({ service }: BookingFormProps) {
     const defaults: Partial<FormValues> = {};
     serviceWithFields.bookingForm.fields.forEach(field => {
         if (field.name === 'countryCode') {
-            (defaults as any)[field.name] = '+212__MA';
+            (defaults as any)[field.name] = '+1__US';
         } else if (field.type === 'number') {
             (defaults as any)[field.name] = field.name === 'adults' ? 1 : 0;
         } else if (field.type !== 'date') {
