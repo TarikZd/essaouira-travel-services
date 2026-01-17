@@ -85,10 +85,10 @@ export const services: Service[] = [
     id: 7,
     name: 'Moroccan Petit Four Class',
     slug: 'moroccan-petit-four-class',
-    description: 'Master the art of traditional Moroccan pastry making. Learn to create delicate Gazelle Horns, Ghriba, and other sweet treats with our expert pastry chefs. A perfect sweet experience to take home.',
+    description: 'Immerse yourself in the art of Moroccan patisserie. In this workshop, you will learn to craft iconic treats: **Ghriba** (tender, cracked almond cookies), **Kaab el Ghazal** (delicate Gazelle Horns with almond paste), **Fekkas** (crunchy Moroccan biscotti), and **Briouates** (honey-dipped triangular pastries). A sweet, hands-on experience culminating in a traditional tea ceremony.',
     aboutTitle: 'About the pastry class',
     bookingTitle: 'Book your pastry class',
-    features: ['Traditional Pastry Techniques', 'Take Home Your Creations', 'Tea Ceremony', 'All Ingredients Provided'],
+    features: ['Learn 4 Iconic Pastries', 'Hands-on Baking Session', 'Traditional Tea Ceremony', 'Take Home Your Box'],
     pricing: {
       amount: 40,
       unit: 'per person',
@@ -103,6 +103,14 @@ export const services: Service[] = [
     },
     bookingForm: {
       fields: getFieldsForService([
+        {
+          name: 'pastryPreference',
+          label: 'Preferred Pastry Style',
+          type: 'select',
+          required: true,
+          options: ['Mix / Assortment', 'Ghriba', 'Kaab el Ghazal', 'Fekkas', 'Briouates'],
+          validation: z.string().min(1, 'Please select a preference.'),
+        },
         {
           name: 'participants',
           label: 'Number of People',
@@ -122,6 +130,7 @@ export const services: Service[] = [
 *Date:* ${formatDate(data.date)}
 *Tel:* ${data.phone}
 *People:* ${data.participants}
+*Preference:* ${data.pastryPreference}
 *Special Request:* ${data.specialRequests || 'None'}
 `,
   },
