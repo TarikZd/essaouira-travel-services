@@ -445,7 +445,7 @@ export default function BookingForm({ service }: BookingFormProps) {
   const formParticipants = useWatch({ control: form.control, name: 'participants' });
   const headCount = formAdults || formParticipants || 1;
   const totalPrice = service.pricing?.amount ? service.pricing.amount * headCount : 0;
-  const depositAmount = Math.ceil(totalPrice * 0.2); // 20% Deposit
+  const depositAmount = 10; // Fixed deposit
 
   // PayPal Import (Lazy)
   const PayPalButtons = useMemo(() => dynamic(() => import('@paypal/react-paypal-js').then(mod => mod.PayPalButtons), { ssr: false, loading: () => <Loader2 className="animate-spin" /> }), []);
@@ -514,7 +514,7 @@ export default function BookingForm({ service }: BookingFormProps) {
                     <span className="text-primary">{totalPrice}€</span>
                 </div>
                 <div className="flex justify-between text-sm text-accent">
-                    <span>Deposit required (20%)</span>
+                    <span>Deposit required</span>
                     <span>{depositAmount}€</span>
                 </div>
             </div>

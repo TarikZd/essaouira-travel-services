@@ -35,7 +35,7 @@ const getFieldsForService = (specificFields: FormField[]): FormField[] => {
     // This helper function can be used to add/reorder common fields if needed
     const fieldOrder = [
         'fullName', 'email', 'countryCode', 'phone', 'pickupLocation', 'dropoffLocation', 'date', 'time', 
-        'adults', 'children', 'packageType', 'dishPreference', 'lunchPreference', 'dietaryRestrictions', 'specialRequests'
+        'adults', 'children', 'packageType', 'dishPreference', 'pastryPreference', 'lunchPreference', 'dietaryRestrictions', 'specialRequests'
     ];
     
     const allFields = [...commonFields, ...specificFields];
@@ -90,7 +90,7 @@ export const services: Service[] = [
     bookingTitle: 'Book your pastry class',
     features: ['Learn 4 Iconic Pastries', 'Hands-on Baking Session', 'Traditional Tea Ceremony', 'Take Home Your Box'],
     pricing: {
-      amount: 40,
+      amount: 54,
       unit: 'per person',
     },
     rating: 5.0,
@@ -105,7 +105,7 @@ export const services: Service[] = [
       fields: getFieldsForService([
         {
           name: 'pastryPreference',
-          label: 'Preferred Pastry Style',
+          label: 'Preferred Pastry',
           type: 'select',
           required: true,
           options: ['Mix / Assortment', 'Ghriba', 'Kaab el Ghazal', 'Fekkas', 'Briouates'],
