@@ -305,8 +305,13 @@ export default function BookingForm({ service }: BookingFormProps) {
           
           if (fieldConfig.name === 'date') {
             const timeField = service.bookingForm.fields.find(f => f.name === 'time');
+            const participantsField = service.bookingForm.fields.find(f => f.name === 'participants');
+            
+            // If we have time, pair with time. If not, and we have participants, pair with participants.
+            const secondaryField = timeField || participantsField;
+
             return (
-              <div className="grid grid-cols-1 md:grid-cols-2 gap-6 md:col-span-2" key="date-time-group">
+              <div className="grid grid-cols-1 md:grid-cols-2 gap-6 md:col-span-2" key="date-group">
                 <FormItem className="flex flex-col">
                   <FormLabelWithRequired required={fieldConfig.required}>{fieldConfig.label}</FormLabelWithRequired>
                   <Popover>
@@ -337,13 +342,14 @@ export default function BookingForm({ service }: BookingFormProps) {
                   </Popover>
                   <FormMessage />
                 </FormItem>
-                {timeField && (
+                
+                {secondaryField && secondaryField.name === 'time' && (
                   <FormField
                     control={form.control}
                     name="time"
                     render={({ field: timeFieldProps }) => (
                       <FormItem>
-                          <FormLabelWithRequired required={timeField.required}>{timeField.label}</FormLabelWithRequired>
+                          <FormLabelWithRequired required={secondaryField.required}>{secondaryField.label}</FormLabelWithRequired>
                           <Select onValueChange={timeFieldProps.onChange} defaultValue={timeFieldProps.value} value={timeFieldProps.value}>
                             <FormControl>
                                 <SelectTrigger className="bg-background border-input text-foreground">
@@ -361,10 +367,36 @@ export default function BookingForm({ service }: BookingFormProps) {
                     )}
                   />
                 )}
+
+                {secondaryField && secondaryField.name === 'participants' && (
+                   <FormField
+                    control={form.control}
+                    name="participants"
+                    render={({ field: pField }) => (
+                     <FormItem>
+                       <FormLabelWithRequired required={secondaryField.required}>{secondaryField.label}</FormLabelWithRequired>
+                       <FormControl>
+                         <Input 
+                            type="number" 
+                            min="1" 
+                            {...pField} 
+                            onChange={(e) => pField.onChange(parseInt(e.target.value, 10))} 
+                            className="bg-background border-input text-foreground placeholder:text-muted-foreground" 
+                         />
+                       </FormControl>
+                       <FormMessage />
+                     </FormItem>
+                    )}
+                   />
+                )}
               </div>
             );
           }
           if (fieldConfig.name === 'time') return <></>;
+          if (fieldConfig.name === 'participants') {
+             const hasTime = service.bookingForm.fields.some(f => f.name === 'time');
+             if (!hasTime) return <></>; // Already rendered with date
+          }
 
           return (
             <FormItem key={fieldConfig.name} className={spanClass}>
