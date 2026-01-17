@@ -406,109 +406,121 @@ export default function BookingForm({ service }: BookingFormProps) {
   const PayPalButtons = useMemo(() => dynamic(() => import('@paypal/react-paypal-js').then(mod => mod.PayPalButtons), { ssr: false, loading: () => <Loader2 className="animate-spin" /> }), []);
   const PayPalScriptProvider = useMemo(() => dynamic(() => import('@paypal/react-paypal-js').then(mod => mod.PayPalScriptProvider), { ssr: false }), []);
 
-  async function handleBookingSave(data: FormValues, paymentDetails?: any) {
+  async function handleBookingSave(data: FormValues, paymentDetails?: any): Promise<{ success: boolean; error?: string; bookingId?: string }> {
     const email = (data as any).email;
     const phone = `${((data as any).countryCode || '').split('__')[0]}${(data as any).phone || ''}`;
     const fullName = (data as any).fullName;
     const dateStr = (data as any).date ? format((data as any).date, 'yyyy-MM-dd') : '';
 
-    startTransition(async () => {
-      try {
-        // 1. Customer Handling
-        let customerId;
-        const { data: existingCustomer } = await supabase
-            .from('customers')
-            .select('id')
-            .eq('email', email)
-            .single(); // Might return null or error if not found, usually .maybeSingle() is safer but single() throws code PGRST116
+    return new Promise((resolve) => {
+      startTransition(async () => {
+        try {
+          // 1. Customer Handling
+          let customerId;
+          const { data: existingCustomer } = await supabase
+              .from('customers')
+              .select('id')
+              .eq('email', email)
+              .single();
 
-        if (existingCustomer) {
-            customerId = existingCustomer.id;
-        } else {
-            // Check if error was just "not found" or actual error. 
-            // Simplified: Try insert. If email collision race condition, we might fail, but low risk here.
-            
-            // Note: If using .single() on empty result, it throws. So we should use .maybeSingle() if clients supports it or catch header.
-            // Let's rely on upsert or simple query. 
-            // Actually, best pattern:
-            const { data: newCustomer, error: custError } = await supabase
-                .from('customers')
-                .insert({
-                    email,
-                    full_name: fullName,
-                    phone: phone,
-                    country_code: (data as any).countryCode
-                })
-                .select()
-                .single();
-            
-            if (custError) {
-                // If unique constraint violated (race condition), fetch again
-                if (custError.code === '23505') {
-                     const { data: retryCust } = await supabase.from('customers').select('id').eq('email', email).single();
-                     if (retryCust) customerId = retryCust.id;
-                     else throw custError;
-                } else {
-                    throw custError;
-                }
-            } else {
-                customerId = newCustomer.id;
-            }
+          if (existingCustomer) {
+              customerId = existingCustomer.id;
+          } else {
+              const { data: newCustomer, error: custError } = await supabase
+                  .from('customers')
+                  .insert({
+                      email,
+                      full_name: fullName,
+                      phone: phone,
+                      country_code: (data as any).countryCode
+                  })
+                  .select()
+                  .single();
+              
+              if (custError) {
+                  // If unique constraint violated (race condition), fetch again
+                  if (custError.code === '23505') {
+                       const { data: retryCust } = await supabase.from('customers').select('id').eq('email', email).single();
+                       if (retryCust) customerId = retryCust.id;
+                       else {
+                         resolve({ success: false, error: 'Customer creation failed' });
+                         return;
+                       }
+                  } else {
+                      resolve({ success: false, error: custError.message || 'Customer error' });
+                      return;
+                  }
+              } else {
+                  customerId = newCustomer.id;
+              }
+          }
+
+          if (!customerId) {
+            resolve({ success: false, error: 'Failed to resolve customer' });
+            return;
+          }
+
+          // 2. Booking Handling
+          const { data: booking, error: bookingError } = await supabase
+              .from('bookings')
+              .insert({
+                  customer_id: customerId,
+                  service_id: service.slug,
+                  service_name: service.name,
+                  activity_date: dateStr,
+                  participants: headCount,
+                  currency: 'EUR',
+                  total_price: totalPrice,
+                  deposit_amount: depositAmount,
+                  status: paymentDetails ? 'confirmed' : 'pending_payment',
+                  payment_status: paymentDetails ? 'deposit_paid' : 'unpaid',
+                  details: data
+              })
+              .select()
+              .single();
+              
+           if (bookingError) {
+             resolve({ success: false, error: bookingError.message || 'Booking creation failed' });
+             return;
+           }
+
+           // 3. Payment Handling
+          if (paymentDetails) {
+               const { error: payError } = await supabase
+                  .from('payments')
+                  .insert({
+                      booking_id: booking.id,
+                      provider: 'paypal',
+                      transaction_id: paymentDetails.id, 
+                      amount: depositAmount,
+                      currency: 'EUR',
+                      status: 'completed',
+                      metadata: paymentDetails
+                  });
+               if (payError) {
+                 resolve({ success: false, error: 'Payment record failed', bookingId: booking.id });
+                 return;
+               }
+           }
+
+          toast({
+            title: paymentDetails ? 'Booking Confirmed!' : 'Request Sent!',
+            description: paymentDetails ? "Thank you! You will receive a confirmation from PayPal shortly." : "We have received your request and will contact you shortly.",
+          });
+          
+          form.reset();
+          resolve({ success: true, bookingId: booking.id });
+        } catch (error) {
+          console.error("Error saving booking:", error);
+          const errorMessage = error instanceof Error ? error.message : 'Unknown error';
+          toast({
+            variant: 'destructive',
+            title: 'Error',
+            description: paymentDetails ? 'Booking save failed. Please contact support.' : 'Please try again.',
+          });
+          resolve({ success: false, error: errorMessage });
         }
-
-        if (!customerId) throw new Error("Failed to resolve customer.");
-
-        // 2. Booking Handling
-        const { data: booking, error: bookingError } = await supabase
-            .from('bookings')
-            .insert({
-                customer_id: customerId,
-                service_id: service.slug, // Using slug as ID or string ID
-                service_name: service.name,
-                activity_date: dateStr,
-                participants: headCount,
-                currency: 'EUR',
-                total_price: totalPrice,
-                deposit_amount: depositAmount,
-                status: paymentDetails ? 'confirmed' : 'pending_payment',
-                payment_status: paymentDetails ? 'deposit_paid' : 'unpaid',
-                details: data // Store full form data as JSON
-            })
-            .select()
-            .single();
-            
-         if (bookingError) throw bookingError;
-
-         // 3. Payment Handling
-        if (paymentDetails) {
-             const { error: payError } = await supabase
-                .from('payments')
-                .insert({
-                    booking_id: booking.id,
-                    provider: 'paypal',
-                    transaction_id: paymentDetails.id, 
-                    amount: depositAmount,
-                    currency: 'EUR',
-                    status: 'completed',
-                    metadata: paymentDetails
-                });
-             if (payError) throw payError;
-         }
-
-        toast({
-          title: paymentDetails ? 'Booking Confirmed!' : 'Request Sent!',
-          description: paymentDetails ? "Thank you! You will receive a confirmation from PayPal shortly." : "We have received your request and will contact you shortly.",
-        });
-        
-        form.reset();
-      } catch (error) {
-        console.error("Error saving booking:", error);
-        toast({
-          variant: 'destructive',
-          title: 'Error',
-          description: 'Please try again.',
-        });
-      }
+      });
     });
   }
 
@@ -666,26 +678,50 @@ export default function BookingForm({ service }: BookingFormProps) {
                         }}
                         onApprove={async (data, actions) => {
                             if (!actions.order) return;
+                            
+                            let paymentCaptured = false;
+                            let transactionId = '';
+                            
                             try {
+                                // Capture the payment first
                                 const details = await actions.order.capture();
+                                paymentCaptured = true;
+                                transactionId = details.id || 'Unknown';
+                                
+                                // Get form data and attempt to save booking
                                 const formData = form.getValues();
-                                const isValid = await form.trigger();
-                                if (isValid && details) {
-                                    handleBookingSave(formData, details);
-                                } else {
+                                const result = await handleBookingSave(formData, details);
+                                
+                                if (!result.success) {
+                                    // CRITICAL: Payment was captured but booking save failed
                                     toast({ 
-                                        title: "Payment Capture Failed", 
-                                        description: "We could not verify the payment. Please contact support.", 
-                                        variant: "destructive" 
+                                        title: "⚠️ Critical: Booking Save Failed", 
+                                        description: `Your payment was processed successfully (Transaction: ${transactionId}). However, we could not save your booking. Please contact support immediately with this transaction ID.`, 
+                                        variant: "destructive",
+                                        duration: 10000
                                     });
+                                    console.error('CRITICAL: Payment captured but save failed', { transactionId, error: result.error });
                                 }
+                                // If successful, toast is shown by handleBookingSave
                             } catch (error) {
                                 console.error("PayPal Error:", error);
-                                toast({
-                                    title: "Payment Error",
-                                    description: "An error occurred during payment processing.",
-                                    variant: "destructive"
-                                });
+                                
+                                if (paymentCaptured) {
+                                    // Payment captured but unexpected error
+                                    toast({
+                                        title: "⚠️ Critical Error",
+                                        description: `Payment was captured (Transaction: ${transactionId}) but an error occurred. Please contact support immediately.`,
+                                        variant: "destructive",
+                                        duration: 10000
+                                    });
+                                } else {
+                                    // Payment capture failed (safe - no money involved)
+                                    toast({
+                                        title: "Payment Error",
+                                        description: "Payment could not be processed. Please try again.",
+                                        variant: "destructive"
+                                    });
+                                }
                             }
                         }}
                     />
