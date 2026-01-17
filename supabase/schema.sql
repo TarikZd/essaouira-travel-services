@@ -50,24 +50,8 @@ create table public.payments (
 );
 
 -- ==========================================
--- 2. CONTENT SYSTEM (Restored)
+-- 2. REVIEWS SYSTEM
 -- ==========================================
-
--- Articles Table (Blog)
-create table public.articles (
-    id uuid primary key default uuid_generate_v4(),
-    slug text unique not null,
-    title text not null,
-    excerpt text,
-    content text,
-    cover_image text,
-    category text default 'Guide',
-    is_published boolean default false,
-    seo_title text,
-    seo_description text,
-    created_at timestamp with time zone default timezone('utc'::text, now()) not null,
-    updated_at timestamp with time zone default timezone('utc'::text, now()) not null
-);
 
 -- Reviews Table
 create table public.reviews (
@@ -86,7 +70,6 @@ create table public.reviews (
 alter table public.customers enable row level security;
 alter table public.bookings enable row level security;
 alter table public.payments enable row level security;
-alter table public.articles enable row level security;
 alter table public.reviews enable row level security;
 
 -- Policies
@@ -99,8 +82,6 @@ create policy "Enable update for everyone" on public.bookings for update using (
 
 create policy "Enable insert for everyone" on public.payments for insert with check (true);
 create policy "Enable read for everyone" on public.payments for select using (true);
-
-create policy "Public articles are viewable by everyone" on public.articles for select using (is_published = true);
 
 create policy "Anyone can insert reviews" on public.reviews for insert with check (true);
 create policy "Public can read approved reviews" on public.reviews for select using (status = 'approved');
@@ -119,4 +100,3 @@ $$ language plpgsql;
 
 create trigger on_customer_updated before update on public.customers for each row execute procedure public.handle_updated_at();
 create trigger on_booking_updated before update on public.bookings for each row execute procedure public.handle_updated_at();
-create trigger on_article_updated before update on public.articles for each row execute procedure public.handle_updated_at();

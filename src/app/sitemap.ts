@@ -15,19 +15,6 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
     priority: 0.8,
   }));
 
-  // 2. Fetch Dynamic Articles from Supabase
-  const { data: articles } = await supabase
-    .from('articles')
-    .select('slug, updated_at')
-    .eq('is_published', true);
-
-  const articleUrls = (articles || []).map((article) => ({
-    url: `${baseUrl}/conseils-voyage/${article.slug}`,
-    lastModified: new Date(article.updated_at),
-    changeFrequency: 'weekly' as const,
-    priority: 0.7,
-  }));
-
   return [
     {
       url: baseUrl,
@@ -35,13 +22,6 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
       changeFrequency: 'weekly',
       priority: 1,
     },
-    {
-      url: `${baseUrl}/conseils-voyage`,
-      lastModified: new Date(),
-      changeFrequency: 'weekly',
-      priority: 0.9,
-    },
     ...serviceUrls,
-    ...articleUrls,
   ];
 }
