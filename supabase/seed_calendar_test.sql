@@ -9,7 +9,8 @@ VALUES
   (uuid_generate_v4(), 'Bob Explorer', 'bob@example.com', '987654321', '+44__UK'),
   (uuid_generate_v4(), 'Charlie Foodie', 'charlie@example.com', '456123789', '+33__FR'),
   (uuid_generate_v4(), 'Diana Hiker', 'diana@example.com', '321654987', '+49__DE'),
-  (uuid_generate_v4(), 'Eve Photographer', 'eve@example.com', '159753468', '+34__ES');
+  (uuid_generate_v4(), 'Eve Photographer', 'eve@example.com', '159753468', '+34__ES')
+ON CONFLICT (email) DO NOTHING;
 
 -- 2. Create Bookings (Simulate Capacity)
 -- Need to fetch IDs dynamically or use the ones we just created? 
@@ -84,7 +85,8 @@ VALUES
 INSERT INTO public.blocked_dates (service_slug, blocked_date, reason)
 VALUES 
   ('outdoor-cooking-adventure', CURRENT_DATE + 5, 'Chef Vacation'),
-  ('moroccan-petit-four-class', CURRENT_DATE + 5, 'Shop Renovation');
+  ('moroccan-petit-four-class', CURRENT_DATE + 5, 'Shop Renovation')
+ON CONFLICT (service_slug, blocked_date) DO NOTHING;
 
 -- Summary for User:
 -- Tomorrow: Cooking Class -> FULL (4/4)
