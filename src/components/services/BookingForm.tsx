@@ -96,6 +96,8 @@ export default function BookingForm({ service }: BookingFormProps) {
     return defaults;
   }, [service]);
 
+  const showVisualCalendar = !!service.maxParticipants;
+
   const form = useForm<FormValues>({
     resolver: zodResolver(dynamicSchema),
     defaultValues: defaultFormValues,
@@ -357,7 +359,7 @@ export default function BookingForm({ service }: BookingFormProps) {
           if (fieldConfig.name === 'time') return <></>;
           if (fieldConfig.name === 'participants') {
              const hasTime = service.bookingForm.fields.some(f => f.name === 'time');
-             if (!hasTime) return <></>; // Already rendered with date
+             if (!hasTime && !showVisualCalendar) return <></>; // Already rendered with date ONLY IF visual calendar is hidden
           }
 
           return (
@@ -520,7 +522,7 @@ export default function BookingForm({ service }: BookingFormProps) {
     });
   }
 
-  const showVisualCalendar = !!service.maxParticipants;
+
   
   const selectedDateStr = form.watch('date') ? format(form.watch('date'), 'yyyy-MM-dd') : null;
   const currentBooked = selectedDateStr ? (capacityMap[selectedDateStr] || 0) : 0;
