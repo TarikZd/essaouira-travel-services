@@ -6,9 +6,15 @@ export const metadata: Metadata = {
   description: 'Privacy Policy and Data Protection for Essaouira Adventures.',
 };
 
+import Link from 'next/link';
+import { ArrowLeft } from 'lucide-react';
+
 export default function PrivacyPage() {
   return (
     <div className="container mx-auto px-4 py-24 max-w-4xl">
+      <Link href="/" className="inline-flex items-center text-sm text-primary mb-6 hover:underline transition-colors">
+        <ArrowLeft className="w-4 h-4 mr-2" /> Back to Home
+      </Link>
       <h1 className="text-4xl font-bold font-headline mb-8 text-foreground">Privacy Policy</h1>
       
       <div className="prose prose-lg max-w-none text-muted-foreground">
