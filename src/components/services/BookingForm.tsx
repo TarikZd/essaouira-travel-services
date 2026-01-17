@@ -139,7 +139,7 @@ export default function BookingForm({ service }: BookingFormProps) {
     return routes[pickupLocationValue] || [];
   }, [pickupLocationValue, service.slug, service.bookingForm.fields]);
 
-  const [unavailableDates, setUnavailableDates] = useState<Date[]>([]);
+  const [unavailableDates, setUnavailableDates] = useState<string[]>([]);
 
   useEffect(() => {
       const fetchAvailability = async () => {
@@ -149,7 +149,7 @@ export default function BookingForm({ service }: BookingFormProps) {
               .select('blocked_date')
               .eq('service_slug', service.slug);
           
-          let dates = (blocked || []).map(b => new Date(b.blocked_date));
+          let dates = (blocked || []).map(b => b.blocked_date); // Keep as YYYY-MM-DD strings
 
           // Calculate capacity if restricted
           if (service.maxParticipants) {
@@ -161,12 +161,13 @@ export default function BookingForm({ service }: BookingFormProps) {
                
                const load: Record<string, number> = {};
                bookings?.forEach((b: any) => {
+                   // Ensure activity_date is string YYYY-MM-DD
                    load[b.activity_date] = (load[b.activity_date] || 0) + b.participants;
                });
 
                Object.entries(load).forEach(([date, count]) => {
                    if (count >= (service.maxParticipants || 4)) {
-                       dates.push(new Date(date));
+                       dates.push(date);
                    }
                });
           }
@@ -372,7 +373,8 @@ export default function BookingForm({ service }: BookingFormProps) {
                           onSelect={field.onChange}
                           disabled={(date) => {
                               const isPast = date < new Date(new Date().setHours(0, 0, 0, 0));
-                              const isUnavailable = unavailableDates.some(d => d.toDateString() === date.toDateString());
+                              const dateStr = format(date, 'yyyy-MM-dd');
+                              const isUnavailable = unavailableDates.includes(dateStr);
                               return isPast || isUnavailable;
                           }}
                           locale={enUS}
@@ -615,7 +617,8 @@ export default function BookingForm({ service }: BookingFormProps) {
                     onSelect={(date) => date && form.setValue('date', date)}
                     disabled={(date) => {
                         const isPast = date < new Date(new Date().setHours(0, 0, 0, 0));
-                        const isUnavailable = unavailableDates.some(d => d.toDateString() === date.toDateString());
+                        const dateStr = format(date, 'yyyy-MM-dd');
+                        const isUnavailable = unavailableDates.includes(dateStr);
                         return isPast || isUnavailable;
                     }}
                     locale={enUS}
@@ -695,12 +698,42 @@ export default function BookingForm({ service }: BookingFormProps) {
                  <PayPalScriptProvider options={{ clientId: process.env.NEXT_PUBLIC_PAYPAL_CLIENT_ID || "test", currency: "EUR" }}>
                     <PayPalButtons 
                         style={{ layout: "vertical", shape: "rect" }}
+                        onClick={async (data, actions) => {
+                            const isValid = await form.trigger();
+                            if (!isValid) {
+                                toast({
+                                    title: "Missing Information",
+                                    description: "Please fill in all required fields before paying.",
+                                    variant: "destructive"
+                                });
+                                return actions.reject();
+                            }
+                            return actions.resolve();
+                        }}
                         createOrder={(data, actions) => {
+                            const formData = form.getValues();
+                            const date = (formData as any).date;
+                            const dateStr = date ? format(date, 'yyyy-MM-dd') : 'No Date';
+                            const pax = (formData as any).adults || (formData as any).participants || 1;
+                            
                             return actions.order.create({
                                 intent: "CAPTURE",
                                 purchase_units: [{
-                                    amount: { value: depositAmount.toString(), currency_code: "EUR" },
-                                    description: `Deposit for ${service.name}`
+                                    description: `Deposit: ${service.name}`,
+                                    amount: { 
+                                        value: depositAmount.toString(), 
+                                        currency_code: "EUR",
+                                        breakdown: {
+                                            item_total: { value: depositAmount.toString(), currency_code: "EUR" }
+                                        }
+                                    },
+                                    items: [{
+                                        name: service.name,
+                                        description: `Date: ${dateStr}, Guests: ${pax}`,
+                                        unit_amount: { value: depositAmount.toString(), currency_code: "EUR" },
+                                        quantity: "1",
+                                        category: "DIGITAL_GOODS"
+                                    }]
                                 }]
                             });
                         }}
