@@ -147,16 +147,7 @@ export default function BookingForm({ service }: BookingFormProps) {
   }, [service.slug, service.maxParticipants]);
 
 
-  const handleWhatsAppRedirect = (data: FormValues) => {
-    if (!fullService) return;
-    
-    const allData = { ...form.getValues() };
 
-    const message = fullService.whatsappMessage(allData);
-    const encodedMessage = encodeURIComponent(message);
-    const whatsappUrl = `https://wa.me/${fullService.whatsappNumber}?text=${encodedMessage}`;
-    window.open(whatsappUrl, '_blank');
-  };
 
 
   const renderField = (fieldConfig: ServiceFormField) => {
@@ -489,7 +480,7 @@ export default function BookingForm({ service }: BookingFormProps) {
          if (bookingError) throw bookingError;
 
          // 3. Payment Handling
-         if (paymentDetails) {
+        if (paymentDetails) {
              const { error: payError } = await supabase
                 .from('payments')
                 .insert({
@@ -506,19 +497,16 @@ export default function BookingForm({ service }: BookingFormProps) {
 
         toast({
           title: paymentDetails ? 'Booking Confirmed!' : 'Request Sent!',
-          description: paymentDetails ? "Your deposit is received. Have a great trip!" : "Redirecting to WhatsApp for confirmation...",
+          description: paymentDetails ? "Thank you! You will receive a confirmation from PayPal shortly." : "We have received your request and will contact you shortly.",
         });
         
-        if (!paymentDetails) {
-            handleWhatsAppRedirect(data);
-        }
         form.reset();
       } catch (error) {
         console.error("Error saving booking:", error);
         toast({
           variant: 'destructive',
           title: 'Error',
-          description: 'Please try again or contact us on WhatsApp.',
+          description: 'Please try again.',
         });
       }
     });
