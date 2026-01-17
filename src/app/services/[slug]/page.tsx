@@ -267,23 +267,7 @@ export default async function ServicePage({ params }: { params: Promise<{ slug: 
                                 }
                             }} />
                         </ErrorBoundary>
-                        
-                        <div className="mt-6 pt-6 border-t border-border text-center">
-                            <p className="text-sm text-muted-foreground mb-4 flex items-center justify-center gap-2 font-medium">
-                                <Shield className="w-4 h-4 text-primary" /> Secure Payment
-                            </p>
-                            <div className="flex justify-center items-center opacity-90 transition-opacity hover:opacity-100">
-                                <Image 
-                                    src="https://res.cloudinary.com/doy1q2tfm/image/upload/v1766386708/Paiment-Securise-Avec_fc8loh.png" 
-                                    alt="Secure Payment: Visa, Mastercard, PayPal" 
-                                    width={250}
-                                    height={80}
-                                    className="h-16 w-auto object-contain"
-                                    unoptimized
-                                />
-                            </div>
-                        </div>
-                    </div>
+                                            </div>
                 </div>
             </div>
 
