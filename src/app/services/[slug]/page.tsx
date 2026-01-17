@@ -15,20 +15,15 @@ const Reviews = dynamic(() => import('@/components/landing/Reviews'), {
     loading: () => <div className="h-96 bg-white/5 animate-pulse rounded-xl" />
 });
 
-export const revalidate = 3600; // Revalidate every hour
+// Removed Supabase fetching to use static English content
+// import { supabase } from '@/lib/supabase'; (imports already there, but we stop using it)
+
+export const revalidate = 3600; 
 export const runtime = 'edge';
 
 async function getService(slug: string) {
-  const { data, error } = await supabase
-    .from('services')
-    .select('*')
-    .eq('slug', slug)
-    .single();
-
-  if (error || !data) {
-    return null;
-  }
-  return data;
+  // Return static service instead of DB service
+  return staticServices.find(s => s.slug === slug) || null;
 }
 
 export async function generateMetadata({ params }: { params: Promise<{ slug: string }> }): Promise<Metadata> {
@@ -36,15 +31,15 @@ export async function generateMetadata({ params }: { params: Promise<{ slug: str
   const service = await getService(slug);
   if (!service) return { title: 'Service Not Found' };
 
-
-  const heroImage = PlaceHolderImages.find((img) => img.id === service.image_hero) || PlaceHolderImages[0];
+  // Use static image logic (service.images.hero is number in static, string/id in DB. staticServices has numbers)
+  const heroImage = PlaceHolderImages.find((img) => img.id === service.images.hero) || PlaceHolderImages[0];
 
   return {
-    title: service.name, // Layout provides template: "%s | Essaouira Adventures"
-    description: service.description || 'Book your adventure with us.',
+    title: service.name,
+    description: service.description,
     openGraph: {
       title: service.name,
-      description: service.description || 'Book your adventure with us.',
+      description: service.description,
       images: [
         {
           url: heroImage.imageUrl,
@@ -66,7 +61,7 @@ export default async function ServicePage({ params }: { params: Promise<{ slug: 
   }
 
   // Helper for images (reusing logic from ServiceCard)
-  const heroImage = PlaceHolderImages.find((img) => img.id === service.image_hero) || PlaceHolderImages[0];
+  const heroImage = PlaceHolderImages.find((img) => img.id === service.images.hero) || PlaceHolderImages[0];
 
   // Mock Service object for compatibility with BookingForm
   // STRATEGY: Merge Dynamic DB Content (Title, Price) with Static Config (Form Fields)
@@ -75,10 +70,10 @@ export default async function ServicePage({ params }: { params: Promise<{ slug: 
   const staticConfig = staticServices.find(s => s.slug === slug) || staticServices[0];
 
   const serviceForForm: any = {
-      id: service.id, // ID from DB
+      id: service.id,
       slug: service.slug,
-      name: service.name, // Name from DB
-      whatsappNumber: service.whatsapp_number || staticConfig.whatsappNumber,
+      name: service.name,
+      whatsappNumber: service.whatsappNumber || staticConfig.whatsappNumber,
       whatsappMessage: staticConfig.whatsappMessage, // Function logic must come from static file
       
       // CRITICAL: Inject the static form configuration so fields render
@@ -101,7 +96,7 @@ export default async function ServicePage({ params }: { params: Promise<{ slug: 
     offers: {
         '@type': 'Offer',
         priceCurrency: 'EUR',
-        price: service.price_amount || '0',
+        price: service.pricing?.amount || '0',
         availability: 'https://schema.org/InStock',
         url: `https://essaouira-travel.services/services/${service.slug}`
     },
@@ -183,11 +178,7 @@ export default async function ServicePage({ params }: { params: Promise<{ slug: 
                         Why Choose This Adventure?
                     </h2>
                     <div className="space-y-4">
-                        {service.long_description ? (
-                            <div dangerouslySetInnerHTML={{ __html: service.long_description }} /> 
-                        ) : (
                             <p>{service.description}</p>
-                        )}
                         <p>
                             Enjoy exceptional comfort and total safety. Our experienced team knows the region perfectly. 
                             Whether you're looking for thrill or relaxation, we guarantee a VIP experience.
@@ -227,10 +218,10 @@ export default async function ServicePage({ params }: { params: Promise<{ slug: 
                             <p className="text-sm text-muted-foreground uppercase tracking-widest mb-1">Starting From</p>
                             <div className="flex items-baseline gap-2">
                                 <span className="text-4xl font-bold text-primary">
-                                    {service.price_amount ? `${service.price_amount}€` : 'On Request'}
+                                    {service.pricing?.amount ? `${service.pricing.amount}€` : 'On Request'}
                                 </span>
-                                {service.price_unit && (
-                                    <span className="text-muted-foreground">/ {service.price_unit}</span>
+                                {service.pricing?.unit && (
+                                    <span className="text-muted-foreground">/ {service.pricing.unit}</span>
                                 )}
                             </div>
                         </div>

@@ -31,6 +31,11 @@ export const metadata: Metadata = {
   keywords:
     "Taxi Marrakech Essaouira, Essaouira transport, Taxi Essaouira airport, Marrakech Essaouira transport, cheap travel, cheap taxi transport, cab Marrakech Essaouira, Taxi Essaouira Morocco, Taxi Agadir Essaouira, Taxi Marrakech to essaouira, Taxi excursion Marrakech Essaouira, holiday taxis, Taxi from Marrakech to Essaouira, taxi price, taxi booking, taxi fare, Riad, Taxi airport Marrakech, Taxi Marrakech casablanca, Taxi Essaouira casablanca",
   authors: [{ name: "Essaouira Adventures" }],
+  icons: {
+    icon: '/logo.png',
+    shortcut: '/logo.png',
+    apple: '/logo.png',
+  },
   creator: "Essaouira Adventures",
   publisher: "Essaouira Adventures",
   openGraph: {

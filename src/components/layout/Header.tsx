@@ -1,6 +1,7 @@
 'use client';
 
 import Link from 'next/link';
+import Image from 'next/image';
 import { Menu, Compass, X } from 'lucide-react';
 import { Button } from '@/components/ui/button';
 import { useState, useEffect } from 'react';
@@ -62,7 +63,14 @@ export default function Header() {
     )}>
       <div className="container mx-auto px-4 md:px-8 flex items-center justify-between">
         <Link href="/" className="flex items-center space-x-2">
-          <Compass className="h-8 w-8 text-primary" />
+            <div className="relative h-10 w-10 overflow-hidden rounded-full border-2 border-primary/50 bg-white/10 backdrop-blur-md">
+                <Image 
+                    src="/logo.png" 
+                    alt="Essaouira Adventures" 
+                    fill 
+                    className="object-cover"
+                />
+            </div>
           <span className={cn("font-bold text-xl font-headline tracking-tighter", scrolled ? "text-foreground" : "text-white")}>
             ESSAOUIRA <span className="text-primary">ADVENTURES</span>
           </span>

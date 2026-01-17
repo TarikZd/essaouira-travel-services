@@ -1,5 +1,6 @@
 'use client';
 
+import Link from 'next/link';
 import { Facebook, Instagram, Phone, Mail, MapPin, Compass, MessageCircle } from 'lucide-react';
 
 const socialLinks = [
@@ -49,6 +50,9 @@ export default function Footer() {
               <li><a href="#hero" className="hover:text-primary transition-colors">Home</a></li>
               <li><a href="#services" className="hover:text-primary transition-colors">Our Adventures</a></li>
               <li><a href="#contact" className="hover:text-primary transition-colors">Booking</a></li>
+              <li><Link href="/privacy" className="hover:text-primary transition-colors">Privacy Policy</Link></li>
+              <li><Link href="/terms" className="hover:text-primary transition-colors">Terms & Conditions</Link></li>
+              <li><Link href="/legal" className="hover:text-primary transition-colors">Legal Notice</Link></li>
             </ul>
           </div>
 
