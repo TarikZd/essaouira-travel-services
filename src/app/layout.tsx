@@ -23,13 +23,13 @@ const outfit = Outfit({
 export const metadata: Metadata = {
   metadataBase: new URL('https://essaouira-travel.services'),
   title: {
-    default: "Essaouira Adventures - Private Transfers & Airport Taxi",
+    default: "Essaouira Adventures - Authentic Cooking, Quad & Tours",
     template: "%s | Essaouira Adventures"
   },
   description:
-    "Book your private taxi between Marrakech, Essaouira and Agadir. Comfortable, air-conditioned tourist transport service available 24/7. Airport transfers and excursions.",
+    "Book authentic experiences in Essaouira: Cooking Classes, Quad Biking, Hiking, Fishing, and Pastry Workshops. Discover the real Morocco with local experts.",
   keywords:
-    "Taxi Marrakech Essaouira, Essaouira transport, Taxi Essaouira airport, Marrakech Essaouira transport, cheap travel, cheap taxi transport, cab Marrakech Essaouira, Taxi Essaouira Morocco, Taxi Agadir Essaouira, Taxi Marrakech to essaouira, Taxi excursion Marrakech Essaouira, holiday taxis, Taxi from Marrakech to Essaouira, taxi price, taxi booking, taxi fare, Riad, Taxi airport Marrakech, Taxi Marrakech casablanca, Taxi Essaouira casablanca",
+    "Essaouira activities, Moroccan cooking class, quad biking Essaouira, surfcasting fishing Morocco, hiking wild beaches, Essaouira medina tour, pastry class Essaouira, things to do in Essaouira, authentic Morocco experiences",
   authors: [{ name: "Essaouira Adventures" }],
   icons: {
     icon: '/logo.png',
@@ -42,8 +42,8 @@ export const metadata: Metadata = {
     type: "website",
     locale: "en_US",
     url: "https://essaouira-travel.services",
-    title: "Essaouira Adventures - Private Transfers & Airport Taxi",
-    description: "Your private driver in Morocco. Airport transfers Marrakech, Agadir, Essaouira and tourist excursions. Simple and fast online booking.",
+    title: "Essaouira Adventures - Authentic Cooking, Quad & Tours",
+    description: "Your gateway to authentic Moroccan adventures. Cooking classes, quad biking, hiking, and cultural tours in Essaouira.",
     siteName: "Essaouira Adventures",
     images: [
       {
