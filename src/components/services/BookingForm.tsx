@@ -402,7 +402,7 @@ export default function BookingForm({ service }: BookingFormProps) {
   }
 
   // ... inside component ...
-  const [paymentMethod, setPaymentMethod] = useState<'cash' | 'paypal'>('cash');
+  const [paymentMethod, setPaymentMethod] = useState<'cash' | 'paypal'>(service.pricing ? 'paypal' : 'cash');
   
   // Calculate potential price
   const formAdults = useWatch({ control: form.control, name: 'adults' });
@@ -509,7 +509,9 @@ export default function BookingForm({ service }: BookingFormProps) {
           description: paymentDetails ? "Your deposit is received. Have a great trip!" : "Redirecting to WhatsApp for confirmation...",
         });
         
-        handleWhatsAppRedirect(data);
+        if (!paymentDetails) {
+            handleWhatsAppRedirect(data);
+        }
         form.reset();
       } catch (error) {
         console.error("Error saving booking:", error);
