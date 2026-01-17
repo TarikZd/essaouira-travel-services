@@ -247,11 +247,11 @@ export default function Reviews() {
             <div className="flex flex-col items-center lg:items-start space-y-4">
               <div className="flex items-center space-x-4 bg-card p-4 rounded-xl border border-border shadow-sm">
                 <div className="w-16 h-16 bg-muted rounded-lg flex items-center justify-center overflow-hidden relative mr-2">
-                   <CldImage 
-                      src="https://res.cloudinary.com/doy1q2tfm/image/upload/v1766386707/brand-icon_v517gx.png"
+                   <Image 
+                      src="/logo.png"
                       alt="Essaouira Adventures" 
-                      width={60} 
-                      height={60} 
+                      fill
+                      className="object-cover"
                     />
                 </div>
                 <div>

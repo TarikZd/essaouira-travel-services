@@ -157,14 +157,6 @@ export const services: Service[] = [
     bookingForm: {
       fields: getFieldsForService([
         {
-          name: 'pickupLocation',
-          label: 'Pickup Location',
-          type: 'text',
-          required: true,
-          placeholder: 'e.g., your hotel or Riad',
-          validation: z.string().min(1, 'Location is required'),
-        },
-        {
           name: 'dishPreference',
           label: 'Preferred Dish',
           type: 'select',
@@ -172,15 +164,7 @@ export const services: Service[] = [
           options: ['Mechoui', 'Barbecue', 'Meat Tagine', 'Chicken Tagine', 'Couscous', 'Fresh Fish (if available)', 'Vegetarian'],
           validation: z.string().min(1, 'Please select a dish.'),
         },
-        {
-          name: 'dietaryRestrictions',
-          label: 'Dietary Restrictions',
-          type: 'text',
-          required: false,
-          placeholder: 'e.g., vegetarian, gluten-free',
-          validation: z.string().optional(),
-        },
-      ]),
+      ]).filter(f => !['time', 'adults', 'children'].includes(f.name)),
     },
     whatsappNumber: '212628438838',
     whatsappMessage: (data: Record<string, any>) => `
@@ -190,13 +174,8 @@ export const services: Service[] = [
 *Name:* ${data.fullName.toUpperCase()}
 *Email:* ${data.email}
 *Date:* ${formatDate(data.date)}
-*Time:* ${data.time}
 *Tel:* ${data.phone}
-*Pickup:* ${data.pickupLocation}
-*Adults:* ${data.adults}
-*Children:* ${data.children || 0}
 *Dish:* ${data.dishPreference}
-*Diet:* ${data.dietaryRestrictions || 'None'}
 *Special Request:* ${data.specialRequests || 'None'}
 `,
   },
@@ -221,16 +200,7 @@ export const services: Service[] = [
       gallery: ['gallery-beaches-1', 'gallery-beaches-2', 'gallery-beaches-3'],
     },
     bookingForm: {
-      fields: getFieldsForService([
-        {
-          name: 'pickupLocation',
-          label: 'Pickup Location',
-          type: 'text',
-          required: true,
-          placeholder: 'e.g., your hotel or Riad',
-          validation: z.string().min(1, 'Location is required'),
-        },
-      ]),
+      fields: getFieldsForService([]).filter(f => !['time', 'adults', 'children'].includes(f.name)),
     },
     whatsappNumber: '212628438838',
     whatsappMessage: (data: Record<string, any>) => `
@@ -240,11 +210,7 @@ export const services: Service[] = [
 *Name:* ${data.fullName.toUpperCase()}
 *Email:* ${data.email}
 *Date:* ${formatDate(data.date)}
-*Time:* ${data.time}
 *Tel:* ${data.phone}
-*Pickup:* ${data.pickupLocation}
-*Adults:* ${data.adults}
-*Children:* ${data.children || 0}
 *Special Request:* ${data.specialRequests || 'None'}
 `,
   },
@@ -269,16 +235,7 @@ export const services: Service[] = [
       gallery: ['gallery-souk-1', 'gallery-souk-2', 'gallery-souk-3'],
     },
     bookingForm: {
-      fields: getFieldsForService([
-        {
-          name: 'pickupLocation',
-          label: 'Meeting Point',
-          type: 'text',
-          required: true,
-          placeholder: 'e.g., Bab Sbaa (main gate)',
-          validation: z.string().min(1, 'Meeting point is required'),
-        },
-      ]),
+      fields: getFieldsForService([]).filter(f => !['time', 'adults', 'children'].includes(f.name)),
     },
     whatsappNumber: '212628438838',
     whatsappMessage: (data: Record<string, any>) => `
@@ -288,11 +245,7 @@ export const services: Service[] = [
 *Name:* ${data.fullName.toUpperCase()}
 *Email:* ${data.email}
 *Date:* ${formatDate(data.date)}
-*Time:* ${data.time}
 *Tel:* ${data.phone}
-*Pickup:* ${data.pickupLocation}
-*Adults:* ${data.adults}
-*Children:* ${data.children || 0}
 *Special Request:* ${data.specialRequests || 'None'}
 `,
   },
@@ -319,14 +272,6 @@ export const services: Service[] = [
     bookingForm: {
       fields: getFieldsForService([
         {
-          name: 'pickupLocation',
-          label: 'Pickup Location',
-          type: 'text',
-          required: true,
-          placeholder: 'e.g., your hotel or Riad',
-          validation: z.string().min(1, 'Location is required'),
-        },
-        {
           name: 'packageType',
           label: 'Tour Duration',
           type: 'select',
@@ -334,7 +279,7 @@ export const services: Service[] = [
           options: ['2-Hour Discovery Ride', 'Half-Day Adventure', 'Full-Day Dune Expedition'],
           validation: z.string().min(1, 'Please select a duration.'),
         },
-      ]),
+      ]).filter(f => !['time', 'adults', 'children'].includes(f.name)),
     },
     whatsappNumber: '212628438838',
     whatsappMessage: (data: Record<string, any>) => `
@@ -344,11 +289,7 @@ export const services: Service[] = [
 *Name:* ${data.fullName.toUpperCase()}
 *Email:* ${data.email}
 *Date:* ${formatDate(data.date)}
-*Time:* ${data.time}
 *Tel:* ${data.phone}
-*Pickup:* ${data.pickupLocation}
-*Adults:* ${data.adults}
-*Children:* ${data.children || 0}
 *Duration:* ${data.packageType}
 *Special Request:* ${data.specialRequests || 'None'}
 `,
@@ -376,14 +317,6 @@ export const services: Service[] = [
     bookingForm: {
       fields: getFieldsForService([
         {
-          name: 'pickupLocation',
-          label: 'Pickup Location',
-          type: 'text',
-          required: true,
-          placeholder: 'e.g., your hotel or Riad',
-          validation: z.string().min(1, 'Location is required'),
-        },
-        {
           name: 'packageType',
           label: 'Session Duration',
           type: 'select',
@@ -391,7 +324,7 @@ export const services: Service[] = [
           options: ['Half Day (Morning)', 'Half Day (Afternoon)', 'Full Day'],
           validation: z.string().min(1, 'Please select a duration.'),
         },
-      ]),
+      ]).filter(f => !['time', 'adults', 'children'].includes(f.name)),
     },
     whatsappNumber: '212628438838',
     whatsappMessage: (data: Record<string, any>) => `
@@ -401,11 +334,7 @@ export const services: Service[] = [
 *Name:* ${data.fullName.toUpperCase()}
 *Email:* ${data.email}
 *Date:* ${formatDate(data.date)}
-*Time:* ${data.time}
 *Tel:* ${data.phone}
-*Pickup:* ${data.pickupLocation}
-*Adults:* ${data.adults}
-*Children:* ${data.children || 0}
 *Duration:* ${data.packageType}
 *Special Request:* ${data.specialRequests || 'None'}
 `,
