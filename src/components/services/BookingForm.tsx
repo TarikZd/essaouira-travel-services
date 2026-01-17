@@ -41,23 +41,6 @@ type BookingFormProps = {
   service: Service;
 };
 
-const routes: Record<string, string[]> = {
-    "Essaouira": ["Marrakech", "Aéroport Marrakech", "Agadir", "Agafay", "Taghazout", "Imsouane", "El Jadida", "Oualidia", "Imlil", "Ouirgane", "Taroudant", "Aéroport Agadir", "Aéroport Essaouira"],
-    "Aéroport Essaouira": ["Marrakech", "Aéroport Marrakech", "Agadir", "Agafay", "Taghazout", "Imsouane", "El Jadida", "Oualidia", "Imlil", "Ouirgane", "Taroudant", "Aéroport Agadir", "Essaouira"],
-    "Marrakech": ["Essaouira", "Aéroport Essaouira", "Agadir", "Agafay", "Taghazout", "Imsouane", "El Jadida", "Oualidia", "Imlil", "Ouirgane", "Taroudant", "Aéroport Agadir"],
-    "Aéroport Marrakech": ["Essaouira", "Aéroport Essaouira", "Agadir", "Agafay", "Taghazout", "Imsouane", "El Jadida", "Oualidia", "Imlil", "Ouirgane", "Taroudant", "Aéroport Agadir"],
-    "Agadir": ["Essaouira", "Aéroport Essaouira", "Marrakech", "Aéroport Marrakech", "Agafay", "Taghazout", "Imsouane", "El Jadida", "Oualidia", "Imlil", "Ouirgane", "Taroudant", "Aéroport Agadir"],
-    "Aéroport Agadir": ["Essaouira", "Aéroport Essaouira", "Marrakech", "Aéroport Marrakech", "Agafay", "Taghazout", "Imsouane", "El Jadida", "Oualidia", "Imlil", "Ouirgane", "Taroudant", "Agadir"],
-    "Agafay": ["Essaouira", "Aéroport Essaouira", "Marrakech", "Aéroport Marrakech", "Agadir", "Aéroport Agadir"],
-    "Taghazout": ["Essaouira", "Aéroport Essaouira", "Marrakech", "Aéroport Marrakech", "Agadir", "Aéroport Agadir"],
-    "Imsouane": ["Essaouira", "Aéroport Essaouira", "Marrakech", "Aéroport Marrakech", "Agadir", "Aéroport Agadir"],
-    "El Jadida": ["Essaouira", "Aéroport Essaouira", "Marrakech", "Aéroport Marrakech", "Agadir", "Aéroport Agadir"],
-    "Oualidia": ["Essaouira", "Aéroport Essaouira", "Marrakech", "Aéroport Marrakech", "Agadir", "Aéroport Agadir"],
-    "Imlil": ["Essaouira", "Aéroport Essaouira", "Marrakech", "Aéroport Marrakech", "Agadir", "Aéroport Agadir"],
-    "Ouirgane": ["Essaouira", "Aéroport Essaouira", "Marrakech", "Aéroport Marrakech", "Agadir", "Aéroport Agadir"],
-    "Taroudant": ["Essaouira", "Aéroport Essaouira", "Marrakech", "Aéroport Marrakech", "Agadir", "Aéroport Agadir"],
-};
-
 const FormLabelWithRequired: React.FC<{ children: React.ReactNode; required?: boolean }> = ({ children, required }) => (
     <FormLabel className="text-foreground">
       {children}
@@ -72,11 +55,9 @@ const timeSlots = Array.from({ length: 48 }, (_, i) => {
 });
 
 export default function BookingForm({ service }: BookingFormProps) {
-  // ... (previous hook logic remains same until return) ...
   const [isPending, startTransition] = useTransition();
   const { toast } = useToast();
   
-
   const fullService = services.find(s => s.id === service.id);
 
   const dynamicSchema = useMemo(() => {
@@ -98,8 +79,6 @@ export default function BookingForm({ service }: BookingFormProps) {
 
   type FormValues = z.infer<typeof dynamicSchema>;
   
-  const isTransfer = service.slug === 'airport-transfers';
-
   const defaultFormValues: Partial<FormValues> = useMemo(() => {
     const serviceWithFields = services.find(s => s.slug === service.slug);
     if (!serviceWithFields) return {};
@@ -123,22 +102,6 @@ export default function BookingForm({ service }: BookingFormProps) {
     reValidateMode: 'onChange',
   });
   
-  const pickupLocationValue = useWatch({
-    control: form.control,
-    name: 'pickupLocation' as any, 
-  });
-
-  const destinationOptions = useMemo(() => {
-    if (service.slug !== 'airport-transfers' || !pickupLocationValue) {
-      const destField = service.bookingForm.fields.find(f => f.name === 'dropoffLocation');
-      if (Array.isArray(destField?.options)) {
-        return destField?.options.filter((opt): opt is string => typeof opt === 'string');
-      }
-      return [];
-    }
-    return routes[pickupLocationValue] || [];
-  }, [pickupLocationValue, service.slug, service.bookingForm.fields]);
-
   const [unavailableDates, setUnavailableDates] = useState<string[]>([]);
   const [capacityMap, setCapacityMap] = useState<Record<string, number>>({});
 
@@ -181,12 +144,6 @@ export default function BookingForm({ service }: BookingFormProps) {
       fetchAvailability();
   }, [service.slug, service.maxParticipants]);
 
-  useEffect(() => {
-    if (isTransfer) {
-      form.setValue('dropoffLocation' as any, '');
-    }
-  }, [pickupLocationValue, isTransfer, form]);
-
 
   const handleWhatsAppRedirect = (data: FormValues) => {
     if (!fullService) return;
@@ -199,46 +156,6 @@ export default function BookingForm({ service }: BookingFormProps) {
     window.open(whatsappUrl, '_blank');
   };
 
-  function onSubmit(data: FormValues) {
-    startTransition(async () => {
-      const submissionData = {
-        ...data,
-        date: (data as any).date ? format((data as any).date, 'yyyy-MM-dd') : '',
-        serviceName: service.name,
-        serviceId: service.slug,
-        phone: `${((data as any).countryCode || '').split('__')[0]}${(data as any).phone || ''}`,
-        createdAt: new Date().toISOString(),
-      };
-      
-      try {
-                const { error } = await supabase.from('leads').insert({
-          service_id: service.id, // Assuming service object has numeric ID, check logic if string needed or mixed
-          service_name: service.name,
-          customer_name: (data as any).fullName,
-          customer_email: (data as any).email,
-          customer_phone: submissionData.phone,
-          travel_date: submissionData.date,
-          details: submissionData,
-          status: 'new'
-        });
-
-        if (error) throw error;
-        toast({
-          title: 'Request Sent!',
-          description: "We have received your request and will redirect you to WhatsApp for confirmation.",
-        });
-        handleWhatsAppRedirect(data);
-        form.reset();
-      } catch (error) {
-        console.error("Error saving booking:", error);
-        toast({
-          variant: 'destructive',
-          title: 'Oops! Something went wrong.',
-          description: error instanceof Error ? error.message : 'There was an issue with your request.',
-        });
-      }
-    });
-  }
 
   const renderField = (fieldConfig: ServiceFormField) => {
     return (
@@ -248,13 +165,11 @@ export default function BookingForm({ service }: BookingFormProps) {
         name={fieldConfig.name as any}
         render={({ field }) => {
           let options: (string | { label: string; value: string })[] = [];
-          if (fieldConfig.name === 'dropoffLocation' && isTransfer) {
-              options = destinationOptions;
-          } else if (Array.isArray(fieldConfig.options)) {
+           if (Array.isArray(fieldConfig.options)) {
               options = fieldConfig.options;
           }
           
-          const spanClass = fieldConfig.name === 'specialRequests' || ['fullName', 'email', 'pickupLocation', 'dropoffLocation'].includes(fieldConfig.name) ? 'md:col-span-2' : '';
+          const spanClass = fieldConfig.name === 'specialRequests' || ['fullName', 'email'].includes(fieldConfig.name) ? 'md:col-span-2' : '';
           
           if (fieldConfig.name === 'phone') {
             const countryCodeField = service.bookingForm.fields.find(f => f.name === 'countryCode');
