@@ -143,7 +143,7 @@ export const services: Service[] = [
     bookingTitle: 'Book your culinary adventure',
     features: ['Authentic Moroccan Experience', 'Guided Souk Tour', 'Traditional Moroccan Cooking', 'Lunch in the Countryside'],
     pricing: {
-      amount: 80,
+      amount: 45,
       unit: 'per person',
     },
     rating: 5.0,
@@ -209,7 +209,7 @@ export const services: Service[] = [
     bookingTitle: 'Book your Hiking tour',
     features: ['Hidden Beach Exploration', 'Scenic Coastal Trails', 'Spectacular Coastal Scenery', 'Authentic Lunch Included'],
     pricing: {
-      amount: 70,
+      amount: 45,
       unit: 'per person',
     },
     rating: 4.8,
@@ -257,7 +257,7 @@ export const services: Service[] = [
     bookingTitle: 'Book your guided tour',
     features: ['Expert Local Guide', 'Ramparts & Port Visit', 'Souk & Artisan Exploration', 'Mint Tea Included'],
     pricing: {
-      amount: 25,
+      amount: 20,
       unit: 'per person',
     },
     rating: 4.9,
@@ -362,7 +362,7 @@ export const services: Service[] = [
     bookingTitle: 'Book your fishing session',
     features: ['Fishing Gear Provided', 'Experienced Local Fisherman', 'Refreshments Included', 'Wild & Peaceful Setting'],
     pricing: {
-      amount: 40,
+      amount: 45,
       unit: 'per person',
     },
     rating: 4.8,

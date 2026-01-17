@@ -12,7 +12,7 @@ export default function Hero() {
   };
 
   const openWhatsApp = () => {
-    window.open('https://wa.me/212690606068', '_blank');
+    window.open('https://wa.me/212628438838', '_blank');
   };
 
   return (
@@ -55,7 +55,7 @@ export default function Hero() {
                 size="lg" 
                 className="bg-accent text-accent-foreground hover:bg-accent/90 font-bold px-8 py-7 text-lg rounded-full w-full sm:w-auto shadow-[0_0_20px_rgba(250,204,21,0.3)] transition-all hover:scale-105"
             >
-              Book My Driver
+              Book Your Adventure
               <ArrowRight className="ml-2 h-5 w-5" />
             </Button>
             
@@ -66,7 +66,7 @@ export default function Hero() {
                 className="bg-white/5 text-white border-white/20 hover:bg-white/10 font-medium px-8 py-7 text-lg rounded-full w-full sm:w-auto backdrop-blur-sm transition-all"
             >
               <MessageCircle className="mr-2 h-5 w-5 text-primary" />
-              WhatsApp Concierge
+              Call Us On WhatsApp
             </Button>
           </div>
         </div>
