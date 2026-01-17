@@ -8,6 +8,7 @@ import dynamic from 'next/dynamic';
 import { useTransition, useMemo, useEffect, useState } from 'react';
 import { format } from 'date-fns';
 import { enUS } from 'date-fns/locale';
+import Image from 'next/image';
 
 import { Button } from '@/components/ui/button';
 import {
@@ -63,6 +64,12 @@ const FormLabelWithRequired: React.FC<{ children: React.ReactNode; required?: bo
       {required && <span className="text-primary ml-1">*</span>}
     </FormLabel>
 );
+
+const timeSlots = Array.from({ length: 48 }, (_, i) => {
+    const hour = Math.floor(i / 2).toString().padStart(2, '0');
+    const minute = i % 2 === 0 ? '00' : '30';
+    return `${hour}:${minute}`;
+});
 
 export default function BookingForm({ service }: BookingFormProps) {
   // ... (previous hook logic remains same until return) ...
@@ -218,17 +225,27 @@ export default function BookingForm({ service }: BookingFormProps) {
                             control={form.control}
                             name={"countryCode"}
                             render={({ field }) => (
-                            <FormItem className="w-1/3">
+                            <FormItem className="w-[140px]">
                                 <Select onValueChange={field.onChange} defaultValue={field.value} value={field.value}>
                                 <FormControl>
-                                    <SelectTrigger className="bg-background border-input text-foreground" aria-label="Country Code">
+                                    <SelectTrigger className="bg-background border-input text-foreground h-10 px-3" aria-label="Country Code">
                                     <SelectValue placeholder="Code" />
                                     </SelectTrigger>
                                 </FormControl>
-                                <SelectContent>
+                                <SelectContent className="max-h-60">
                                 {countryCodes.map((country, index) => (
                                 <SelectItem key={`${country.dial_code}__${country.code}`} value={`${country.dial_code}__${country.code}`}>
-                                  {country.code} ({country.dial_code})
+                                  <div className="flex items-center gap-2">
+                                     <div className="relative w-5 h-3.5 shrink-0 overflow-hidden rounded-[2px] shadow-sm">
+                                        <Image 
+                                            src={`https://purecatamphetamine.github.io/country-flag-icons/3x2/${country.code}.svg`} 
+                                            alt={country.code} 
+                                            fill 
+                                            className="object-cover" 
+                                        />
+                                     </div>
+                                     <span className="text-xs font-medium text-muted-foreground">{country.dial_code}</span>
+                                  </div>
                                 </SelectItem>
                                 ))}
                                 </SelectContent>
@@ -327,9 +344,18 @@ export default function BookingForm({ service }: BookingFormProps) {
                     render={({ field: timeFieldProps }) => (
                       <FormItem>
                           <FormLabelWithRequired required={timeField.required}>{timeField.label}</FormLabelWithRequired>
-                          <FormControl>
-                          <Input type="time" {...timeFieldProps} className="bg-background border-input text-foreground placeholder:text-muted-foreground" />
-                          </FormControl>
+                          <Select onValueChange={timeFieldProps.onChange} defaultValue={timeFieldProps.value} value={timeFieldProps.value}>
+                            <FormControl>
+                                <SelectTrigger className="bg-background border-input text-foreground">
+                                    <SelectValue placeholder="Select time" />
+                                </SelectTrigger>
+                            </FormControl>
+                            <SelectContent className="max-h-60">
+                                {timeSlots.map((time) => (
+                                    <SelectItem key={time} value={time}>{time}</SelectItem>
+                                ))}
+                            </SelectContent>
+                          </Select>
                           <FormMessage />
                       </FormItem>
                     )}
