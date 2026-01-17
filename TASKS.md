@@ -244,60 +244,53 @@ CREATE INDEX idx_bookings_reference ON bookings(reference_number);
 **Requirements**:
 Allow customers to self-service their bookings on the home page.
 
-**Features**:
+**Features Completed**:
 
-- [ ] Search by booking reference number
-- [ ] Display booking details (service, date, status, participants)
-- [ ] Show payment status
-- [ ] Request cancellation (sends to database with status change)
-- [ ] Email confirmation of cancellation request
-- [ ] Secure access (require email verification)
+- [x] Search by booking reference number
+- [x] Display booking details (service, date, status, participants)
+- [x] Show payment status
+- [x] Request cancellation (sends to database with status change)
+- [x] Secure access (require email verification)
+- [x] PayPal: Added booking reference to invoice
+- [x] PayPal: Disabled shipping address requirement
+- [x] PayPal: Clarified Deposit vs Full Payment options
 
-**UI Components**:
-
-- Search input with reference number validation
-- Booking details card
-- Cancellation request button with confirmation modal
-- Status badges (Confirmed, Pending, Cancelled)
-
-**Implementation**:
-
-```typescript
-// API endpoint: /api/bookings/lookup
-- Input: reference_number, email
-- Output: booking details if email matches
-- Security: Rate limiting, email verification
-
-// Cancellation flow:
-1. User enters reference + email
-2. System verifies match
-3. Display booking details
-4. User clicks "Request Cancellation"
-5. Confirmation modal
-6. Update status to 'cancellation_requested'
-7. Send notification to admin
-```
-
-**Files to Create**:
+**Files Created/Modified**:
 
 - `src/components/booking/BookingLookup.tsx`
 - `src/components/booking/BookingDetails.tsx`
 - `src/components/booking/CancellationModal.tsx`
 - `src/app/api/bookings/lookup/route.ts`
 - `src/app/api/bookings/cancel/route.ts`
-
-**Database Changes**:
-
-```sql
--- Add cancellation_requested status
-ALTER TABLE bookings DROP CONSTRAINT IF EXISTS bookings_status_check;
-ALTER TABLE bookings ADD CONSTRAINT bookings_status_check
-  CHECK (status IN ('pending_payment', 'confirmed', 'cancellation_requested', 'cancelled', 'completed', 'refunded'));
-```
+- `src/components/services/BookingForm.tsx` (Enhanced PayPal integration)
 
 ---
 
-### Task 12: Improve Calendar Caching
+### Task 7: Enhanced Email Notifications (Postmark/Resend)
+
+**Priority**: HIGH 🟠  
+**Estimated Time**: 2 hours  
+**Status**: ⬜ To Do
+
+**Requirements**:
+Send automated transactional emails for key booking events.
+
+**Triggers**:
+
+1. **Booking Confirmation**: Sent when payment is confirmed or "Pay Later" is submitted.
+   - Include: Reference number, service details, Google Maps location, contact info.
+2. **Cancellation Request Received**: Sent to customer when they request cancellation.
+3. **Admin Alert**: Sent to admin when a new booking or cancellation comes in.
+
+**Implementation**:
+
+- Use `resend` or `postmark` SDK.
+- Create email templates (React Email or HTML).
+- Create API endpoint `/api/webhooks/emails` or integrate into existing flows.
+
+---
+
+### Task 8: Improve Calendar Caching
 
 **Priority**: LOW 🟢  
 **Estimated Time**: 1 hour  
@@ -342,7 +335,7 @@ useEffect(() => {
 
 ## 🔄 REFACTORING & Technical Debt
 
-### Task 13: Remove `any` Types
+### Task 9: Remove `any` Types
 
 **Priority**: LOW 🟢  
 **Estimated Time**: 3 hours  
@@ -376,7 +369,7 @@ export interface BookingFormData {
 
 ---
 
-### Task 14: Implement Reviews System
+### Task 10: Implement Reviews System
 
 **Priority**: LOW 🟢  
 **Estimated Time**: 4 hours  
@@ -403,7 +396,7 @@ export interface BookingFormData {
 
 ## 📊 TESTING
 
-### Task 15: Add Unit Tests
+### Task 11: Add Unit Tests
 
 **Priority**: MEDIUM 🟡  
 **Estimated Time**: 8 hours  
@@ -432,7 +425,7 @@ npm install -D vitest @testing-library/react @testing-library/jest-dom
 
 ---
 
-### Task 16: End-to-End Testing
+### Task 12: End-to-End Testing
 
 **Priority**: LOW 🟢  
 **Estimated Time**: 6 hours  
@@ -457,7 +450,7 @@ npx playwright install
 
 ## 🚀 DEPLOYMENT & DevOps
 
-### Task 17: Set Up Staging Environment
+### Task 13: Set Up Staging Environment
 
 **Priority**: MEDIUM 🟡  
 **Estimated Time**: 2 hours  
@@ -478,7 +471,7 @@ npx playwright install
 
 ---
 
-### Task 18: Implement Monitoring & Logging
+### Task 14: Implement Monitoring & Logging
 
 **Priority**: MEDIUM 🟡  
 **Estimated Time**: 3 hours  
@@ -508,7 +501,7 @@ npx @sentry/wizard -i nextjs
 
 ## 📱 MOBILE & UX
 
-### Task 19: Mobile App (Progressive Web App)
+### Task 15: Mobile App (Progressive Web App)
 
 **Priority**: LOW 🟢  
 **Estimated Time**: 4 hours  
@@ -545,13 +538,13 @@ npx @sentry/wizard -i nextjs
 
 ## 📈 PROGRESS TRACKING
 
-**Tasks Completed (This Project)**: 5 / 14  
-**Progress**: ████░░░░░░ 36%
+**Tasks Completed (This Project)**: 5 / 15  
+**Progress**: ███░░░░░░░ 33%
 
 **By Priority**:
 
 - 🔴 Critical: 1 / 1 ✅ COMPLETE
-- 🟠 High: 1 / 1 ✅ COMPLETE
+- 🟠 High: 1 / 2 (Task 6 done, Task 7 pending)
 - 🟡 Medium: 3 / 7
 - 🟢 Low: 0 / 5
 

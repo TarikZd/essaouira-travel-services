@@ -161,6 +161,13 @@ export default function BookingForm({ service }: BookingFormProps) {
           let options: (string | { label: string; value: string })[] = [];
            if (Array.isArray(fieldConfig.options)) {
               options = fieldConfig.options;
+               // Filter options for participant fields if spots are limited
+               if (['adults', 'participants', 'people'].includes(fieldConfig.name) && spotsLeft !== null) {
+                   options = options.filter(opt => {
+                       const val = typeof opt === 'string' ? parseInt(opt, 10) : parseInt(opt.value, 10);
+                       return !isNaN(val) && val <= spotsLeft;
+                   });
+               }
           }
           
           const spanClass = fieldConfig.name === 'specialRequests' || ['fullName', 'email'].includes(fieldConfig.name) ? 'md:col-span-2' : '';
@@ -230,7 +237,14 @@ export default function BookingForm({ service }: BookingFormProps) {
                 <FormItem>
                   <FormLabelWithRequired required={fieldConfig.required}>{fieldConfig.label}</FormLabelWithRequired>
                   <FormControl>
-                    <Input type="number" min="1" {...field} onChange={(e) => field.onChange(parseInt(e.target.value, 10))} className="bg-background border-input text-foreground placeholder:text-muted-foreground" />
+                    <Input 
+                        type="number" 
+                        min="1" 
+                        max={spotsLeft !== null ? spotsLeft : undefined}
+                        {...field} 
+                        onChange={(e) => field.onChange(parseInt(e.target.value, 10))} 
+                        className="bg-background border-input text-foreground placeholder:text-muted-foreground" 
+                    />
                   </FormControl>
                   <FormMessage />
                 </FormItem>
@@ -242,7 +256,14 @@ export default function BookingForm({ service }: BookingFormProps) {
                     <FormItem>
                         <FormLabelWithRequired required={childrenField.required}>{childrenField.label}</FormLabelWithRequired>
                         <FormControl>
-                        <Input type="number" min="0" {...childrenFieldProps} onChange={(e) => childrenFieldProps.onChange(parseInt(e.target.value, 10))} className="bg-background border-input text-foreground placeholder:text-muted-foreground" />
+                        <Input 
+                            type="number" 
+                            min="0"
+                            max={spotsLeft !== null ? Math.max(0, spotsLeft - (form.getValues('adults') || 1)) : undefined}
+                            {...childrenFieldProps} 
+                            onChange={(e) => childrenFieldProps.onChange(parseInt(e.target.value, 10))} 
+                            className="bg-background border-input text-foreground placeholder:text-muted-foreground" 
+                        />
                         </FormControl>
                         <FormMessage />
                     </FormItem>
@@ -382,7 +403,14 @@ export default function BookingForm({ service }: BookingFormProps) {
                   </FormControl>
                 ) : (
                   <FormControl>
-                    <Input type={fieldConfig.type} placeholder={fieldConfig.placeholder} {...field} className="bg-background border-input text-foreground placeholder:text-muted-foreground" />
+                    <Input 
+                        type={fieldConfig.type} 
+                        placeholder={fieldConfig.placeholder} 
+                        {...field} 
+                        max={(fieldConfig.type === 'number' && ['participants'].includes(fieldConfig.name) && spotsLeft !== null) ? spotsLeft : undefined}
+                        className="bg-background border-input text-foreground placeholder:text-muted-foreground" 
+                        onChange={fieldConfig.type === 'number' ? (e) => field.onChange(e.target.value === '' ? '' : parseInt(e.target.value, 10)) : field.onChange}
+                    />
                   </FormControl>
                 )}
               <FormMessage />
