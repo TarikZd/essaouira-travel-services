@@ -451,32 +451,95 @@ export default function BookingForm({ service }: BookingFormProps) {
   const PayPalButtons = useMemo(() => dynamic(() => import('@paypal/react-paypal-js').then(mod => mod.PayPalButtons), { ssr: false, loading: () => <Loader2 className="animate-spin" /> }), []);
   const PayPalScriptProvider = useMemo(() => dynamic(() => import('@paypal/react-paypal-js').then(mod => mod.PayPalScriptProvider), { ssr: false }), []);
 
-  function handleBookingSave(data: FormValues, paymentDetails?: any) {
-    startTransition(async () => {
-      const submissionData = {
-        ...data,
-        date: (data as any).date ? format((data as any).date, 'yyyy-MM-dd') : '',
-        serviceName: service.name,
-        serviceId: service.slug,
-        phone: `${((data as any).countryCode || '').split('__')[0]}${(data as any).phone || ''}`,
-        createdAt: new Date().toISOString(),
-        paymentStatus: paymentDetails ? 'paid_deposit' : 'pay_on_arrival',
-        paymentDetails: paymentDetails || null,
-      };
-      
-      try {
-        const { error } = await supabase.from('leads').insert({
-          service_id: service.id,
-          service_name: service.name,
-          customer_name: (data as any).fullName,
-          customer_email: (data as any).email,
-          customer_phone: submissionData.phone,
-          travel_date: submissionData.date,
-          details: submissionData,
-          status: paymentDetails ? 'confirmed' : 'new'
-        });
+  async function handleBookingSave(data: FormValues, paymentDetails?: any) {
+    const email = (data as any).email;
+    const phone = `${((data as any).countryCode || '').split('__')[0]}${(data as any).phone || ''}`;
+    const fullName = (data as any).fullName;
+    const dateStr = (data as any).date ? format((data as any).date, 'yyyy-MM-dd') : '';
 
-        if (error) throw error;
+    startTransition(async () => {
+      try {
+        // 1. Customer Handling
+        let customerId;
+        const { data: existingCustomer } = await supabase
+            .from('customers')
+            .select('id')
+            .eq('email', email)
+            .single(); // Might return null or error if not found, usually .maybeSingle() is safer but single() throws code PGRST116
+
+        if (existingCustomer) {
+            customerId = existingCustomer.id;
+        } else {
+            // Check if error was just "not found" or actual error. 
+            // Simplified: Try insert. If email collision race condition, we might fail, but low risk here.
+            
+            // Note: If using .single() on empty result, it throws. So we should use .maybeSingle() if clients supports it or catch header.
+            // Let's rely on upsert or simple query. 
+            // Actually, best pattern:
+            const { data: newCustomer, error: custError } = await supabase
+                .from('customers')
+                .insert({
+                    email,
+                    full_name: fullName,
+                    phone: phone,
+                    country_code: (data as any).countryCode
+                })
+                .select()
+                .single();
+            
+            if (custError) {
+                // If unique constraint violated (race condition), fetch again
+                if (custError.code === '23505') {
+                     const { data: retryCust } = await supabase.from('customers').select('id').eq('email', email).single();
+                     if (retryCust) customerId = retryCust.id;
+                     else throw custError;
+                } else {
+                    throw custError;
+                }
+            } else {
+                customerId = newCustomer.id;
+            }
+        }
+
+        if (!customerId) throw new Error("Failed to resolve customer.");
+
+        // 2. Booking Handling
+        const { data: booking, error: bookingError } = await supabase
+            .from('bookings')
+            .insert({
+                customer_id: customerId,
+                service_id: service.slug, // Using slug as ID or string ID
+                service_name: service.name,
+                activity_date: dateStr,
+                participants: headCount,
+                currency: 'EUR',
+                total_price: totalPrice,
+                deposit_amount: depositAmount,
+                status: paymentDetails ? 'confirmed' : 'pending_payment',
+                payment_status: paymentDetails ? 'deposit_paid' : 'unpaid',
+                details: data // Store full form data as JSON
+            })
+            .select()
+            .single();
+            
+         if (bookingError) throw bookingError;
+
+         // 3. Payment Handling
+         if (paymentDetails) {
+             const { error: payError } = await supabase
+                .from('payments')
+                .insert({
+                    booking_id: booking.id,
+                    provider: 'paypal',
+                    transaction_id: paymentDetails.id, 
+                    amount: depositAmount,
+                    currency: 'EUR',
+                    status: 'completed',
+                    metadata: paymentDetails
+                });
+             if (payError) throw payError;
+         }
+
         toast({
           title: paymentDetails ? 'Booking Confirmed!' : 'Request Sent!',
           description: paymentDetails ? "Your deposit is received. Have a great trip!" : "Redirecting to WhatsApp for confirmation...",

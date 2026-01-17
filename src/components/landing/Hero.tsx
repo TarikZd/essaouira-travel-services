@@ -41,7 +41,7 @@ export default function Hero() {
 
           <h1 className="text-4xl md:text-6xl font-bold font-headline text-white tracking-tight leading-tight">
             Essaouira : <br />
-            <span className="text-transparent bg-clip-text bg-gradient-to-r from-primary via-white to-primary">More than just a ride.</span>
+            <span className="text-transparent bg-clip-text bg-gradient-to-r from-primary via-white to-primary">More than just a Travel.</span>
           </h1>
           
           <p className="text-lg md:text-xl text-gray-200 max-w-2xl mx-auto font-light leading-relaxed">
