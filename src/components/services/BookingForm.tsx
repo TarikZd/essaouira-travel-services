@@ -677,13 +677,27 @@ export default function BookingForm({ service }: BookingFormProps) {
                             });
                         }}
                         onApprove={async (data, actions) => {
-                            const details = await actions.order?.capture();
-                            const formData = form.getValues();
-                            const isValid = await form.trigger();
-                            if (isValid) {
-                                handleBookingSave(formData, details);
-                            } else {
-                                toast({ title: "Incomplete Form", description: "Please fill all fields before paying.", variant: "destructive" });
+                            if (!actions.order) return;
+                            try {
+                                const details = await actions.order.capture();
+                                const formData = form.getValues();
+                                const isValid = await form.trigger();
+                                if (isValid && details) {
+                                    handleBookingSave(formData, details);
+                                } else {
+                                    toast({ 
+                                        title: "Payment Capture Failed", 
+                                        description: "We could not verify the payment. Please contact support.", 
+                                        variant: "destructive" 
+                                    });
+                                }
+                            } catch (error) {
+                                console.error("PayPal Error:", error);
+                                toast({
+                                    title: "Payment Error",
+                                    description: "An error occurred during payment processing.",
+                                    variant: "destructive"
+                                });
                             }
                         }}
                     />
