@@ -164,7 +164,7 @@ export const services: Service[] = [
           label: 'Preferred Dish',
           type: 'select',
           required: true,
-          options: ['Tagine', 'Couscous', 'Pastilla', 'Moroccan Petit Four'],
+          options: ['Tagine', 'Couscous', 'Pastilla'],
           validation: z.string().min(1, 'Please select a dish.'),
         },
 
