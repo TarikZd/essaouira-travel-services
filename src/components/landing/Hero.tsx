@@ -39,12 +39,12 @@ export default function Hero() {
             <span className="text-sm font-medium">Trusted by 500+ Travelers</span>
           </div>
 
-          <h1 className="text-5xl md:text-7xl font-bold font-headline text-white tracking-tight leading-tight">
+          <h1 className="text-4xl md:text-6xl font-bold font-headline text-white tracking-tight leading-tight">
             Essaouira : <br />
             <span className="text-transparent bg-clip-text bg-gradient-to-r from-primary via-white to-primary">More than just a ride.</span>
           </h1>
           
-          <p className="text-xl md:text-2xl text-gray-200 max-w-2xl mx-auto font-light leading-relaxed">
+          <p className="text-lg md:text-xl text-gray-200 max-w-2xl mx-auto font-light leading-relaxed">
             Your Authentic Moroccan Experience. <br/>
             <span className="text-white font-medium">Pastry Classes • Cooking Classes • Adventures</span>
           </p>

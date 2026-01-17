@@ -119,7 +119,7 @@ export default async function ServicePage({ params }: { params: Promise<{ slug: 
       />
       {/* Hero Section */}
       <div className="relative h-[60vh] w-full overflow-hidden">
-        <div className="absolute inset-0 bg-black/40 z-10" />
+        <div className="absolute inset-0 bg-black/60 z-10" />
         {heroImage.imageUrl.includes('cloudinary') ? (
             <CldImage
                 src={heroImage.imageUrl}
@@ -144,11 +144,15 @@ export default async function ServicePage({ params }: { params: Promise<{ slug: 
                     <Star className="w-4 h-4 fill-primary text-primary" />
                     <span className="text-sm font-semibold">Premium Experience</span>
                 </div>
-                <h1 className="font-headline text-4xl md:text-7xl font-bold mb-6 text-white leading-tight shadow-xl">
+                <h1 className="font-headline text-3xl md:text-7xl font-bold mb-6 text-white leading-tight shadow-xl">
                     {service.name}
                 </h1>
-                <p className="text-xl text-white/90 max-w-2xl mx-auto font-medium drop-shadow-md">
-                    {service.description}
+                <p className="text-lg md:text-xl text-white/90 max-w-2xl mx-auto font-medium drop-shadow-md">
+                    {service.description.split(/(\*\*.*?\*\*)/g).map((part, i) => 
+                        part.startsWith('**') && part.endsWith('**') ? 
+                        <strong key={i} className="text-white">{part.slice(2, -2)}</strong> : 
+                        part
+                    )}
                 </p>
             </div>
         </div>
@@ -178,7 +182,13 @@ export default async function ServicePage({ params }: { params: Promise<{ slug: 
                         Why Choose This Adventure?
                     </h2>
                     <div className="space-y-4">
-                            <p>{service.description}</p>
+                            <p className="leading-relaxed">
+                                {service.description.split(/(\*\*.*?\*\*)/g).map((part, i) => 
+                                    part.startsWith('**') && part.endsWith('**') ? 
+                                    <strong key={i} className="text-foreground">{part.slice(2, -2)}</strong> : 
+                                    part
+                                )}
+                            </p>
                         <p>
                             Enjoy exceptional comfort and total safety. Our experienced team knows the region perfectly. 
                             Whether you're looking for thrill or relaxation, we guarantee a VIP experience.

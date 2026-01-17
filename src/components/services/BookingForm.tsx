@@ -441,8 +441,10 @@ export default function BookingForm({ service }: BookingFormProps) {
   const [paymentMethod, setPaymentMethod] = useState<'cash' | 'paypal'>('cash');
   
   // Calculate potential price
-  const formAdults = useWatch({ control: form.control, name: 'adults' }) || 1;
-  const totalPrice = service.pricing?.amount ? service.pricing.amount * formAdults : 0;
+  const formAdults = useWatch({ control: form.control, name: 'adults' });
+  const formParticipants = useWatch({ control: form.control, name: 'participants' });
+  const headCount = formAdults || formParticipants || 1;
+  const totalPrice = service.pricing?.amount ? service.pricing.amount * headCount : 0;
   const depositAmount = Math.ceil(totalPrice * 0.2); // 20% Deposit
 
   // PayPal Import (Lazy)
