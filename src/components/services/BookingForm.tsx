@@ -394,7 +394,8 @@ export default function BookingForm({ service }: BookingFormProps) {
   }
 
   // ... inside component ...
-  const [paymentMethod, setPaymentMethod] = useState<'cash' | 'paypal'>(service.pricing ? 'paypal' : 'cash');
+  const [paymentMethod, setPaymentMethod] = useState<'deposit' | 'full'>('deposit');
+  const [pendingBookingRef, setPendingBookingRef] = useState<string>('');
   
   // Calculate potential price
   const formAdults = useWatch({ control: form.control, name: 'adults' });
@@ -402,12 +403,13 @@ export default function BookingForm({ service }: BookingFormProps) {
   const headCount = formAdults || formParticipants || 1;
   const totalPrice = service.pricing?.amount ? service.pricing.amount * headCount : 0;
   const depositAmount = 10; // Fixed deposit
+  const paymentAmount = paymentMethod === 'deposit' ? depositAmount : totalPrice; // Amount to charge via PayPal
 
   // PayPal Import (Lazy)
   const PayPalButtons = useMemo(() => dynamic(() => import('@paypal/react-paypal-js').then(mod => mod.PayPalButtons), { ssr: false, loading: () => <Loader2 className="animate-spin" /> }), []);
   const PayPalScriptProvider = useMemo(() => dynamic(() => import('@paypal/react-paypal-js').then(mod => mod.PayPalScriptProvider), { ssr: false }), []);
 
-  async function handleBookingSave(data: FormValues, paymentDetails?: any): Promise<{ success: boolean; error?: string; bookingId?: string }> {
+  async function handleBookingSave(data: FormValues, paymentDetails?: any, referenceNumber?: string): Promise<{ success: boolean; error?: string; bookingId?: string }> {
     const email = (data as any).email;
     const phone = `${((data as any).countryCode || '').split('__')[0]}${(data as any).phone || ''}`;
     const fullName = (data as any).fullName;
@@ -485,11 +487,11 @@ export default function BookingForm({ service }: BookingFormProps) {
              return;
            }
 
-           // Generate and update reference number
-           const referenceNumber = generateBookingReference(booking.id);
+           // Use provided reference or generate new one
+           const bookingReference = referenceNumber || generateBookingReference(booking.id);
            const { error: updateError } = await supabase
                .from('bookings')
-               .update({ reference_number: referenceNumber })
+               .update({ reference_number: bookingReference })
                .eq('id', booking.id);
 
            if (updateError) {
@@ -519,8 +521,8 @@ export default function BookingForm({ service }: BookingFormProps) {
           toast({
             title: paymentDetails ? 'Booking Confirmed!' : 'Request Sent!',
             description: paymentDetails 
-              ? `Thank you! Your booking reference is ${referenceNumber}. You will receive a confirmation from PayPal shortly.` 
-              : `We have received your request (Ref: ${referenceNumber}) and will contact you shortly.`,
+              ? `Thank you! Your booking reference is ${bookingReference}. You will receive a confirmation from PayPal shortly.` 
+              : `We have received your request (Ref: ${bookingReference}) and will contact you shortly.`,
           });
           
           form.reset();
@@ -628,26 +630,26 @@ export default function BookingForm({ service }: BookingFormProps) {
             <div className="grid grid-cols-2 gap-4">
                 <Button 
                     type="button"
-                    variant={paymentMethod === 'paypal' ? 'default' : 'outline'}
-                    className={cn("h-auto py-4 flex flex-col items-center gap-2", paymentMethod === 'paypal' ? "border-primary bg-primary/10 text-primary" : "bg-transparent border-input text-muted-foreground")}
-                    onClick={() => setPaymentMethod('paypal')}
+                    variant={paymentMethod === 'deposit' ? 'default' : 'outline'}
+                    className={cn("h-auto py-4 flex flex-col items-center gap-2", paymentMethod === 'deposit' ? "border-primary bg-primary/10 text-primary" : "bg-transparent border-input text-muted-foreground")}
+                    onClick={() => setPaymentMethod('deposit')}
                 >
                     <span className="font-bold">Pay Deposit</span>
                     <span className="text-xs opacity-80">Secured by PayPal</span>
                 </Button>
                 <Button 
                     type="button"
-                    variant={paymentMethod === 'cash' ? 'default' : 'outline'}
-                    className={cn("h-auto py-4 flex flex-col items-center gap-2", paymentMethod === 'cash' ? "border-primary bg-primary/10 text-primary" : "bg-transparent border-input text-muted-foreground")}
-                    onClick={() => setPaymentMethod('cash')}
+                    variant={paymentMethod === 'full' ? 'default' : 'outline'}
+                    className={cn("h-auto py-4 flex flex-col items-center gap-2", paymentMethod === 'full' ? "border-primary bg-primary/10 text-primary" : "bg-transparent border-input text-muted-foreground")}
+                    onClick={() => setPaymentMethod('full')}
                 >
-                    <span className="font-bold">Pay Later</span>
-                    <span className="text-xs opacity-80">Cash / Card</span>
+                    <span className="font-bold">Pay Full Amount</span>
+                    <span className="text-xs opacity-80">Secured by PayPal</span>
                 </Button>
             </div>
         )}
 
-        {paymentMethod === 'paypal' && service.pricing ? (
+        {service.pricing ? (
              <div className="p-4 bg-white rounded-xl border border-input">
                  <PayPalScriptProvider options={{ clientId: process.env.NEXT_PUBLIC_PAYPAL_CLIENT_ID || "test", currency: "EUR" }}>
                     <PayPalButtons 
@@ -670,21 +672,30 @@ export default function BookingForm({ service }: BookingFormProps) {
                             const dateStr = date ? format(date, 'yyyy-MM-dd') : 'No Date';
                             const pax = (formData as any).adults || (formData as any).participants || 1;
                             
+                            // Generate reference needed for Invoice
+                            const tempId = crypto.randomUUID();
+                            const tempRef = generateBookingReference(tempId);
+                            setPendingBookingRef(tempRef);
+
                             return actions.order.create({
                                 intent: "CAPTURE",
+                                application_context: {
+                                    shipping_preference: "NO_SHIPPING"
+                                },
                                 purchase_units: [{
-                                    description: `Deposit: ${service.name}`,
+                                    description: `Ref: ${tempRef} - ${paymentMethod === 'deposit' ? 'Deposit' : 'Full Payment'} for ${service.name}`,
+                                    custom_id: `${tempRef}|${dateStr}|${pax}`,
                                     amount: { 
-                                        value: depositAmount.toString(), 
+                                        value: paymentAmount.toString(), 
                                         currency_code: "EUR",
                                         breakdown: {
-                                            item_total: { value: depositAmount.toString(), currency_code: "EUR" }
+                                            item_total: { value: paymentAmount.toString(), currency_code: "EUR" }
                                         }
                                     },
                                     items: [{
                                         name: service.name,
-                                        description: `Date: ${dateStr}, Guests: ${pax}`,
-                                        unit_amount: { value: depositAmount.toString(), currency_code: "EUR" },
+                                        description: `Ref: ${tempRef}, Date: ${dateStr}, Guests: ${pax}`,
+                                        unit_amount: { value: paymentAmount.toString(), currency_code: "EUR" },
                                         quantity: "1",
                                         category: "DIGITAL_GOODS"
                                     }]
@@ -705,7 +716,8 @@ export default function BookingForm({ service }: BookingFormProps) {
                                 
                                 // Get form data and attempt to save booking
                                 const formData = form.getValues();
-                                const result = await handleBookingSave(formData, details);
+                                // Pass the reference we generated for PayPal
+                                const result = await handleBookingSave(formData, details, pendingBookingRef);
                                 
                                 if (!result.success) {
                                     // CRITICAL: Payment was captured but booking save failed

@@ -128,6 +128,21 @@ export default function BookingLookup() {
               />
             </div>
 
+            {/* Info Box */}
+            <div className="bg-blue-50 dark:bg-blue-950/20 border border-blue-200 dark:border-blue-800 rounded-lg p-4">
+              <div className="flex items-start gap-3">
+                <div className="text-blue-600 dark:text-blue-400 mt-0.5">ℹ️</div>
+                <div className="text-sm text-blue-900 dark:text-blue-100">
+                  <p className="font-medium mb-1">What you can do:</p>
+                  <ul className="space-y-1 text-blue-800 dark:text-blue-200">
+                    <li>• View your booking details and status</li>
+                    <li>• Check payment information</li>
+                    <li>• Request booking cancellation</li>
+                  </ul>
+                </div>
+              </div>
+            </div>
+
             <Button
               type="submit"
               className="w-full"
