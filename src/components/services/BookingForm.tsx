@@ -140,6 +140,7 @@ export default function BookingForm({ service }: BookingFormProps) {
   }, [pickupLocationValue, service.slug, service.bookingForm.fields]);
 
   const [unavailableDates, setUnavailableDates] = useState<string[]>([]);
+  const [capacityMap, setCapacityMap] = useState<Record<string, number>>({});
 
   useEffect(() => {
       const fetchAvailability = async () => {
@@ -150,6 +151,7 @@ export default function BookingForm({ service }: BookingFormProps) {
               .eq('service_slug', service.slug);
           
           let dates = (blocked || []).map(b => b.blocked_date); // Keep as YYYY-MM-DD strings
+          const newCapacityMap: Record<string, number> = {};
 
           // Calculate capacity if restricted
           if (service.maxParticipants) {
@@ -164,6 +166,8 @@ export default function BookingForm({ service }: BookingFormProps) {
                    // Ensure activity_date is string YYYY-MM-DD
                    load[b.activity_date] = (load[b.activity_date] || 0) + b.participants;
                });
+               
+               Object.assign(newCapacityMap, load);
 
                Object.entries(load).forEach(([date, count]) => {
                    if (count >= (service.maxParticipants || 4)) {
@@ -171,6 +175,7 @@ export default function BookingForm({ service }: BookingFormProps) {
                    }
                });
           }
+          setCapacityMap(newCapacityMap);
           setUnavailableDates(dates);
       };
       fetchAvailability();
@@ -601,14 +606,25 @@ export default function BookingForm({ service }: BookingFormProps) {
   }
 
   const showVisualCalendar = !!service.maxParticipants;
+  
+  const selectedDateStr = form.watch('date') ? format(form.watch('date'), 'yyyy-MM-dd') : null;
+  const currentBooked = selectedDateStr ? (capacityMap[selectedDateStr] || 0) : 0;
+  const spotsLeft = service.maxParticipants ? (service.maxParticipants - currentBooked) : null;
 
   return (
     <div className="space-y-8">
       {showVisualCalendar && (
         <div className="bg-card border border-border rounded-xl p-6 shadow-sm">
-            <h3 className="font-headline text-xl font-bold mb-4 flex items-center gap-2">
-                <CalendarIcon className="w-5 h-5 text-primary" />
-                Select a Date
+            <h3 className="font-headline text-xl font-bold mb-4 flex items-center justify-between">
+                <div className="flex items-center gap-2">
+                    <CalendarIcon className="w-5 h-5 text-primary" />
+                    Select a Date
+                </div>
+                {selectedDateStr && spotsLeft !== null && (
+                    <span className={cn("text-sm font-bold px-3 py-1 rounded-full transition-all", spotsLeft > 0 ? "bg-green-100 text-green-700" : "bg-red-100 text-red-700")}>
+                        {spotsLeft > 0 ? `${spotsLeft} Spots Left` : 'Fully Booked'}
+                    </span>
+                )}
             </h3>
             <div className="flex justify-center bg-muted/30 rounded-lg p-4">
                 <Calendar
@@ -623,6 +639,10 @@ export default function BookingForm({ service }: BookingFormProps) {
                     }}
                     locale={enUS}
                     className="rounded-md border bg-white"
+                    classNames={{
+                        day_selected: "bg-blue-600 text-white hover:bg-blue-600 focus:bg-blue-600",
+                        day_disabled: "bg-gray-100 text-gray-300 opacity-100 cursor-not-allowed",
+                    }}
                 />
             </div>
             <div className="mt-4 flex gap-4 text-sm justify-center">
@@ -631,11 +651,11 @@ export default function BookingForm({ service }: BookingFormProps) {
                     <span>Available</span>
                 </div>
                  <div className="flex items-center gap-2">
-                    <div className="w-3 h-3 rounded-full bg-muted text-muted-foreground opacity-50 relative before:absolute before:w-full before:h-[1px] before:bg-current before:rotate-45"></div>
+                    <div className="w-3 h-3 rounded-full bg-gray-200 text-gray-400"></div>
                     <span>Full / Closed</span>
                 </div>
                  <div className="flex items-center gap-2">
-                    <div className="w-3 h-3 rounded-full bg-primary text-primary-foreground"></div>
+                    <div className="w-3 h-3 rounded-full bg-blue-600"></div>
                     <span>Selected</span>
                 </div>
             </div>
