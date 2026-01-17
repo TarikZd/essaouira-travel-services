@@ -1,7 +1,7 @@
 'use client';
 
 import Link from 'next/link';
-import { Facebook, Instagram, Phone, Mail, MapPin, Compass, MessageCircle } from 'lucide-react';
+import { Facebook, Instagram, Phone, Mail, MapPin, Compass, MessageCircle, Youtube, Video } from 'lucide-react';
 
 const socialLinks = [
   {
@@ -13,6 +13,16 @@ const socialLinks = [
     name: 'Instagram',
     url: 'https://www.instagram.com/essaouira_adventure/',
     icon: <Instagram className="h-5 w-5" />,
+  },
+  {
+    name: 'TikTok',
+    url: 'https://www.tiktok.com/@moroccan.adventur0',
+    icon: <Video className="h-5 w-5" />,
+  },
+  {
+    name: 'YouTube',
+    url: 'https://www.youtube.com/channel/UCiZGpNaDfQsV5XQE-8FIlPA',
+    icon: <Youtube className="h-5 w-5" />,
   },
   {
     name: 'WhatsApp',
@@ -47,9 +57,9 @@ export default function Footer() {
           <div>
             <h3 className="text-white font-bold mb-6 font-headline">Navigation</h3>
             <ul className="space-y-3">
-              <li><a href="#hero" className="hover:text-primary transition-colors">Home</a></li>
-              <li><a href="#services" className="hover:text-primary transition-colors">Our Adventures</a></li>
-              <li><a href="#contact" className="hover:text-primary transition-colors">Booking</a></li>
+              <li><Link href="/#hero" className="hover:text-primary transition-colors">Home</Link></li>
+              <li><Link href="/#services" className="hover:text-primary transition-colors">Our Adventures</Link></li>
+              <li><Link href="/#contact" className="hover:text-primary transition-colors">Booking</Link></li>
               <li><Link href="/privacy" className="hover:text-primary transition-colors">Privacy Policy</Link></li>
               <li><Link href="/terms" className="hover:text-primary transition-colors">Terms & Conditions</Link></li>
               <li><Link href="/legal" className="hover:text-primary transition-colors">Legal Notice</Link></li>

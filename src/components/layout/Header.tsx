@@ -91,12 +91,16 @@ export default function Header() {
               {link.label}
             </Link>
           ))}
-          <Button 
-            className="bg-primary text-primary-foreground hover:bg-yellow-500 font-bold px-6 rounded-full"
-            onClick={() => document.getElementById('booking-form')?.scrollIntoView({ behavior: 'smooth' })}
+          <Link 
+            href="/#contact" 
+            onClick={(e) => handleNavClick(e, '/#contact')}
           >
-            BOOK NOW
-          </Button>
+            <Button 
+                className="bg-primary text-primary-foreground hover:bg-yellow-500 font-bold px-6 rounded-full"
+            >
+                BOOK NOW
+            </Button>
+          </Link>
         </nav>
 
         {/* Mobile Navigation */}
