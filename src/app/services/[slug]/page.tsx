@@ -84,6 +84,7 @@ export default async function ServicePage({ params }: { params: Promise<{ slug: 
             return rest;
         })
       }, 
+      pricing: staticConfig.pricing, // Pass pricing for payment options
       bookingTitle: staticConfig.bookingTitle,
       maxParticipants: service.maxParticipants || staticConfig.maxParticipants // Pass constraint to form
   };
